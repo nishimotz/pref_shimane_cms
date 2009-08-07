@@ -1,0 +1,10 @@
+section1_1 情報提供責任者様へ
+
+CMSで公開されているアンケートページ、 <%= CMSConfig[:public_uri] %>genre1/
+に回答がありました。
+以下のURLにアクセスし、回答結果を確認してください。
+
+  <%= CMSConfig[:mail_uri] %>_enquete/show/1
+
+---
+CMS 島根県ホームページ管理システム

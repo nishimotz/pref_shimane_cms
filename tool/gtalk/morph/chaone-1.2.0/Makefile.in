@@ -1,0 +1,23 @@
+#
+# Makefile for chaone
+#
+
+CC = @CC@
+DEFS = @DEFS@ @CFLAGS@ -DKANJICODE=\"@KANJICODE@\" -DXSLFILE=\"@XSLFILE_DIR@/chaone_t_@KANJICODE@.xsl\"
+LIBS = @LIBS@
+
+SRCS = chaone.c
+OBJS = $(SRCS:.c=.o)
+PROG = chaone
+
+all: $(PROG)
+
+$(PROG): $(OBJS)
+	$(CC) -o $@ $(OBJS) $(LIBS)
+
+.c.o:
+	$(CC) $(DEFS) -c -o $@ $<
+
+clean:
+	rm -f $(OBJS)
+

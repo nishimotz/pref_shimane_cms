@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Content-Style-Type" content="text/css" />
+    <meta http-equiv="Content-Script-Type" content="text/javascript" />
+    <title><%= @page_title || "掲示板" %></title>
+    <%= stylesheet_link_tag 'admin' %>
+    <%= stylesheet_link_tag 'board' %>
+    <%= javascript_include_tag "prototype" %>
+    <%= javascript_include_tag "dragdrop" %>
+    <%= javascript_include_tag "controls" %>
+    <%= javascript_include_tag "effects" %>
+    <%= javascript_include_tag "admin" %>
+  </head>
+  <body>
+    <div class="info">
+      ユーザ : <%= h(@user.name) %>（<%= h(@user.section.name) %>）<br />
+      [<%= link_to('トップへ戻る', :controller => 'admin', :action => 'index') %>][<%= link_to('ログアウト', :controller => 'admin', :action => 'logout') %>]
+    </div>
+    <div class="logo">島根県ホームページ管理システム（CMS）</div>
+    <div class="tool">
+      &nbsp;
+    </div>
+
+    <div class="container">
+      <% if @page_title %>
+      <h1><%= @page_title %></h1>
+      <% end %>
+
+      <p style="color: green"><%= flash[:notice] %></p>
+
+      <%= @content_for_layout %>
+    </div>
+  </body>
+</html>

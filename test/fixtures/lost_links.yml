@@ -1,0 +1,22 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+first:
+  id: 1
+  page_id: 1
+  section_id: 1
+  side_type: 1
+  target: test
+  message: ページがありません。
+another:
+  id: 2
+  page_id: 2
+  section_id: 1
+  side_type: 1
+  target: test
+  message: ページがありません。
+another2:
+  id: 3
+  page_id: 3
+  section_id: 2
+  side_type: 1
+  target: test
+  message: ページがありません。

@@ -1,0 +1,21 @@
+top:
+  id: 1
+  parent_id:
+  section_id: 1
+  name: ''
+  title: 'トップ'
+  path: '/'
+emergency:
+  id: 2
+  parent_id: 1
+  section_id: 1
+  name: 'emergency'
+  title: '緊急情報'
+  path: '/emergency/'
+template:
+  id: 3
+  parent_id:
+  section_id: 1
+  name: 'template'
+  title: 'ページテンプレート'
+  path: '/template/'

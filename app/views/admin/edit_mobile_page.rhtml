@@ -1,0 +1,38 @@
+<% @edit_mode = :mobile -%>
+<%= render(:partial => 'menu_page') %>
+<div class="container">
+<%= error_messages_for 'page' %>
+<div>
+[<%= link_to('PC向けコンテンツから変換する', :action => 'copy_to_mobile', :id => @page) %>]
+</div>
+<% unless @content.errors.empty? -%>
+<div class="errorExplanation" id="errorExplanation"><h2>アクセシビリティチェックの結果</h2>
+<p>以下の警告／エラーがありました。</p>
+<ul>
+<% (@content.errors.on(:conv_char) || []).each do |e| -%>
+<li><%= h(e) %></li>
+<% end -%>
+<% (@content.errors.on(:char) || []).each do |e| -%>
+<li><%= e %></li>
+<% end -%>
+<% (@content.errors.on(:alt) || []).each do |e| -%>
+<li><%= h(e) %></li>
+<% end -%>
+</ul>
+</div>
+<% end -%>
+<%= start_form_tag({:action => 'update_mobile_page', :id => @page}, :name => 'EditPage') %>
+<div>
+<%= submit_tag('   保存   ', :onclick => 'document.EditPage.target = ""') %>
+<%= submit_tag('キャンセル', :name => 'cancel', :onclick => 'document.EditPage.target = "";return confirm("作業内容が破棄されます。よろしいですか？")') %>
+<% if @content.errors.on(:char) -%>
+<%= submit_tag('機種依存文字の自動変換', :name => 'convert_char', :onclick => 'document.EditPage.target = ""') %>
+<% end -%>
+</div>
+<div style="width: 100%;">
+<%= text_area('content', 'mobile', 'id' => "elm1", 'rows' => "25", 'cols' => "25") %>
+</div>
+<div>
+<%= end_form_tag %>
+</div>
+</div>

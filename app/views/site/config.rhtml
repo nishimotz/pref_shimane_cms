@@ -1,0 +1,14 @@
+<% @page_title = "ホームページの設定" %>
+<% if flash[:error] -%>
+  <p style="color: red"><%= h(flash[:error]) %></p>
+<% end -%>
+<div class="site-component">
+<%= render :partial => 'theme_config',
+    :locals => {:theme => @theme,
+                :themes => @themes,
+                :current_theme => @current_theme} %>
+</div>
+<div class="site-component">
+<%= render :partial => 'top_photo_link_config',
+           :locals => {:photo_link => @top_photo_link} %>
+</div>

@@ -1,0 +1,20 @@
+<%
+    # 説明：そのフォルダにある下位フォルダの中で、公開ページを含むものを表示する。
+  section = Section.find(:first, :conditions => ['top_genre_id = ?', @genre.id])
+  if section
+    genres = section.genres
+  else
+    genres = @page.genre.children
+  end
+  genres = genres.select{|g| g.has_current_page?}
+-%>
+<% if @preview || !genres.empty? -%>
+<h2>フォルダ一覧</h2>
+<ul class="sub-genre-list">
+<% genres.each do |genre| -%>
+<li><a href="<%= h(genre.link_path) %>"><%= h(genre.title) %></a> </li>
+<% if @preview && genres.empty? -%>
+<li>サンプルフォルダ</li><% end -%>
+<% end -%>
+</ul>
+<% end -%>

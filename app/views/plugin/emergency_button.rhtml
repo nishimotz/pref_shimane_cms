@@ -1,0 +1,9 @@
+<%
+  genre = Genre.find_by_path(CMSConfig[:emergency_path])
+  page_content_list = genre.news_page_contents
+-%>
+<% if page_content_list.empty? -%>
+  <a href="/bousai_info/"><img alt="防災気象(現在緊急情報はありません)" src="/images/panel/emergency.png" /></a>
+<% else -%>
+  <a href="<%= CMSConfig[:emergency_path] -%>"><img alt="緊急情報(緊急情報が公開されています)" src="/images/panel/emergency_info.png" /></a>
+<% end -%>

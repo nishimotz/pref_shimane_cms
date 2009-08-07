@@ -1,0 +1,28 @@
+<%= render(:partial => 'menu') -%>
+<br style="clear: both;" />
+
+<div>
+  <table width="100%">
+    <tr>
+      <td style="border:none;">
+        <%= start_form_tag(:action => 'search') %>
+          <%= text_field(:search, :keyword, :size => '30') %>
+          <%= submit_tag('検索') %>
+          [<a href="/_help/list/">カテゴリ一覧表示</a>]
+        <%= end_form_tag -%>
+      </td>
+    </tr>
+  </table>
+  <hr style="margin-top: -2px;" />
+
+  <div class="side">
+    <div class="dir">
+      <%= render(:partial => 'help_list') %>
+    </div>
+  </div>
+
+  <div class="light-pain" id="div-light">
+    <%= render(:partial => 'main_content') %>
+  </div>
+</div>
+

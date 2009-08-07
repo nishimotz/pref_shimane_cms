@@ -1,0 +1,30 @@
+#!/usr/bin/env ruby
+$KCODE = 'u'
+if ARGV.empty? || ARGV == ['--help']
+  puts "Usage: #{$0} html_file html_file ..."
+  exit 1
+end
+
+$:.unshift(File.expand_path(File.dirname(__FILE__) + "/../lib"))
+require 'htree'
+require 'nkf'
+
+ARGV.each do |file|
+  puts "* #{file}"
+  base_uri = URI.parse("http://#{file}")
+  links = []
+  begin
+    HTree.parse(NKF::nkf('-w -m0', File.read(file))).each_uri do |uri|
+      if uri.relative?
+        links << (base_uri + uri).normalize
+      else
+        links << uri
+      end
+    end
+    links.uniq.each do |uri|
+      puts uri
+    end
+  rescue
+    puts "- error."
+  end
+end

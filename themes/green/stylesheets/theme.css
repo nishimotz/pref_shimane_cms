@@ -1,0 +1,74 @@
+/*
+ * Theme specific stylesheet.
+ * Color Table
+ *  dark-green #165829;
+ *  lihgt-green #309e2d;
+ */
+
+/* border for round_corner */
+div.round_corner {
+  border-color: #165829;
+}
+
+div.round_corner h2 {
+  border-color: #165829;
+}
+
+/* border between content and footer */
+div#footer {
+  border-top: medium solid #165829;
+}
+
+/* h1 border for section.html */
+div.section_header {
+  border-color: #165829;
+}
+
+/* h1 border for news.html */
+div.page_header {
+  border-color: #165829;
+}
+
+/* Section list color for section.html */
+#subject h2,
+#section-subject h2 {
+  background-color: #309e2d;
+}
+#subject h2 a:hover,
+#subject h2 a:active,
+#section-subject h2 a:hover,
+#section-subject h2 a:active {
+  color: #165829;
+  background-color: #fff;
+}
+
+#subject ul,
+#section-subject ul {
+  border-left: 1px solid #b9ebb8;
+  border-right: 1px solid #b9ebb8;
+  border-bottom: 1px solid #b9ebb8;
+}
+
+/* backgound color for links in the footer */
+div#search_nav a:active, div#search_nav a:hover,
+div#footer a:active, div#footer a:hover {
+  background-color: #309e2d;
+}
+
+/* default background color for links which have 
+ * background image.
+ * These might be overridden by background-image */
+a.gradation:link,
+a.gradation:visited,
+a.gradation:hover,
+a.gradation:active {
+  background-color: #309e2d;
+}
+
+#mail p {
+  background-color: #309e2d;
+}
+
+#gallery div {
+  background-color: #309e2d;
+}

@@ -1,0 +1,370 @@
+*** hmmsynth.c.org	2006-02-08 08:06:29.000000000 +0900
+--- hmmsynth.c	2006-02-08 08:06:33.000000000 +0900
+***************
+*** 148,153 ****
+--- 148,154 ----
+    APHRASE *a;
+    BREATH *b;
+    SENTENCE *s;
++   char tmp_buff[64];
+  
+    mr = p->parent;
+    mp = mr->parent;
+***************
+*** 157,299 ****
+  
+  		/* phoneme-previous */
+    if (mr->silence != SILB)
+!     sprintf (buff, "%s-", p->prev->phoneme);
+    else 
+!     sprintf (buff, "x-");
+  
+  		/* phoneme-center */
+!   sprintf (buff, "%s%s", buff, p->phoneme);
+  
+  		/* phoneme-next */
+!   if (mr->silence != SILE)
+!     sprintf (buff, "%s+%s", buff, p->next->phoneme);
+!   else 
+!     sprintf (buff, "%s+x",buff);
+! 
+  		/* mora */
+!   sprintf (buff, "%s/A:", buff);
+!   if (mr->silence == NON)
+!     sprintf (buff, "%s%d_", buff, mr->position);
+!   else
+!     sprintf (buff, "%sx_", buff);
+!   if (mr->silence == NON)
+!     sprintf (buff, "%s%d", buff, mr->acdist);
+!   else
+!     sprintf (buff, "%sx", buff);
+  
+  		/* morph-previous */
+!   sprintf (buff, "%s/B:", buff);
+!   if (mp->silence == SILB || mp->prev->silence == SILB)
+!     sprintf (buff, "%sx_x_x",buff);
+    else if (mp->prev->silence == PAU) {
+!     sprintf (buff, "%s%s", buff, id2str(mp->prev->prev->hinshiID));
+!     sprintf (buff, "%s_%s", buff, id2str(mp->prev->prev->katsuyogataID));
+!     sprintf (buff, "%s_%s", buff, id2str(mp->prev->prev->katsuyokeiID));
+    } else {
+!     sprintf (buff, "%s%s", buff, id2str(mp->prev->hinshiID));
+!     sprintf (buff, "%s_%s", buff, id2str(mp->prev->katsuyogataID));
+!     sprintf (buff, "%s_%s", buff, id2str(mp->prev->katsuyokeiID));
+    }
+  
+  		/* morph-center */
+!   sprintf (buff, "%s-", buff);
+    if ( mp->silence == NON) {
+!     sprintf (buff, "%s%s", buff, id2str(mp->hinshiID));
+!     sprintf (buff, "%s_%s", buff, id2str(mp->katsuyogataID));
+!     sprintf (buff, "%s_%s", buff, id2str(mp->katsuyokeiID));
+!   } else
+!     sprintf(buff, "%sx_x_x", buff);
+  
+  		/* morph-next */
+!   sprintf(buff, "%s+", buff);
+!   if (mp->silence == SILE || mp->next->silence == SILE)
+!     sprintf (buff, "%sx_x_x", buff);
+    else if (mp->next->silence == PAU) {
+!     sprintf (buff, "%s%s", buff, id2str(mp->next->next->hinshiID));
+!     sprintf (buff, "%s_%s", buff, id2str(mp->next->next->katsuyogataID));
+!     sprintf (buff, "%s_%s", buff, id2str(mp->next->next->katsuyokeiID));
+    } else {
+!     sprintf (buff, "%s%s", buff, id2str(mp->next->hinshiID));
+!     sprintf (buff, "%s_%s", buff, id2str(mp->next->katsuyogataID));
+!     sprintf (buff, "%s_%s", buff, id2str(mp->next->katsuyokeiID));
+    }
+  
+  		/* aphrase-previous */
+!   sprintf (buff, "%s/C:", buff);
+!   if (a->silence == SILB || a->prev->silence == SILB)
+!     sprintf (buff, "%sx_x", buff);
+!   else if (a->prev->silence == PAU)
+!     sprintf (buff, "%s%d_%d", buff, a->prev->prev->nmora,
+!              a->prev->prev->accentType);
+!   else
+!     sprintf (buff, "%s%d_%d", buff, a->prev->nmora, a->prev->accentType);
+!   sprintf (buff, "%s_x", buff);
+    if ( a->silence == NON)
+      {
+!       if (a->prev->silence == PAU)
+!         sprintf (buff, "%s_1", buff);
+!       else
+!         sprintf (buff, "%s_0", buff);
+      }
+!   else
+!     sprintf (buff, "%s_x", buff);
+  
+  		/* aphrase-center */
+!   sprintf (buff, "%s-", buff);
+!   if ( a->silence == NON)
+!     sprintf (buff, "%s%d_%d_x_%d_%d", buff, a->nmora, a->accentType, a->position, a->interrogative);
+!   else
+!     sprintf(buff, "%sx_x_x_x_x", buff);
+!   sprintf(buff, "%s+", buff);
+  
+  		/* aphrase-next */
+!   if (a->silence == SILE || a->next->silence == SILE)
+!     sprintf (buff, "%sx_x", buff);
+!   else if (a->next->silence == PAU)
+!     sprintf (buff, "%s%d_%d", buff, a->next->next->nmora, a->next->next->accentType);
+!   else
+!     sprintf (buff, "%s%d_%d", buff, a->next->nmora, a->next->accentType);
+!   sprintf (buff, "%s_x", buff);
+    if ( a->silence == NON)
+      {
+!       if (a->next->silence == PAU)
+!         sprintf (buff, "%s_1", buff);
+!       else
+!         sprintf (buff, "%s_0", buff);
+      }
+!   else
+!     sprintf (buff, "%s_x", buff);
+  
+  		/* breath-prev */
+!   sprintf (buff, "%s/D:", buff);
+!   if (b->silence == SILB || b->prev->silence == SILB)
+!     sprintf (buff, "%sx", buff);
+!   else if (b->prev->silence == PAU)
+!     sprintf (buff, "%s%d", buff, b->prev->prev->nmora);
+!   else
+!     sprintf (buff, "%s%d", buff, b->prev->nmora);
+  
+  		/* breath-center */
+!   sprintf (buff, "%s-", buff);
+!   if (b->silence == NON)
+!     sprintf (buff, "%s%d_%d", buff, b->nmora, b->position);
+!   else if (b->silence == PAU)
+!     sprintf (buff, "%sx_%d", buff, b->prev->position);
+!   else 
+!     sprintf (buff, "%sx_x", buff);
+!   sprintf (buff, "%s+", buff);
+  
+  		/* breath-next */
+!   if (b->silence == SILE || b->next->silence == SILE)
+!     sprintf (buff, "%sx", buff);
+!   else if (b->next->silence == PAU)
+!     sprintf (buff, "%s%d", buff, b->next->next->nmora);
+!   else
+!     sprintf (buff, "%s%d", buff, b->next->nmora);
+  
+  		/* sentence */
+!   sprintf (buff, "%s/E:", buff);
+!   sprintf (buff, "%s%d", buff, s->nmora);
+  
+  #ifdef PRINTDATA
+    TmpMsg("%s\n",buff);
+--- 158,369 ----
+  
+  		/* phoneme-previous */
+    if (mr->silence != SILB)
+!     snprintf (buff, sizeof(tmp_buff), "%s-", p->prev->phoneme);
+    else 
+!     snprintf (buff, sizeof(tmp_buff), "x-");
+  
+  		/* phoneme-center */
+!   strncat( buff, p->phoneme, strlen( p->phoneme));
+  
+  		/* phoneme-next */
+!   if (mr->silence != SILE){
+!     strncat( buff, "+", 1);
+!     strncat( buff, p->next->phoneme, strlen( p->next->phoneme));
+!   }
+!   else{
+!     strncat( buff, "+x", 2);
+!   }
+!     
+  		/* mora */
+!   strncat( buff, "/A:", 3);
+!   if (mr->silence == NON){
+!     snprintf( tmp_buff, sizeof(tmp_buff), "%d_", mr->position);
+!     strncat( buff, tmp_buff, strlen( tmp_buff));
+!   }
+!   else{
+!     strncat( buff, "x_", 2);
+!   }
+!   if (mr->silence == NON){
+!     snprintf( tmp_buff, sizeof(tmp_buff), "%d", mr->acdist);
+!     strncat( buff, tmp_buff, strlen( tmp_buff));
+!   }
+!   else{
+!     strncat( buff, "x", 1);
+!   }
+  
+  		/* morph-previous */
+!   strncat( buff, "/B:", 3);
+!   if (mp->silence == SILB || mp->prev->silence == SILB){
+!     strncat( buff, "x_x_x", 5);
+!   }
+    else if (mp->prev->silence == PAU) {
+!     snprintf( tmp_buff, sizeof(tmp_buff), "%s_%s_%s",
+! 	      id2str(mp->prev->prev->hinshiID),
+! 	      id2str(mp->prev->prev->katsuyogataID),
+! 	      id2str(mp->prev->prev->katsuyokeiID));
+!     strncat( buff, tmp_buff, strlen( tmp_buff));
+    } else {
+!     snprintf( tmp_buff, sizeof(tmp_buff), "%s_%s_%s",
+! 	      id2str(mp->prev->hinshiID),
+! 	      id2str(mp->prev->katsuyogataID),
+! 	      id2str(mp->prev->katsuyokeiID));
+!     strncat( buff, tmp_buff, strlen( tmp_buff));
+    }
+  
+  		/* morph-center */
+!   strncat( buff, "-", 1);
+    if ( mp->silence == NON) {
+!     snprintf( tmp_buff, sizeof(tmp_buff), "%s_%s_%s",
+! 	      id2str(mp->hinshiID), 
+! 	      id2str(mp->katsuyogataID),
+! 	      id2str(mp->katsuyokeiID));
+!     strncat( buff, tmp_buff, strlen( tmp_buff));
+!     
+!   } else{
+!     strncat( buff, "x_x_x", 5);
+!   }
+  
+  		/* morph-next */
+!   strncat( buff, "+", 1);
+!   if (mp->silence == SILE || mp->next->silence == SILE){
+!     strncat( buff, "x_x_x", 5);
+!   }
+    else if (mp->next->silence == PAU) {
+!     snprintf( tmp_buff, sizeof(tmp_buff), "%s_%s_%s",
+! 	      id2str(mp->next->next->hinshiID),
+! 	      id2str(mp->next->next->katsuyogataID),
+! 	      id2str(mp->next->next->katsuyokeiID));
+!     strncat( buff, tmp_buff, strlen( tmp_buff));
+    } else {
+!     snprintf( tmp_buff, sizeof(tmp_buff), "%s_%s_%s",
+! 	      id2str(mp->next->hinshiID),
+! 	      id2str(mp->next->katsuyogataID),
+! 	      id2str(mp->next->katsuyokeiID));
+!     strncat( buff, tmp_buff, strlen( tmp_buff));
+    }
+  
+  		/* aphrase-previous */
+!   strncat( buff, "/C:", 3);
+!   if (a->silence == SILB || a->prev->silence == SILB){
+!     strncat( buff, "x_x", 3);
+!   }
+!   else if (a->prev->silence == PAU){
+!     snprintf( tmp_buff, sizeof(tmp_buff), "%d_%d",
+! 	      a->prev->prev->nmora,
+! 	      a->prev->prev->accentType);
+!     strncat( buff, tmp_buff, strlen( tmp_buff));
+!   }
+!   else{
+!     snprintf( tmp_buff, sizeof(tmp_buff), "%d_%d",
+! 	      a->prev->nmora,
+! 	      a->prev->accentType);
+!     strncat( buff, tmp_buff, strlen( tmp_buff));
+!   }
+! 
+!   strncat( buff, "_x", 2);
+    if ( a->silence == NON)
+      {
+!       if (a->prev->silence == PAU){
+! 	strncat( buff, "_1", 2);
+!       }
+!       else{
+! 	strncat( buff, "_0", 2);
+!       }
+      }
+!   else{
+!     strncat( buff, "_x", 2);
+!   }
+  
+  		/* aphrase-center */
+!   strncat( buff, "-", 1);
+!   if ( a->silence == NON){
+!     snprintf( tmp_buff, sizeof(tmp_buff), "%d_%d_x_%d_%d", 
+! 	     a->nmora, a->accentType, a->position, a->interrogative);
+!     strncat( buff, tmp_buff, strlen( tmp_buff));
+!   }
+!   else{
+!     strncat( buff, "x_x_x_x_x", 9);
+!   }
+!   strncat( buff, "+", 1);
+  
+  		/* aphrase-next */
+!   if (a->silence == SILE || a->next->silence == SILE){
+!     strncat( buff, "x_x", 3);
+!   }
+!   else if (a->next->silence == PAU){
+!     snprintf( tmp_buff, sizeof(tmp_buff), "%d_%d",
+! 	      a->next->next->nmora, a->next->next->accentType);
+!     strncat( buff, tmp_buff, strlen( tmp_buff));
+!   }
+!   else{
+!     snprintf( tmp_buff, sizeof(tmp_buff), "%d_%d",
+! 	      a->next->nmora, a->next->accentType);
+!     strncat( buff, tmp_buff, strlen( tmp_buff));
+!   }
+! 
+!   strncat( buff, "_x", 2);
+    if ( a->silence == NON)
+      {
+!       if (a->next->silence == PAU){
+! 	strncat( buff, "_1", 2);
+!       }
+!       else{
+! 	strncat( buff, "_0", 2);	
+!       }
+      }
+!   else{
+!     strncat( buff, "_x", 2);
+!   }
+  
+  		/* breath-prev */
+!   strncat( buff, "/D:", 3);
+  
++   if (b->silence == SILB || b->prev->silence == SILB){
++     strncat( buff, "x", 1);
++   }
++   else if (b->prev->silence == PAU){
++     snprintf( tmp_buff, sizeof(tmp_buff), "%d", b->prev->prev->nmora);
++     strncat( buff, tmp_buff, strlen( tmp_buff));
++   }
++   else{
++     snprintf( tmp_buff, sizeof(tmp_buff), "%d", b->prev->nmora);
++     strncat( buff, tmp_buff, strlen( tmp_buff));
++   }
+  		/* breath-center */
+! 
+!   strncat( buff, "-", 1);
+! 
+!   if (b->silence == NON){
+!     snprintf( tmp_buff, sizeof(tmp_buff), "%d_%d",  b->nmora, b->position);
+!     strncat( buff, tmp_buff, strlen( tmp_buff));
+!   }
+!   else if (b->silence == PAU){
+!     snprintf( tmp_buff, sizeof(tmp_buff), "%x_d%d",  b->nmora, b->prev->position);
+!     strncat( buff, tmp_buff, strlen( tmp_buff));
+!   }
+!   else {
+!     strncat( buff, "x_x", 3);
+!   }
+!   strncat( buff, "+", 1);
+  
+  		/* breath-next */
+!   if (b->silence == SILE || b->next->silence == SILE){
+!     strncat( buff, "x", 1);
+!   }
+!   else if (b->next->silence == PAU){
+!     snprintf( tmp_buff, sizeof(tmp_buff), "%d", b->next->next->nmora);
+!     strncat( buff, tmp_buff, strlen( tmp_buff));
+!   }
+!   else{
+!     snprintf (tmp_buff, sizeof(tmp_buff), "%d", b->next->nmora);
+!     strncat( buff, tmp_buff, strlen( tmp_buff));
+!   }
+  
+  		/* sentence */
+!   snprintf( tmp_buff, sizeof(tmp_buff), "/E:%d", s->nmora);
+!   strncat( buff, tmp_buff, strlen(tmp_buff));
+! 
+!   strncat( buff, "\0", 1);
+  
+  #ifdef PRINTDATA
+    TmpMsg("%s\n",buff);

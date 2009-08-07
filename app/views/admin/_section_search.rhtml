@@ -1,0 +1,28 @@
+<table border="1" id="section">
+  <tr>
+    <th>所属コード</th>
+    <th>組織正式名称</th>
+    <th>外部サイトへのリンク先</th>
+    <th>ユーザ数</th>
+    <th>処理</th>
+  </tr>
+  
+<% for section in @sections -%>
+  <tr>
+    <td><div style="text-align: right;"><%= h(section.code) %></div></td>
+    <td><%= h(section.name) %></td>
+    <td width="300" style="word-break: break-all;"><a href="<%= h(section.link) %>" target="_blank"><%= h(section.link) %></a></td>
+    <td><div style="text-align: right;"><%= h(section.users.size) %></div></td>
+    <td>
+      <%= link_to('編集', :action => 'edit_section', :id => section) %>
+      <%= link_to('削除', { :action => 'destroy_section', :id => section }, :confirm => '削除しますか?') %>
+      <%= link_to('ユーザ一覧', :action => 'list_user', :id => section) %>
+    </td>
+  </tr>
+<% end -%>
+</table>
+<% if @display_navigation -%>
+<%= h(@section_pages.current.number) %> / <%= h(@section_pages.page_count) %> ページ
+<%= link_to('前へ', { :page => @section_pages.current.previous }) if @section_pages.current.previous %>
+<%= link_to('次へ', { :page => @section_pages.current.next }) if @section_pages.current.next %> 
+<% end -%>

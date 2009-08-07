@@ -1,0 +1,65 @@
+<% if enquete? -%>
+<script type="text/javascript">
+<!--
+var enqueteFormListener = {
+handleEvent : function (event) {
+                var elms = document.getElementById("enquete-form")
+                // In case of comfirmation page, do nothing.
+                if (!(elms && elms['commit'])) return;
+
+                for (var i = 0; i < elms.length; i++) {
+                  if (elms[i].name.indexOf("_other") != -1) {
+                    // If form contains '_other' input control.
+                    var other = elms[i];
+                    var ctrl_name = other.name.substring(0, other.name.indexOf('_other'));
+                    var ctrls = document.getElementsByName(ctrl_name);
+                    var ctrl_last = ctrls[ctrls.length-1];
+                    if (ctrl_last.type === 'radio') {
+                      for(var j = 0; j < (ctrls.length-1); j++) {
+                        ctrls[j].onclick = function () {
+                          document.getElementsByName(this.name+'_other')[0].disabled = true;
+                        };
+                      }
+                      ctrl_last.onclick = function () {
+                        document.getElementsByName(this.name+'_other')[0].disabled = false;
+                      };
+                    } else if (ctrl_last.type === 'checkbox') {
+                      ctrl_last.onclick = function () {
+                        document.getElementsByName(this.name+'_other')[0].disabled = (this.checked ? false : true);
+                      };
+                    }
+                    if (ctrl_last.checked) {
+                      // If other button is checked, enable '*_other' input control.
+                      other.disabled = false;
+                    } else {
+                      other.disabled = true;
+                    }
+                  }
+                }
+              }
+};
+if (window.addEventListener) {
+  window.addEventListener('load',
+                          enqueteFormListener,
+                          false);
+} else {
+  window.attachEvent("onload",
+                     enqueteFormListener.handleEvent);
+}
+-->
+</script>
+<form id="enquete-form" method="post" action="<%= CMSConfig[:enquete][:post_cgi_uri] %>">
+<input type="hidden" name="_page_id" value="<%= @page.id %>" />
+<input type="hidden" name="_uri" value="<%= @page.path %>" />
+<%= render(:inline => @content) %>
+<% unless /<%=\s*plugin\(\s*'form_submit/ =~ @content -%>
+<%= plugin('form_submit') %>
+<% end -%>
+</form>
+<% else -%>
+<% if @content == 'genre_top_layout' -%>
+<%= genre_auto_content(@page.title) %>
+<% else -%>
+<%= render(:inline => @content) %>
+<% end -%>
+<% end -%>

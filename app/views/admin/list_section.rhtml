@@ -1,0 +1,19 @@
+<%= render(:partial => 'menu') %>
+<div class="container">
+<h2>所属一覧</h2>
+<%= form_remote_tag(:update => "section",
+                    :url => { :action => :section_search }) %>
+<select name="section[division_id]">
+<%= options_for_select(@divisions) %>
+</select>
+<%= submit_tag('に所属する課の表示') %>
+&nbsp;&nbsp;
+[<%= link_to('全所属一覧表示に戻る', :action => 'list_section') %>]|[<%= link_to('部局・所属の並び変え', :action => 'sort_division_section', :id => @division_code) %>]|[<%= link_to('所属新規作成', :action => 'new_section') %>]|[<%= link_to('部局の編集', :action => 'list_division') %>]
+<%= end_form_tag %>
+<br />
+<div style="color: red;"><%= flash[:section_notice] %></div>
+<div id="section">
+<%= render(:partial => 'section_search') %>
+</table>
+</div>
+</div>

@@ -1,0 +1,88 @@
+/* ユニバーサル */
+div.ud_menu {
+  text-align: right;
+  margin: 0;
+  padding: 0;
+}
+div.ud_menu img {
+  margin: 0;
+  padding: 0;
+  padding-left: 2px;
+  border: none;
+}
+div.ud_menu #speak_nav img {
+  padding: 0;
+}
+
+div.ud_menu #large_on,
+div.ud_menu #color_on,
+div.ud_menu #ruby_on {
+  display: none;
+}
+
+div#speak_nav {
+  visibility: hidden;
+  position: absolute;
+  top: 15px;
+  left: 10px;
+  width: 343px;
+  height: 68px;
+  padding-top: 7px;
+  padding-left: 7px;
+  text-align: left;
+  background-image: url(../images/speak_nav.png);
+  background-repeat: no-repeat;
+  cursor: move;
+  z-index: 100;
+}
+
+span.speak_nav_button {
+  cursor: pointer;
+}
+
+span#about_image {
+  vertical-align: bottom;
+}
+
+span#about_image a:link, span#about_image a:visited,
+span#about_image a:hover, span#about_image a:active {
+  color: white;
+}
+
+div#global_nav {
+  padding: 0;
+  margin: 0;
+  clear: both;
+}
+
+div#global_nav div.button {
+  margin: 6px 4px 6px 0;
+  padding: 0.2em;
+  float: left;
+  line-height: 35px;
+  text-align: center;
+  width: 5.2em;
+  border: solid 1px;
+}
+
+div#global_nav.police_nav div.button {
+  line-height: normal;
+  width: 8em;
+}
+
+div#global_nav div.table_div_right {
+  float: none;
+  text-align: right;
+}
+
+div#search_nav {
+  clear: both;
+  padding: 0.3em 0.5em;
+  margin: 0 0 6px;
+}
+
+div#foreign_nav {
+  float: right;
+  margin: 0;
+  padding: 0;
+}

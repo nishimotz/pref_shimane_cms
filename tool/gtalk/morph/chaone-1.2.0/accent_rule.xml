@@ -1,0 +1,413 @@
+<?xml version="1.0" encoding="Shift_JIS"?>
+
+<!-- アクセント型結合規則               -->
+<!--                    used in ChaOne  -->
+<!--           2005-03-20 by Studio ARC -->
+<!-- Copyright (c) 2005 Studio ARC      -->
+
+<aType_rule>
+
+<!-- ***記述方法*** -->
+<!-- 1. ruleは1つのifと1つのthenからなる              -->
+<!-- 2. ifは条件式を1つだけもつ                       -->
+<!-- 3. 条件式で記述可能な要素はpre, current          -->
+<!-- 4. 条件式で記述可能な属性は                      -->
+<!--    aConType, aType, no_nucleus, tokushuhaku      -->
+<!-- 5. ruleの子要素のthenは属性aTypeをもつか、       -->
+<!--    あるいはif, then, elseを子要素としてもつ      -->
+<!-- 6. thenの子要素のthen, elseは属性aTypeをもつ     -->
+<!-- 7. 属性aTypeの値には、                           -->
+<!--    結合語のアクセント型の計算方法を記述する      -->
+<!-- 8. アクセント型の計算に使用できる要素は          -->
+<!--    定数、pre, current, @mora, @aType, @cm, @cm2  -->
+<!-- 9. アクセント型の計算に使用できる演算子は+, -    -->
+
+<!-- 接頭辞(pre) + 自立語(current) -->
+<rule id="P1">
+  <!-- 一体化型 -->
+  <if>
+    <pre aConType="P1"/>
+  </if>
+  <then>
+    <if>
+      <current no_nucleus="yes"/>
+    </if>
+    <then aType="0"/>
+    <else aType="pre/@mora + current/@aType"/>
+  </then>
+</rule>
+
+<rule id="P2">
+  <!-- 自立語結合型 -->
+  <if>
+    <pre aConType="P2"/>
+  </if>
+  <then>
+    <if>
+      <current no_nucleus="yes"/>
+    </if>
+    <then aType="pre/@mora + 1"/>
+    <else aType="pre/@mora + current/@aType"/>
+  </then>
+</rule>
+
+<rule id="P4">
+  <!-- 混合型 -->
+  <if>
+    <pre aConType="P4"/>
+  </if>
+  <then>
+    <if>
+      <current no_nucleus="yes"/>
+    </if>
+    <then aType="pre/@mora + 1"/>
+    <else aType="pre/@aType"/>
+  </then>
+</rule>
+
+<rule id="P5">
+  <!-- 動詞／形容詞接続型 -->
+  <if>
+    <pre aConType="P5"/>
+  </if>
+  <then>
+    <if>
+      <current tokushuhaku="-2"/>
+    </if>
+    <then aType="pre/@mora + current/@mora - 2"/>
+    <else aType="pre/@mora + current/@mora - 1"/>
+  </then>
+</rule>
+
+<rule id="P6">
+  <if>
+    <pre aConType="P6"/>
+  </if>
+  <then aType="0"/>
+</rule>
+
+<rule id="P7">
+  <if>
+    <pre aConType="P7"/>
+  </if>
+  <then>
+    <if>
+      <current no_nucleus="yes"/>
+    </if>
+    <then aType="0"/>
+    <else aType="pre/@aType"/>
+  </then>
+</rule>
+
+<rule id="P8">
+  <if>
+    <pre aConType="P8"/>
+  </if>
+  <then>
+    <if>
+      <current no_nucleus="yes"/>
+    </if>
+    <then aType="pre/@mora + 1"/>
+    <else aType="0"/>
+  </then>
+</rule>
+
+<rule id="P9">
+  <if>
+    <pre aConType="P9"/>
+  </if>
+  <then>
+    <if>
+      <current no_nucleus="yes"/>
+    </if>
+    <then aType="pre/@mora + 1"/>
+    <else aType="pre/@aType"/>
+  </then>
+</rule>
+
+<rule id="P10">
+  <if>
+    <pre aConType="P10"/>
+  </if>
+  <then>
+    <if>
+      <current no_nucleus="yes"/>
+    </if>
+    <then aType="pre/@mora + 1"/>
+    <else aType="pre/@aType"/>
+  </then>
+</rule>
+
+<rule id="P11">
+  <if>
+    <pre aConType="P11"/>
+  </if>
+  <then>
+    <if>
+      <current no_nucleus="yes"/>
+    </if>
+    <then aType="pre/@mora"/>
+    <else aType="pre/@mora + pre/@aType"/>
+  </then>
+</rule>
+
+<rule id="P12">
+  <if>
+    <pre aConType="P12"/>
+  </if>
+  <then>
+    <if>
+      <current no_nucleus="yes"/>
+    </if>
+    <then aType="pre/@mora"/>
+    <else aType="pre/@aType"/>
+  </then>
+</rule>
+
+<rule id="P13">
+  <if>
+    <pre aConType="P13"/>
+  </if>
+  <then aType="pre/@aType"/>
+</rule>
+
+<rule id="P14">
+  <if>
+    <pre aConType="P14"/>
+  </if>
+  <then>
+    <if>
+      <current no_nucleus="yes"/>
+    </if>
+    <then aType="pre/@aType"/>
+    <else aType="pre/@mora + current/@aType"/>
+  </then>
+</rule>
+
+<rule id="P15">
+  <if>
+    <pre aConType="P15"/>
+  </if>
+  <then>
+    <if>
+      <current no_nucleus="yes"/>
+    </if>
+    <then aType="pre/@aType"/>
+    <else aType="1"/>
+  </then>
+</rule>
+
+<!-- 自立語(pre) + 付属語(current) -->
+
+<rule id="F1">
+  <!-- 従属型 -->
+  <if>
+    <current aConType="F1"/>
+  </if>
+  <then aType="pre/@aType"/>
+</rule>
+
+<rule id="F2">
+  <!-- 不完全支配型 -->
+  <if>
+    <current aConType="F2"/>
+  </if>
+  <then>
+    <if>
+      <pre aType="0"/>
+    </if>
+    <then aType="pre/@mora + current/@cm"/>
+    <else aType="pre/@aType"/>
+  </then>
+</rule>
+
+<rule id="F3">
+  <!-- 融合型 -->
+  <if>
+    <current aConType="F3"/>
+  </if>
+  <then>
+    <if>
+      <pre aType="0"/>
+    </if>
+    <then aType="pre/@aType"/>
+    <else aType="pre/@mora + current/@cm"/>
+  </then>
+</rule>
+
+<rule id="F4">
+  <!-- 支配型1 -->
+  <if>
+    <current aConType="F4"/>
+  </if>
+  <then aType="pre/@mora + current/@cm"/>
+</rule>
+
+<rule id="F5">
+  <!-- 支配型2 -->
+  <if>
+    <current aConType="F5"/>
+  </if>
+  <then aType="0"/>
+</rule>
+
+<rule id="F6">
+  <if>
+    <current aConType="F6"/>
+  </if>
+  <then>
+    <if>
+      <pre aType="0"/>
+    </if>
+    <then aType="pre/@mora + current/@cm"/>
+    <else aType="pre/@mora + current/@cm2"/>
+  </then>
+</rule>
+
+<rule id="F7">
+  <if>
+    <current aConType="F7"/>
+  </if>
+  <then>
+    <if>
+      <pre aType="0"/>
+    </if>
+    <then aType="0"/>
+    <else aType="pre/@mora + current/@cm"/>
+  </then>
+</rule>
+
+<rule id="F8">
+  <if>
+    <current aConType="F8"/>
+  </if>
+  <then aType="pre/@mora + current/@cm"/>
+</rule>
+
+<rule id="F9">
+  <if>
+    <current aConType="F9"/>
+  </if>
+  <then>
+    <if>
+      <pre aType="0"/>
+    </if>
+    <then aType="pre/@mora + current/@cm"/>
+    <else aType="pre/@mora + current/@cm2"/>
+  </then>
+</rule>
+
+<!-- 自立語 + 接尾辞 -->
+
+<rule id="C1">
+  <!-- 自立語結合 保存型 -->
+  <if>
+    <current aConType="C1"/>
+  </if>
+  <then aType="pre/@mora + current/@aType"/>
+</rule>
+
+<rule id="C2">
+  <!-- 自立語結合 生起型 -->
+  <if>
+    <current aConType="C2"/>
+  </if>
+  <then aType="pre/@mora + 1"/>
+</rule>
+
+<rule id="C3">
+  <!-- 接辞結合 標準型 -->
+  <!-- アクセント句の最終モーラを調べる -->
+  <!-- 特殊拍なら一つ前に -->
+  <if>
+    <current aConType="C3"/>
+  </if>
+  <then>
+    <if>
+      <pre tokushuhaku="-1"/>
+    </if>
+    <then aType="pre/@mora - 1"/>
+    <else aType="pre/@mora"/>
+  </then>
+</rule>
+
+<rule id="C4">
+  <!-- 接辞結合 平板化型 -->
+  <if>
+    <current aConType="C4"/>
+  </if>
+  <then aType="0"/>
+</rule>
+
+<rule id="C5">
+  <if>
+    <current aConType="C5"/>
+  </if>
+  <then aType="pre/@aType"/>
+</rule>
+
+<rule id="C6">
+  <if>
+    <current aConType="C6"/>
+  </if>
+  <then aType="1"/>
+</rule>
+
+<rule id="C7">
+  <if>
+    <current aConType="C7"/>
+  </if>
+  <then aType="pre/@mora + current/@cm"/>
+</rule>
+
+<rule id="C8">
+  <if>
+    <current aConType="C8"/>
+  </if>
+  <then aType="pre/@mora + current/@aType"/>
+</rule>
+
+<rule id="C9">
+  <if>
+    <current aConType="C9"/>
+  </if>
+  <then aType="0"/>
+</rule>
+
+<rule id="C10">
+  <if>
+    <current aConType="C10"/>
+  </if>
+  <then aType="pre/@mora + current/@aType"/>
+</rule>
+
+<rule id="C11">
+  <if>
+    <current aConType="C11"/>
+  </if>
+  <then aType="pre/@mora + current/@cm"/>
+</rule>
+
+<rule id="C12">
+  <if>
+    <current aConType="C12"/>
+  </if>
+  <then aType="pre/@mora + current/@cm"/>
+</rule>
+
+<!-- その他の結合 -->
+
+<rule id="default">
+  <if>
+    <default/>
+  </if>
+  <then>
+    <if>
+      <current no_nucleus="yes"/>
+    </if>
+    <then aType="pre/@mora + 1"/>
+    <else aType="pre/@mora + current/@aType"/>
+  </then>
+</rule>
+
+</aType_rule>

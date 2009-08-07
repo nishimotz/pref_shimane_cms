@@ -1,0 +1,30 @@
+<%= render(:partial => 'menu') %>
+<div class="container">
+<h2>フォルダのアクセス制限の設定</h2>
+
+<% if flash[:monitor_error] -%>
+  <p style="color: red; margin: 5px;"><%= h(flash[:monitor_error]) %></p>
+<% end -%>
+
+<% if flash[:monitor_notice] -%>
+  <p style="color: green; margin: 5px;"><%= h(flash[:monitor_notice]) %></p>
+<% end -%>
+
+<p style="padding: 5px 0 10px;">フォルダ名: <%= @genre.title -%></p>
+
+<%= link_to('フォルダの設定画面に戻る', :controller => 'admin', :action => 'genre') %>
+[<%= link_to('ウェブモニタの登録', :action => 'new_user', :id => @genre) %>]
+<br />
+
+<%= render :partial => 'form_genre_auth' %>
+
+<% if @edited && @genre.auth %>
+  <%= render :partial => 'form_update_monitor_info' %>
+<% end %>
+
+<h3>ウェブモニタ一覧</h3>
+<%= link_to('モニタの一括削除', {:action => 'destroy_all_user', :id => @genre}, :confirm => "ウェブモニタ全員を削除しますか?", :post => true) %>
+<div class="list">
+<%= render :partial => 'monitor_list' %>
+</div>
+</div>

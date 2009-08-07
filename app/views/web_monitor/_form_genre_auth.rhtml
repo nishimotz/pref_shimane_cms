@@ -1,0 +1,13 @@
+<%= start_form_tag({ :action => 'change_genre_auth', :id => @genre}, :class => 'web_monitor_form') %>
+<fieldset>
+<% if flash[:genre_auth_error] -%>
+  <p style="color: red; margin: 5px;"><%= h(flash[:genre_auth_error]) %></p>
+<% end -%>
+<legend>フォルダのアクセス制限の設定</legend>
+<p>現在の設定： <strong><%= @genre.auth ? "有効" : "無効" %></strong><p>
+<%= radio_button_tag 'auth', true, @genre.auth, :id => 'auth_true' %> 有効にする
+<br />
+<%= radio_button_tag 'auth', false, !@genre.auth, :id => 'auth_false'%> 無効にする 
+<%= submit_tag "設定を反映させる" %>
+</fieldset>
+<%= end_form_tag %>

@@ -1,0 +1,13 @@
+<h2 class="news">過去の新着情報</h2>
+<ul id="news">
+<%
+@news.each do |e|
+  page = Page.find(e.page_id) rescue nil
+  if page && page.current
+-%>
+<li><a href="<%= page.path %>"><%= h(news_strftime(e.published_at)) %> <%= e.title %></a><%= h("（#{page.genre.section_name_except_admin}）") rescue '' %></li>
+<% else -%>
+<li><%= h(news_strftime(e.published_at)) %> <%= e.title %></li>
+<% end -%>
+<% end -%>
+</ul>

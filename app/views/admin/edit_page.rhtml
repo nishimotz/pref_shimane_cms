@@ -1,0 +1,43 @@
+<% @edit_mode = :normal -%>
+<%= render(:partial => 'menu_page') %>
+<div class="container">
+<div>
+<div style="color:red"><%= flash[:import_notice] %></div>
+<%= start_form_tag(:action => 'import', :id => @page) %>
+<%= hidden_field_tag('status', params[:status]) %>
+<div>他のウェブページからコンテンツを変換する&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>変換元のURL：<%= text_field_tag('uri', @uri, :size => 50) %><%= submit_tag('変換') %></span></div><br />
+<%= end_form_tag %>
+</div>
+<% unless @content.errors.empty? -%>
+<div class="errorExplanation" id="errorExplanation"><h2>アクセシビリティチェックの結果</h2>
+<p>以下の警告／エラーがありました。</p>
+<ul>
+<% (@content.errors.on(:conv_char) || []).each do |e| -%>
+<li><%= h(e) %></li>
+<% end -%>
+<% (@content.errors.on(:char) || []).each do |e| -%>
+<li><%= e %></li>
+<% end -%>
+<% (@content.errors.on(:alt) || []).each do |e| -%>
+<li><%= h(e) %></li>
+<% end -%>
+</ul>
+</div>
+<% end -%>
+<%= start_form_tag({:action => 'update_page', :id => @page}, :name=> 'EditPage') %>
+<div>
+<%= submit_tag('   保存   ', :onclick => 'document.EditPage.target = ""') %>
+<%= submit_tag('プレビュー', :name => 'preview', :onclick => 'window.open("/images/blank.gif", "preview", "toolbar=no,status=no,menubar=no,scrollbars=yes,resizable");document.EditPage.target = "preview";') %>
+<%= submit_tag('キャンセル', :name => 'cancel', :onclick => 'document.EditPage.target = "";return confirm("作業内容が破棄されます。よろしいですか？")') %>
+<% if @content.errors.on(:char) -%>
+<%= submit_tag('機種依存文字の自動変換', :name => 'convert_char', :onclick => 'document.EditPage.target = ""') %>
+<% end -%>
+</div>
+<br />
+<div style="width: 100%;">
+<%= text_area('content', 'content', 'id' => "elm1", 'rows' => "25", 'cols' => "80", 'style' => "width: 100%; height: 520px") %>
+</div>
+<%= hidden_field_tag('status', params[:status]) %>
+<input type="hidden" name="uploadfile_js_url" id="uploadfile_js_url" value="<%= url_for(:controller => 'admin', :action => 'list_file', :id => @page) %>">
+<%= end_form_tag %>
+</div>

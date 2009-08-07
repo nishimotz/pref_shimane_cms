@@ -1,0 +1,34 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<title>CMS : <%= h controller.action_name %></title>
+  <%= stylesheet_link_tag 'default' %>
+  <%= stylesheet_link_tag 'dirs' %>
+  <%= stylesheet_link_tag 'admin' %>
+</head>
+<body>
+<h2>ファイルを添付する</h2>
+<%= start_form_tag({:action => 'upload_file', :id => @help_content}, :multipart => true) %>
+<p>このページで使用するファイルを添付して下さい。</p>
+<% if @error -%>
+<div style="color:red;"><%= h(@error) %></div>
+<% end -%>
+<div><%= file_field('file', 'content', :size => 80) %><br /><%= submit_tag('アップロード') %><span style="float: right;"><%= submit_tag('画面を閉じる', :onClick => "window.close();") %></span></div>
+<%= end_form_tag %>
+
+
+<h2>このページの添付ファイル一覧</h2>
+<table>
+  <tr><th>ファイル名</th><th>容量（KB）</th><th>処理</th></tr>
+  <% @list.each do |file| -%>
+  <tr>
+    <td><a href="/help_images/<%= @help_content.id %>/<%=File.basename(file)%>" onclick="window.open(this.href, '', 'toolbar=yes,status=no,menubar=yes,scrollbars=yes,resizable');return false;"><%= h(File.basename(file)) %></a></td>
+    <td style="text-align: right;"><%= '%.1f' % (File.size(file).to_f / 1024) %></td>
+    <td><%= link_to('削除', {:action => 'destroy_file', :id => @help_content, :filename => h(File.basename(file))}, :confirm => "#{File.basename(file)} を削除しますか？") %></td>
+  </tr>
+  <% end -%>
+</table>
+</body>
+</html>

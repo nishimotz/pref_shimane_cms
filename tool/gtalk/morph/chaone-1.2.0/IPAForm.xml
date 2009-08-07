@@ -1,0 +1,299 @@
+<?xml version="1.0" encoding="Shift_JIS"?>
+
+<!-- IPAForms for ChaOne with ChaSen Chunker ver. 1.2.0 -->
+
+<IPAForm_table>
+  <IPAFormDefs IPAType="カ濁">
+    <IPApronDef IPAForm="基本形" pron="カ"/>
+    <IPApronDef IPAForm="濁音形" pron="ガ"/>
+    <IPAFormDef IPAConType="N1" IPAForm="基本形"/>
+    <IPAFormDef IPAConType="N3" IPAForm="濁音形"/>
+    <IPAFormDef IPAConType="N4" IPAForm="基本形"/>
+    <IPAFormDef IPAConType="N6" IPAForm="基本形"/>
+    <IPAFormDef IPAConType="N8" IPAForm="基本形"/>
+    <IPAFormDef IPAConType="Nj" IPAForm="基本形"/>
+    <IPAFormDef IPAConType="Nh" IPAForm="基本形"/>
+    <IPAFormDef IPAConType="Ns" IPAForm="基本形"/>
+    <IPAFormDef IPAConType="Nm" IPAForm="基本形"/>
+    <IPAFormDef IPAConType="Nn" IPAForm="基本形"/>
+  </IPAFormDefs>
+  <IPAFormDefs IPAType="キ濁">
+    <IPApronDef IPAForm="基本形" pron="キ"/>
+    <IPApronDef IPAForm="濁音形" pron="ギ"/>
+    <IPAFormDef IPAConType="N1" IPAForm="基本形"/>
+    <IPAFormDef IPAConType="N3" IPAForm="濁音形"/>
+    <IPAFormDef IPAConType="N4" IPAForm="基本形"/>
+    <IPAFormDef IPAConType="N6" IPAForm="基本形"/>
+    <IPAFormDef IPAConType="N8" IPAForm="基本形"/>
+    <IPAFormDef IPAConType="Nj" IPAForm="基本形"/>
+    <IPAFormDef IPAConType="Nh" IPAForm="基本形"/>
+    <IPAFormDef IPAConType="Ns" IPAForm="基本形"/>
+    <IPAFormDef IPAConType="Nm" IPAForm="基本形"/>
+    <IPAFormDef IPAConType="Nn" IPAForm="基本形"/>
+  </IPAFormDefs>
+  <IPAFormDefs IPAType="ケ濁">
+    <IPApronDef IPAForm="基本形" pron="ケ"/>
+    <IPApronDef IPAForm="濁音形" pron="ゲ"/>
+    <IPAFormDef IPAConType="N1" IPAForm="基本形"/>
+    <IPAFormDef IPAConType="N3" IPAForm="濁音形"/>
+    <IPAFormDef IPAConType="N4" IPAForm="基本形"/>
+    <IPAFormDef IPAConType="N6" IPAForm="基本形"/>
+    <IPAFormDef IPAConType="N8" IPAForm="基本形"/>
+    <IPAFormDef IPAConType="Nj" IPAForm="基本形"/>
+    <IPAFormDef IPAConType="Nh" IPAForm="基本形"/>
+    <IPAFormDef IPAConType="Ns" IPAForm="基本形"/>
+    <IPAFormDef IPAConType="Nm" IPAForm="基本形"/>
+    <IPAFormDef IPAConType="Nn" IPAForm="基本形"/>
+  </IPAFormDefs>
+  <IPAFormDefs IPAType="シ濁">
+    <IPApronDef IPAForm="基本形" pron="シ"/>
+    <IPApronDef IPAForm="濁音形" pron="ジ"/>
+    <IPAFormDef IPAConType="N1" IPAForm="基本形"/>
+    <IPAFormDef IPAConType="N3" IPAForm="濁音形"/>
+    <IPAFormDef IPAConType="N4" IPAForm="基本形"/>
+    <IPAFormDef IPAConType="N6" IPAForm="基本形"/>
+    <IPAFormDef IPAConType="N8" IPAForm="基本形"/>
+    <IPAFormDef IPAConType="Nj" IPAForm="基本形"/>
+    <IPAFormDef IPAConType="Nh" IPAForm="基本形"/>
+    <IPAFormDef IPAConType="Ns" IPAForm="基本形"/>
+    <IPAFormDef IPAConType="Nm" IPAForm="基本形"/>
+    <IPAFormDef IPAConType="Nn" IPAForm="基本形"/>
+  </IPAFormDefs>
+  <IPAFormDefs IPAType="ス濁">
+    <IPApronDef IPAForm="基本形" pron="ス"/>
+    <IPApronDef IPAForm="濁音形" pron="ズ"/>
+    <IPAFormDef IPAConType="N1" IPAForm="基本形"/>
+    <IPAFormDef IPAConType="N3" IPAForm="濁音形"/>
+    <IPAFormDef IPAConType="N4" IPAForm="基本形"/>
+    <IPAFormDef IPAConType="N6" IPAForm="基本形"/>
+    <IPAFormDef IPAConType="N8" IPAForm="基本形"/>
+    <IPAFormDef IPAConType="Nj" IPAForm="基本形"/>
+    <IPAFormDef IPAConType="Nh" IPAForm="基本形"/>
+    <IPAFormDef IPAConType="Ns" IPAForm="基本形"/>
+    <IPAFormDef IPAConType="Nm" IPAForm="基本形"/>
+    <IPAFormDef IPAConType="Nn" IPAForm="基本形"/>
+  </IPAFormDefs>
+  <IPAFormDefs IPAType="セ濁">
+    <IPApronDef IPAForm="基本形" pron="セ"/>
+    <IPApronDef IPAForm="濁音形" pron="ゼ"/>
+    <IPAFormDef IPAConType="N1" IPAForm="基本形"/>
+    <IPAFormDef IPAConType="N3" IPAForm="濁音形"/>
+    <IPAFormDef IPAConType="N4" IPAForm="基本形"/>
+    <IPAFormDef IPAConType="N6" IPAForm="基本形"/>
+    <IPAFormDef IPAConType="N8" IPAForm="基本形"/>
+    <IPAFormDef IPAConType="Nj" IPAForm="基本形"/>
+    <IPAFormDef IPAConType="Nh" IPAForm="基本形"/>
+    <IPAFormDef IPAConType="Ns" IPAForm="基本形"/>
+    <IPAFormDef IPAConType="Nm" IPAForm="基本形"/>
+    <IPAFormDef IPAConType="Nn" IPAForm="基本形"/>
+  </IPAFormDefs>
+  <IPAFormDefs IPAType="ソ濁">
+    <IPApronDef IPAForm="基本形" pron="ソ"/>
+    <IPApronDef IPAForm="濁音形" pron="ゾ"/>
+    <IPAFormDef IPAConType="N1" IPAForm="基本形"/>
+    <IPAFormDef IPAConType="N3" IPAForm="濁音形"/>
+    <IPAFormDef IPAConType="N4" IPAForm="基本形"/>
+    <IPAFormDef IPAConType="N6" IPAForm="基本形"/>
+    <IPAFormDef IPAConType="N8" IPAForm="基本形"/>
+    <IPAFormDef IPAConType="Nj" IPAForm="基本形"/>
+    <IPAFormDef IPAConType="Nh" IPAForm="基本形"/>
+    <IPAFormDef IPAConType="Ns" IPAForm="基本形"/>
+    <IPAFormDef IPAConType="Nm" IPAForm="基本形"/>
+    <IPAFormDef IPAConType="Nn" IPAForm="基本形"/>
+  </IPAFormDefs>
+  <IPAFormDefs IPAType="ハ半濁">
+    <IPApronDef IPAForm="基本形" pron="ハ"/>
+    <IPApronDef IPAForm="半濁音形" pron="パ"/>
+    <IPAFormDef IPAConType="N1" IPAForm="半濁音形"/>
+    <IPAFormDef IPAConType="N3" IPAForm="半濁音形"/>
+    <IPAFormDef IPAConType="N4" IPAForm="半濁音形"/>
+    <IPAFormDef IPAConType="N6" IPAForm="半濁音形"/>
+    <IPAFormDef IPAConType="N8" IPAForm="半濁音形"/>
+    <IPAFormDef IPAConType="Nj" IPAForm="半濁音形"/>
+    <IPAFormDef IPAConType="Nh" IPAForm="半濁音形"/>
+    <IPAFormDef IPAConType="Ns" IPAForm="半濁音形"/>
+    <IPAFormDef IPAConType="Nm" IPAForm="基本形"/>
+    <IPAFormDef IPAConType="Nn" IPAForm="半濁音形"/>
+  </IPAFormDefs>
+  <IPAFormDefs IPAType="ハ半濁特殊">
+    <IPApronDef IPAForm="基本形" pron="ハ"/>
+    <IPApronDef IPAForm="半濁音形" pron="パ"/>
+    <IPAFormDef IPAConType="N1" IPAForm="基本形"/>
+    <IPAFormDef IPAConType="N3" IPAForm="基本形"/>
+    <IPAFormDef IPAConType="N4" IPAForm="基本形"/>
+    <IPAFormDef IPAConType="N6" IPAForm="基本形"/>
+    <IPAFormDef IPAConType="N8" IPAForm="半濁音形"/>
+    <IPAFormDef IPAConType="Nj" IPAForm="半濁音形"/>
+    <IPAFormDef IPAConType="Nh" IPAForm="基本形"/>
+    <IPAFormDef IPAConType="Ns" IPAForm="基本形"/>
+    <IPAFormDef IPAConType="Nm" IPAForm="基本形"/>
+    <IPAFormDef IPAConType="Nn" IPAForm="基本形"/>
+  </IPAFormDefs>
+  <IPAFormDefs IPAType="ハ混合">
+    <IPApronDef IPAForm="基本形" pron="ハ"/>
+    <IPApronDef IPAForm="濁音形" pron="バ"/>
+    <IPApronDef IPAForm="半濁音形" pron="パ"/>
+    <IPAFormDef IPAConType="N1" IPAForm="半濁音形"/>
+    <IPAFormDef IPAConType="N3" IPAForm="濁音形"/>
+    <IPAFormDef IPAConType="N4" IPAForm="基本形"/>
+    <IPAFormDef IPAConType="N6" IPAForm="半濁音形"/>
+    <IPAFormDef IPAConType="N8" IPAForm="半濁音形"/>
+    <IPAFormDef IPAConType="Nj" IPAForm="半濁音形"/>
+    <IPAFormDef IPAConType="Nh" IPAForm="半濁音形"/>
+    <IPAFormDef IPAConType="Ns" IPAForm="基本形"/>
+    <IPAFormDef IPAConType="Nm" IPAForm="基本形"/>
+    <IPAFormDef IPAConType="Nn" IPAForm="濁音形"/>
+  </IPAFormDefs>
+  <IPAFormDefs IPAType="ハ特殊">
+    <IPApronDef IPAForm="基本形" pron="ハ"/>
+    <IPApronDef IPAForm="濁音形" pron="バ"/>
+    <IPApronDef IPAForm="半濁音形" pron="パ"/>
+    <IPApronDef IPAForm="清/濁音形" pron="ハ"/>
+    <IPApronDef IPAForm="清/半濁音形" pron="ハ"/>
+    <IPAFormDef IPAConType="N1" IPAForm="基本形"/>
+    <IPAFormDef IPAConType="N3" IPAForm="清/濁音形"/>
+    <IPAFormDef IPAConType="N4" IPAForm="基本形"/>
+    <IPAFormDef IPAConType="N6" IPAForm="清/半濁音形"/>
+    <IPAFormDef IPAConType="N8" IPAForm="清/半濁音形"/>
+    <IPAFormDef IPAConType="Nj" IPAForm="半濁音形"/>
+    <IPAFormDef IPAConType="Nh" IPAForm="半濁音形"/>
+    <IPAFormDef IPAConType="Ns" IPAForm="濁音形"/>
+    <IPAFormDef IPAConType="Nm" IPAForm="濁音形"/>
+    <IPAFormDef IPAConType="Nn" IPAForm="基本形"/>
+  </IPAFormDefs>
+  <IPAFormDefs IPAType="ヒ半濁">
+    <IPApronDef IPAForm="基本形" pron="ヒ"/>
+    <IPApronDef IPAForm="半濁音形" pron="ピ"/>
+    <IPAFormDef IPAConType="N1" IPAForm="半濁音形"/>
+    <IPAFormDef IPAConType="N3" IPAForm="半濁音形"/>
+    <IPAFormDef IPAConType="N4" IPAForm="基本形"/>
+    <IPAFormDef IPAConType="N6" IPAForm="半濁音形"/>
+    <IPAFormDef IPAConType="N8" IPAForm="半濁音形"/>
+    <IPAFormDef IPAConType="Nj" IPAForm="半濁音形"/>
+    <IPAFormDef IPAConType="Nh" IPAForm="半濁音形"/>
+    <IPAFormDef IPAConType="Ns" IPAForm="半濁音形"/>
+    <IPAFormDef IPAConType="Nm" IPAForm="基本形"/>
+    <IPAFormDef IPAConType="Nn" IPAForm="半濁音形"/>
+  </IPAFormDefs>
+  <IPAFormDefs IPAType="ヒ混合">
+    <IPApronDef IPAForm="基本形" pron="ヒ"/>
+    <IPApronDef IPAForm="濁音形" pron="ビ"/>
+    <IPApronDef IPAForm="半濁音形" pron="ピ"/>
+    <IPAFormDef IPAConType="N1" IPAForm="半濁音形"/>
+    <IPAFormDef IPAConType="N3" IPAForm="濁音形"/>
+    <IPAFormDef IPAConType="N4" IPAForm="基本形"/>
+    <IPAFormDef IPAConType="N6" IPAForm="半濁音形"/>
+    <IPAFormDef IPAConType="N8" IPAForm="半濁音形"/>
+    <IPAFormDef IPAConType="Nj" IPAForm="半濁音形"/>
+    <IPAFormDef IPAConType="Nh" IPAForm="半濁音形"/>
+    <IPAFormDef IPAConType="Ns" IPAForm="濁音形"/>
+    <IPAFormDef IPAConType="Nm" IPAForm="濁音形"/>
+    <IPAFormDef IPAConType="Nn" IPAForm="濁音形"/>
+  </IPAFormDefs>
+  <IPAFormDefs IPAType="フ半濁">
+    <IPApronDef IPAForm="基本形" pron="フ"/>
+    <IPApronDef IPAForm="半濁音形" pron="プ"/>
+    <IPAFormDef IPAConType="N1" IPAForm="半濁音形"/>
+    <IPAFormDef IPAConType="N3" IPAForm="半濁音形"/>
+    <IPAFormDef IPAConType="N4" IPAForm="半濁音形"/>
+    <IPAFormDef IPAConType="N6" IPAForm="半濁音形"/>
+    <IPAFormDef IPAConType="N8" IPAForm="半濁音形"/>
+    <IPAFormDef IPAConType="Nj" IPAForm="半濁音形"/>
+    <IPAFormDef IPAConType="Nh" IPAForm="半濁音形"/>
+    <IPAFormDef IPAConType="Ns" IPAForm="半濁音形"/>
+    <IPAFormDef IPAConType="Nm" IPAForm="基本形"/>
+    <IPAFormDef IPAConType="Nn" IPAForm="半濁音形"/>
+  </IPAFormDefs>
+  <IPAFormDefs IPAType="ヘ半濁">
+    <IPApronDef IPAForm="基本形" pron="ヘ"/>
+    <IPApronDef IPAForm="半濁音形" pron="ペ"/>
+    <IPApronDef IPAForm="清/半濁音形" pron="ヘ"/>
+    <IPAFormDef IPAConType="N1" IPAForm="半濁音形"/>
+    <IPAFormDef IPAConType="N3" IPAForm="半濁音形"/>
+    <IPAFormDef IPAConType="N4" IPAForm="半濁音形"/>
+    <IPAFormDef IPAConType="N6" IPAForm="半濁音形"/>
+    <IPAFormDef IPAConType="N8" IPAForm="清/半濁音形"/>
+    <IPAFormDef IPAConType="Nj" IPAForm="半濁音形"/>
+    <IPAFormDef IPAConType="Nh" IPAForm="半濁音形"/>
+    <IPAFormDef IPAConType="Ns" IPAForm="半濁音形"/>
+    <IPAFormDef IPAConType="Nm" IPAForm="半濁音形"/>
+    <IPAFormDef IPAConType="Nn" IPAForm="半濁音形"/>
+  </IPAFormDefs>
+  <IPAFormDefs IPAType="ヘ混合">
+    <IPApronDef IPAForm="基本形" pron="ヘ"/>
+    <IPApronDef IPAForm="半濁音形" pron="ペ"/>
+    <IPApronDef IPAForm="清/半濁音形" pron="ヘ"/>
+    <IPApronDef IPAForm="半濁/濁音形" pron="ペ"/>
+    <IPAFormDef IPAConType="N1" IPAForm="半濁音形"/>
+    <IPAFormDef IPAConType="N3" IPAForm="半濁/濁音形"/>
+    <IPAFormDef IPAConType="N4" IPAForm="基本形"/>
+    <IPAFormDef IPAConType="N6" IPAForm="半濁音形"/>
+    <IPAFormDef IPAConType="N8" IPAForm="清/半濁音形"/>
+    <IPAFormDef IPAConType="Nj" IPAForm="半濁音形"/>
+    <IPAFormDef IPAConType="Nh" IPAForm="半濁音形"/>
+    <IPAFormDef IPAConType="Ns" IPAForm="半濁音形"/>
+    <IPAFormDef IPAConType="Nm" IPAForm="半濁音形"/>
+    <IPAFormDef IPAConType="Nn" IPAForm="半濁音形"/>
+  </IPAFormDefs>
+  <IPAFormDefs IPAType="ホ半濁">
+    <IPApronDef IPAForm="基本形" pron="ホ"/>
+    <IPApronDef IPAForm="半濁音形" pron="ポ"/>
+    <IPApronDef IPAForm="清/半濁音形" pron="ホ"/>
+    <IPAFormDef IPAConType="N1" IPAForm="半濁音形"/>
+    <IPAFormDef IPAConType="N3" IPAForm="半濁音形"/>
+    <IPAFormDef IPAConType="N4" IPAForm="基本形"/>
+    <IPAFormDef IPAConType="N6" IPAForm="半濁音形"/>
+    <IPAFormDef IPAConType="N8" IPAForm="清/半濁音形"/>
+    <IPAFormDef IPAConType="Nj" IPAForm="半濁音形"/>
+    <IPAFormDef IPAConType="Nh" IPAForm="半濁音形"/>
+    <IPAFormDef IPAConType="Ns" IPAForm="半濁音形"/>
+    <IPAFormDef IPAConType="Nm" IPAForm="半濁音形"/>
+    <IPAFormDef IPAConType="Nn" IPAForm="半濁音形"/>
+  </IPAFormDefs>
+  <IPAFormDefs IPAType="ホ混合">
+    <IPApronDef IPAForm="基本形" pron="ホ"/>
+    <IPApronDef IPAForm="濁音形" pron="ボ"/>
+    <IPApronDef IPAForm="半濁音形" pron="ポ"/>
+    <IPAFormDef IPAConType="N1" IPAForm="半濁音形"/>
+    <IPAFormDef IPAConType="N3" IPAForm="濁音形"/>
+    <IPAFormDef IPAConType="N4" IPAForm="基本形"/>
+    <IPAFormDef IPAConType="N6" IPAForm="半濁音形"/>
+    <IPAFormDef IPAConType="N8" IPAForm="基本形"/>
+    <IPAFormDef IPAConType="Nj" IPAForm="半濁音形"/>
+    <IPAFormDef IPAConType="Nh" IPAForm="半濁音形"/>
+    <IPAFormDef IPAConType="Ns" IPAForm="濁音形"/>
+    <IPAFormDef IPAConType="Nm" IPAForm="濁音形"/>
+    <IPAFormDef IPAConType="Nn" IPAForm="濁音形"/>
+  </IPAFormDefs>
+  <IPAFormDefs IPAType="ワ半濁">
+    <IPApronDef IPAForm="基本形" pron="ワ"/>
+    <IPApronDef IPAForm="半濁音形" pron="パ"/>
+    <IPAFormDef IPAConType="N1" IPAForm="基本形"/>
+    <IPAFormDef IPAConType="N3" IPAForm="基本形"/>
+    <IPAFormDef IPAConType="N4" IPAForm="基本形"/>
+    <IPAFormDef IPAConType="N6" IPAForm="基本形"/>
+    <IPAFormDef IPAConType="N8" IPAForm="基本形"/>
+    <IPAFormDef IPAConType="Nj" IPAForm="半濁音形"/>
+    <IPAFormDef IPAConType="Nh" IPAForm="基本形"/>
+    <IPAFormDef IPAConType="Ns" IPAForm="基本形"/>
+    <IPAFormDef IPAConType="Nm" IPAForm="基本形"/>
+    <IPAFormDef IPAConType="Nn" IPAForm="基本形"/>
+  </IPAFormDefs>
+  <IPAFormDefs IPAType="ワ混合">
+    <IPApronDef IPAForm="基本形" pron="ワ"/>
+    <IPApronDef IPAForm="濁音形" pron="バ"/>
+    <IPApronDef IPAForm="半濁音形" pron="パ"/>
+    <IPApronDef IPAForm="清/濁音形" pron="ワ"/>
+    <IPApronDef IPAForm="清/半濁音形" pron="ワ"/>
+    <IPAFormDef IPAConType="N1" IPAForm="基本形"/>
+    <IPAFormDef IPAConType="N3" IPAForm="清/濁音形"/>
+    <IPAFormDef IPAConType="N4" IPAForm="基本形"/>
+    <IPAFormDef IPAConType="N6" IPAForm="清/半濁音形"/>
+    <IPAFormDef IPAConType="N8" IPAForm="基本形"/>
+    <IPAFormDef IPAConType="Nj" IPAForm="半濁音形"/>
+    <IPAFormDef IPAConType="Nh" IPAForm="半濁音形"/>
+    <IPAFormDef IPAConType="Ns" IPAForm="濁音形"/>
+    <IPAFormDef IPAConType="Nm" IPAForm="濁音形"/>
+    <IPAFormDef IPAConType="Nn" IPAForm="濁音形"/>
+  </IPAFormDefs>
+</IPAForm_table>

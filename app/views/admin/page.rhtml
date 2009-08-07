@@ -1,0 +1,24 @@
+<%= render(:partial => 'menu') %>
+<div class="container">
+<h2>既存ページの編集・状態変更</h2>
+<div class="side">
+<div class="dir">
+<%= render(:partial => 'genre_list') %>
+</div>
+</div>
+<div class="main">
+<% @edit_link = true -%>
+<p>フォルダを左のフォルダツリーから選択して、変更したいページを下記のリストから選択してください。</p>
+<br />
+<%= start_form_tag(:action => 'find_by_path', :id => @genre) %>
+<p>
+<div style="color:red;"><%= flash[:find_by_path_message] %></div>
+公開ページURL：<%= text_field_tag('path' , @path, :size => 40) %>
+<%= submit_tag('検索') %><br />
+※http://から入力してください。
+</p>
+<br /><br />
+<div id="div-right">
+<%= render(:partial => 'page_list') %>
+</div>
+</div>

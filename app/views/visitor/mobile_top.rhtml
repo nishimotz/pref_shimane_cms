@@ -1,0 +1,23 @@
+<html><head><title>島根県</title></head>
+<body>
+<%= image_tag('shimaneken_1.gif') %>
+<h1>島根県</h1>
+<hr>
+<h2 class="emg">緊急情報</h2>
+<%= plugin('emergency') %>
+<h2>新着情報</h2>
+<%= plugin('news') %>
+<hr>
+<% genres = Genre.find(:all, :conditions => ['parent_id = ?', 1], :order => ['name desc']) -%>
+<ul>
+<% genres.each do |genre| -%>
+<li><a href="<%= h(genre.link_path) %>"><%= h(genre.title) %></a></li>
+<% end -%>
+</ul>
+<hr>
+<address>島根県<br />
+〒690-8501<br />
+島根県松江市殿町1番地<br />
+電話:0852-22-5111(代)</address>
+</body>
+</html>

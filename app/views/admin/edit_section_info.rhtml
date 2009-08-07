@@ -1,0 +1,13 @@
+<%= render(:partial => 'menu') %>
+<div class="container">
+<div>
+<h2>連絡先設定</h2>
+<div style="color: red"><%= flash[:update_section_info] %></div>
+<p>ページの下部に表示される連絡先を設定します。<br />
+設定すると作成するページに自動的に表示されます。</p>
+<%= start_form_tag(:action => 'update_section_info') %>
+<%= text_area('section', 'info', 'rows' => "10", 'cols' => "60") %>
+<div><%= submit_tag('適用') %></div>
+<%= end_form_tag %>
+</div>
+</div>

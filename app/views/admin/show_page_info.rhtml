@@ -1,0 +1,249 @@
+<%= render(:partial => 'menu_page') %>
+<div class="container">
+<% if flash[:error] -%>
+<p style="color: red"><%= h(flash[:error]) %></p>
+<% end -%>
+<% if @user.authority == User::USER && @admitting -%>
+<p style="color: red">公開審査中のため、編集中ページの設定変更はできません。</p>
+<% end -%>
+<% if @lock -%>
+  <p style="color: red">このページは他のユーザによって編集中のためページの編集は出来ません。情報提供責任者、又は運用管理者へ連絡し、編集中状態の解除を依頼してください。</p>
+<% end -%>
+<% if @lock && @user.authority != User::USER -%>
+  [<%= link_to('編集中状態の解除', {:action => 'private_page_unlock', :id => @page}, :confirm => "このページの編集中の状態を解除します。\n本当に解除しますか？") %>]
+<% end -%>
+<table class="page_status">
+<tr>
+  <th style="width: 30%;">タイトル</th>
+  <td>
+    <%= h(@page.title) %>
+  </td>
+</tr>
+<tr>
+  <th>ページ名</th>
+  <td><%= h(@page.name) %>.html</td>
+</tr>
+</table>
+
+<% @public = @page.public_page -%>
+[<%= link_to('タイトルの変更', {:action => 'edit_title', :id => @page}) %>] 
+<% if @page.destroyable?(@user) -%>
+[<%= link_to('ページ削除', {:action => 'destroy_page', :id => @page}, :confirm => "[注意] ページを削除すると、このページにリンクを張っているページでリンク切れが発生します。\n本当に削除しますか？") %>] 
+<% else -%>
+<% if @user.authority != User::SECTION_MANAGER -%>
+[<%= link_to('公開停止依頼', {:action => 'page_cancel_request', :id => @page}, :confirm => "情報提供責任者へページの公開停止依頼を行いますか？") %>]
+<% end -%>
+<% end -%>
+[<%= link_to('公開ページ履歴一覧', :action => 'list_page_revision', :id => @page) %>]
+[<%= link_to('ページ編集履歴', :action => 'list_edit_page_revision', :id => @page) %>]
+
+<% if @public -%>
+<table class="page_status">
+<tr style="border-bottom: solid 2px black;">
+  <th style="width: 30%;">公開ページの状況</th>
+  <td>
+    <% if @public.public_term_enable? -%>
+      <% if @public.admission == PageContent::PUBLISH -%>
+        公開中
+      <% else -%>
+        公開停止
+      <% end -%>
+    <% else -%>
+      <% if @public.admission == PageContent::PUBLISH -%>
+        <% if @public.end_date > Time.now -%>
+           公開中
+        <% else -%>
+          公開終了
+        <% end -%>
+      <% else -%>
+        公開停止
+      <% end -%>
+    <% end -%>
+  </td>
+</tr>
+<tr>
+  <th>公開期間</th>
+<% if @public.begin_date -%>
+  <td><%= public_term_strftime(@public.begin_date) %> 〜 <% if @public.end_date -%><%= public_term_strftime(@public.end_date) %><% end -%></td>
+<% else -%>
+  <td>期間設定なし</td>
+<% end -%>
+</tr>
+<tr>
+  <th>携帯向けページ</ht>
+  <td><% if @public.mobile.blank? -%>なし<% else -%>あり<% end -%></td>
+</tr>
+<tr>
+  <th>所属トップ新着掲載</th>
+  <td><%= @public.section_news_message %><% if @page.title != @public.news_title -%>「<%= h(@public.news_title) %>」<% end -%></td>
+</tr>
+<tr>
+  <th>県トップ新着掲載</th>
+  <td><%= @public.top_news_message %><% if @page.title != @public.news_title -%>「<%= h(@public.news_title) %>」<% end -%></td>
+</tr>
+<tr>
+  <th>担当者(TEL) e-mail</th>
+  <td><%= h(@public.user_name) %> <% unless @public.tel.blank? %>(<%= h(@public.tel) %>)<% end -%> <% unless @public.email.blank? -%><%= h(@public.email) %>@<%= h(CMSConfig[:mail_domain]) %><% end -%></td>
+</tr>
+<tr>
+  <th>コメント</th>
+  <td><%= h(@public.comment) %></td>
+</tr>
+<%
+warn, err = @public.missing_internal_links
+unless warn.empty? && err.empty?
+-%>
+<tr>
+  <th>リンク切れ</th>
+  <td>
+<% for e in warn -%>
+    <%= h(e) %>（<span style="color: red;">未公開ページです。公開処理を行ってください。</span>）<br />
+<% end -%>
+<% for e in err -%>
+    <%= h(e) %>（<span style="color: red;">ページがありません。</span>）<br />
+<% end -%>
+  </td>
+</tr>
+<% end -%>
+</table>
+<div>
+<% if @user.authority != User::USER && @public -%>
+  [<%= link_to('変更する', :action => 'edit_public_page_status', :id => @public) %>]
+<% end -%>
+<% if @public -%>
+  [<%= popup_link_to('公開ページ', {:controller =>'visitor', :action => 'show_revision', :id => @public}) %>]
+  [<%= popup_link_to('携帯向け公開ページ', {:action => 'show_mobile_revision_page', :id => @public}) %>]
+<% end -%>
+</div>
+<% else -%>
+<table class="page_status">
+<tr style="border-bottom: solid 2px black;">
+  <th style="width: 30%;">公開ページの状況</th>
+  <td></td>
+</tr>
+<tr>
+  <th>公開期間</th>
+  <td></td>
+</tr>
+<tr>
+  <th>携帯向けページ</ht>
+  <td></td>
+</tr>
+<tr>
+  <th>所属トップ新着掲載</th>
+  <td></td>
+</tr>
+<tr>
+  <th>県トップ新着掲載</th>
+  <td></td>
+</tr>
+<tr>
+  <th>担当者(TEL) e-mail</th>
+  <td></td>
+</tr>
+<tr>
+  <th>コメント</th>
+  <td></td>
+</tr>
+</table>
+<% end -%>
+
+<% @private = @page.private_page -%>
+<% if @private -%>
+<table class="page_status">
+<tr style="border-bottom: solid 2px black;">
+  <th style="width: 30%;">未公開ページの状況</th>
+  <td><%= h(@private.status_message) %></td>
+</tr>
+<tr>
+  <th>公開期間</th>
+<% if @private.begin_date || @private.end_date -%>
+  <td><%= public_term_strftime(@private.begin_date) %> 〜 <% if @private.end_date %><%= public_term_strftime(@private.end_date) %><% end -%></td>
+<% else -%>
+  <td>期間設定なし</td>
+<% end -%>
+</tr>
+<tr>
+  <th>携帯向けページ</ht>
+  <td><% if @private.mobile.blank? -%>なし<% else -%>あり<% end -%></td>
+</tr>
+<tr>
+  <th>所属トップ新着掲載</th>
+  <td><%= @private.section_news_message %><% if @page.title != @private.news_title -%>「<%= h(@private.news_title) %>」<% end -%></td>
+</tr>
+<tr>
+  <th>県トップ新着掲載</th>
+  <td><%= @private.top_news_message %><% if @page.title != @private.news_title -%>「<%= h(@private.news_title) %>」<% end -%></td>
+</tr>
+<tr>
+  <th>担当者(TEL) e-mail</th>
+  <td><%= h(@private.user_name) %> <% unless @private.tel.blank? %>(<%= h(@private.tel) %>)<% end -%> <% unless @private.email.blank? -%><%= h(@private.email) %>@<%= h(CMSConfig[:mail_domain]) %><% end -%></td>
+</tr>
+<tr>
+  <th>コメント</th>
+  <td><%= h(@private.comment) %></td>
+</tr>
+<%
+warn, err = @private.missing_internal_links
+unless warn.empty? && err.empty?
+-%>
+<tr>
+  <th>リンク切れ</th>
+  <td>
+<% for e in warn -%>
+    <%= h(e) %>（<span style="color: red;">未公開ページです。公開処理を行ってください。</span>）<br />
+<% end -%>
+<% for e in err -%>
+    <%= h(e) %>（<span style="color: red;">ページがありません。</span>）<br />
+<% end -%>
+  </td>
+</tr>
+<% end -%>
+</table>
+<div>
+<% if @waiting -%>
+<% if @user.authority != User::USER -%>
+  [<%= link_to('変更する', :action => 'edit_public_page_status', :id => @private) %>]
+<% end -%>
+<% elsif @admitting -%>
+<% if @user.authority != User::USER -%>
+  [<%= link_to('変更する', :action => 'edit_private_page_status', :id => @private) %>]
+<% end -%>
+<% else -%>
+  [<%= link_to('変更する', :action => 'edit_private_page_status', :id => @private) %>]
+<% end -%>
+  [<%= popup_link_to('プレビュー', {:controller =>'visitor', :action => 'show_revision', :id => @private}) %>]
+  [<%= popup_link_to('携帯向けプレビュー', {:action => 'show_mobile_revision_page', :id => @private}) %>]
+</div>
+<% else -%>
+<table class="page_status">
+<tr style="border-bottom: solid 2px black;">
+  <th style="width: 30%;">未公開ページの状況</th>
+  <td></td>
+</tr>
+<tr>
+  <th>公開期間</th>
+  <td></td>
+</tr>
+<tr>
+  <th>携帯向けページ</ht>
+  <td></td>
+</tr>
+<tr>
+  <th>所属トップ新着掲載</th>
+  <td></td>
+</tr>
+<tr>
+  <th>県トップ新着掲載</th>
+  <td></td>
+</tr>
+<tr>
+  <th>担当者(TEL) e-mail</th>
+  <td></td>
+</tr>
+<tr>
+  <th>コメント</th>
+  <td></td>
+</tr>
+</table>
+<% end -%>

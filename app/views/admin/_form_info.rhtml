@@ -1,0 +1,13 @@
+<%= error_messages_for('info') %>
+
+<!--[form:info]-->
+<p><label for="info_title">タイトル</label><br/>
+<%= text_field('info', 'title') %></p>
+
+<p><label for="info_last_modified">更新日</label><br/>
+<%= datetime_select('info', 'last_modified', :use_month_numbers => true, :discard_hour => true) %></p>
+
+<p><label for="info_content">内容</label><br/>
+<%= text_area('info', 'content', 'id' => "elm1", 'rows' => "25", 'cols' => "80", 'style' => "width: 100%;") %></p>
+<!--[eoform:info]-->
+

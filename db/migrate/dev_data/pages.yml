@@ -1,0 +1,20 @@
+top:
+  id: 1
+  genre_id: 1
+  name: 'index'
+  title: "島根県のトップページ"
+page_template1:
+  id: 2
+  genre_id: 3
+  name: 'page_template1'
+  title: "ページテンプレート1"
+page_template2:
+  id: 3
+  genre_id: 3
+  name: 'page_template1'
+  title: "ページテンプレート2"
+section:
+  id: 4
+  genre_id: 1
+  name: 'section'
+  title: "組織別情報"

@@ -1,0 +1,12 @@
+<%= render(:partial => 'menu') %>
+<div class="container">
+<h1>ユーザ新規作成</h1>
+
+<%= start_form_tag :action => 'create_user', :id => params[:id] %>
+  <div style="color: red"><%= flash[:user_notice] %></div>
+  <%= render :partial => 'form_user' %>
+  <br />
+  <div><%= submit_tag "作成" %>&nbsp;&nbsp;<%= link_to '戻る', :action => 'list_user', :id => params[:id] %></div>
+<%= end_form_tag %>
+</div>
+<br />

@@ -1,0 +1,24 @@
+<%= render(:partial => 'menu') %>
+<div class="container">
+<div class="side">
+<div class="dir">
+<%= render(:partial => 'genre_list') %>
+</div>
+</div>
+<div class="main">
+<h2>既存ページを流用してのページ作成</h2>
+
+<div id="set_public_term">
+<% if @genre.pages.empty? -%>
+ページがありません。
+<% else -%>
+次のページ名をクリックしてください。
+<ul class="page_list">
+  <% @genre.page_list.each do |page| %>
+    <li><%= image_tag('page.png', :alt => '', :size => '16x16') %><%= link_to(h(page.title), :action => 'create_divert_page', :id => page.genre, :page_id => page) %> <%= h(page.name) %>.html（<%= h(PageContent::STATUS[page.private.admission]) %>）<% if page.public %>（<a href="<%= h page.path %>">公開ページ</a>）<% end %></li>
+  <% end %>
+</ul>
+<% end -%>
+</div>
+
+</div>

@@ -1,0 +1,13 @@
+<%
+  # 説明：トップページの新着情報を表示する
+  # 引数：最大表示数（無指定時は全て）, 最大表示日数（無指定時は全て）
+  news_pages = PluginHelper.top_news(@args)
+  max = PluginHelper.max_count(@args)
+-%>
+<% unless news_pages.empty? -%>
+  <ul class="top_news">
+<% news_pages[0..max].each do |page| -%>
+  <li><a href="<%= h(page.path) %>"><%= h(PluginHelper.truncate(page.news_title)) %></a>（<%= h(news_strftime(page.current.date)) %>）</li>
+<% end -%>
+</ul>
+<% end -%>

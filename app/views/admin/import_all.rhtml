@@ -1,0 +1,18 @@
+<%= render(:partial => 'menu') %>
+<div class="container">
+<h2>一括ページ取り込み</h2>
+<div class="side">
+<div class="dir">
+<%= render(:partial => 'genre_list') %>
+</div>
+</div>
+<div class="main">
+<p>ページを取り込むフォルダを左のフォルダツリーから選択してください。</p>
+<div style="color:red"><%= @error %></div>
+<br />
+<div id="div-right">
+<%# if @path -%>
+<%= render(:partial => 'import_all_form') %>
+<%# end -%>
+</div>
+</div>

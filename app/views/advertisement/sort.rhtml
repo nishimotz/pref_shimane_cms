@@ -1,0 +1,45 @@
+<h2>広告の並び替え</h2>
+<br />
+広告をドラッグ アンド ドロップして順番を変更してください。
+<hr />
+<br />
+<%= start_form_tag({:action => 'update_advertisement', :id => @page}, :name=> 'ChangeAdvertisement') %>
+<div id="result"></div>
+<h4>企業広告の並び替え</h4>
+<ul class="advertisements_list" id="corp_ads">
+<% if @corp_ads.empty? -%>
+<p>企業広告は現在ありません</p>
+<% else -%> 
+<% @corp_ads.each do |ad| -%>
+  <li class="draggble" id="item_<%= ad.id %>">
+    <%= h(ad.advertisement.name) %>
+  </li>
+<% end -%>
+<% end -%>
+</ul>
+<%= sortable_element 'corp_ads',
+      :complete => visual_effect(:highlight, 'corp_ads'),
+      :url => { :action => "update_sort_corp_advertisement", :id => params[:id]}
+%>
+
+<h4>県の広告の並び替え</h4>
+<ul class="advertisements_list" id="pref_ads">
+<% if @pref_ads.empty? -%>
+<p>県の広告は現在ありません</p>
+<% else -%>
+<% @pref_ads.each do |ad| -%>
+  <li class="draggble" id="item_<%= ad.id %>">
+    <%= h(ad.advertisement.name) %>
+  </li>
+<% end -%>
+<% end -%>
+</ul>
+<%= sortable_element 'pref_ads',
+      :complete => visual_effect(:highlight, 'pref_ads'),
+      :url => { :action => "update_sort_pref_advertisement", :id => params[:id] }
+%>
+<br />
+<%= submit_tag('  保存  ', :name => 'save', :onclick => 'document.ChangeAdvertisement.target = ""') %>
+<%= submit_tag('キャンセル', :name => 'cancel', :onclick => 'document.ChangeAdvertisement.target = ""') %>
+<%= submit_tag('プレビュー', :name => 'preview', :onclick => 'window.open("/images/blank.gif", "preview", "toolbar=no,status=no,menubar=no,scrollbars=yes,resizable");document.ChangeAdvertisement.target = "preview";') %>
+<%= end_form_tag %>

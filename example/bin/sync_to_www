@@ -1,0 +1,12 @@
+#!/usr/bin/env ruby
+exit 1 unless ARGV.size == 2
+exit unless File.exist?('/var/share/cms/do_export')
+
+lock_file = File.expand_path("../#{File.basename(ARGV[0])}", File.dirname(__FILE__))
+remote_host = ARGV[1]
+unless File.open(lock_file, 'w').flock(File::LOCK_EX|File::LOCK_NB)
+  $stderr.puts 'another sync process is running.'
+  exit
+end
+
+system("rsync -aLz --delete --exclude='*.md5' --exclude=.svn /var/share/cms/public./ #{remote_host}:/var/www/cms/")

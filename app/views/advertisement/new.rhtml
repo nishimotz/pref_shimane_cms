@@ -1,0 +1,13 @@
+<% case @action -%>
+<% when :create -%>
+<h2>新規広告の登録</h2>
+<% when :update -%>
+<h2>広告の編集</h2>
+<% end %>
+<%= error_messages_for 'advertisement' %>
+<%= start_form_tag({:action => @action, :id => @advertisement}, {:multipart => true}) %>
+  <%= render :partial => 'form_advertisement' %>
+  <br />
+  <%= submit_tag " 作成 " %>&nbsp;&nbsp;<%= link_to '一覧に戻る', :action => 'list' %>
+<%= end_form_tag %>
+<br />

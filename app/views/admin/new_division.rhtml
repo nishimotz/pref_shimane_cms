@@ -1,0 +1,10 @@
+<%= render(:partial => 'menu') %>
+<div class="container">
+<h1>部局新規作成</h1>
+<%= start_form_tag :action => 'create_division' %>
+  <%= render :partial => 'form_division' %>
+  <br />
+  <%= submit_tag "作成" %>&nbsp;&nbsp;<%= link_to '戻る', :action => 'list_division' %>
+<%= end_form_tag %>
+</div>
+<br />

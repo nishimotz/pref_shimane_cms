@@ -1,0 +1,18 @@
+<% @page_title = "アンケート：#{h(@page.title)}" %>
+<div>
+<p>
+  [<%= link_to('集計結果に戻る', :action => 'summary', :id => @page) %>]
+</p>
+<div>
+<div id="enquete-answers">
+<p>回答一覧</p>
+<% if  @other_values.empty? -%>
+<p>回答はありません</p>
+<% else -%>
+<ul>
+  <% @other_values.each do |value| -%>
+    <li><%= value %></li>
+  <% end -%>
+</ul>
+<% end -%>
+</div>

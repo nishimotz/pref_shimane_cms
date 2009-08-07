@@ -1,0 +1,19 @@
+      <% if session[:help] -%>
+        <% if @helps.empty? -%>
+          <p style="color: red">「<%= params[:search][:keyword] %>」検索結果はありませんでした。</p>
+        <% else -%>
+          <p>「<%= session[:help] %>」検索結果。</p>
+        <% end -%>
+      <% elsif params[:category_id] && !params[:category_id].blank?-%>
+        <p style="margin-left: 5px;">「<%=h @category.name %>」のヘルプ一覧</p>
+      <% end -%>
+
+      <% if session[:help] -%>
+         <%= search_help_list(@helps, @help) -%>
+      <% else -%>
+      <% @root_help_list.each do |@root| -%>
+        <div id="dir-<%= @root.id %>" class="closed">
+          <%= render(:partial => 'help_open') %>
+        </div>
+      <% end -%>
+      <% end -%>

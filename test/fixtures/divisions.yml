@@ -1,0 +1,10 @@
+division1:
+  id: 1
+  name: division1
+  number: 1
+  enable: true
+division2:
+  id: 2
+  name: division2
+  number: 2
+  enable: true

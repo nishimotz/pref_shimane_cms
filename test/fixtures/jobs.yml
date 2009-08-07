@@ -1,0 +1,14 @@
+create_page:
+  id: 1
+  datetime: 2006-01-02 12:34:56 +09:00
+  action: 'create_page'
+  arg1: 1
+create_mp3:
+  id: 2
+  datetime: 2006-01-03 12:34:56 +09:00
+  action: 'create_mp3'
+  arg1: /test.html
+create_page_without_datetime:
+  id: 3
+  action: 'create_page'
+  arg1: 1

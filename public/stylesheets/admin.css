@@ -1,0 +1,341 @@
+#errorExplanation {
+  width: 400px;
+  border: 2px solid red;
+  padding: 7px;
+  padding-bottom: 12px;
+  margin-bottom: 20px;
+  background-color: #f0f0f0;
+}
+#errorExplanation h2 {
+  text-align: left;
+  font-weight: bold;
+  padding: 5px 5px 5px 15px;
+  font-size: 12px;
+  margin: -7px -7px 0;
+  background-color: #c00;
+  color: #fff;
+  border: none;
+}
+#errorExplanation p {
+  color: #333;
+  margin-bottom: 0;
+  padding: 5px;
+}
+#errorExplanation ul li {
+  font-size: 12px;
+  list-style: square;
+}
+
+.logo {
+  margin-bottom: 0;
+}
+
+.logo img {
+  vertical-align: bottom;
+}
+
+.container {
+  clear: both;
+  margin: 0;
+  padding: 0.2em 0 0 0;
+}
+
+.container a:link,
+.container a:visited,
+.container a:hover,
+.container a:active  
+ {
+  text-decoration: underline;
+  font-size: 100%;
+}
+
+.folder_container {
+  clear: both;
+  margin: 0;
+  padding: 0.2em 0 0 0;
+  overflow: hidden;
+}
+
+.folder_container a:link,
+.folder_container a:visited,
+.folder_container a:hover,
+.folder_container a:active  
+ {
+  text-decoration: underline;
+  font-size: 100%;
+}
+
+.side {
+  height: 100%;
+  width: 25%;
+  padding: 0.5em 0 0 3px;
+  line-height: 100%;
+  position: absolute;
+  left: 0px;
+  border-right: 1px solid #ccc;
+}
+
+.side a:link, .side a:visited {
+  color: #333;
+  text-decoration: underline;
+  font-size: 100%;
+}
+
+.side a:hover, .side a:active {
+  color: #33f;
+  text-decoration: underline;
+  font-size: 100%;
+}
+
+.side div.list {
+  font-size: small;
+  padding-left: 26px;
+  background-position: top left;
+  background-repeat: no-repeat;
+  margin-bottom: 3px;
+}
+
+.side h2 {
+  font-size: 100%;
+}
+
+.folder_side {
+  height: 100%;
+  width: 25%;
+  padding: 0.5em 0 0 3px;
+  line-height: 100%;
+  border-right: 1px solid #ccc;
+/*  overflow: auto; */
+  position: absolute;
+  top: 120px;
+  left: 10px;
+  margin: 0;
+  padding: 0;
+}
+
+.folder_side a:link, .folder_side a:visited {
+  color: #333;
+  text-decoration: underline;
+  font-size: 100%;
+}
+
+.folder_side a:hover, .folder_side a:active {
+  color: #33f;
+  text-decoration: underline;
+  font-size: 100%;
+}
+
+.folder_side div.list {
+  font-size: small;
+  padding-left: 26px;
+  background-position: top left;
+  background-repeat: no-repeat;
+  margin-bottom: 3px;
+}
+
+.folder_side h2 {
+  font-size: 100%;
+}
+
+div.main {
+  margin: 0 0 0 26%;
+  padding: 0.5em 0 0 0;
+
+}
+
+div.folder_main {
+  height: 100%;
+  overflow: auto;
+  margin: 0 0 0 26%;
+  padding: 0.5em 0 0 0;
+}
+
+div.show {
+  border: solid #999 1px;
+  padding: 0.3em;
+  margin: 0.5em 0 0.2em 0;
+}
+
+div.info {
+  float: right;
+  text-align: right;
+  font-size: small;
+}
+
+.tool {
+  margin-top: 0.3em;
+  clear: both;
+  float: left;
+  font-size: 12px;
+  width: 100%;
+  border-bottom: 4px solid #99c;
+}
+
+.tool ul {
+  margin: 0.5em 0 0 0;
+  padding: 0px;
+}
+
+.tool li {
+  float: left;
+  margin: 0 1em 0 0;
+  list-style-type: none;
+  display: block;
+  width: 9em;
+  line-height : 1.6em;
+  background-color: #ccc;
+  text-align: center;
+}
+
+.tool li a:link, .tool li a:visited, .tool li a:hover, .tool li a:active {
+  text-decoration: none;
+  font-size: 100%;
+}
+
+.tool .active a:link, .tool .active a:visited {
+  color: #fff;
+  display: block;
+  font-size: 100%;
+}
+
+.tool .active a:hover, .tool .active a:active {
+  color: #fff;
+  background-color: #6cc;
+  display: block;
+  font-size: 100%;
+}
+
+.tool .inactive a:link, .tool .inactive a:visited {
+  color: #000;
+  background-color: #add;
+  display: block;
+  font-size: 100%;
+}
+
+.tool .inactive a:hover, .tool .inactive a:active {
+  color: #fff;
+  background-color: #6cc;
+  display: block;
+  font-size: 100%;
+}
+
+.tool .active {background-color: #99c;}
+.tool .inactive {background-color: #ddd; color: #fff;}
+
+div {
+  margin: 0;
+  line-height: 130%;
+}
+
+table.page_status {
+  width: 80%;
+  border: solid 2px black;
+  margin-top: 10px;
+}
+
+div.top_button span, div.top_button a:link, div.top_button a:visited,
+div.top_button a:hover, div.top_button a:active {
+  border: 3px outset;
+  color: black;
+  background-color: #ccccff;
+  padding: 3px 0px 3px 0px;
+  width: 14em;
+  text-align: center;
+  font-weight: bold;
+  display: block;
+  color: black;
+  text-decoration: none;
+}
+
+div.top_button span {
+  background-color: #e7e7e7;
+  border: 3px solid #aaaaaa;
+}
+
+div.site-component {
+  margin-top: 25px
+}
+
+div.list {
+  padding: 10px;
+}
+
+form.web_monitor_form {
+  margin: 10px 0 20px;
+}
+
+form.web_monitor_form fieldset {
+  margin: 10px 0 ;
+  padding: 10px 20px;
+}
+
+form.web_monitor_form label {
+  float: left;
+  width: 13em;
+}
+
+form.web_monitor_form p {
+  margin: 6px;
+}
+
+div#enquete-answers {
+  padding: 0 10px;
+  line-height: 100%;
+}
+
+p#total {
+  margin-bottom: 0;
+}
+
+#enquete-answers table {
+  width: 90%;
+  margin: 0 auto;
+  margin-bottom: 20px;
+}
+
+#enquete-answers p.table-caption {
+  width: 90%;
+  margin: 10px auto;
+  text-align: center;
+  font-size: 130%;
+  font-weight: bold;
+  line-height: 130%;
+}
+
+#enquete-answers table th,
+#enquete-answers table td {
+  padding: 6px;
+}
+
+#enquete-answers table th {
+  background-color: #eeefff;
+  text-align: center;
+}
+
+#enquete-answers table th.question {
+  text-align: left;
+}
+
+#enquete-answers table .answer-no,
+#enquete-answers table .question-no {
+  width: 3em;
+  text-align: center;
+}
+
+#enquete-answers table .answer-count {
+  width: 4em;
+  text-align: right;
+}
+
+#enquete-answers table .answer-details {
+  width: 10em;
+  text-align: center;
+}
+
+#enquete-answers ul {
+  list-style: circle;
+}
+
+#enquete-answers ul li {
+  padding-bottom: 5px;
+}

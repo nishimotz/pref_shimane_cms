@@ -1,0 +1,72 @@
+<% @edit_mode = :normal -%>
+<%= render(:partial => 'menu') -%>
+<br />
+<br style="clear: both;" />
+
+<div class="container">
+  <div>
+    [<%= link_to('カテゴリメンテナンス', :action => 'list_category') %>]|[<%= link_to('ヘルプ参照設定', :action => 'list_action') %>]
+    <hr />
+  </div>
+
+  <div>
+    <div style="background-color: #CCCCCC; border: solid 1px;">
+      <p>見出しとヘルプの追加</p>
+      <div style="margin-left: 20px;">
+        <%= start_form_tag({:action => 'new_help_content'}, :name=> 'EditPage') %>
+        カテゴリ:<%= select(:category, :category_id, @categories, { :include_blank => false }) %>
+        <br />
+        ヘルプ見出し:<%= text_field(:help, :name, :size => '60') %><br />
+        <%= submit_tag('   作成   ') %>
+        <%= end_form_tag %>
+      </div>
+    </div>
+  </div>
+<hr />
+
+<% if @help_contents -%>
+<h2>ヘルプ内容一覧</h2>
+<div style="margin-left: 30px;">
+  <%= start_form_tag(:action => 'search_category') %>
+    大カテゴリ<select name="big_category"><%= options_for_select(@big_categories, @big_category) %></select>
+    <%= submit_tag('表示') %><%= link_to('一覧表示に戻る', :action => 'clear_session') %>
+  <%= end_form_tag %>
+  <div>
+  <% unless session[:help_category_search] -%>
+    <%= pagination_menu(@help_content_pages) if @help_content_pages %>
+  <% end -%>
+  <table>
+    <tr>
+      <th>No</th>
+      <th>項目名</th>
+      <th>操作</th>
+    </tr>
+  <% @help_contents.each_with_index do |content, i| -%>
+    <tr>
+      <% if params.has_key?(:page) -%>
+        <% count = Help::PER_PAGE * params[:page].to_i - 10 -%>
+      <% else -%>
+        <% count = 0 -%>
+      <% end -%>
+      <td><%= count + i + 1  %></td>
+      <td>
+        <% content.helps.each do |help| -%>
+          <%= h(help.name) %><br />
+        <% end -%>
+      </td>
+      <td>
+        <% unless content.helps.empty? -%>
+          [<%= link_to('内容の編集', :action => 'edit', :id => content.helps.first.help_content, :status => 'update') %>]
+          [<%= link_to('設定変更', :action => 'edit_properties', :id => content.helps.first) %>]
+          [<%= link_to('内容と関連する見出しの削除', {:action => 'destroy_help_content', :id => content}, :confirm => 'ヘルプの内容を削除しますか？内容を削除すると関連する見出しも削除されます。') %>]
+        <% end -%>
+      </td>
+    </tr>
+  <% end -%>
+  </table>
+  <% unless session[:help_category_search] -%>
+    <%= pagination_menu(@help_content_pages) if @help_content_pages %>
+  <% end -%>
+  </div>
+<% end -%>
+</div>

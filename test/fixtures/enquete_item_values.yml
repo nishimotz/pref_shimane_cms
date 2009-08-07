@@ -1,0 +1,19 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+first:
+  id: 1
+  enquete_item_id: 1
+  value: value1
+first2:
+  id: 2
+  enquete_item_id: 1
+  value: value1_2
+first3:
+  id: 3
+  enquete_item_id: 1
+  value: value1_other
+  other: true
+another:
+  id: 4
+  enquete_item_id: 2
+  value: value2
+  other: true

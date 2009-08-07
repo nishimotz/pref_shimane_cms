@@ -1,0 +1,331 @@
+@charset "utf-8";
+@import url("theme.css");
+
+body {
+  color: #000000;
+  background-color: #dddddd;
+}
+a:link {
+  color: #0000b6;
+  background-color: transparent;
+}
+a:visited {
+  color: #440066;
+  background-color: transparent;
+}
+a:hover, a:active {
+  color: #bc0000;
+  background-color: transparent;
+}
+address {
+  color: #000000;
+  background-color: transparent;
+}
+p#copyright {
+  color: #333333;
+  background-color: transparent;
+}
+h1 {
+  color: #30306a;
+  border-color: #1c73cf;
+}
+h2 {
+  color: #20206a;
+  border-color: #1c73cf;
+  background-repeat: repeat-x;
+}
+h3 {
+  padding-bottom: 0.2em;
+  color: #000066;
+  border-color: #1c73cf;
+}
+h4 {
+  border-color: #1c73cf;
+}
+
+/* headers */
+
+div#global_nav {
+}
+
+div#global_nav div.button {
+  border-color: #1c73cf;
+}
+
+div#search_nav {
+  color: white;
+  background-color: #0035b0;
+}
+
+div#footer {
+  color: black;
+  border-top: medium solid #0049a0;
+}
+
+div#search_nav a:link, div#search_nav a:visited {
+  color: white;
+}
+
+div#search_nav a:active, div#search_nav a:hover {
+  color: white;
+  background-color: blue;
+}
+
+div#footer a:link, div#footer a:visited {
+  color: blue;
+}
+
+div#footer a:active, div#footer a:hover {
+  color: red;
+  background-color: transparent;
+}
+
+div#note {
+}
+
+#emglist li {
+  margin-left: 2em;
+  list-style-type: none;
+  list-style-image: url("../images/emg_item.png");
+}
+
+
+#news li {
+  margin-left: 2em;
+  list-style-type: none;
+  list-style-image: url("../images/news_item.png");
+}
+
+#update {
+  text-align: right;
+}
+
+.pr li {
+  list-style-type: none;
+  background-image: url("../images/pr_item.png");
+  background-repeat: no-repeat;
+  padding-left: 20px;
+  margin: 0.2em 1em;
+}
+
+#keyword {
+  color: #000000;
+  background-color: #f3f2ff;
+}
+
+/* side menu */
+
+#subject,
+#section-subject {
+  color: #000000;
+  background-color: #e0e0e0;
+  border: solid 1px #1c73cf;
+}
+
+#section-subject {
+  width: 9.8em;
+}
+
+#subject h2,
+#section-subject h2 {
+  color:#00003a;
+  background-color: #e6e6e6;
+  border-style: solid;
+  border-width: 2px 0 0;
+  border-color: #6394e3;
+}
+
+#subject li,
+#section-subject li {
+  list-style-type: none;
+  background: url("../images/subject_item.png") no-repeat left center;
+}
+
+#subject h2 a:hover,
+#subject h2 a:active,
+#section-subject h2 a:hover,
+#section-subject h2 a:active {
+  color: #a00000;
+  background-color: #ececf3;
+}
+
+.search-word-color {
+    color: #ff0000;
+}
+/* round_coner */
+.round_corner {
+  margin: 8px auto;
+  color: #000;
+  width: 99%;
+  padding: 0;
+  text-align: left;
+  border: 2px solid #0049a0;
+  background-color: #ddd;
+}
+/* end of round_corner */
+
+#header_police {
+  background-color: #dddddd;
+}
+
+/* top news style */
+div.page_header {
+  border-color: #0049a0;
+}
+
+/*
+ * The style for headdings which the user choose from
+ * the tinymce interface.
+ */
+
+h1.news,
+h2.news,
+h3.news,
+h1.emg,
+h2.emg,
+h3.emg,
+h1.subject,
+h2.subject,
+h3.subject,
+h1.pr,
+h2.pr,
+h3.pr {
+  color: black;
+  background-repeat: repeat-x;
+  border: none;
+}
+
+h1.emg,
+h2.emg,
+h3.emg {
+  background-image: url("../images/emg_bg.png");
+}
+
+h1.news,
+h2.news,
+h3.news {
+  background-image: url("../images/news_bg.png");
+}
+
+h1.subject,
+h2.subject,
+h3.subject {
+  background-image: url("../images/subject_bg.png");
+}
+h1.pr,
+h2.pr,
+h3.pr {
+  background-image: url("../images/pr_bg.png");
+}
+
+h1.green,
+h2.green,
+h3.green,
+h4.green {
+  border-color: green;
+}
+
+h1.pink,
+h2.pink,
+h3.pink,
+h4.pink {
+  border-color: #FF0099;
+}
+
+h1.cccc66,
+h2.cccc66,
+h3.cccc66,
+h4.cccc66 {
+  border-color: #CCCC66;
+}
+
+h1.cc00cc,
+h2.cc00cc,
+h3.cc00cc,
+h4.cc00cc {
+  border-color: #CC00CC;
+}
+
+/* dark blue background */
+h1.dark-blue,
+h2.dark-blue,
+h3.dark-blue,
+h4.dark-blue,
+h5.dark-blue {
+  color: #ffffff;
+  background-color: #0049a0;
+  border-style: solid;
+  border-width: 1px 0 0;
+}
+
+/* light gray background */
+h1.light-gray,
+h2.light-gray,
+h3.light-gray,
+h4.light-gray,
+h5.light-gray {
+  color:#333333;
+  background-color:#BED3CA;
+  border-color:#88AE9E;
+}
+
+/* dark green background */
+h1.dark-green,
+h2.dark-green,
+h3.dark-green,
+h4.dark-green,
+h5.dark-green {
+  color:#ffffff;
+  background-color:#203744;
+  border: none;
+}
+
+/* green background */
+h1.fresh-green,
+h2.fresh-green,
+h3.fresh-green,
+h4.fresh-green,
+h5.fresh-green {
+  color: #ffffff;
+  background-color: #006e54;
+  border: none;
+}
+
+/* light green background */
+h1.light-green,
+h2.light-green,
+h3.light-green,
+h4.light-green,
+h5.light-green {
+  color: #333333;
+  background-color: #c1d8ac;
+  border-color: #abca8e;
+}
+
+/* no border for dark background */
+h4.dark-blue,
+h4.light-gray,
+h4.dark-green,
+h4.fresh-green,
+h4.light-green {
+  border: none;
+}
+
+/* no padding for dark background */
+h3.dark-blue,
+h3.light-gray,
+h3.dark-green,
+h3.fresh-green,
+h3.light-green {
+  padding-bottom: 0;
+}
+
+/* no border */
+h1.plain,
+h2.plain,
+h3.plain,
+h4.plain {
+  color: black;
+  border: none;
+}
+

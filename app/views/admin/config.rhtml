@@ -1,0 +1,24 @@
+<%= render(:partial => 'menu') -%>
+<div class="container">
+<div>
+<h2>各種設定</h2>
+<ul>
+<% if @user.authority == User::SUPER_USER -%>
+<li><%= link_to('フォルダの順番変更', :action => 'sort_genre') %></li>
+<li><%= link_to('所属/ユーザの編集', :action => 'list_section') %></li>
+<li><%= link_to('お知らせの編集', :action => 'list_info') %></li>
+<li><%= link_to('緊急お知らせ設定', :action => 'set_emergency_info') %></li>
+<li><%= link_to('ヘルプメンテナンス', :controller => 'help', :action => 'admin_index') %></li>
+<% end -%>
+</ul>
+<% if @user.authority == User::USER -%>
+<div>※次の設定変更は各所属の情報提供責任者に依頼してください。</div>
+<dl>
+  <dt>・ページ/フォルダの移動</dt>
+  <dd>作成したページを別のフォルダへ移動したり、フォルダを別のフォルダに移動します。</dd>
+  <dt>・所属の連絡先の設定</dt>
+  <dd>所属の各ページ下部に表示する連絡先の設定を行います。</dd>
+</dl>
+<% end -%>
+</div>
+</div>

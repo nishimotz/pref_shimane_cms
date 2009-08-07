@@ -1,0 +1,11 @@
+<%= render(:partial => 'menu') %>
+<div class="container">
+<h1>ユーザ編集</h1>
+<p>パスワードを空で編集するとパスワードを変更しません。</p><br />
+<%= start_form_tag :action => 'update_user', :id => @manage_user, :section_id => @manage_user.section_id %>
+  <%= render :partial => 'form_user' %>
+  <br />
+  <div><%= submit_tag '保存' %>&nbsp;&nbsp;<%= link_to '戻る', :action => 'list_user', :id => @manage_user.section_id %></div>
+<%= end_form_tag %>
+</div>
+<br />

@@ -1,0 +1,69 @@
+#!/usr/bin/env ruby
+
+if ARGV.size != 1 || ARGV == ['--help']
+  puts "Usage: import.rb /path/to/import_file.html"
+  exit 1
+end
+
+require File.expand_path(File.dirname(__FILE__) + "/../config/environment")
+require 'htree'
+
+path = "/#{File.dirname(ARGV[0])}/"
+file = ARGV[0].dup
+
+dirs = []
+
+tmp_path = path.dup
+
+until tmp_path.empty?
+  if Genre.find(:first, :conditions => ['path = ?', tmp_path])
+    break
+  end
+  dirs.unshift(tmp_path.dup)
+  tmp_path.sub!(%r|[^/]+/$|, '')
+end
+
+dirs.each do |dir|
+  puts "Creating #{dir}."
+  title = ''
+  begin
+    index = Dir.glob("#{dir.sub(%r|^/|, '')}/*").grep(%r|index.html?|i).first
+    title = HTree.parse(NKF::nkf('-w -m0', File.read(index))).title.to_s
+  rescue
+  end
+  title = File.basename(dir) if title.empty?
+  parent = Genre.find(:first, :conditions => ['path = ?', dir.sub(%r|[^/]+/$|, '')])
+  genre = Genre.new(
+                    :name => File.basename(dir),
+                    :title => title,
+                    :parent_id => parent.id
+                    )
+  genre.save
+  genre.sections = parent.sections
+  genre.save
+end
+
+file_name = File.basename(file)
+genre = Genre.find(:first, :conditions => ['path = ?', path])
+name = file_name.sub(/\.html?/i, '')
+body = NKF.nkf('-w -m0', File.read(file))
+htree = HTree.parse(body)
+
+puts "Creating #{genre.path}#{file_name}"
+page = Page.find(:first, :conditions => ['name = ? AND genre_id = ?', name, genre.id]) || Page.new
+page.attributes = {
+  :genre_id => genre.id,
+  :name => name
+}
+content = page.private
+content.attributes = {
+  :title => htree.title.to_s,
+  :last_modified => File.mtime(file),
+  :content => NKF.nkf('-w -m0', body),
+  :status => 0,
+}
+content.page = page
+content.normalize_links
+content.remove_tags_for_import
+page.save
+content.save

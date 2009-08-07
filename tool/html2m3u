@@ -1,0 +1,16 @@
+#!/usr/bin/env ruby
+load "#{File.dirname(__FILE__)}/export"
+
+if __FILE__ == $0
+  configuration = Rails::Initializer.run(:initialize_logger).configuration
+  @exporter = CMSExport.new
+  @exporter.logger = Logger.new(File.join(File.dirname(configuration.log_path), 'export_mp3.log'))
+  html_files = []
+  Dir.chdir("#{File.dirname(__FILE__)}/../public.") do
+    html_files = Dir['**/*.html']
+  end
+  html_files.sort.each do |html|
+    next if %r|\.data/| =~ html
+    @exporter.create_mp3("/#{html}")
+  end
+end

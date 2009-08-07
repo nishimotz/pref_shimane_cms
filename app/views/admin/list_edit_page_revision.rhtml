@@ -1,0 +1,18 @@
+<%= render(:partial => 'menu_page') %>
+<div class="container">
+<h2>ページ編集履歴</h2>
+<div><%= link_to('ページ情報画面へ戻る', :action => 'show_page_info', :id => params[:id]) %></div>
+<br />
+<table>
+  <tr>
+    <th>担当者</th>
+    <th>更新日時</th>
+  </tr>
+  <% @page.revisions.each do |rev| -%>
+    <tr>
+      <td><%= h(User.find(rev.user_id).name) rescue '削除済ユーザ' %></td>
+      <td><%= h(public_term_strftime(rev.last_modified)) %></td>
+    </tr>
+  <% end -%>
+</table>
+</div>

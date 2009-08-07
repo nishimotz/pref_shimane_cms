@@ -1,0 +1,41 @@
+@import url("top.css");
+@import url("color.css");
+body {
+  margin: 10px;
+}
+
+.invalid {
+  border: 1px red solid;
+}
+
+/*
+ * Special style for editor.
+ * We need these for the page content to 
+ * be displayed nicely on the tinymce's textarea.
+ */
+div#access {
+  float: right;
+  width: 341px;
+}
+
+#column_container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: auto;
+  margin-right: auto;
+  padding-right: 350px;
+}
+
+#column {
+  width: auto;
+  margin-right: 0;
+}
+
+#profile,
+#topics {
+  float: left;
+  margin: 0;
+  padding-top: 1px;
+  width: 48.5%;
+}

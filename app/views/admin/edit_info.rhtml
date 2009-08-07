@@ -1,0 +1,13 @@
+<% @edit_mode = :info -%>
+<%= render(:partial => 'menu') %>
+<div class="container">
+<br />
+<h2>お知らせの編集</h2>
+<%= start_form_tag(:action => 'update_info', :id => @info) %>
+  <%= render(:partial => 'form_info') %>
+  <%= submit_tag('編集') %>
+<%= end_form_tag %>
+
+<%= link_to('詳細表示', :action => 'show_info', :id => @info) %> |
+<%= link_to('お知らせ一覧に戻る', :action => 'list_info') %>
+</div>

@@ -1,0 +1,80 @@
+id_32:
+  id: 32
+  link: /full_uri.pdf
+  page_content_id: 4
+id_33:
+  id: 33
+  link: /absolute_uri.pdf
+  page_content_id: 4
+id_34:
+  id: 34
+  link: /culture/relative_uri.pdf
+  page_content_id: 4
+id_35:
+  id: 35
+  link: /full_uri.png
+  page_content_id: 4
+id_36:
+  id: 36
+  link: /absolute_uri.png
+  page_content_id: 4
+id_37:
+  id: 37
+  link: /culture/relative_uri.png
+  page_content_id: 4
+id_48:
+  id: 48
+  link: /absolute_uri.png
+  page_content_id: 32
+id_47:
+  id: 47
+  link: /full_uri.png
+  page_content_id: 32
+id_46:
+  id: 46
+  link: /genre3/genre1/news.html
+  page_content_id: 32
+id_44:
+  id: 44
+  link: /genre3/genre1/saisaku/link_test.html
+  page_content_id: 32
+id_45:
+  id: 45
+  link: /genre3/genre1/absolute_uri.html
+  page_content_id: 32
+id_49:
+  id: 49
+  link: /genre3/genre1/relative_uri.png
+  page_content_id: 32
+id_43:
+  id: 43
+  link: /genre3/genre1/relative_uri.png
+  page_content_id: 33
+id_42:
+  id: 42
+  link: /absolute_uri.png
+  page_content_id: 33
+id_40:
+  id: 40
+  link: /genre3/genre1/news.html
+  page_content_id: 33
+id_39:
+  id: 39
+  link: /genre3/genre1/saisaku/link_test.html
+  page_content_id: 33
+id_38:
+  id: 38
+  link: /genre3/genre1/absolute_uri.html
+  page_content_id: 33
+id_41:
+  id: 41
+  link: /full_uri.png
+  page_content_id: 33
+id_50:
+  id: 50
+  link: /genre3/genre1/link_test.data/exist.png
+  page_content_id: 33
+id_51:
+  id: 51
+  link: /genre3/genre1/absolute_uri.data/nonexist.png
+  page_content_id: 33

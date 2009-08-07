@@ -1,0 +1,8 @@
+<h1>所属新規作成</h1>
+
+<%= start_form_tag :action => 'create_section' %>
+  <%= render :partial => 'form_section' %>
+  <br />
+  <%= submit_tag "作成" %>&nbsp;&nbsp;<%= link_to '戻る', :action => 'list_section' %>
+<%= end_form_tag %>
+<br />

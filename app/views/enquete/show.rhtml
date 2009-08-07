@@ -1,0 +1,26 @@
+<% @page_title = "アンケート：#{h(@page.title)}" %>
+<div>
+[<%= link_to('一覧に戻る', :action => 'list') %>]
+ [<%= link_to('CSVのダウンロード', :action => 'csv', :id => @page) %>]
+</div>
+<p>回答数：<%= @enquete_answers.size %>件</p>
+<div>
+<table>
+<tr>
+<% for item in @enquete_items -%>
+<td><%= h(item.name) %></td>
+<% end -%>
+<td>投稿日時</td>
+<td>処理</td>
+</tr>
+<% for answer in @enquete_answers -%>
+<tr>
+<% @enquete_items.each do |item| -%>
+<td><%= h(answer.item_answers(item)) %></td>
+<% end -%>
+<td><%= h(public_term_strftime(answer.answered_at)) %></td>
+<td>[<%= link_to('削除', {:action => 'destroy', :id => answer}, :confirm => '削除しますか？')%>]</td>
+</tr>
+<% end -%>
+</table>
+</div>

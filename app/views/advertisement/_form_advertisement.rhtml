@@ -1,0 +1,22 @@
+<!--[form:advertisement]-->
+<p><label for="advertisement_name">種別</label>
+<%= radio_button 'advertisement', 'side_type', 1 %>県の広告
+<%= radio_button 'advertisement', 'side_type', 2 %>企業の広告
+</p>
+<p><label for="advertisement_name">広告名:</label><%= text_field 'advertisement', 'name'  %></p>
+<p><label for="advertisement_advertiser">広告主:</label><%= text_field 'advertisement', 'advertiser' %></p>
+<p><label for="advertisement_begin_date">公開開始日:</label><%= datetime_select('advertisement', 'begin_date', :use_month_numbers => true, :minute_step => 15) -%></p>
+<p><label for="advertisement_end_date">公開終了日:</label><%= datetime_select('advertisement', 'end_date', :use_month_numbers => true, :minute_step => 15) -%></p>
+<p><label for="advertisement_desctiption">広告の説明:</label><%= text_field 'advertisement', 'description', :size => '60' %></p>
+<p><label for="advertisement_desctiption_link">説明のlink URL:</label><%= text_field 'advertisement', 'description_link', :size => '60' %></p>
+<p><label for="advertisement_image">画像ファイル:</label>
+<% if @advertisement.image -%>
+<%= image_tag("/advertisement.data/#{@advertisement.image}", :alt => @advertisement.alt, :style => "vertical-align: middle") -%>&nbsp;<%= link_to('画像を削除', { :action => 'change_image', :id => @advertisement.id }, :confirm => '削除しますか?') %>
+<% else -%>
+<%= file_field 'advertisement', 'image_file', :size => '60' %>
+<% end -%>
+</p>
+<p><label for="advertisement_alt">画像の説明:</label><%= text_field 'advertisement', 'alt', :size => '60' %></p>
+<p><label for="advertisement_url">画像のlink URL:</label><%= text_field 'advertisement', 'url', :size => '60' %></p>
+<p><label for="advertisement_show_in_header">ヘッダ広告表示する:</label><%= check_box('advertisement', 'show_in_header', {}, true, false) %></p>
+<!--[eoform:advertisement]-->

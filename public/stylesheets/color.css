@@ -1,0 +1,370 @@
+@import url("theme.css");
+
+body {
+  color: #000000;
+  background-color: #ffffff;
+}
+a:link {
+  color: #0000b6;
+  background-color: transparent;
+}
+a:visited {
+  color: #440066;
+  background-color: transparent;
+}
+a:hover, a:active {
+  color: #bc0000;
+  background-color: transparent;
+}
+p#copyright {
+  color: #333333;
+  background-color: transparent;
+}
+h1 {
+  color: #30306a;
+  border-color: #1c73cf;
+}
+h2 {
+  color: #20206a;
+  border-color: #1c73cf;
+  background-repeat: repeat-x;
+}
+h3 {
+  padding-bottom: 0.2em;
+  color: #000066;
+  border-color: #1c73cf;
+}
+h4 {
+  border-color: #1c73cf;
+}
+
+/* round_corner */
+div.round_corner {
+  border-style: solid;
+  color: #000;
+/* Should be overridden by theme.css */
+/*  border-color: #0049a0; */
+}
+
+.round_corner h1,
+.round_corner h2,
+.round_corner h3,
+.round_corner h4 {
+  color: #30306a;
+}
+
+.round_corner h2 {
+/* Should be overridden by theme.css */
+/*  border-bottom-color: #0049a0; */
+}
+
+/* headers */
+
+div#global_nav {
+}
+
+div#global_nav div.button {
+  border-color: #1c73cf;
+}
+
+div#search_nav {
+  color: white;
+  background-color: #0035b0;
+}
+
+div#footer {
+  color: black;
+/* Should be overridden by theme.css */
+/*  border-top: medium solid #0049a0; */
+}
+
+div#search_nav a:link, div#search_nav a:visited {
+  color: white;
+}
+div#footer a:link, div#footer a:visited {
+  color: black;
+}
+div#search_nav a:active, div#search_nav a:hover,
+div#footer a:active, div#footer a:hover {
+  color: white;
+/* Should be overridden by theme.css */
+/*  background-color: #0049a0; */
+}
+
+/*
+ * The style for emergency list
+ */
+#emglist {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+#emglist li {
+  padding: 2px 25px;
+  list-style-type: none;
+  list-style-image: url("../images/emg_item.png");
+  list-style-position: inside;
+}
+
+#news li {
+  margin-left: 2em;
+  list-style-type: none;
+  list-style-image: url("../images/news_item.png");
+}
+
+#update {
+  text-align: right;
+}
+.pr li {
+  list-style-type: none;
+  background-image: url("../images/pr_item.png");
+  background-repeat: no-repeat;
+  padding-left: 20px;
+  margin: 0.2em 1em;
+}
+
+#keyword {
+  color: #000000;
+  background-color: #f3f2ff;
+}
+
+h3.subject {
+  border-color: #c4c44b;
+}
+
+/* side menu */
+
+#subject,
+#section-subject {
+  color: #000000;
+}
+
+#subject h2,
+#section-subject h2 {
+  color: #fff;
+/* Should be overridden by theme.css */
+/*  background-color: #0049a0; */
+  border: thin solid #fff;
+  border-width: 0 0 1px;
+}
+
+#subject li,
+#section-subject li {
+  list-style-type: none;
+  background: url("../images/subject_item.png") no-repeat left center;
+}
+
+#subject h2 a,
+#section-subject h2 a {
+  color: white;
+  text-decoration: none;
+}
+
+#subject h2 a:hover,
+#subject h2 a:active,
+#section-subject h2 a:hover,
+#section-subject h2 a:active {
+/* Should be overridden by theme.css */
+/*  color: #0049a0;
+  background-color: #ececf3; */
+}
+
+.search-word-color {
+    color: #ff0000;
+}
+
+/* 掲示板スタイルシート */
+
+dl.board dd {
+    border-color: #ccf;
+    background-color: #eef;
+}
+.board_post {
+    border-color: #ccf;
+}
+.board_date {
+    color: #444;
+}
+.board_frame {
+    border-color: #ccf;
+    background-color: #eef;
+}
+.board_error {
+  border-color: red;
+  background-color: #eef;
+}
+
+/*
+ * The style for headdings which the user choose from
+ * the tinymce interface.
+ */
+
+h1.news,
+h2.news,
+h3.news,
+h1.emg,
+h2.emg,
+h3.emg,
+h1.subject,
+h2.subject,
+h3.subject,
+h1.pr,
+h2.pr,
+h3.pr {
+  color: black;
+  background-repeat: repeat-x;
+  border: none;
+}
+
+h1.emg,
+h2.emg,
+h3.emg {
+  background-image: url("../images/emg_bg.png");
+}
+
+h1.news,
+h2.news,
+h3.news {
+  background-image: url("../images/news_bg.png");
+}
+
+h1.subject,
+h2.subject,
+h3.subject {
+  background-image: url("../images/subject_bg.png");
+}
+h1.pr,
+h2.pr,
+h3.pr {
+  background-image: url("../images/pr_bg.png");
+}
+
+h1.green,
+h2.green,
+h3.green,
+h4.green {
+  border-color: green;
+}
+
+h1.pink,
+h2.pink,
+h3.pink,
+h4.pink {
+  border-color: #FF0099;
+}
+
+h1.cccc66,
+h2.cccc66,
+h3.cccc66,
+h4.cccc66 {
+  border-color: #CCCC66;
+}
+
+h1.cc00cc,
+h2.cc00cc,
+h3.cc00cc,
+h4.cc00cc {
+  border-color: #CC00CC;
+}
+
+/* dark blue background */
+h1.dark-blue,
+h2.dark-blue,
+h3.dark-blue,
+h4.dark-blue,
+h5.dark-blue {
+  color: #ffffff;
+  background-color: #0049a0;
+  border-style: solid;
+  border-width: 1px 0 0;
+}
+
+/* light gray background */
+h1.light-gray,
+h2.light-gray,
+h3.light-gray,
+h4.light-gray,
+h5.light-gray {
+  color:#333333;
+  background-color:#BED3CA;
+  border-color:#88AE9E;
+}
+
+/* dark green background */
+h1.dark-green,
+h2.dark-green,
+h3.dark-green,
+h4.dark-green,
+h5.dark-green {
+  color:#ffffff;
+  background-color:#203744;
+  border: none;
+}
+
+/* green background */
+h1.fresh-green,
+h2.fresh-green,
+h3.fresh-green,
+h4.fresh-green,
+h5.fresh-green {
+  color: #ffffff;
+  background-color: #006e54;
+  border: none;
+}
+
+/* light green background */
+h1.light-green,
+h2.light-green,
+h3.light-green,
+h4.light-green,
+h5.light-green {
+  color: #333333;
+  background-color: #c1d8ac;
+  border-color: #abca8e;
+}
+
+/* no border for dark background */
+h4.dark-blue,
+h4.light-gray,
+h4.dark-green,
+h4.fresh-green,
+h4.light-green {
+  border: none;
+}
+
+/* no padding for dark background */
+h3.dark-blue,
+h3.light-gray,
+h3.dark-green,
+h3.fresh-green,
+h3.light-green {
+  padding-bottom: 0;
+}
+
+/* no border */
+h1.plain,
+h2.plain,
+h3.plain,
+h4.plain {
+  color: black;
+  border: none;
+}
+
+h2.plain {
+  margin-bottom: 10px;
+}
+
+/* top news style */
+div.page_header {
+/* Should be overridden by theme.css */
+/*  border-color: #0049a0; */
+}
+h1.top_news {
+  color: #0049a0;
+}
+
+/* section page header style */
+/* Should be overridden by theme.css */
+div.section_header {
+/* border-color: #0049a0; */
+}

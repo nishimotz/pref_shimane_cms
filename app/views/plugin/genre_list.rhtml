@@ -1,0 +1,22 @@
+<%
+# 説明：そのフォルダにある下位フォルダの一覧を表示する
+# 引数：なし
+section = Section.find(:first, :conditions => ['top_genre_id = ?', @genre.id])
+if section
+  genres = section.genres
+else
+  genres = Genre.find(:all, :conditions => ['parent_id = ?', @page.genre_id], :order => ['name desc'])
+end
+-%>
+<% if @preview || !genres.empty? -%>
+<ul class="genre_list">
+<% genres.each do |genre| -%>
+  <% icon_name = genre.original_id ? 'folder_alias.png' : 'folder.png' -%>
+  <li><%= image_tag(icon_name, :alt => '', :size => '18x18') %>
+     <a href="<%= h(genre.link_path) %>"><%= h(genre.title) %></a>
+<% unless genre.section_name_except_admin.empty? %>（<%= h(genre.section_name_except_admin) %>）<% end %></li>
+<% end %>
+<% if @preview && genres.empty? %>  <li><%= image_tag('folder.png', :alt => '', :size => '18x18') %> サンプルフォルダ</li><% end %>
+</ul>
+<hr class="sep" />
+<% end %>

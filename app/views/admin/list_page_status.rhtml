@@ -1,0 +1,32 @@
+<%= render(:partial => 'menu') %>
+<div class="container">
+<h2>ページの審査状況</h2>
+<h3>公開審査中リスト</h3>
+<ul class="page_list">
+  <% Page.status_page_list(PageContent::PUBLISH_REQUEST, @genre_ids, @user.authority).each do |page| %>
+    <li><%= image_tag('page.png', :alt => '', :size => '16x16') %> <%= link_to(h(page.title), :action => 'show_page_info', :id => page) %><% unless page.genre.section_name_except_admin.empty? %>（<%= h(page.genre.section_name_except_admin) %>）<% end %></li>
+  <% end %>
+</ul>
+
+<h3>県トップ新着情報掲載審査中リスト</h3>
+<ul class="page_list">
+  <% Page.news_page_list(PageContent::NEWS_REQUEST, @genre_ids, @user.authority).each do |page| %>
+    <li><%= image_tag('page.png', :alt => '', :size => '16x16') %> <%= link_to(h(page.title), :action => 'show_page_info', :id => page) %><% unless page.genre.section_name_except_admin.empty? %>（<%= h(page.genre.section_name_except_admin) %>）<% end %></li>
+  <% end %>
+</ul>
+
+<h3>公開却下リスト</h3>
+<ul class="page_list">
+  <% Page.status_page_list(PageContent::PUBLISH_REJECT, @genre_ids, @user.authority).each do |page| %>
+    <li><%= image_tag('page.png', :alt => '', :size => '16x16') %> <%= link_to(h(page.title), :action => 'show_page_info', :id => page) %><% unless page.genre.section_name_except_admin.empty? %>（<%= h(page.genre.section_name_except_admin) %>）<% end %></li>
+  <% end %>
+</ul>
+
+<h3>県トップ新着情報掲載却下リスト</h3>
+<ul class="page_list">
+  <% Page.news_page_list(PageContent::NEWS_REJECT, @genre_ids, @user.authority).each do |page| %>
+    <li><%= image_tag('page.png', :alt => '', :size => '16x16') %> <%= link_to(h(page.title), :action => 'show_page_info', :id => page) %><% unless page.genre.section_name_except_admin.empty? %>（<%= h(page.genre.section_name_except_admin) %>）<% end %></li>
+  <% end %>
+</ul>
+
+</div>

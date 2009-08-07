@@ -1,0 +1,11 @@
+<%= render(:partial => 'menu') %>
+<div class="container">
+<h1>所属編集</h1>
+
+<%= start_form_tag :action => 'update_section', :id => @section %>
+  <%= render :partial => 'form_section' %>
+  <br />
+  <%= submit_tag '編集' %>&nbsp;&nbsp;<%= link_to '戻る', :action => 'list_section' %>
+<%= end_form_tag %>
+</div>
+<br />

@@ -1,0 +1,25 @@
+<%= render(:partial => 'menu') %>
+<div class="container">
+<div>
+<h2>パスワードの変更</h2>
+<div style="color: red"><%= flash[:update_passwd] %></div>
+<%= start_form_tag(:action => 'update_passwd') %>
+<div style="text-align: center;">ID : <%= h(@user.login) %></div>
+  <table align="center">
+    <tr>
+      <th style="border: none;"><label for="now_passwd">現在のパスワード</label></th>
+      <td style="border: none;"><%= password_field('now', 'passwd', :size => 20) %></td>
+    </tr>
+    <tr>
+      <th style="border: none;"><label for="new_passwd">新しいパスワード</label></th>
+      <td style="border: none;"><%= password_field('new', 'password', :size => 20) %>&nbsp;(半角英数字8文字〜12文字)</td>
+    </tr>
+    <tr>
+      <th style="border: none;"><label for="now_passwd">新しいパスワードの確認</label></th>
+      <td style="border: none;"><%= password_field('new', 'password_confirmation', :size => 20) %><br />※念のため同じパスワードを入れてください。</td>
+    </tr>
+  </table>
+<div align="center"><table><tr><td style="border: none;"><%= button_to('   変  更   ', {}, :confirm => "パスワードを変更しますか？") %></td><td style="border: none;"><%= start_form_tag(:action => 'update_passwd') %><%= submit_tag('キャンセル', :name => 'cancel', :onclick => 'return confirm("パスワードの変更をキャンセルします。よろしいですか？")') %><%= end_form_tag %></td></tr></table>
+</div>
+<%= end_form_tag %>
+</div>

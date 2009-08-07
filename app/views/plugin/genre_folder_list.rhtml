@@ -1,0 +1,44 @@
+<%
+  # 説明：ジャンルフォルダ用 フォルダ一覧表示プラグイン。二階層下のジャンルまで表示する。
+  # 引数：ジャンル名 ('/life/')
+-%>
+<% 
+unless @args[0] == 'no'
+  genre = @args.any? ? Genre.find_by_name(@args[0]) : @genre
+end
+return unless genre
+genres = genre.children
+show_grandchildren = !@args.any?{|i| i == "no"}
+-%>
+<% if @preview || genres.any? -%>
+<% unless show_grandchildren -%>
+  <ul class="genre_down_list">
+    <% genres.each do |genre| -%>
+      <li class="sub_genre"><h3><a href="<%= h(genre.link_path) %>"><%= h(genre.title) %></a></h3></li>
+    <% end -%>
+  </ul>
+<% else -%>
+  <% split_genre(genres).zip(["left_genre_list", "right_genre_list"]).each do |g_part, css_class| -%>
+    <% if g_part.any? -%>
+      <ul class="<%= css_class %>">
+      <% g_part.each do |genre| -%>
+        <li class="sub_genre"><h3><a href="<%= h(genre.link_path) %>"><%= h(genre.title) %></a></h3>
+        <% if genre.children.any? -%>
+          <ul>
+          <% genre.children.each do |g| -%>
+            <li class="grand_child"><a href="<%= h(g.link_path) %>"><%= h(g.title) %></a></li>
+          <% end -%>
+          </ul>
+        <% end %>
+        </li>
+      <% end -%>
+      </ul>
+    <% end -%>
+  <% end -%>
+<% end -%>
+<% elsif @preview && genres.empty? %>
+  <ul class="genre_down_list">
+   <li><%= image_tag('header_bullet.png', :alt => '', :size => '18x18') %> サンプルフォルダ</li>
+  </ul>
+<% end -%>
+<hr class="sep" />

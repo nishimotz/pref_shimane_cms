@@ -1,0 +1,13 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+first:
+  id: 1
+  name: first
+  login: first
+  password: first_test
+  genre_id: 73
+second:
+  id: 2
+  name: second
+  login: second
+  password: second_test
+  genre_id: 73

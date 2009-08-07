@@ -1,0 +1,5 @@
+<%
+  name, size = @args
+  size = Integer(size.to_s) rescue 80
+-%>
+<%= text_field_tag(h(name), '', :id => nil, :size => size) %>

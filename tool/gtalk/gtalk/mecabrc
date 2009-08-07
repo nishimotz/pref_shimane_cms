@@ -1,0 +1,5 @@
+dicdir = /var/lib/mecab/dic/ipadic
+node-format = <W1 orth="%m" pron="%f[8]" pos="%F-[0,1,2]" cType="%f[4]" cForm="%f[5]"/>\n
+unk-format = <W1 orth="%m" pron="%m" pos="%f[0]"/>\n
+bos-format = <S>\n
+eos-format = </S>\n

@@ -1,0 +1,52 @@
+<%= render(:partial => 'current_genre') %>
+<p>新規ページを作成するフォルダを、左のフォルダツリーから選択してください。</p>
+<%= start_form_tag({:action => 'create_page', :id => @genre}, :name => 'TemplateForm') %>
+<% unless @params[:id].blank? -%>
+
+<div class="show">
+  <% if @page && !@page.errors.empty? -%>
+    <% @page.errors.each_full do |full_message| %>
+    <div style="color: red"><%= full_message -%></div>
+  <% end -%>
+<% end -%>
+
+<table>
+  <tr style="border: none;">
+    <td style="border: none;">
+      <label for="title">タイトル（日本語）</label>
+    </td>
+    <td style="border: none;">
+      <%= text_field('page', 'title', :size => '40') %>
+    </td>
+  </tr>
+  <tr style="border: none;">
+    <td style="border: none;">
+      <label for="name">ページ名（英数字）</label>
+    </td>
+    <td style="border: none;">
+      <%= text_field('page', 'name', :size => '40', :onFocus => "ime_disabled(this);") %>.html<br />
+      <p style="color: red">ページ名が長くなる場合は、8文字以内毎に「_」で区切ってページ名を入力してください。</p>
+    </td>
+  </tr>
+</table>
+
+<p>
+  <%= radio_button('template_page', 'enable', 'off', :checked => true) %>テンプレートを使用しない
+</p>
+<p>
+  <%= radio_button('template_page', 'enable', 'on') %>テンプレートを使用する
+&nbsp;&nbsp;適用テンプレート:<select id="page_status" name="template" onclick="select_switch_template_radio('on');">
+<%= options_for_select(@template_list) %>
+</select>
+<%= hidden_field_tag('genre_id', @genre.id) %>
+<!--
+<input type="button" value="サンプルを表示する" onClick="openWindow('<%= url_for(:controller => 'admin', :action => 'show_template', :id => nil) %>')">
+-->
+</p>
+<div><%= submit_tag('新規ページ作成') %></div>
+<%= end_form_tag %>
+</div>
+
+<%= render(:partial => 'page_list') %>
+<% end -%>
+</div>

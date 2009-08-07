@@ -1,0 +1,186 @@
+genre1_index:
+  id: 1
+  page_id: 1
+  last_modified: 2006-01-05 10:00:00 +09:00
+  content: >-
+    <h2>見出し</h2>
+
+    <p>本文</p>
+  admission: 3
+  top_news: 0
+  section_news: 0
+genre1_2_page1_private:
+  id: 2
+  page_id: 2
+  last_modified: 2006-01-05 10:00:00 +09:00
+  content: >-
+    <h2>見出し</h2>
+
+    <p>本文</p>
+  admission: 0
+  top_news: 0
+  section_news: 0
+genre1_2_page2_private:
+  id: 3
+  page_id: 3
+  last_modified: 2006-01-06 10:00:00 +09:00
+  admission: 0
+  top_news: 0
+  section_news: 0
+genre1_2_page2_public:
+  id: 4
+  page_id: 3
+  last_modified: 2006-01-07 10:00:00 +09:00
+  content: >-
+    <a href="http://example.com/outer_uri.pdf">external</a>
+    <a href="http://<%= CMSConfig[:local_domains][0] %>/full_uri.pdf">internal full</a>
+    <a href="/absolute_uri.pdf">internal absolute</a>
+    <a href="relative_uri.pdf">internal relative</a>
+    <img src="http://example.com/outer_uri.png" alt="test1" />
+    <img src="http://<%= CMSConfig[:local_domains][0] %>/full_uri.png" alt="test2" />
+    <img src="/absolute_uri.png" alt="test3" />
+    <img src="relative_uri.png" alt="test4" />
+  admission: 3
+  top_news: 0
+  section_news: 1
+plugin_page1:
+  id: 5
+  page_id: 4
+  last_modified: 2006-01-08 10:00:00 +09:00
+  content: <%%= plugin('news') %>
+  admission: 0
+  top_news: 0
+  section_news: 0
+plugin_page2:
+  id: 6
+  page_id: 5
+  last_modified: 2006-01-09 10:00:00 +09:00
+  content: >-
+    <%%= plugin('genre_list') %>
+    <%%= plugin('page_list') %>
+  admission: 0
+  top_news: 0
+  section_news: 0
+template1:
+  id: 15
+  page_id: 14
+  last_modified: 2006-01-19 14:00:00 +09:00
+  content: >-
+    <h2>新着情報</h2>
+    <%%= plugin('page_list') %>
+    <h2>事業内容</h2>
+    <h3>内容1</h3>
+    <h3>内容2</h3>
+    <h3>内容3</h3>
+    <h2>リンク</h2>
+  admission: 0
+  top_news: 0
+  section_news: 0
+template2:
+  id: 16
+  page_id: 15
+  last_modified: 2006-01-19 14:00:00 +09:00
+  content: >-
+    <%%= plugin('page_list') %>
+    <%%= plugin('genre_list') %>
+  admission: 0
+  top_news: 0
+  section_news: 0
+page_public_enable_test_true:
+  id: 30
+  page_id: 29
+  last_modified: 2006-01-19 14:00:00 +09:00
+  begin_date: 2006-01-19 14:00:00 +09:00
+  end_date: 2020-01-19 15:00:00 +09:00
+  admission: 0
+  top_news: 0
+  section_news: 0
+page_public_enable_test_false:
+  id: 31
+  page_id: 30
+  last_modified: 2006-01-19 14:00:00 +09:00
+  begin_date: 2006-01-19 14:00:00 +09:00
+  end_date: 2006-01-19 15:00:00 +09:00
+  admission: 3
+  top_news: 0
+  section_news: 0
+link_test_page_public:
+  id: 32
+  page_id: 31
+  last_modified: 2006-01-19 14:00:00 +09:00
+  content: >-
+    <a href="http://example.com/outer_uri.html">external</a>
+    <a href="/genre3/genre1/news.html">exist link</a>
+    <a href="/genre3/genre1/link_test.html">exist link2</a>
+    <a href="/genre3/genre1/absolute_uri.html">nonexist link</a>
+    <img src="/genre3/genre1/link_test.data/exist.png">
+    <img src="/genre3/genre1/absolute_uri.data/nonexist.png">
+    <img src="http://example.com/outer_uri.png">
+    <img src="/full_uri.png">
+    <img src="/absolute_uri.png">
+    <img src="relative_uri.png">
+  admission: 3
+  top_news: 0
+  section_news: 0
+link_test_page_private:
+  id: 33
+  page_id: 31
+  last_modified: 2006-01-19 14:00:00 +09:00
+  content: >-
+    <a href="http://example.com/outer_uri.html">external</a>
+    <a href="/genre3/genre1/news.html">exist link</a>
+    <a href="/genre3/genre1/link_test.html">exist link2</a>
+    <a href="/genre3/genre1/absolute_uri.html">nonexist link</a>
+    <img src="/genre3/genre1/link_test.data/exist.png">
+    <img src="/genre3/genre1/absolute_uri.data/nonexist.png">
+    <a href="relative_uri.html">internal relative</a>
+    <img src="http://example.com/outer_uri.png">
+    <img src="/full_uri.png">
+    <img src="/absolute_uri.png">
+    <img src="relative_uri.png">
+  admission: 0
+  top_news: 0
+  section_news: 0
+enquete_test_page_public:
+  id: 34
+  page_id: 32
+  last_modified: 2006-01-19 14:00:00 +09:00
+  content: >-
+    <%%= plugin('form_check', '質問1', 'A', 'B') %>
+    <%%= plugin('form_check_other', '質問2', 'A', 'B') %>
+    <%%= plugin('form_radio', '質問3', 'A', 'B') %>
+    <%%= plugin('form_radio_other', '質問4', 'A', 'B') %>
+    <%%= plugin('form_text', '質問5*') %>
+    <%%= plugin('form_textarea', '質問6') %>
+    <%%= plugin('form_submit') %>
+  admission: 3
+  top_news: 0
+  section_news: 0
+enquete_test_page2_public:
+  id: 35
+  page_id: 33
+  last_modified: 2006-01-19 14:00:00 +09:00
+  content: >-
+    <%%= plugin('form_text', '質問1') %>
+  admission: 3
+  top_news: 0
+  section_news: 0
+police_test_public:
+  id: 36
+  page_id: 34
+  last_modified: 2006-01-19 14:00:00 +09:00
+  content: >-
+    <h2>警察のページ</h2>
+    <h2>公開ページ</h2>
+  admission: 3
+  top_news: 0
+  section_news: 0
+news_title_content:
+  id: 37
+  page_id: 36
+  last_modified: 2006-01-07 10:00:00 +09:00
+  content: >-
+    test
+  admission: 3
+  top_news: 0
+  section_news: 1

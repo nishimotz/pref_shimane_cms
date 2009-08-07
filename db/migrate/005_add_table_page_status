@@ -1,0 +1,13 @@
+class AddTablePageStatus < ActiveRecord::Migration
+  def self.up
+    create_table(:page_status) do |table|
+      table.column(:page_id, :integer)
+      table.column(:revision, :integer)
+      table.column(:last_modified, :datetime)
+    end
+  end
+
+  def self.down
+    drop_table(:page_status)
+  end
+end

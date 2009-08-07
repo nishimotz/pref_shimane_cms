@@ -1,0 +1,20 @@
+ans1:
+  id: 1
+  page_id: 1
+  answered_at: <%= Time.local(2006,1,2) %>
+  remote_addr: 127.0.0.1
+ans2:
+  id: 2
+  page_id: 29
+  answered_at: <%= Time.local(2006,1,2) %>
+  remote_addr: 127.0.0.1
+ans3:
+  id: 3
+  page_id: 32
+  answered_at: <%= Time.local(2006,1,2) %>
+  remote_addr: 127.0.0.2
+ans4:
+  id: 4
+  page_id: 32
+  answered_at: <%= Time.local(2006,1,2) %>
+  remote_addr: 127.0.0.1

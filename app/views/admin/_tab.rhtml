@@ -1,0 +1,11 @@
+<div class="tool">
+<ul>
+<li class="<%= @mode == :home ? 'active' : 'inactive' %>"><%= link_to('トップ', :action => 'index') %></li>
+<li class="<%= @mode == :info ? 'active' : 'inactive' %>"><%= link_to('ページ情報', :action => 'list_page_status') %></li>
+<li class="<%= @mode == :page ? 'active' : 'inactive' %>"><%= link_to('ページ編集', :action => 'page', :id => @genre) %></li>
+<li class="<%= @mode == :genre ? 'active' : 'inactive' %>"><%= link_to('フォルダ編集', :action => 'genre', :id => @genre) %></li>
+<li class="<%= @mode == :config ? 'active' : 'inactive' %>"><%= link_to('各種設定', :action => 'config') %></li>
+<!-- <li class="<%= @mode == :help ? 'active' : 'inactive' %>"><%= link_to('ヘルプ', :action => 'help') %></li> -->
+<li class="inactive"><%= link_to('ログアウト', :action => 'logout') %></li>
+</ul>
+</div>

@@ -1,0 +1,107 @@
+<div>現在のフォルダ：<%= render(:partial => 'genre_path') %></div>
+<div>URL：<%= h(@genre.path) %></div>
+<br />
+<div><label for="status">現在のフォルダの下にフォルダを追加</label></div>
+<%= form_tag(:action => 'create_genre', :id => @genre) %>
+<div class="show">
+<div style="color:red"><%= @new_genre.errors.on(:title) %></div>
+<div>タイトル（日本語）：<%= text_field(:new_genre, :title, :size => '40') %></div>
+<div style="color:red"><%= @new_genre.errors.on(:name) %></div>
+<div>フォルダ名（英数字）：<%= text_field(:new_genre, :name, :size => '40', :onFocus => "ime_disabled(this);") %><br />
+※フォルダ名（英数字）は、URLの一部になります。</div>
+<br />
+<div style="color:red"><%= @new_genre.errors.on(:uri) %></div>
+<% if admin? -%>
+<div>外部へのリンクURL（オプション）：<%= text_field(:new_genre, :uri, :size => '40', :onFocus => "ime_disabled(this);") %><br />
+※移行前のサイトへのリンクを自動で生成する場合に指定してください。</div>
+<% end -%>
+<div><%= submit_tag('追加') %></div>
+</div>
+<%= end_form_tag %>
+
+<% if admin? -%>
+<div>外部へのリンクURLによるフォルダの検索</div>
+<div class="show">
+<%= form_remote_tag(:update => "search_genre",
+                    :url => {:action => 'search_genre'} ) %>
+<div>URL：<%= text_field_tag(:uri, '', :size => 40, :onFocus => "ime_disabled(this);") %><%= submit_tag("検索") %></div>
+<%= end_form_tag %>
+<div id="search_genre">
+</div>
+</div>
+<% end -%>
+
+<% if @admin_status %>
+<br />
+<div>所有者の変更</div>
+<div class="show">
+<p>現在の<%= h(@genre.name) %>フォルダの所有者：<%= h(@genre.section_name) %></p>
+<%= form_tag({:action => 'update_genre_section', :id => @genre}) %>
+<div>
+部局:
+<select id="genre_division_code" name="genre[division_code]" onchange="<%= remote_function(:update => 'genre_section_id', :url => { :action => 'update_genre_section_options' }, :with=>"'genre_division_code='+value", :loading => "Element.show('indicator')", :complete => "Element.hide('indicator')", :failure => "alert('更新に失敗しました。もう一度やりなおしてみてください。')") %>">
+<%= options_for_select(@divisions) %>
+</select>
+所属:<span id="genre_section_id">
+<%= render(:partial => 'genre_section_list') %>
+</span>
+<%= submit_tag('所有者を変更する') %>
+</div>
+<div style="line-height: 20px"><span id="indicator" style="display: none"><%= image_tag('indicator.gif') %>所属一覧を更新中</span>&nbsp;</div>
+</div>
+<%= end_form_tag %>
+<% end %>
+
+<% unless @root_dir_list.collect{|i|i.id}.index(@genre.id) %>
+<br />
+<div><label for="status">このフォルダのタイトルを編集</label></div>
+<div class="show">
+<%= form_tag({:action => 'edit_genre', :id => @genre}) %>
+<div style="color: green"><%= flash[:update_notice] %></div>
+<% if flash[:notice_update_folder] -%>
+<div style="color: green"><%= flash[:notice_update_folder] %></div>
+<% end -%>
+<div style="color: red"><%= h(@genre.errors.on("name")) %></div>
+<div>フォルダ名（英数字）：<%= @genre.name %></div>
+<div style="color: red"><%= @genre.errors.on(:title) %></div>
+<div>タイトル（日本語）：<%= text_field(:genre, :title, :value => @genre.title) %></div>
+<br />
+<% if admin? -%>
+<div style="color:red"><%= @new_genre.errors.on(:uri) %></div>
+<div>外部へのリンクURL（オプション）：<%= text_field(:genre, :uri, :value => @genre.uri, :size => '40', :onFocus => "ime_disabled(this);") %><br />
+※移行前のサイトへのリンクを自動で生成する場合に指定してください。</div>
+<% end -%>
+<div><%= submit_tag('変更') %></div>
+<% if @genre.destroyable?(@user) -%>
+<div><%= link_to('このフォルダを削除', {:action => 'destroy_genre', :id => @genre}, :confirm => '削除しますか？') %></div>
+<% else -%>
+<div style="color:red;">※フォルダの削除は情報提供責任者に依頼してください。</div>
+<% end -%>
+<%= end_form_tag %>
+</div>
+<% end %>
+<br />
+
+<div>アクセス制限の設定</div>
+  <% if @genre.auth -%>
+    <div class="show" style="border-color: red; color: red; font-weight: bold;">
+    <p>現在アクセス制限が有効になっています。</p>
+  <% else -%>
+    <div class="show">
+    <p>現在アクセス制限は無効になっています。</p>
+  <% end %>
+<div><%= link_to('アクセス制限の設定画面へ', :controller => 'web_monitor', :action => 'index', :id => @genre) %></div>
+</div>
+<br />
+
+<% if admin? -%>
+<div class="show">
+<div>トラッキングコードの設定</div>
+<%= start_form_tag(:action => 'set_tracking_code', :id => @genre.id) %>
+  <%= text_area(:genre, :tracking_code, :cols => '70', :rows => '10') %>
+  <%= submit_tag('設定') %>
+<%= end_form_tag %>
+</div>
+<% end -%>
+
+<%= render(:partial => 'page_list') %>

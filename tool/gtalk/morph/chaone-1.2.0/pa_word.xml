@@ -1,0 +1,384 @@
+<pa_word_list>
+<W1 pos="接尾辞-名詞的-一般" orth="価" yomi="カ" pron="カ" lex="カ!価" indexForm="カ" indexOrth="価" fpaConType="B1S6SjShS" aConType="C3"/>
+<W1 pos="接尾辞-名詞的-一般" orth="課" yomi="カ" pron="カ" lex="カ!課" indexForm="カ" indexOrth="課" fpaConType="B1S6SjShS" aConType="C4"/>
+<W1 pos="接尾辞-名詞的-一般" orth="機" yomi="キ" pron="キ" lex="キ!機" indexForm="キ" indexOrth="機" fpaConType="B1S6SjShS,B1S6S8SjShS" aConType="C3"/>
+<W1 pos="接尾辞-名詞的-一般" orth="強" yomi="キョウ" pron="キョー" lex="キョウ!強" indexForm="キョウ" indexOrth="強" fpaConType="B1S6SjShS" aType="1" aConType="C1"/>
+<W1 pos="接尾辞-名詞的-一般" orth="型" yomi="ガタ" pron="ガタ" lex="ガタ!型" indexForm="ガタ" indexOrth="型" fpaConType="B" aConType="C4"/>
+<W1 pos="接尾辞-名詞的-一般" orth="紙" yomi="シ" pron="シ" lex="シ!紙" indexForm="シ" indexOrth="紙" fpaConType="B1S8SjS,B1SjS" aConType="C3"/>
+<W1 pos="接尾辞-名詞的-一般" orth="誌" yomi="シ" pron="シ" lex="シ!誌" indexForm="シ" indexOrth="誌" fpaConType="B1S8SjS,B1SjS" aConType="C3"/>
+<W1 pos="接尾辞-名詞的-一般" orth="児" yomi="ジ" pron="ジ" lex="ジ!児" indexForm="ジ" indexOrth="児" fpaConType="B4W,B" aConType="C3"/>
+<W1 pos="接尾辞-名詞的-一般" orth="式" yomi="シキ" pron="シキ" lex="シキ!式" indexForm="シキ" indexOrth="式" fpaConType="BjS,B1S8SjS" aConType="C4"/>
+<W1 pos="接尾辞-名詞的-一般" orth="室" yomi="シツ" pron="シツ" lex="シツ!室" indexForm="シツ" indexOrth="室" fpaConType="B1S8SjS" aConType="C3"/>
+<W1 pos="接尾辞-名詞的-一般" orth="省" yomi="ショウ" pron="ショー" lex="ショウ!省" indexForm="ショウ" indexOrth="省" fpaConType="B1S8SjS" aConType="C3"/>
+<W1 pos="接尾辞-名詞的-一般" orth="選" yomi="セン" pron="セン" lex="セン!選" indexForm="セン" indexOrth="選" fpaConType="B1S8SjS" aConType="C4"/>
+<W1 pos="接尾辞-名詞的-一般" orth="代" yomi="ダイ" pron="ダイ" lex="ダイ!代" indexForm="ダイ" indexOrth="代" fpaConType="B" aConType="C4"/>
+<W1 pos="接尾辞-名詞的-一般" orth="大" yomi="ダイ" pron="ダイ" lex="ダイ!大" indexForm="ダイ" indexOrth="大" fpaConType="B" aConType="C4"/>
+<W1 pos="接尾辞-名詞的-一般" orth="党" yomi="トウ" pron="トー" lex="トウ!党" indexForm="トウ" indexOrth="党" fpaConType="B1SjS,B1S8SjS" aConType="C3"/>
+<W1 pos="接尾辞-名詞的-一般" orth="波" yomi="ハ" pron="ハ" lex="ハ!波" indexForm="ハ" indexOrth="波" fpaConType="B1S6SjShS" aConType="C3"/>
+<W1 pos="接尾辞-名詞的-一般" orth="犯" yomi="ハン" pron="ハン" lex="ハン!犯" indexForm="ハン" indexOrth="犯" fpaConType="B1S6SjShS,B1S6S8SjShS" aConType="C3"/>
+<W1 pos="接尾辞-名詞的-一般" orth="票" yomi="ヒョウ" pron="ヒョー" lex="ヒョウ!票" indexForm="ヒョウ" indexOrth="票" fpaConType="B1S6SjShS,B1S8SjShS" aConType="C4"/>
+<W1 pos="接尾辞-名詞的-一般" orth="片" yomi="ヘン" pron="ヘン" lex="ヘン!片" indexForm="ヘン" indexOrth="片" fpaConType="B1S6SjShS,B1S8SjShS" aConType="C3"/>
+<W1 pos="接尾辞-名詞的-一般" orth="法" yomi="ホウ" pron="ホー" lex="ホウ!法" indexForm="ホウ" indexOrth="法" fpaConType="B6SjS,B1SjS" aConType="C4"/>
+<W1 pos="接尾辞-名詞的-助数詞" orth="％" yomi="パーセント" pron="パーセント" lex="パーセント" indexForm="パーセント" indexOrth="パーセント" fpaConType="BjS,B1S6SjS" aType="3" aConType="C1"/>
+<W1 pos="接尾辞-名詞的-助数詞" orth="ＣＣ" yomi="シーシー" pron="シーシー" lex="シーシー!ＣＣ" indexForm="シーシー" indexOrth="ＣＣ" fpaConType="BjS" aType="3" aConType="C8"/>
+<W1 pos="接尾辞-名詞的-助数詞" orth="ＥＲＢ" yomi="イーアールビー" pron="イーアールビー" lex="イーアールビー!ＥＲＢ" indexForm="イーアールビー" indexOrth="ＥＲＢ" fpaConType="B" aType="6" aConType="C8"/>
+<W1 pos="接尾辞-名詞的-助数詞" orth="Ｈｚ" yomi="ヘルツ" pron="ヘルツ" lex="ヘルツ" indexForm="ヘルツ" indexOrth="ヘルツ" fpaConType="BjS" aType="1" aConType="C1"/>
+<W1 pos="接尾辞-名詞的-助数詞" orth="Ｋ" yomi="ケー" pron="ケー" lex="ケー!Ｋ" indexForm="ケー" indexOrth="Ｋ" fpaConType="B6SjS,BjS,B6S7GjS" aType="1" aConType="C1"/>
+<W1 pos="接尾辞-名詞的-助数詞" orth="Ｋｂｐｓ" yomi="ケービーピーエス" pron="ケービーピーエス" lex="ケービーピーエス!Ｋｂｐｓ" indexForm="ケービーピーエス" indexOrth="Ｋｂｐｓ" fpaConType="B6SjShS,B8SjShS" aType="7" aConType="C1"/>
+<W1 pos="接尾辞-名詞的-助数詞" orth="ｂｐｓ" yomi="ビーピーエス" pron="ビーピーエス" lex="ビーピーエス!ｂｐｓ" indexForm="ビーピーエス" indexOrth="ｂｐｓ" fpaConType="B" aType="5" aConType="C1"/>
+<W1 pos="接尾辞-名詞的-助数詞" orth="ｃａｌ" yomi="カロリー" pron="カロリー" lex="カロリー" indexForm="カロリー" indexOrth="カロリー" fpaConType="BjS,B6S7GjS" aType="1" aConType="C1"/>
+<W1 pos="接尾辞-名詞的-助数詞" orth="ｃｍ" yomi="センチメートル" pron="センチメートル" lex="センチメートル" indexForm="センチメートル" indexOrth="センチメートル" fpaConType="B1S8SjS" aType="4" aConType="C1"/>
+<W1 pos="接尾辞-名詞的-助数詞" orth="ｄＢ" yomi="ディービー" pron="ディービー" lex="ディービー!ｄＢ" indexForm="ディービー" indexOrth="ｄＢ" fpaConType="B" aType="4" aConType="C1"/>
+<W1 pos="接尾辞-名詞的-助数詞" orth="ｄＢＡ" yomi="ディービーエー" pron="ディービーエー" lex="ディービーエー!ｄＢＡ" indexForm="ディービーエー" indexOrth="ｄＢＡ" fpaConType="B" aType="6" aConType="C1"/>
+<W1 pos="接尾辞-名詞的-助数詞" orth="ｄｂ" yomi="デシベル" pron="デシベル" lex="デシベル" indexForm="デシベル" indexOrth="デシベル" fpaConType="B" aType="1,2" aConType="C1"/>
+<W1 pos="接尾辞-名詞的-助数詞" orth="ｇ" yomi="グラム" pron="グラム" lex="グラム" indexForm="グラム" indexOrth="グラム" fpaConType="B" aType="1" aConType="C1"/>
+<W1 pos="接尾辞-名詞的-助数詞" orth="ｈａ" yomi="ヘクタール" pron="ヘクタール" lex="ヘクタール" indexForm="ヘクタール" indexOrth="ヘクタール" fpaConType="B" aType="3" aConType="C1"/>
+<W1 pos="接尾辞-名詞的-助数詞" orth="ｋＨｚ" yomi="キロヘルツ" pron="キロヘルツ" lex="キロヘルツ" indexForm="キロヘルツ" indexOrth="キロヘルツ" fpaConType="B6SjShS" aType="3" aConType="C1"/>
+<W1 pos="接尾辞-名詞的-助数詞" orth="ｋｂ" yomi="キロバイト" pron="キロバイト" lex="キロバイト" indexForm="キロバイト" indexOrth="キロバイト" fpaConType="B6SjShS" aType="3" aConType="C1"/>
+<W1 pos="接尾辞-名詞的-助数詞" orth="ｋｍ" yomi="キロメートル" pron="キロメートル" lex="キロメートル" indexForm="キロメートル" indexOrth="キロメートル" fpaConType="B6SjShS" aType="3" aConType="C1"/>
+<W1 pos="接尾辞-名詞的-助数詞" orth="ｋバイト" yomi="キロバイト" pron="キロバイト" lex="キロバイト" indexForm="キロバイト" indexOrth="キロバイト" fpaConType="B6SjShS" aType="3" aConType="C1"/>
+<W1 pos="接尾辞-名詞的-助数詞" orth="ｋヘルツ" yomi="キロヘルツ" pron="キロヘルツ" lex="キロヘルツ" indexForm="キロヘルツ" indexOrth="キロヘルツ" fpaConType="B6SjShS" aType="3" aConType="C1"/>
+<W1 pos="接尾辞-名詞的-助数詞" orth="ｋメートル" yomi="キロメートル" pron="キロメートル" lex="キロメートル" indexForm="キロメートル" indexOrth="キロメートル" fpaConType="B6SjShS" aType="3" aConType="C1"/>
+<W1 pos="接尾辞-名詞的-助数詞" orth="ｌ" yomi="リットル" pron="リットル" lex="リットル" indexForm="リットル" indexOrth="リットル" fpaConType="B" aType="0" aConType="C2"/>
+<W1 pos="接尾辞-名詞的-助数詞" orth="ｍ" yomi="メートル" pron="メートル" lex="メートル" indexForm="メートル" indexOrth="メートル" fpaConType="B" aType="0" aConType="C2"/>
+<W1 pos="接尾辞-名詞的-助数詞" orth="ｍｍ" yomi="ミリメートル" pron="ミリメートル" lex="ミリメートル" indexForm="ミリメートル" indexOrth="ミリメートル" fpaConType="B" aType="3" aConType="C1"/>
+<W1 pos="接尾辞-名詞的-助数詞" orth="ｐａ" yomi="パスカル" pron="パスカル" lex="パスカル" indexForm="パスカル" indexOrth="パスカル" fpaConType="B" aType="1" aConType="C1"/>
+<W1 pos="接尾辞-名詞的-助数詞" orth="ｔ" yomi="トン" pron="トン" lex="トン" indexForm="トン" indexOrth="トン" fpaConType="B1SjS,B1S8SjS" aConType="C3"/>
+<W1 pos="接尾辞-名詞的-助数詞" orth="か月" yomi="カゲツ" pron="カゲツ" lex="カゲツ!箇月" indexForm="カゲツ" indexOrth="箇月" fpaConType="B1S6SjShS,B1S6S8SjShS" aType="1" aConType="C1"/>
+<W1 pos="接尾辞-名詞的-助数詞" orth="か国" yomi="カコク" pron="カコク" lex="カコク!箇国" indexForm="カコク" indexOrth="箇国" fpaConType="B1S6SjShS,B1S6S8SjShS" aType="1" aConType="C1"/>
+<W1 pos="接尾辞-名詞的-助数詞" orth="か所" yomi="カショ" pron="カショ" lex="カショ!箇所" indexForm="カショ" indexOrth="箇所" fpaConType="B1S6SjShS,B1S6S8SjShS" aType="1" aConType="C1"/>
+<W1 pos="接尾辞-名詞的-助数詞" orth="つ" yomi="ツ" pron="ツ" lex="ツ!つ" indexForm="ツ" indexOrth="つ" fpaConType="W3D4D6D8D,W" aConType="C3"/>
+<W1 pos="接尾辞-名詞的-助数詞" orth="とおり" yomi="トオリ" pron="トーリ" lex="トオリ!通り" indexForm="トオリ" indexOrth="通り" fpaConType="B1W2W3W4WjS,B1W2W8SjS" aConType="C9"/>
+<W1 pos="接尾辞-名詞的-助数詞" orth="まわり" yomi="マワリ" pron="マワリ" lex="マワリ!回り" indexForm="マワリ" indexOrth="回り" fpaConType="B1W2W,B1W2W3W4W7G" aType="0" aConType="C2"/>
+<W1 pos="接尾辞-名詞的-助数詞" orth="もと" yomi="モト" pron="モト" lex="モト!もと" indexForm="モト" indexOrth="もと" fpaConType="B1W2W,B1W2W3W4W7G" aConType="C3"/>
+<W1 pos="接尾辞-名詞的-助数詞" orth="インチ" yomi="インチ" pron="インチ" lex="インチ" indexForm="インチ" indexOrth="インチ" fpaConType="B" aType="1" aConType="C1"/>
+<W1 pos="接尾辞-名詞的-助数詞" orth="オクターブ" yomi="オクターブ" pron="オクターブ" lex="オクターブ" indexForm="オクターブ" indexOrth="オクターブ" fpaConType="B" aType="3" aConType="C1"/>
+<W1 pos="接尾辞-名詞的-助数詞" orth="カロリー" yomi="カロリー" pron="カロリー" lex="カロリー" indexForm="カロリー" indexOrth="カロリー" fpaConType="BjS,B6S7GjS" aType="1" aConType="C1"/>
+<W1 pos="接尾辞-名詞的-助数詞" orth="カ月" yomi="カゲツ" pron="カゲツ" lex="カゲツ!箇月" indexForm="カゲツ" indexOrth="箇月" fpaConType="B1S6SjShS,B1S6S8SjShS" aType="1" aConType="C1"/>
+<W1 pos="接尾辞-名詞的-助数詞" orth="カ国" yomi="カコク" pron="カコク" lex="カコク!箇国" indexForm="カコク" indexOrth="箇国" fpaConType="B1S6SjShS,B1S6S8SjShS" aType="1" aConType="C1"/>
+<W1 pos="接尾辞-名詞的-助数詞" orth="カ所" yomi="カショ" pron="カショ" lex="カショ!箇所" indexForm="カショ" indexOrth="箇所" fpaConType="B1S6SjShS,B1S6S8SjShS" aType="1" aConType="C1"/>
+<W1 pos="接尾辞-名詞的-助数詞" orth="キロ" yomi="キロ" pron="キロ" lex="キロ" indexForm="キロ" indexOrth="キロ" fpaConType="B6SjShS" aConType="C3"/>
+<W1 pos="接尾辞-名詞的-助数詞" orth="キロカロリー" yomi="キロカロリー" pron="キロカロリー" lex="キロカロリー" indexForm="キロカロリー" indexOrth="キロカロリー" fpaConType="B6SjShS" aType="3" aConType="C1"/>
+<W1 pos="接尾辞-名詞的-助数詞" orth="キロバイト" yomi="キロバイト" pron="キロバイト" lex="キロバイト" indexForm="キロバイト" indexOrth="キロバイト" fpaConType="B6SjShS" aType="3" aConType="C1"/>
+<W1 pos="接尾辞-名詞的-助数詞" orth="キロビット" yomi="キロビット" pron="キロビット" lex="キロビット" indexForm="キロビット" indexOrth="キロビット" fpaConType="B6SjShS" aType="3" aConType="C1"/>
+<W1 pos="接尾辞-名詞的-助数詞" orth="キロヘルツ" yomi="キロヘルツ" pron="キロヘルツ" lex="キロヘルツ" indexForm="キロヘルツ" indexOrth="キロヘルツ" fpaConType="B6SjShS" aType="3" aConType="C1"/>
+<W1 pos="接尾辞-名詞的-助数詞" orth="キロメートル" yomi="キロメートル" pron="キロメートル" lex="キロメートル" indexForm="キロメートル" indexOrth="キロメートル" fpaConType="B6SjShS" aType="3" aConType="C1"/>
+<W1 pos="接尾辞-名詞的-助数詞" orth="グラム" yomi="グラム" pron="グラム" lex="グラム" indexForm="グラム" indexOrth="グラム" fpaConType="B" aType="1" aConType="C1"/>
+<W1 pos="接尾辞-名詞的-助数詞" orth="ケ月" yomi="カゲツ" pron="カゲツ" lex="カゲツ!箇月" indexForm="カゲツ" indexOrth="箇月" fpaConType="B1S6SjShS,B1S6S8SjShS" aType="1" aConType="C1"/>
+<W1 pos="接尾辞-名詞的-助数詞" orth="ケ国" yomi="カコク" pron="カコク" lex="カコク!箇国" indexForm="カコク" indexOrth="箇国" fpaConType="B1S6SjShS,B1S6S8SjShS" aType="1" aConType="C1"/>
+<W1 pos="接尾辞-名詞的-助数詞" orth="ケ所" yomi="カショ" pron="カショ" lex="カショ!箇所" indexForm="カショ" indexOrth="箇所" fpaConType="B1S6SjShS,B1S6S8SjShS" aType="1" aConType="C1"/>
+<W1 pos="接尾辞-名詞的-助数詞" orth="コマ" yomi="コマ" pron="コマ" lex="コマ!齣" indexForm="コマ" indexOrth="齣" fpaConType="B1W2W6SjShS,B6S8SjShS" aConType="C3"/>
+<W1 pos="接尾辞-名詞的-助数詞" orth="セクション" yomi="セクション" pron="セクション" lex="セクション" indexForm="セクション" indexOrth="セクション" fpaConType="BjS" aType="1" aConType="C1"/>
+<W1 pos="接尾辞-名詞的-助数詞" orth="セック" yomi="セック" pron="セック" lex="セック" indexForm="セック" indexOrth="セック" fpaConType="BjS" aType="1" aConType="C1"/>
+<W1 pos="接尾辞-名詞的-助数詞" orth="センチ" yomi="センチ" pron="センチ" lex="センチ" indexForm="センチ" indexOrth="センチ" fpaConType="B1S8SjS" aType="1" aConType="C1"/>
+<W1 pos="接尾辞-名詞的-助数詞" orth="センチメートル" yomi="センチメートル" pron="センチメートル" lex="センチメートル" indexForm="センチメートル" indexOrth="センチメートル" fpaConType="B1S8SjS" aType="4" aConType="C1"/>
+<W1 pos="接尾辞-名詞的-助数詞" orth="セント" yomi="セント" pron="セント" lex="セント" indexForm="セント" indexOrth="セント" fpaConType="B1S8SjS" aType="1" aConType="C1"/>
+<W1 pos="接尾辞-名詞的-助数詞" orth="ディジット" yomi="ディジット" pron="ディジット" lex="ディジット" indexForm="ディジット" indexOrth="ディジット" fpaConType="B" aType="1" aConType="C1"/>
+<W1 pos="接尾辞-名詞的-助数詞" orth="デシベル" yomi="デシベル" pron="デシベル" lex="デシベル" indexForm="デシベル" indexOrth="デシベル" fpaConType="B" aType="1,2" aConType="C1"/>
+<W1 pos="接尾辞-名詞的-助数詞" orth="トン" yomi="トン" pron="トン" lex="トン" indexForm="トン" indexOrth="トン" fpaConType="B1SjS,B1S8SjS" aConType="C3"/>
+<W1 pos="接尾辞-名詞的-助数詞" orth="ドル" yomi="ドル" pron="ドル" lex="ドル" indexForm="ドル" indexOrth="ドル" fpaConType="B" aConType="C3"/>
+<W1 pos="接尾辞-名詞的-助数詞" orth="バーツ" yomi="バーツ" pron="バーツ" lex="バーツ" indexForm="バーツ" indexOrth="バーツ" fpaConType="B" aType="1" aConType="C1"/>
+<W1 pos="接尾辞-名詞的-助数詞" orth="パーセント" yomi="パーセント" pron="パーセント" lex="パーセント" indexForm="パーセント" indexOrth="パーセント" fpaConType="BjS,B1S6SjS" aType="3" aConType="C1"/>
+<W1 pos="接尾辞-名詞的-助数詞" orth="パスカル" yomi="パスカル" pron="パスカル" lex="パスカル" indexForm="パスカル" indexOrth="パスカル" fpaConType="B" aType="1" aConType="C1"/>
+<W1 pos="接尾辞-名詞的-助数詞" orth="ビット" yomi="ビット" pron="ビット" lex="ビット" indexForm="ビット" indexOrth="ビット" fpaConType="B" aType="0" aConType="C2"/>
+<W1 pos="接尾辞-名詞的-助数詞" orth="ヘクタール" yomi="ヘクタール" pron="ヘクタール" lex="ヘクタール" indexForm="ヘクタール" indexOrth="ヘクタール" fpaConType="B" aType="3" aConType="C1"/>
+<W1 pos="接尾辞-名詞的-助数詞" orth="ヘルツ" yomi="ヘルツ" pron="ヘルツ" lex="ヘルツ" indexForm="ヘルツ" indexOrth="ヘルツ" fpaConType="BjS" aType="1" aConType="C1"/>
+<W1 pos="接尾辞-名詞的-助数詞" orth="ページ" yomi="ページ" pron="ページ" lex="ページ" indexForm="ページ" indexOrth="ページ" fpaConType="BjS,B1S6S8SjS" aType="0" aConType="C2"/>
+<W1 pos="接尾辞-名詞的-助数詞" orth="ポイント" yomi="ポイント" pron="ポイント" lex="ポイント" indexForm="ポイント" indexOrth="ポイント" fpaConType="BjS,B1S8SjS" aType="0" aConType="C2"/>
+<W1 pos="接尾辞-名詞的-助数詞" orth="マイクロセカンド" yomi="マイクロセカンド" pron="マイクロセカンド" lex="マイクロセカンド" indexForm="マイクロセカンド" indexOrth="マイクロセカンド" fpaConType="B" aType="5" aConType="C1"/>
+<W1 pos="接尾辞-名詞的-助数詞" orth="マイクロニュートン" yomi="マイクロニュートン" pron="マイクロニュートン" lex="マイクロニュートン" indexForm="マイクロニュートン" indexOrth="マイクロニュートン" fpaConType="B" aType="5" aConType="C1"/>
+<W1 pos="接尾辞-名詞的-助数詞" orth="ミリ" yomi="ミリ" pron="ミリ" lex="ミリ" indexForm="ミリ" indexOrth="ミリ" fpaConType="B" aConType="C3"/>
+<W1 pos="接尾辞-名詞的-助数詞" orth="ミリセカンド" yomi="ミリセカンド" pron="ミリセカンド" lex="ミリセカンド" indexForm="ミリセカンド" indexOrth="ミリセカンド" fpaConType="B" aType="3" aConType="C1"/>
+<W1 pos="接尾辞-名詞的-助数詞" orth="ミリセック" yomi="ミリセック" pron="ミリセック" lex="ミリセック" indexForm="ミリセック" indexOrth="ミリセック" fpaConType="B" aType="3" aConType="C1"/>
+<W1 pos="接尾辞-名詞的-助数詞" orth="ミリメートル" yomi="ミリメートル" pron="ミリメートル" lex="ミリメートル" indexForm="ミリメートル" indexOrth="ミリメートル" fpaConType="B" aType="3" aConType="C1"/>
+<W1 pos="接尾辞-名詞的-助数詞" orth="ミリ秒" yomi="ミリビョウ" pron="ミリビョー" lex="ミリビョウ!ミリ秒" indexForm="ミリビョウ" indexOrth="ミリ秒" fpaConType="B" aType="2" aConType="C1"/>
+<W1 pos="接尾辞-名詞的-助数詞" orth="メーター" yomi="メーター" pron="メーター" lex="メーター" indexForm="メーター" indexOrth="メーター" fpaConType="B" aType="1" aConType="C1"/>
+<W1 pos="接尾辞-名詞的-助数詞" orth="メートル" yomi="メートル" pron="メートル" lex="メートル" indexForm="メートル" indexOrth="メートル" fpaConType="B" aType="0" aConType="C2"/>
+<W1 pos="接尾辞-名詞的-助数詞" orth="ヤード" yomi="ヤード" pron="ヤード" lex="ヤード" indexForm="ヤード" indexOrth="ヤード" fpaConType="B" aType="1" aConType="C1"/>
+<W1 pos="接尾辞-名詞的-助数詞" orth="リットル" yomi="リットル" pron="リットル" lex="リットル" indexForm="リットル" indexOrth="リットル" fpaConType="B" aType="0" aConType="C2"/>
+<W1 pos="接尾辞-名詞的-助数詞" orth="ヵ月" yomi="カゲツ" pron="カゲツ" lex="カゲツ!箇月" indexForm="カゲツ" indexOrth="箇月" fpaConType="B1S6SjShS,B1S6S8SjShS" aType="1" aConType="C1"/>
+<W1 pos="接尾辞-名詞的-助数詞" orth="ヶ月" yomi="カゲツ" pron="カゲツ" lex="カゲツ!箇月" indexForm="カゲツ" indexOrth="箇月" fpaConType="B1S6SjShS,B1S6S8SjShS" aType="1" aConType="C1"/>
+<W1 pos="接尾辞-名詞的-助数詞" orth="位" yomi="イ" pron="イ" lex="イ!位" indexForm="イ" indexOrth="位" fpaConType="B" aConType="C3"/>
+<W1 pos="接尾辞-名詞的-助数詞" orth="羽" yomi="ワ" pron="ワ" lex="ワ!羽" indexForm="ワ" indexOrth="羽" ipaType="ワ混合" fpaConType="B6SjShS,B7G8ShS" aConType="C3"/>
+<W1 pos="接尾辞-名詞的-助数詞" orth="円" yomi="エン" pron="エン" lex="エン!円" indexForm="エン" indexOrth="円" fpaConType="B4W,B" aConType="C3"/>
+<W1 pos="接尾辞-名詞的-助数詞" orth="箇月" yomi="カゲツ" pron="カゲツ" lex="カゲツ!箇月" indexForm="カゲツ" indexOrth="箇月" fpaConType="B1S6SjShS,B1S6S8SjShS" aType="1" aConType="C1"/>
+<W1 pos="接尾辞-名詞的-助数詞" orth="箇国" yomi="カコク" pron="カコク" lex="カコク!箇国" indexForm="カコク" indexOrth="箇国" fpaConType="B1S6SjShS,B1S6S8SjShS" aType="1" aConType="C1"/>
+<W1 pos="接尾辞-名詞的-助数詞" orth="箇所" yomi="カショ" pron="カショ" lex="カショ!箇所" indexForm="カショ" indexOrth="箇所" fpaConType="B1S6SjShS,B1S6S8SjShS" aType="1" aConType="C1"/>
+<W1 pos="接尾辞-名詞的-助数詞" orth="回" yomi="カイ" pron="カイ" lex="カイ!回" indexForm="カイ" indexOrth="回" fpaConType="B1S6SjShS,B1S6S8SjShS" aType="1" aConType="C1"/>
+<W1 pos="接尾辞-名詞的-助数詞" orth="回り" yomi="マワリ" pron="マワリ" lex="マワリ!回り" indexForm="マワリ" indexOrth="回り" fpaConType="B1W2W,B1W2W3W4W7G" aType="0" aConType="C2"/>
+<W1 pos="接尾辞-名詞的-助数詞" orth="階" yomi="カイ" pron="カイ" lex="カイ!階" indexForm="カイ" indexOrth="階" ipaType="カ濁" fpaConType="B1S6SjShS,B1S6S8SjShS" aConType="C4"/>
+<W1 pos="接尾辞-名詞的-助数詞" orth="割" yomi="ワリ" pron="ワリ" lex="ワリ!割" indexForm="ワリ" indexOrth="割" fpaConType="B,B7G" aConType="C3"/>
+<W1 pos="接尾辞-名詞的-助数詞" orth="巻" yomi="カン" pron="カン" lex="カン!巻" indexForm="カン" indexOrth="巻" fpaConType="B1S6SjShS,B1S6S8SjShS" aConType="C3"/>
+<W1 pos="接尾辞-名詞的-助数詞" orth="貫目" yomi="カンメ" pron="カンメ" lex="カンメ!貫目" indexForm="カンメ" indexOrth="貫目" fpaConType="B1S6SjShS,B1S6S8SjShS" aConType="C9"/>
+<W1 pos="接尾辞-名詞的-助数詞" orth="間" yomi="マ" pron="マ" lex="マ!間" indexForm="マ" indexOrth="間" fpaConType="B1W2W,B1W2W3W4W7G" aConType="C3"/>
+<W1 pos="接尾辞-名詞的-助数詞" orth="期" yomi="キ" pron="キ" lex="キ!期" indexForm="キ" indexOrth="期" fpaConType="B1S6SjShS,B1S6S8SjShS" aConType="C3"/>
+<W1 pos="接尾辞-名詞的-助数詞" orth="級" yomi="キュウ" pron="キュー" lex="キュウ!級" indexForm="キュウ" indexOrth="級" fpaConType="B1S6SjShS,B1S6S8SjShS" aConType="C4"/>
+<W1 pos="接尾辞-名詞的-助数詞" orth="局" yomi="キョク" pron="キョク" lex="キョク!局" indexForm="キョク" indexOrth="局" fpaConType="B1S6SjShS" aConType="C3"/>
+<W1 pos="接尾辞-名詞的-助数詞" orth="玉" yomi="タマ" pron="タマ" lex="タマ!玉" indexForm="タマ" indexOrth="玉" fpaConType="B1W2W3W4WjS,B1W2W8SjS" aConType="C3"/>
+<W1 pos="接尾辞-名詞的-助数詞" orth="桁" yomi="ケタ" pron="ケタ" lex="ケタ!桁" indexForm="ケタ" indexOrth="桁" fpaConType="B1W2W3W4W6SjShS,B1W2W5W6S8SjShS" aConType="C3"/>
+<W1 pos="接尾辞-名詞的-助数詞" orth="月" yomi="ガツ" pron="ガツ" lex="ガツ!月" indexForm="ガツ" indexOrth="月" fpaConType="B4G7G9G" aConType="C4"/>
+<W1 pos="接尾辞-名詞的-助数詞" orth="月" yomi="ツキ" pron="ツキ" lex="ツキ!月" indexForm="ツキ" indexOrth="月" fpaConType="B1W2W3W4WjS,B1W2W3WjW" aConType="C3"/>
+<W1 pos="接尾辞-名詞的-助数詞" orth="件" yomi="ケン" pron="ケン" lex="ケン!件" indexForm="ケン" indexOrth="件" fpaConType="B1S6SjShS" aConType="C3"/>
+<W1 pos="接尾辞-名詞的-助数詞" orth="軒" yomi="ケン" pron="ケン" lex="ケン!軒" indexForm="ケン" indexOrth="軒" ipaType="ケ濁" fpaConType="B1S6SjShS" aConType="C3"/>
+<W1 pos="接尾辞-名詞的-助数詞" orth="個" yomi="コ" pron="コ" lex="コ!個" indexForm="コ" indexOrth="個" fpaConType="B1S6SjShS,B1S6S8SjShS" aConType="C3"/>
+<W1 pos="接尾辞-名詞的-助数詞" orth="湖" yomi="コ" pron="コ" lex="コ!湖" indexForm="コ" indexOrth="湖" fpaConType="B6SjShS" aConType="C3"/>
+<W1 pos="接尾辞-名詞的-助数詞" orth="校" yomi="コウ" pron="コー" lex="コウ!校" indexForm="コウ" indexOrth="校" fpaConType="B1S6SjShS" aConType="C3"/>
+<W1 pos="接尾辞-名詞的-助数詞" orth="稿" yomi="コウ" pron="コー" lex="コウ!稿" indexForm="コウ" indexOrth="稿" fpaConType="B1S6SjShS,B1S8SjShS" aConType="C3"/>
+<W1 pos="接尾辞-名詞的-助数詞" orth="行" yomi="ギョウ" pron="ギョー" lex="ギョウ!行" indexForm="ギョウ" indexOrth="行" fpaConType="B,B7G" aConType="C3"/>
+<W1 pos="接尾辞-名詞的-助数詞" orth="号" yomi="ゴウ" pron="ゴー" lex="ゴウ!号" indexForm="ゴウ" indexOrth="号" fpaConType="B,B7G" aConType="C3"/>
+<W1 pos="接尾辞-名詞的-助数詞" orth="合" yomi="ゴウ" pron="ゴー" lex="ゴウ!合" indexForm="ゴウ" indexOrth="合" fpaConType="B,B4G5H" aConType="C3"/>
+<W1 pos="接尾辞-名詞的-助数詞" orth="歳" yomi="サイ" pron="サイ" lex="サイ!歳" indexForm="サイ" indexOrth="歳" fpaConType="B1S8SjS" aConType="C3"/>
+<W1 pos="接尾辞-名詞的-助数詞" orth="作" yomi="サク" pron="サク" lex="サク!作" indexForm="サク" indexOrth="作" fpaConType="B1S8SjS,B1SjS" aConType="C3"/>
+<W1 pos="接尾辞-名詞的-助数詞" orth="冊" yomi="サツ" pron="サツ" lex="サツ!冊" indexForm="サツ" indexOrth="冊" fpaConType="B1S8SjS" aConType="C3"/>
+<W1 pos="接尾辞-名詞的-助数詞" orth="字" yomi="ジ" pron="ジ" lex="ジ!字" indexForm="ジ" indexOrth="字" fpaConType="B4W,B7G" aConType="C3"/>
+<W1 pos="接尾辞-名詞的-助数詞" orth="時" yomi="ジ" pron="ジ" lex="ジ!時" indexForm="ジ" indexOrth="時" fpaConType="B4W7G9G" aConType="C3"/>
+<W1 pos="接尾辞-名詞的-助数詞" orth="時間" yomi="ジカン" pron="ジカン" lex="ジカン!時間" indexForm="ジカン" indexOrth="時間" fpaConType="B4W7G9G,B4W" aType="0" aConType="C2"/>
+<W1 pos="接尾辞-名詞的-助数詞" orth="次" yomi="ジ" pron="ジ" lex="ジ!次" indexForm="ジ" indexOrth="次" fpaConType="B4W,B" aConType="C3"/>
+<W1 pos="接尾辞-名詞的-助数詞" orth="次元" yomi="ジゲン" pron="ジゲン" lex="ジゲン!次元" indexForm="ジゲン" indexOrth="次元" fpaConType="B4W7G9G,B4W" aType="0" aConType="C2"/>
+<W1 pos="接尾辞-名詞的-助数詞" orth="社" yomi="シャ" pron="シャ" lex="シャ!社" indexForm="シャ" indexOrth="社" fpaConType="B1S8SjS" aConType="C3"/>
+<W1 pos="接尾辞-名詞的-助数詞" orth="種" yomi="シュ" pron="シュ" lex="シュ!種" indexForm="シュ" indexOrth="種" fpaConType="B1S8SjS,B1SjS" aConType="C3"/>
+<W1 pos="接尾辞-名詞的-助数詞" orth="周" yomi="シュウ" pron="シュー" lex="シュウ!周" indexForm="シュウ" indexOrth="周" fpaConType="B1S8SjS" aConType="C4"/>
+<W1 pos="接尾辞-名詞的-助数詞" orth="周年" yomi="シュウネン" pron="シューネン" lex="シュウネン!周年" indexForm="シュウネン" indexOrth="周年" fpaConType="B1S8SjS,B1S7GjS" aType="1" aConType="C1"/>
+<W1 pos="接尾辞-名詞的-助数詞" orth="週" yomi="シュウ" pron="シュー" lex="シュウ!週" indexForm="シュウ" indexOrth="週" fpaConType="B1S8SjS" aConType="C4"/>
+<W1 pos="接尾辞-名詞的-助数詞" orth="週間" yomi="シュウカン" pron="シューカン" lex="シュウカン!週間" indexForm="シュウカン" indexOrth="週間" fpaConType="B1S8SjS" aType="0" aConType="C2"/>
+<W1 pos="接尾辞-名詞的-助数詞" orth="集" yomi="シュウ" pron="シュー" lex="シュウ!集" indexForm="シュウ" indexOrth="集" fpaConType="B1S8SjS" aConType="C3"/>
+<W1 pos="接尾辞-名詞的-助数詞" orth="重" yomi="ジュウ" pron="ジュー" lex="ジュウ!重" indexForm="ジュウ" indexOrth="重" fpaConType="B9G,B" aConType="C4"/>
+<W1 pos="接尾辞-名詞的-助数詞" orth="乗" yomi="ジョウ" pron="ジョー" lex="ジョウ!乗" indexForm="ジョウ" indexOrth="乗" fpaConType="B" aConType="C4"/>
+<W1 pos="接尾辞-名詞的-助数詞" orth="畳" yomi="ジョウ" pron="ジョー" lex="ジョウ!畳" indexForm="ジョウ" indexOrth="畳" fpaConType="B4W,B9G" aConType="C3"/>
+<W1 pos="接尾辞-名詞的-助数詞" orth="色" yomi="ショク" pron="ショク" lex="ショク!色" indexForm="ショク" indexOrth="色" fpaConType="B1S8SjS" aConType="C3"/>
+<W1 pos="接尾辞-名詞的-助数詞" orth="食" yomi="ショク" pron="ショク" lex="ショク!食" indexForm="ショク" indexOrth="食" fpaConType="B1S8SjS,B1SjS" aConType="C3"/>
+<W1 pos="接尾辞-名詞的-助数詞" orth="振り" yomi="フリ" pron="フリ" lex="フリ!振り" indexForm="フリ" indexOrth="振り" fpaConType="B1W2W3W4WhS" aConType="C3"/>
+<W1 pos="接尾辞-名詞的-助数詞" orth="進" yomi="シン" pron="シン" lex="シン!進" indexForm="シン" indexOrth="進" fpaConType="B1S8SjS" aConType="C4"/>
+<W1 pos="接尾辞-名詞的-助数詞" orth="針" yomi="ハリ" pron="ハリ" lex="ハリ!針" indexForm="ハリ" indexOrth="針" fpaConType="B1W2W3WjS,B1W2W4WjS" aConType="C3"/>
+<W1 pos="接尾辞-名詞的-助数詞" orth="人" yomi="ニン" pron="ニン" lex="ニン!人" indexForm="ニン" indexOrth="人" fpaConType="B1W2W4W7G9G,B4W" aConType="C3"/>
+<W1 pos="接尾辞-名詞的-助数詞" orth="世" yomi="セイ" pron="セー" lex="セイ!世" indexForm="セイ" indexOrth="世" fpaConType="B1S8SjS" aConType="C3"/>
+<W1 pos="接尾辞-名詞的-助数詞" orth="世紀" yomi="セイキ" pron="セーキ" lex="セイキ!世紀" indexForm="セイキ" indexOrth="世紀" fpaConType="B1S8SjS" aType="1" aConType="C1"/>
+<W1 pos="接尾辞-名詞的-助数詞" orth="声" yomi="セイ" pron="セー" lex="セイ!声" indexForm="セイ" indexOrth="声" fpaConType="B1S8SjS" aConType="C4"/>
+<W1 pos="接尾辞-名詞的-助数詞" orth="節" yomi="セツ" pron="セツ" lex="セツ!節" indexForm="セツ" indexOrth="節" fpaConType="B1S8SjS" aConType="C3"/>
+<W1 pos="接尾辞-名詞的-助数詞" orth="戦" yomi="セン" pron="セン" lex="セン!戦" indexForm="セン" indexOrth="戦" fpaConType="B1S8SjS" aConType="C4"/>
+<W1 pos="接尾辞-名詞的-助数詞" orth="銭" yomi="セン" pron="セン" lex="セン!銭" indexForm="セン" indexOrth="銭" fpaConType="B1S8SjS" aConType="C3"/>
+<W1 pos="接尾辞-名詞的-助数詞" orth="組" yomi="クミ" pron="クミ" lex="クミ!組" indexForm="クミ" indexOrth="組" fpaConType="B6SjShS,W6S8B9BhS,B1W2W3W4W6SjShS,B1W2W5W6S8SjShS" aConType="C3"/>
+<W1 pos="接尾辞-名詞的-助数詞" orth="組み" yomi="クミ" pron="クミ" lex="クミ!組" indexForm="クミ" indexOrth="組" fpaConType="B6SjShS,W6S8B9BhS,B1W2W3W4W6SjShS,B1W2W5W6S8SjShS" aConType="C3"/>
+<W1 pos="接尾辞-名詞的-助数詞" orth="束" yomi="タバ" pron="タバ" lex="タバ!束" indexForm="タバ" indexOrth="束" fpaConType="W6B8B9BjS,B1W2W3WjW" aConType="C3"/>
+<W1 pos="接尾辞-名詞的-助数詞" orth="足" yomi="ソク" pron="ソク" lex="ソク!足" indexForm="ソク" indexOrth="足" ipaType="ソ濁" fpaConType="B1S8SjS" aConType="C3"/>
+<W1 pos="接尾辞-名詞的-助数詞" orth="体" yomi="タイ" pron="タイ" lex="タイ!体" indexForm="タイ" indexOrth="体" fpaConType="B1SjS,B1S8SjS" aConType="C3"/>
+<W1 pos="接尾辞-名詞的-助数詞" orth="対" yomi="ツイ" pron="ツイ" lex="ツイ!対" indexForm="ツイ" indexOrth="対" fpaConType="B1S8SjS" aConType="C3"/>
+<W1 pos="接尾辞-名詞的-助数詞" orth="袋" yomi="フクロ" pron="フクロ" lex="フクロ!袋" indexForm="フクロ" indexOrth="袋" fpaConType="B1W2W3W4WjS,B1W2W3WjW" aType="3" aConType="C2"/>
+<W1 pos="接尾辞-名詞的-助数詞" orth="台" yomi="ダイ" pron="ダイ" lex="ダイ!台" indexForm="ダイ" indexOrth="台" fpaConType="B,B4W7G9G" aConType="C3"/>
+<W1 pos="接尾辞-名詞的-助数詞" orth="択" yomi="タク" pron="タク" lex="タク!択" indexForm="タク" indexOrth="択" fpaConType="BjS" aConType="C4"/>
+<W1 pos="接尾辞-名詞的-助数詞" orth="段" yomi="ダン" pron="ダン" lex="ダン!段" indexForm="ダン" indexOrth="段" fpaConType="B,B4W7G9G" aConType="C3"/>
+<W1 pos="接尾辞-名詞的-助数詞" orth="着" yomi="チャク" pron="チャク" lex="チャク!着" indexForm="チャク" indexOrth="着" fpaConType="B1S8SjS" aConType="C3"/>
+<W1 pos="接尾辞-名詞的-助数詞" orth="丁目" yomi="チョウメ" pron="チョーメ" lex="チョウメ!丁目" indexForm="チョウメ" indexOrth="丁目" fpaConType="B1S8SjS" aConType="C9"/>
+<W1 pos="接尾辞-名詞的-助数詞" orth="通" yomi="ツウ" pron="ツー" lex="ツウ!通" indexForm="ツウ" indexOrth="通" fpaConType="B1S8SjS" aConType="C3"/>
+<W1 pos="接尾辞-名詞的-助数詞" orth="通り" yomi="トオリ" pron="トーリ" lex="トオリ!通り" indexForm="トオリ" indexOrth="通り" fpaConType="B1W2W3W4WjS,B1W2W8SjS" aConType="C9"/>
+<W1 pos="接尾辞-名詞的-助数詞" orth="坪" yomi="ツボ" pron="ツボ" lex="ツボ!坪" indexForm="ツボ" indexOrth="坪" fpaConType="B1W2WjS,B1W2W8SjS,B1W2W3W4WjW" aConType="C4"/>
+<W1 pos="接尾辞-名詞的-助数詞" orth="店" yomi="テン" pron="テン" lex="テン!店" indexForm="テン" indexOrth="店" fpaConType="B1S8SjS,B1SjS" aConType="C3"/>
+<W1 pos="接尾辞-名詞的-助数詞" orth="点" yomi="テン" pron="テン" lex="テン!点" indexForm="テン" indexOrth="点" fpaConType="B1S8SjS,B1SjS" aType="0" aConType="C2"/>
+<W1 pos="接尾辞-名詞的-助数詞" orth="度" yomi="ド" pron="ド" lex="ド!度" indexForm="ド" indexOrth="度" fpaConType="B,B4W7G9G" aConType="C3"/>
+<W1 pos="接尾辞-名詞的-助数詞" orth="等" yomi="トウ" pron="トー" lex="トウ!等" indexForm="トウ" indexOrth="等" fpaConType="B1S8SjS,B1SjS" aType="1" aConType="C1"/>
+<W1 pos="接尾辞-名詞的-助数詞" orth="頭" yomi="トウ" pron="トー" lex="トウ!頭" indexForm="トウ" indexOrth="頭" fpaConType="B1S8SjS,B1SjS" aConType="C3"/>
+<W1 pos="接尾辞-名詞的-助数詞" orth="日" yomi="ニチ" pron="ニチ" lex="ニチ!日" indexForm="ニチ" indexOrth="日" fpaConType="B4W,B4W9G" aConType="C4"/>
+<W1 pos="接尾辞-名詞的-助数詞" orth="日" yomi="カ" pron="カ" lex="カ!日" indexForm="カ" indexOrth="日" fpaConType="D" aConType="C4"/>
+<W1 pos="接尾辞-名詞的-助数詞" orth="日間" yomi="カカン" pron="カカン" lex="カカン!日間" indexForm="カカン" indexOrth="日間" fpaConType="D" aType="1" aConType="C1"/>
+<W1 pos="接尾辞-名詞的-助数詞" orth="日間" yomi="ニチカン" pron="ニチカン" lex="ニチカン!日間" indexForm="ニチカン" indexOrth="日間" fpaConType="B4W,B4W9G" aType="2" aConType="C1"/>
+<W1 pos="接尾辞-名詞的-助数詞" orth="年" yomi="ネン" pron="ネン" lex="ネン!年" indexForm="ネン" indexOrth="年" fpaConType="B4W7G9G,B4W" aConType="C4"/>
+<W1 pos="接尾辞-名詞的-助数詞" orth="年間" yomi="ネンカン" pron="ネンカン" lex="ネンカン!年間" indexForm="ネンカン" indexOrth="年間" fpaConType="B4W7G9G,B4W" aType="0,1" aConType="C2"/>
+<W1 pos="接尾辞-名詞的-助数詞" orth="年次" yomi="ネンジ" pron="ネンジ" lex="ネンジ!年次" indexForm="ネンジ" indexOrth="年次" fpaConType="B4W7G9G,B4W" aType="1" aConType="C1"/>
+<W1 pos="接尾辞-名詞的-助数詞" orth="年度" yomi="ネンド" pron="ネンド" lex="ネンド!年度" indexForm="ネンド" indexOrth="年度" fpaConType="B4W7G9G,B4W" aType="1" aConType="C1"/>
+<W1 pos="接尾辞-名詞的-助数詞" orth="杯" yomi="ハイ" pron="ハイ" lex="ハイ!杯" indexForm="ハイ" indexOrth="杯" ipaType="ハ混合" fpaConType="B1S6S8SjShS,B1S6SjShS,B1S8SjShS,B1S6S7G8SjShS" aConType="C3"/>
+<W1 pos="接尾辞-名詞的-助数詞" orth="倍" yomi="バイ" pron="バイ" lex="バイ!倍" indexForm="バイ" indexOrth="倍" fpaConType="B" aConType="C4"/>
+<W1 pos="接尾辞-名詞的-助数詞" orth="拍" yomi="ハク" pron="ハク" lex="ハク!拍" indexForm="ハク" indexOrth="拍" ipaType="ハ半濁" fpaConType="B1S6S8SjShS,B1S6SjShS,B1S8SjShS" aConType="C3"/>
+<W1 pos="接尾辞-名詞的-助数詞" orth="泊" yomi="ハク" pron="ハク" lex="ハク!泊" indexForm="ハク" indexOrth="泊" ipaType="ハ半濁" fpaConType="B1S6S8SjShS,B1S2WjShS" aConType="C3"/>
+<W1 pos="接尾辞-名詞的-助数詞" orth="発" yomi="ハツ" pron="ハツ" lex="ハツ!発" indexForm="ハツ" indexOrth="発" ipaType="ハ半濁" fpaConType="B1S6S8SjShS,B1S8SjShS" aConType="C3"/>
+<W1 pos="接尾辞-名詞的-助数詞" orth="反" yomi="タン" pron="タン" lex="タン!反" indexForm="タン" indexOrth="反" fpaConType="B1SjS,B1S8SjS" aConType="C3"/>
+<W1 pos="接尾辞-名詞的-助数詞" orth="番" yomi="バン" pron="バン" lex="バン!番" indexForm="バン" indexOrth="番" fpaConType="B,B4W7G9G" aConType="C3"/>
+<W1 pos="接尾辞-名詞的-助数詞" orth="匹" yomi="ヒキ" pron="ヒキ" lex="ヒキ!匹" indexForm="ヒキ" indexOrth="匹" ipaType="ヒ混合" fpaConType="B1S6SjShS,B1S8SjShS" aConType="C3"/>
+<W1 pos="接尾辞-名詞的-助数詞" orth="票" yomi="ヒョウ" pron="ヒョー" lex="ヒョウ!票" indexForm="ヒョウ" indexOrth="票" fpaConType="B1S6SjShS,B1S8SjShS" aConType="C3"/>
+<W1 pos="接尾辞-名詞的-助数詞" orth="秒" yomi="ビョウ" pron="ビョー" lex="ビョウ!秒" indexForm="ビョウ" indexOrth="秒" fpaConType="B" aConType="C3"/>
+<W1 pos="接尾辞-名詞的-助数詞" orth="秒間" yomi="ビョウカン" pron="ビョーカン" lex="ビョウカン!秒間" indexForm="ビョウカン" indexOrth="秒間" fpaConType="B" aType="1" aConType="C1"/>
+<W1 pos="接尾辞-名詞的-助数詞" orth="品" yomi="シナ" pron="シナ" lex="シナ!品" indexForm="シナ" indexOrth="品" fpaConType="B1W2W3WjS,B1W2W4WjS" aConType="C3"/>
+<W1 pos="接尾辞-名詞的-助数詞" orth="品" yomi="ヒン" pron="ヒン" lex="ヒン!品" indexForm="ヒン" indexOrth="品" ipaType="ヒ半濁" fpaConType="B1S6S8SjShS,B1S6SjShS,B1S8SjShS" aConType="C3"/>
+<W1 pos="接尾辞-名詞的-助数詞" orth="部" yomi="ブ" pron="ブ" lex="ブ!部" indexForm="ブ" indexOrth="部" fpaConType="B" aConType="C3"/>
+<W1 pos="接尾辞-名詞的-助数詞" orth="分" yomi="フン" pron="フン" lex="フン!分" indexForm="フン" indexOrth="分" ipaType="フ半濁" fpaConType="B1S6SjShS,B1S6S8SjShS" aConType="C3"/>
+<W1 pos="接尾辞-名詞的-助数詞" orth="分" yomi="ブン" pron="ブン" lex="ブン!分" indexForm="ブン" indexOrth="分" fpaConType="B" aConType="C9"/>
+<W1 pos="接尾辞-名詞的-助数詞" orth="分" yomi="ブ" pron="ブ" lex="ブ!分" indexForm="ブ" indexOrth="分" fpaConType="B,B4G7G9G" aConType="C3"/>
+<W1 pos="接尾辞-名詞的-助数詞" orth="分間" yomi="フンカン" pron="フンカン" lex="フンカン!分間" indexForm="フンカン" indexOrth="分間" fpaConType="B1S6SjShS,B1S6S8SjShS" aType="1" aConType="C1"/>
+<W1 pos="接尾辞-名詞的-助数詞" orth="頁" yomi="ページ" pron="ページ" lex="ページ" indexForm="ページ" indexOrth="ページ" fpaConType="BjS,B1S6S8SjS" aType="0" aConType="C2"/>
+<W1 pos="接尾辞-名詞的-助数詞" orth="編" yomi="ヘン" pron="ヘン" lex="ヘン!編" indexForm="ヘン" indexOrth="編" ipaType="ヘ半濁" fpaConType="B1S6SjShS,B1S8SjShS,B1S6S7G8SjShS" aConType="C3"/>
+<W1 pos="接尾辞-名詞的-助数詞" orth="遍" yomi="ヘン" pron="ヘン" lex="ヘン!遍" indexForm="ヘン" indexOrth="遍" ipaType="ヘ混合" fpaConType="B1S6SjShS,B1S6S7G8SjShS" aConType="C3"/>
+<W1 pos="接尾辞-名詞的-助数詞" orth="歩" yomi="ホ" pron="ホ" lex="ホ!歩" indexForm="ホ" indexOrth="歩" ipaType="ホ半濁" fpaConType="B1S6SjShS,B1S6S8SjShS" aConType="C3"/>
+<W1 pos="接尾辞-名詞的-助数詞" orth="報" yomi="ホウ" pron="ホー" lex="ホウ!報" indexForm="ホウ" indexOrth="報" ipaType="ホ半濁" fpaConType="B1S6SjS,B1S8SjS" aConType="C3"/>
+<W1 pos="接尾辞-名詞的-助数詞" orth="本" yomi="ホン" pron="ホン" lex="ホン!本" indexForm="ホン" indexOrth="本" ipaType="ホ混合" fpaConType="B1S6SjShS,B1S8SjShS" aConType="C3"/>
+<W1 pos="接尾辞-名詞的-助数詞" orth="枚" yomi="マイ" pron="マイ" lex="マイ!枚" indexForm="マイ" indexOrth="枚" fpaConType="B,B4W,B7G" aConType="C3"/>
+<W1 pos="接尾辞-名詞的-助数詞" orth="名" yomi="メイ" pron="メー" lex="メイ!名" indexForm="メイ" indexOrth="名" fpaConType="B,B4W,B7G" aConType="C3"/>
+<W1 pos="接尾辞-名詞的-助数詞" orth="面" yomi="メン" pron="メン" lex="メン!面" indexForm="メン" indexOrth="面" fpaConType="B" aConType="C4"/>
+<W1 pos="接尾辞-名詞的-助数詞" orth="問" yomi="モン" pron="モン" lex="モン!問" indexForm="モン" indexOrth="問" fpaConType="B,B7G" aConType="C3"/>
+<W1 pos="接尾辞-名詞的-助数詞" orth="葉" yomi="ヨウ" pron="ヨー" lex="ヨウ!葉" indexForm="ヨウ" indexOrth="葉" fpaConType="B" aConType="C3"/>
+<W1 pos="接尾辞-名詞的-助数詞" orth="粒" yomi="ツブ" pron="ツブ" lex="ツブ!粒" indexForm="ツブ" indexOrth="粒" fpaConType="B1W2WjS,W6B8S9B" aConType="C3"/>
+<W1 pos="接尾辞-名詞的-助数詞" orth="両" yomi="リョウ" pron="リョー" lex="リョウ!両" indexForm="リョウ" indexOrth="両" fpaConType="B" aConType="C3"/>
+<W1 pos="接尾辞-名詞的-助数詞" orth="例" yomi="レイ" pron="レー" lex="レイ!例" indexForm="レイ" indexOrth="例" fpaConType="B" aConType="C3"/>
+<W1 pos="接尾辞-名詞的-助数詞" orth="浪" yomi="ロウ" pron="ロー" lex="ロウ!浪" indexForm="ロウ" indexOrth="浪" fpaConType="B" aConType="C4"/>
+<W1 pos="名詞-数詞-一般" orth="１" yomi="イチ" pron="イチ" lex="イチ!一" indexForm="イチ" indexOrth="一" ipaConType="N1" fpaType="数・一" aType="2"/>
+<W1 pos="名詞-数詞-一般" orth="１千" yomi="イッセン" pron="イッセン" lex="イッセン!一千" indexForm="イッセン" indexOrth="一千" ipaConType="Ns" aType="3"/>
+<W1 pos="名詞-数詞-一般" orth="２" yomi="ニ" pron="ニ" lex="ニ!二" indexForm="ニ" indexOrth="二" fpaType="数・二" aType="1"/>
+<W1 pos="名詞-数詞-一般" orth="２" yomi="ニ" pron="ニー" lex="ニ!二" indexForm="ニ" indexOrth="二" aType="1"/>
+<W1 pos="名詞-数詞-一般" orth="２千" yomi="ニセン" pron="ニセン" lex="ニセン!二千" indexForm="ニセン" indexOrth="二千" ipaConType="Ns" aType="2"/>
+<W1 pos="名詞-数詞-一般" orth="３" yomi="サン" pron="サン" lex="サン!三" indexForm="サン" indexOrth="三" ipaConType="N3" fpaType="数・三" aType="0"/>
+<W1 pos="名詞-数詞-一般" orth="３千" yomi="サンゼン" pron="サンゼン" lex="サンゼン!三千" indexForm="サンゼン" indexOrth="三千" ipaConType="Ns" aType="3"/>
+<W1 pos="名詞-数詞-一般" orth="４" yomi="ヨン" pron="ヨン" lex="ヨン!四" indexForm="ヨン" indexOrth="四" ipaConType="N4" fpaType="数・四" aType="1"/>
+<W1 pos="名詞-数詞-一般" orth="４千" yomi="ヨンセン" pron="ヨンセン" lex="ヨンセン!四千" indexForm="ヨンセン" indexOrth="四千" ipaConType="Ns" aType="3"/>
+<W1 pos="名詞-数詞-一般" orth="５" yomi="ゴ" pron="ゴ" lex="ゴ!五" indexForm="ゴ" indexOrth="五" fpaType="数・五" aType="1"/>
+<W1 pos="名詞-数詞-一般" orth="５" yomi="ゴ" pron="ゴー" lex="ゴ!五" indexForm="ゴ" indexOrth="五" aType="1"/>
+<W1 pos="名詞-数詞-一般" orth="５千" yomi="ゴセン" pron="ゴセン" lex="ゴセン!五千" indexForm="ゴセン" indexOrth="五千" ipaConType="Ns" aType="2"/>
+<W1 pos="名詞-数詞-一般" orth="６" yomi="ロク" pron="ロク" lex="ロク!六" indexForm="ロク" indexOrth="六" ipaConType="N6" fpaType="数・六" aType="2"/>
+<W1 pos="名詞-数詞-一般" orth="６千" yomi="ロクセン" pron="ロクセン" lex="ロクセン!六千" indexForm="ロクセン" indexOrth="六千" ipaConType="Ns" aType="3"/>
+<W1 pos="名詞-数詞-一般" orth="７" yomi="ナナ" pron="ナナ" lex="ナナ!七" indexForm="ナナ" indexOrth="七" fpaType="数・七" aType="1"/>
+<W1 pos="名詞-数詞-一般" orth="７千" yomi="ナナセン" pron="ナナセン" lex="ナナセン!七千" indexForm="ナナセン" indexOrth="七千" ipaConType="Ns" aType="3"/>
+<W1 pos="名詞-数詞-一般" orth="８" yomi="ハチ" pron="ハチ" lex="ハチ!八" indexForm="ハチ" indexOrth="八" ipaConType="N8" fpaType="数・八" aType="2"/>
+<W1 pos="名詞-数詞-一般" orth="８千" yomi="ハッセン" pron="ハッセン" lex="ハッセン!八千" indexForm="ハッセン" indexOrth="八千" ipaConType="Ns" aType="3"/>
+<W1 pos="名詞-数詞-一般" orth="９" yomi="キュウ" pron="キュー" lex="キュウ!九" indexForm="キュウ" indexOrth="九" fpaType="数・九" aType="1"/>
+<W1 pos="名詞-数詞-一般" orth="９千" yomi="キュウセン" pron="キューセン" lex="キュウセン!九千" indexForm="キュウセン" indexOrth="九千" ipaConType="Ns" aType="3"/>
+<W1 pos="名詞-数詞-一般" orth="一" yomi="イチ" pron="イチ" lex="イチ!一" indexForm="イチ" indexOrth="一" ipaConType="N1" fpaType="数・一" aType="2"/>
+<W1 pos="名詞-数詞-一般" orth="一千" yomi="イッセン" pron="イッセン" lex="イッセン!一千" indexForm="イッセン" indexOrth="一千" ipaConType="Ns" aType="3"/>
+<W1 pos="名詞-数詞-一般" orth="何" yomi="ナン" pron="ナン" lex="ナン!何" indexForm="ナン" indexOrth="何" ipaConType="Nn" aType="1"/>
+<W1 pos="名詞-数詞-一般" orth="何十" yomi="ナンジュウ" pron="ナンジュー" lex="ナンジュウ!何十" indexForm="ナンジュウ" indexOrth="何十" ipaConType="Nj" fpaType="数・十" aType="1"/>
+<W1 pos="名詞-数詞-一般" orth="何千" yomi="ナンゼン" pron="ナンゼン" lex="ナンゼン!何千" indexForm="ナンゼン" indexOrth="何千" ipaConType="Ns" aType="3"/>
+<W1 pos="名詞-数詞-一般" orth="何百" yomi="ナンビャク" pron="ナンビャク" lex="ナンビャク!何百" indexForm="ナンビャク" indexOrth="何百" ipaConType="Nh" fpaType="数・百" aType="1"/>
+<W1 pos="名詞-数詞-一般" orth="九" yomi="キュウ" pron="キュー" lex="キュウ!九" indexForm="キュウ" indexOrth="九" fpaType="数・九" aType="1"/>
+<W1 pos="名詞-数詞-一般" orth="九十" yomi="キュウジュウ" pron="キュージュー" lex="キュウジュウ!九十" indexForm="キュウジュウ" indexOrth="九十" ipaConType="Nj" fpaType="数・十" aType="1"/>
+<W1 pos="名詞-数詞-一般" orth="九千" yomi="キュウセン" pron="キューセン" lex="キュウセン!九千" indexForm="キュウセン" indexOrth="九千" ipaConType="Ns" aType="3"/>
+<W1 pos="名詞-数詞-一般" orth="九百" yomi="キュウヒャク" pron="キューヒャク" lex="キュウヒャク!九百" indexForm="キュウヒャク" indexOrth="九百" ipaConType="Nh" fpaType="数・百" aType="1"/>
+<W1 pos="名詞-数詞-一般" orth="五" yomi="ゴ" pron="ゴ" lex="ゴ!五" indexForm="ゴ" indexOrth="五" fpaType="数・五" aType="1"/>
+<W1 pos="名詞-数詞-一般" orth="五" yomi="ゴ" pron="ゴー" lex="ゴ!五" indexForm="ゴ" indexOrth="五" aType="1"/>
+<W1 pos="名詞-数詞-一般" orth="五十" yomi="ゴジュウ" pron="ゴジュー" lex="ゴジュウ!五十" indexForm="ゴジュウ" indexOrth="五十" ipaConType="Nj" fpaType="数・十" aType="2"/>
+<W1 pos="名詞-数詞-一般" orth="五千" yomi="ゴセン" pron="ゴセン" lex="ゴセン!五千" indexForm="ゴセン" indexOrth="五千" ipaConType="Ns" aType="2"/>
+<W1 pos="名詞-数詞-一般" orth="五百" yomi="ゴヒャク" pron="ゴヒャク" lex="ゴヒャク!五百" indexForm="ゴヒャク" indexOrth="五百" ipaConType="Nh" fpaType="数・百" aType="3"/>
+<W1 pos="名詞-数詞-一般" orth="三" yomi="サン" pron="サン" lex="サン!三" indexForm="サン" indexOrth="三" ipaConType="N3" fpaType="数・三" aType="0"/>
+<W1 pos="名詞-数詞-一般" orth="三十" yomi="サンジュウ" pron="サンジュー" lex="サンジュウ!三十" indexForm="サンジュウ" indexOrth="三十" ipaConType="Nj" fpaType="数・十" aType="1"/>
+<W1 pos="名詞-数詞-一般" orth="三千" yomi="サンゼン" pron="サンゼン" lex="サンゼン!三千" indexForm="サンゼン" indexOrth="三千" ipaConType="Ns" aType="3"/>
+<W1 pos="名詞-数詞-一般" orth="三百" yomi="サンビャク" pron="サンビャク" lex="サンビャク!三百" indexForm="サンビャク" indexOrth="三百" ipaConType="Nh" fpaType="数・百" aType="1"/>
+<W1 pos="名詞-数詞-一般" orth="四" yomi="ヨン" pron="ヨン" lex="ヨン!四" indexForm="ヨン" indexOrth="四" ipaConType="N4" fpaType="数・四" aType="1"/>
+<W1 pos="名詞-数詞-一般" orth="四十" yomi="ヨンジュウ" pron="ヨンジュー" lex="ヨンジュウ!四十" indexForm="ヨンジュウ" indexOrth="四十" ipaConType="Nj" fpaType="数・十" aType="1"/>
+<W1 pos="名詞-数詞-一般" orth="四千" yomi="ヨンセン" pron="ヨンセン" lex="ヨンセン!四千" indexForm="ヨンセン" indexOrth="四千" ipaConType="Ns" aType="3"/>
+<W1 pos="名詞-数詞-一般" orth="四百" yomi="ヨンヒャク" pron="ヨンヒャク" lex="ヨンヒャク!四百" indexForm="ヨンヒャク" indexOrth="四百" ipaConType="Nh" fpaType="数・百" aType="1"/>
+<W1 pos="名詞-数詞-一般" orth="七" yomi="ナナ" pron="ナナ" lex="ナナ!七" indexForm="ナナ" indexOrth="七" fpaType="数・七" aType="1"/>
+<W1 pos="名詞-数詞-一般" orth="七十" yomi="ナナジュウ" pron="ナナジュー" lex="ナナジュウ!七十" indexForm="ナナジュウ" indexOrth="七十" ipaConType="Nj" fpaType="数・十" aType="2"/>
+<W1 pos="名詞-数詞-一般" orth="七千" yomi="ナナセン" pron="ナナセン" lex="ナナセン!七千" indexForm="ナナセン" indexOrth="七千" ipaConType="Ns" aType="3"/>
+<W1 pos="名詞-数詞-一般" orth="七百" yomi="ナナヒャク" pron="ナナヒャク" lex="ナナヒャク!七百" indexForm="ナナヒャク" indexOrth="七百" ipaConType="Nh" fpaType="数・百" aType="2"/>
+<W1 pos="名詞-数詞-一般" orth="十" yomi="ジュウ" pron="ジュー" lex="ジュウ!十" indexForm="ジュウ" indexOrth="十" ipaConType="Nj" fpaType="数・十" aType="1"/>
+<W1 pos="名詞-数詞-一般" orth="数十" yomi="スウジュウ" pron="スージュー" lex="スウジュウ!数十" indexForm="スウジュウ" indexOrth="数十" ipaConType="Nj" fpaType="数・十" aType="1"/>
+<W1 pos="名詞-数詞-一般" orth="数千" yomi="スウセン" pron="スーセン" lex="スウセン!数千" indexForm="スウセン" indexOrth="数千" ipaConType="Ns" aType="3"/>
+<W1 pos="名詞-数詞-一般" orth="数百" yomi="スウヒャク" pron="スーヒャク" lex="スウヒャク!数百" indexForm="スウヒャク" indexOrth="数百" ipaConType="Nh" fpaType="数・百" aType="1"/>
+<W1 pos="名詞-数詞-一般" orth="千" yomi="セン" pron="セン" lex="セン!千" indexForm="セン" indexOrth="千" ipaConType="Ns" ipaType="セ濁" fpaConType="B1S8SjS" aType="1"/>
+<W1 pos="名詞-数詞-一般" orth="二" yomi="ニ" pron="ニ" lex="ニ!二" indexForm="ニ" indexOrth="二" fpaType="数・二" aType="1"/>
+<W1 pos="名詞-数詞-一般" orth="二" yomi="ニ" pron="ニー" lex="ニ!二" indexForm="ニ" indexOrth="二" aType="1"/>
+<W1 pos="名詞-数詞-一般" orth="二十" yomi="ニジュウ" pron="ニジュー" lex="ニジュウ!二十" indexForm="ニジュウ" indexOrth="二十" ipaConType="Nj" fpaType="数・十" aType="1"/>
+<W1 pos="名詞-数詞-一般" orth="二千" yomi="ニセン" pron="ニセン" lex="ニセン!二千" indexForm="ニセン" indexOrth="二千" ipaConType="Ns" aType="2"/>
+<W1 pos="名詞-数詞-一般" orth="二百" yomi="ニヒャク" pron="ニヒャク" lex="ニヒャク!二百" indexForm="ニヒャク" indexOrth="二百" ipaConType="Nh" fpaType="数・百" aType="3"/>
+<W1 pos="名詞-数詞-一般" orth="八" yomi="ハチ" pron="ハチ" lex="ハチ!八" indexForm="ハチ" indexOrth="八" ipaConType="N8" fpaType="数・八" aType="2"/>
+<W1 pos="名詞-数詞-一般" orth="八十" yomi="ハチジュウ" pron="ハチジュー" lex="ハチジュウ!八十" indexForm="ハチジュウ" indexOrth="八十" ipaConType="Nj" fpaType="数・十" aType="3"/>
+<W1 pos="名詞-数詞-一般" orth="八千" yomi="ハッセン" pron="ハッセン" lex="ハッセン!八千" indexForm="ハッセン" indexOrth="八千" ipaConType="Ns" aType="3"/>
+<W1 pos="名詞-数詞-一般" orth="八百" yomi="ハッピャク" pron="ハッピャク" lex="ハッピャク!八百" indexForm="ハッピャク" indexOrth="八百" ipaConType="Nh" fpaType="数・百" aType="4"/>
+<W1 pos="名詞-数詞-一般" orth="百" yomi="ヒャク" pron="ヒャク" lex="ヒャク!百" indexForm="ヒャク" indexOrth="百" ipaConType="Nh" fpaType="数・百" ipaType="ヒ混合" fpaConType="B1S6SjShS,B1S8SjShS" aType="2"/>
+<W1 pos="名詞-数詞-一般" orth="六" yomi="ロク" pron="ロク" lex="ロク!六" indexForm="ロク" indexOrth="六" ipaConType="N6" fpaType="数・六" aType="2"/>
+<W1 pos="名詞-数詞-一般" orth="六十" yomi="ロクジュウ" pron="ロクジュー" lex="ロクジュウ!六十" indexForm="ロクジュウ" indexOrth="六十" ipaConType="Nj" fpaType="数・十" aType="3"/>
+<W1 pos="名詞-数詞-一般" orth="六千" yomi="ロクセン" pron="ロクセン" lex="ロクセン!六千" indexForm="ロクセン" indexOrth="六千" ipaConType="Ns" aType="3"/>
+<W1 pos="名詞-数詞-一般" orth="六百" yomi="ロッピャク" pron="ロッピャク" lex="ロッピャク!六百" indexForm="ロッピャク" indexOrth="六百" ipaConType="Nh" fpaType="数・百" aType="4"/>
+<W1 pos="名詞-数詞-桁" orth="万" yomi="マン" pron="マン" lex="マン!万" indexForm="マン" indexOrth="万" ipaConType="Nm" aType="1"/>
+<W1 pos="名詞-普通名詞-サ変可能" orth="オーバー" yomi="オーバー" pron="オーバー" lex="オーバー" indexForm="オーバー" indexOrth="オーバー" fpaConType="E" aType="1" aConType="C1"/>
+<W1 pos="名詞-普通名詞-サ変可能" orth="トライ" yomi="トライ" pron="トライ" lex="トライ" indexForm="トライ" indexOrth="トライ" fpaConType="E" aType="2" aConType="C1"/>
+<W1 pos="名詞-普通名詞-サ変可能" orth="回転" yomi="カイテン" pron="カイテン" lex="カイテン!回転" indexForm="カイテン" indexOrth="回転" fpaConType="B1S6SjShS" aType="0" aConType="C2"/>
+<W1 pos="名詞-普通名詞-サ変可能" orth="廻転" yomi="カイテン" pron="カイテン" lex="カイテン!回転" indexForm="カイテン" indexOrth="回転" fpaConType="B1S6SjShS" aType="0" aConType="C2"/>
+<W1 pos="名詞-普通名詞-サ変可能" orth="試合" yomi="シアイ" pron="シアイ" lex="シアイ!試合" indexForm="シアイ" indexOrth="試合" fpaConType="B1S8SjS,B1W2WjS" aType="0" aConType="C2"/>
+<W1 pos="名詞-普通名詞-サ変可能" orth="平方" yomi="ヘイホウ" pron="ヘーホー" lex="ヘイホウ!平方" indexForm="ヘイホウ" indexOrth="平方" fpaConType="B" aType="0" aConType="C2"/>
+<W1 pos="名詞-普通名詞-サ変可能" orth="連結" yomi="レンケツ" pron="レンケツ" lex="レンケツ!連結" indexForm="レンケツ" indexOrth="連結" fpaConType="B" aType="0" aConType="C2"/>
+<W1 pos="名詞-普通名詞-サ変可能" orth="連載" yomi="レンサイ" pron="レンサイ" lex="レンサイ!連載" indexForm="レンサイ" indexOrth="連載" fpaConType="B" aType="0" aConType="C2"/>
+<W1 pos="名詞-普通名詞-サ変可能" orth="連続" yomi="レンゾク" pron="レンゾク" lex="レンゾク!連続" indexForm="レンゾク" indexOrth="連続" fpaConType="B" aType="0" aConType="C2"/>
+<W1 pos="名詞-普通名詞-一般" orth="きれ" yomi="キレ" pron="キレ" lex="キレ!切れ" indexForm="キレ" indexOrth="切れ" fpaConType="B1W2W3W6SjShS,W9BhS" aType="2" aConType="C3"/>
+<W1 pos="名詞-普通名詞-一般" orth="こと" yomi="コト" pron="コト" lex="コト!事" indexForm="コト" indexOrth="事" fpaConType="B1W2W3W6SjShS,W9BhS" aType="2" aConType="C3"/>
+<W1 pos="名詞-普通名詞-一般" orth="つづき" yomi="ツヅキ" pron="ツズキ" lex="ツヅキ!続き" indexForm="ツヅキ" indexOrth="続き" fpaConType="B1W2WjS" aType="0" aConType="C2"/>
+<W1 pos="名詞-普通名詞-一般" orth="つまみ" yomi="ツマミ" pron="ツマミ" lex="ツマミ!摘み" indexForm="ツマミ" indexOrth="摘み" fpaConType="B1W2WjS,B1W2W8SjS,B1W2W3W4WjW" aType="1" aConType="C1"/>
+<W1 pos="名詞-普通名詞-一般" orth="へん" yomi="ヘン" pron="ヘン" lex="ヘン!辺" indexForm="ヘン" indexOrth="辺" fpaConType="B1S6SjShS,B1S8SjShS" aType="0,1" aConType="C3"/>
+<W1 pos="名詞-普通名詞-一般" orth="アウト" yomi="アウト" pron="アウト" lex="アウト" indexForm="アウト" indexOrth="アウト" fpaConType="E" aType="1" aConType="C1"/>
+<W1 pos="名詞-普通名詞-一般" orth="クラス" yomi="クラス" pron="クラス" lex="クラス" indexForm="クラス" indexOrth="クラス" fpaConType="B1W2W6SjShS,B6S8SjShS" aType="1" aConType="C1"/>
+<W1 pos="名詞-普通名詞-一般" orth="グループ" yomi="グループ" pron="グループ" lex="グループ" indexForm="グループ" indexOrth="グループ" fpaConType="B,B1W2W" aType="2" aConType="C1"/>
+<W1 pos="名詞-普通名詞-一般" orth="サオ" yomi="サオ" pron="サオ" lex="サオ!竿" indexForm="サオ" indexOrth="竿" fpaConType="B1W2W3WjS,B1W2W4WjS" aType="2" aConType="C3"/>
+<W1 pos="名詞-普通名詞-一般" orth="シート" yomi="シート" pron="シート" lex="シート" indexForm="シート" indexOrth="シート" fpaConType="BjS" aType="1" aConType="C1"/>
+<W1 pos="名詞-普通名詞-一般" orth="スジ" yomi="スジ" pron="スジ" lex="スジ!筋" indexForm="スジ" indexOrth="筋" fpaConType="B1W2W3W4WjS,B1W2W3WjW" aType="1" aConType="C3"/>
+<W1 pos="名詞-普通名詞-一般" orth="ブロック" yomi="ブロック" pron="ブロック" lex="ブロック" indexForm="ブロック" indexOrth="ブロック" fpaConType="B" aType="2" aConType="C1"/>
+<W1 pos="名詞-普通名詞-一般" orth="マイル" yomi="マイル" pron="マイル" lex="マイル" indexForm="マイル" indexOrth="マイル" fpaConType="B" aType="1" aConType="C1"/>
+<W1 pos="名詞-普通名詞-一般" orth="駅" yomi="エキ" pron="エキ" lex="エキ!駅" indexForm="エキ" indexOrth="駅" fpaConType="B1W2W,B1W2W3W4W" aType="1" aConType="C3"/>
+<W1 pos="名詞-普通名詞-一般" orth="家族" yomi="カゾク" pron="カゾク" lex="カゾク!家族" indexForm="カゾク" indexOrth="家族" fpaConType="B6SjS,B1SjS,B1W2W6SjS" aType="1" aConType="C1"/>
+<W1 pos="名詞-普通名詞-一般" orth="科目" yomi="カモク" pron="カモク" lex="カモク!科目" indexForm="カモク" indexOrth="科目" fpaConType="B1S6SjShS,B1S6S8SjShS" aType="0" aConType="C2"/>
+<W1 pos="名詞-普通名詞-一般" orth="階級" yomi="カイキュウ" pron="カイキュー" lex="カイキュウ!階級" indexForm="カイキュウ" indexOrth="階級" fpaConType="B6SjS,B1SjS" aType="0" aConType="C2"/>
+<W1 pos="名詞-普通名詞-一般" orth="階層" yomi="カイソウ" pron="カイソー" lex="カイソウ!階層" indexForm="カイソウ" indexOrth="階層" fpaConType="B6SjShS" aType="0" aConType="C2"/>
+<W1 pos="名詞-普通名詞-一般" orth="角" yomi="カク" pron="カク" lex="カク!角" indexForm="カク" indexOrth="角" fpaConType="B1S6SjShS,B1S6S8SjShS" aType="2,1,0" aConType="C3"/>
+<W1 pos="名詞-普通名詞-一般" orth="学期" yomi="ガッキ" pron="ガッキ" lex="ガッキ!学期" indexForm="ガッキ" indexOrth="学期" fpaConType="B" aType="0" aConType="C2"/>
+<W1 pos="名詞-普通名詞-一般" orth="学級" yomi="ガッキュウ" pron="ガッキュー" lex="ガッキュウ!学級" indexForm="ガッキュウ" indexOrth="学級" fpaConType="B" aType="0" aConType="C2"/>
+<W1 pos="名詞-普通名詞-一般" orth="学区" yomi="ガック" pron="ガック" lex="ガック!学区" indexForm="ガック" indexOrth="学区" fpaConType="B" aType="0,1" aConType="C2"/>
+<W1 pos="名詞-普通名詞-一般" orth="学年" yomi="ガクネン" pron="ガクネン" lex="ガクネン!学年" indexForm="ガクネン" indexOrth="学年" fpaConType="B" aType="0" aConType="C2"/>
+<W1 pos="名詞-普通名詞-一般" orth="株" yomi="カブ" pron="カブ" lex="カブ!株" indexForm="カブ" indexOrth="株" fpaConType="B1W2W6SjS,W6S8B9BjS" aType="0" aConType="C3"/>
+<W1 pos="名詞-普通名詞-一般" orth="竿" yomi="サオ" pron="サオ" lex="サオ!竿" indexForm="サオ" indexOrth="竿" fpaConType="B1W2W3WjS,B1W2W4WjS" aType="2" aConType="C3"/>
+<W1 pos="名詞-普通名詞-一般" orth="缶" yomi="カン" pron="カン" lex="カン!缶" indexForm="カン" indexOrth="缶" fpaConType="B1W2W6SjShS" aType="1" aConType="C3"/>
+<W1 pos="名詞-普通名詞-一般" orth="機種" yomi="キシュ" pron="キシュ" lex="キシュ!機種" indexForm="キシュ" indexOrth="機種" fpaConType="B6SjShS" aType="1,2" aConType="C3"/>
+<W1 pos="名詞-普通名詞-一般" orth="客" yomi="キャク" pron="キャク" lex="キャク!客" indexForm="キャク" indexOrth="客" fpaConType="B1S6SjShS" aType="0" aConType="C3"/>
+<W1 pos="名詞-普通名詞-一般" orth="球" yomi="キュウ" pron="キュー" lex="キュウ!球" indexForm="キュウ" indexOrth="球" fpaConType="B1S6SjShS" aType="1" aConType="C3"/>
+<W1 pos="名詞-普通名詞-一般" orth="曲" yomi="キョク" pron="キョク" lex="キョク!曲" indexForm="キョク" indexOrth="曲" fpaConType="B1S6SjShS,B1S6S8SjShS" aType="0,1,2" aConType="C3"/>
+<W1 pos="名詞-普通名詞-一般" orth="筋" yomi="スジ" pron="スジ" lex="スジ!筋" indexForm="スジ" indexOrth="筋" fpaConType="B1W2W3W4WjS,B1W2W3WjW" aType="1" aConType="C3"/>
+<W1 pos="名詞-普通名詞-一般" orth="句" yomi="ク" pron="ク" lex="ク!句" indexForm="ク" indexOrth="句" fpaConType="B1S6S8SjShS,B1S6SjShS" aType="1" aConType="C3"/>
+<W1 pos="名詞-普通名詞-一般" orth="区間" yomi="クカン" pron="クカン" lex="クカン!区間" indexForm="クカン" indexOrth="区間" fpaConType="B6SjS,B1S6S8SjS,B1W2W6SjS" aType="1,2" aConType="C1"/>
+<W1 pos="名詞-普通名詞-一般" orth="系統" yomi="ケイトウ" pron="ケートー" lex="ケイトウ!系統" indexForm="ケイトウ" indexOrth="系統" fpaConType="B6SjS,B1SjS" aType="0" aConType="C2"/>
+<W1 pos="名詞-普通名詞-一般" orth="県" yomi="ケン" pron="ケン" lex="ケン!県" indexForm="ケン" indexOrth="県" fpaConType="B1S6SjShS" aType="1" aConType="C3"/>
+<W1 pos="名詞-普通名詞-一般" orth="弦" yomi="ゲン" pron="ゲン" lex="ゲン!弦" indexForm="ゲン" indexOrth="弦" fpaConType="B" aType="1" aConType="C3"/>
+<W1 pos="名詞-普通名詞-一般" orth="口" yomi="クチ" pron="クチ" lex="クチ!口" indexForm="クチ" indexOrth="口" fpaConType="B1W2W3W4W6S8SjShS" aType="0" aConType="C3"/>
+<W1 pos="名詞-普通名詞-一般" orth="工程" yomi="コウテイ" pron="コーテー" lex="コウテイ!工程" indexForm="コウテイ" indexOrth="工程" fpaConType="B6SjS,B1SjS" aType="0" aConType="C2"/>
+<W1 pos="名詞-普通名詞-一般" orth="項目" yomi="コウモク" pron="コーモク" lex="コウモク!項目" indexForm="コウモク" indexOrth="項目" fpaConType="B6SjS,B1SjS" aType="0" aConType="C2"/>
+<W1 pos="名詞-普通名詞-一般" orth="香" yomi="コウ" pron="コー" lex="コウ!香" indexForm="コウ" indexOrth="香" fpaConType="B1S6SjShS" aType="1" aConType="C3"/>
+<W1 pos="名詞-普通名詞-一般" orth="皿" yomi="サラ" pron="サラ" lex="サラ!皿" indexForm="サラ" indexOrth="皿" fpaConType="W6B8B9BjS,B1W2W3WjW" aType="0" aConType="C3"/>
+<W1 pos="名詞-普通名詞-一般" orth="山" yomi="ヤマ" pron="ヤマ" lex="ヤマ!山" indexForm="ヤマ" indexOrth="山" fpaConType="B1W2W,B1W2W3W4W" aType="2" aConType="C3"/>
+<W1 pos="名詞-普通名詞-一般" orth="酸" yomi="サン" pron="サン" lex="サン!酸" indexForm="サン" indexOrth="酸" fpaConType="B1SjS" aType="1" aConType="C3"/>
+<W1 pos="名詞-普通名詞-一般" orth="市" yomi="シ" pron="シ" lex="シ!市" indexForm="シ" indexOrth="市" fpaConType="B1S8SjS,B1SjS" aType="1" aConType="C3"/>
+<W1 pos="名詞-普通名詞-一般" orth="事" yomi="コト" pron="コト" lex="コト!事" indexForm="コト" indexOrth="事" fpaConType="B1W2W3W6SjShS,W9BhS" aType="2" aConType="C3"/>
+<W1 pos="名詞-普通名詞-一般" orth="車線" yomi="シャセン" pron="シャセン" lex="シャセン!車線" indexForm="シャセン" indexOrth="車線" fpaConType="B1S8SjS,B1SjS" aType="0" aConType="C2"/>
+<W1 pos="名詞-普通名詞-一般" orth="手" yomi="テ" pron="テ" lex="テ!手" indexForm="テ" indexOrth="手" fpaConType="B1SjS,B1S8SjS" aType="1" aConType="C3"/>
+<W1 pos="名詞-普通名詞-一般" orth="種類" yomi="シュルイ" pron="シュルイ" lex="シュルイ!種類" indexForm="シュルイ" indexOrth="種類" fpaConType="B1S8SjS,B1W2WjS" aType="1" aConType="C1"/>
+<W1 pos="名詞-普通名詞-一般" orth="周期" yomi="シュウキ" pron="シューキ" lex="シュウキ!周期" indexForm="シュウキ" indexOrth="周期" fpaConType="B1S8SjS" aType="1" aConType="C1"/>
+<W1 pos="名詞-普通名詞-一般" orth="州" yomi="シュウ" pron="シュー" lex="シュウ!州" indexForm="シュウ" indexOrth="州" fpaConType="B1S8SjS" aType="1" aConType="C3"/>
+<W1 pos="名詞-普通名詞-一般" orth="小説" yomi="ショウセツ" pron="ショーセツ" lex="ショウセツ!小説" indexForm="ショウセツ" indexOrth="小説" fpaConType="B1S8SjS" aType="0" aConType="C2"/>
+<W1 pos="名詞-普通名詞-一般" orth="章" yomi="ショウ" pron="ショー" lex="ショウ!章" indexForm="ショウ" indexOrth="章" fpaConType="B1S8SjS" aType="1" aConType="C3"/>
+<W1 pos="名詞-普通名詞-一般" orth="場所" yomi="バショ" pron="バショ" lex="バショ!場所" indexForm="バショ" indexOrth="場所" fpaConType="B1W2W" aType="0" aConType="C3"/>
+<W1 pos="名詞-普通名詞-一般" orth="条" yomi="ジョウ" pron="ジョー" lex="ジョウ!条" indexForm="ジョウ" indexOrth="条" fpaConType="B,B4G7G9G" aType="1" aConType="C3"/>
+<W1 pos="名詞-普通名詞-一般" orth="食" yomi="ショク" pron="ショク" lex="ショク!食" indexForm="ショク" indexOrth="食" fpaConType="B1S8SjS" aType="1" aConType="C3"/>
+<W1 pos="名詞-普通名詞-一般" orth="陣" yomi="ジン" pron="ジン" lex="ジン!陣" indexForm="ジン" indexOrth="陣" fpaConType="B" aType="1" aConType="C4"/>
+<W1 pos="名詞-普通名詞-一般" orth="世代" yomi="セダイ" pron="セダイ" lex="セダイ!世代" indexForm="セダイ" indexOrth="世代" fpaConType="B1SjS,B1S8SjS" aType="0,1" aConType="C2"/>
+<W1 pos="名詞-普通名詞-一般" orth="切れ" yomi="キレ" pron="キレ" lex="キレ!切れ" indexForm="キレ" indexOrth="切れ" fpaConType="B1W2W3W6SjShS,W9BhS" aType="2" aConType="C3"/>
+<W1 pos="名詞-普通名詞-一般" orth="選手" yomi="センシュ" pron="センシュ" lex="センシュ!選手" indexForm="センシュ" indexOrth="選手" fpaConType="BjS,B1S8SjS" aType="1" aConType="C1"/>
+<W1 pos="名詞-普通名詞-一般" orth="層" yomi="ソウ" pron="ソー" lex="ソウ!層" indexForm="ソウ" indexOrth="層" fpaConType="B1S8SjS" aType="1" aConType="C3"/>
+<W1 pos="名詞-普通名詞-一般" orth="続き" yomi="ツヅキ" pron="ツズキ" lex="ツヅキ!続き" indexForm="ツヅキ" indexOrth="続き" fpaConType="B1W2WjS" aType="0" aConType="C2"/>
+<W1 pos="名詞-普通名詞-一般" orth="題" yomi="ダイ" pron="ダイ" lex="ダイ!題" indexForm="ダイ" indexOrth="題" fpaConType="B" aType="1" aConType="C3"/>
+<W1 pos="名詞-普通名詞-一般" orth="段階" yomi="ダンカイ" pron="ダンカイ" lex="ダンカイ!段階" indexForm="ダンカイ" indexOrth="段階" fpaConType="B" aType="0" aConType="C2"/>
+<W1 pos="名詞-普通名詞-一般" orth="地区" yomi="チク" pron="チク" lex="チク!地区" indexForm="チク" indexOrth="地区" fpaConType="BjS,B1S8SjS" aType="1" aConType="C3"/>
+<W1 pos="名詞-普通名詞-一般" orth="地点" yomi="チテン" pron="チテン" lex="チテン!地点" indexForm="チテン" indexOrth="地点" fpaConType="BjS,B8SjS" aType="0,1" aConType="C2"/>
+<W1 pos="名詞-普通名詞-一般" orth="柱" yomi="ハシラ" pron="ハシラ" lex="ハシラ!柱" indexForm="ハシラ" indexOrth="柱" fpaConType="W9B,B1W2W3W4WjW" aType="3,0" aConType="C2"/>
+<W1 pos="名詞-普通名詞-一般" orth="町" yomi="チョウ" pron="チョー" lex="チョウ!町" indexForm="チョウ" indexOrth="町" fpaConType="B1S8SjS" aType="1" aConType="C3"/>
+<W1 pos="名詞-普通名詞-一般" orth="摘み" yomi="ツマミ" pron="ツマミ" lex="ツマミ!摘み" indexForm="ツマミ" indexOrth="摘み" fpaConType="B1W2WjS,B1W2W8SjS,B1W2W3W4WjW" aType="1" aConType="C1"/>
+<W1 pos="名詞-普通名詞-一般" orth="店舗" yomi="テンポ" pron="テンポ" lex="テンポ!店舗" indexForm="テンポ" indexOrth="店舗" fpaConType="BjS,B1S8SjS" aType="1" aConType="C1"/>
+<W1 pos="名詞-普通名詞-一般" orth="都" yomi="ト" pron="ト" lex="ト!都" indexForm="ト" indexOrth="都" fpaConType="B1SjS,B1S8SjS" aType="1" aConType="C3"/>
+<W1 pos="名詞-普通名詞-一般" orth="版" yomi="ハン" pron="ハン" lex="ハン!版" indexForm="ハン" indexOrth="版" fpaConType="B1S6SjShS,B1S8SjShS,B1S6S7G8SjShS" aType="1" aConType="C3"/>
+<W1 pos="名詞-普通名詞-一般" orth="班" yomi="ハン" pron="ハン" lex="ハン!班" indexForm="ハン" indexOrth="班" fpaConType="B1S6SjShS,B1S6S8SjShS" aType="1" aConType="C3"/>
+<W1 pos="名詞-普通名詞-一般" orth="部屋" yomi="ヘヤ" pron="ヘヤ" lex="ヘヤ!部屋" indexForm="ヘヤ" indexOrth="部屋" fpaConType="B1W2W3W4WjW,B1W2W3W5WjW" aType="2" aConType="C3"/>
+<W1 pos="名詞-普通名詞-一般" orth="分野" yomi="ブンヤ" pron="ブンヤ" lex="ブンヤ!分野" indexForm="ブンヤ" indexOrth="分野" fpaConType="B" aType="1" aConType="C1"/>
+<W1 pos="名詞-普通名詞-一般" orth="文" yomi="ブン" pron="ブン" lex="ブン!文" indexForm="ブン" indexOrth="文" fpaConType="B" aType="1" aConType="C3"/>
+<W1 pos="名詞-普通名詞-一般" orth="辺" yomi="ヘン" pron="ヘン" lex="ヘン!辺" indexForm="ヘン" indexOrth="辺" fpaConType="B1S6SjShS,B1S8SjShS" aType="0,1" aConType="C3"/>
+<W1 pos="名詞-普通名詞-一般" orth="便" yomi="ビン" pron="ビン" lex="ビン!便" indexForm="ビン" indexOrth="便" fpaConType="B" aType="1" aConType="C3"/>
+<W1 pos="名詞-普通名詞-一般" orth="幕" yomi="マク" pron="マク" lex="マク!幕" indexForm="マク" indexOrth="幕" fpaConType="B1W2W,B1W2W3W4W7G" aType="2" aConType="C3"/>
+<W1 pos="名詞-普通名詞-一般" orth="役" yomi="ヤク" pron="ヤク" lex="ヤク!役" indexForm="ヤク" indexOrth="役" fpaConType="B1W2W" aType="2" aConType="C3"/>
+<W1 pos="名詞-普通名詞-一般" orth="類" yomi="ルイ" pron="ルイ" lex="ルイ!類" indexForm="ルイ" indexOrth="類" fpaConType="B" aType="1" aConType="C3"/>
+<W1 pos="名詞-普通名詞-一般" orth="列" yomi="レツ" pron="レツ" lex="レツ!列" indexForm="レツ" indexOrth="列" fpaConType="B" aType="1" aConType="C3"/>
+<W1 pos="名詞-普通名詞-一般" orth="連休" yomi="レンキュウ" pron="レンキュー" lex="レンキュウ!連休" indexForm="レンキュウ" indexOrth="連休" fpaConType="B" aType="0" aConType="C2"/>
+<W1 pos="名詞-普通名詞-副詞可能" orth="たび" yomi="タビ" pron="タビ" lex="タビ!度" indexForm="タビ" indexOrth="度" fpaConType="W9BjS,W5B9G" aType="2" aConType="C3"/>
+<W1 pos="名詞-普通名詞-副詞可能" orth="ところ" yomi="トコロ" pron="トコロ" lex="トコロ!所" indexForm="トコロ" indexOrth="所" fpaConType="B1W2W3W4WjS,B1W2W8SjS" aType="0" aConType="C2"/>
+<W1 pos="名詞-普通名詞-副詞可能" orth="所" yomi="トコロ" pron="トコロ" lex="トコロ!所" indexForm="トコロ" indexOrth="所" fpaConType="B1W2W3W4WjS,B1W2W8SjS" aType="0" aConType="C2"/>
+<W1 pos="名詞-普通名詞-副詞可能" orth="度" yomi="タビ" pron="タビ" lex="タビ!度" indexForm="タビ" indexOrth="度" fpaConType="W9BjS,W5B9G" aType="2" aConType="C3"/>
+<W1 pos="名詞-普通名詞-副詞可能" orth="晩" yomi="バン" pron="バン" lex="バン!晩" indexForm="バン" indexOrth="晩" fpaConType="B1W2W,B1W2W3W4W" aType="0" aConType="C3"/>
+</pa_word_list>

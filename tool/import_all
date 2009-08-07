@@ -1,0 +1,253 @@
+#!/usr/bin/env ruby
+
+ENV['RAILS_ENV'] ||= 'production'
+require File.expand_path(File.dirname(__FILE__) + "/../config/environment")
+require 'filter'
+
+def validate_content(text, conv = true)
+  text.gsub!(/<!--.*?-->/, '')
+  text.gsub!(%r!<span[^>]*?\s*class="invalid"[^>]*>([^<]+)</span\s*>!i, '\1')
+  text.gsub!(%r!<img([^>]*?)\s*class="invalid"i!, '<img\1')
+  text_str = Filter::convert_non_japanese_chars(text, conv, true)
+  text2 = Filter::remove_non_japanese_chars(text_str, conv)
+  str = []
+  if conv && text != text2
+    converted_chars = text.scan(Regexp.union(*Filter::CONV_TABLE.keys)).uniq
+    converted_chars = converted_chars.collect do |e|
+      "#{e}→#{Filter::CONV_TABLE[e]}"
+    end
+    begin
+      str << "機種依存文字を変換しました：#{converted_chars.join('、')}" unless converted_chars.empty?
+    rescue
+
+    end
+  end
+  invalid_chars = text2.scan(%r!<span\s*class="invalid"\s*>(.+?)</span\s*>!i).collect{|i,| i}.uniq
+  unless invalid_chars.empty?
+    if conv
+      str << "変換できない機種依存文字があります：#{invalid_chars.join('、')}"
+    else
+      str << "機種依存文字があります：#{invalid_chars.join('、')}"
+    end
+  end
+  text3 = text2.gsub(%r!<img(\s*[^>]*)>!i) {|img|
+    img_attr = $1
+    if /\salt="[^"]*"\s/i =~ img
+      img
+    else
+      %Q!<img class="invalid"#{img_attr}>!
+    end
+  }
+  str << '「画像の説明」のない画像があります' unless text2 == text3
+  return [str, text3]
+end
+
+def import(page, path, section_id)
+  ext_re = /\A\.(doc|xls|jaw|jbw|jfw|jsw|jtd|jtt|jtw|juw|jvw|pdf|jpe?g|png|gif|mp3|wav|mpe?g|rm|rmvb|rtf|kml|csv|tsv|txt)\z/i
+  ext_re_for_html = /\A\.(html|htm)\z/i
+
+  begin
+    file_name = File.basename(path)
+    content = page.private
+    name = file_name.sub(/\.html?/i, '')
+    content.content = NKF.nkf('-w', File.read(path).slice(%r!<body(.*)</body>!im).gsub(%r!</?(?:body)\b[^>]*>!im, ''))
+    validate_content_s, text = validate_content(content.content)
+    text.gsub!(%r!<span[^>]*?\s*class="invalid"[^>]*>([^<]+)</span\s*>!i, '\1')
+    text.gsub!(%r!<img([^>]*?)\s*class="invalid"!i, '<img\1')
+    content.content = text
+    content.normalize_html
+    content.remove_tags_for_import
+    dir = "#{RAILS_ROOT}/files/#{RAILS_ENV}/#{page.id}"
+    unless File.exist?(dir)
+      Dir.mkdir(dir)
+    end
+    content.content = content.content.gsub(/(<img[^>]+src="|<a[^>]+href=")([^"]+)/i) do |link|
+      begin
+        tag = $1
+        url = $2
+        file_name = File.basename(link)
+        ext_name = File.extname(file_name)
+        if file_name =~ /^<img.*/
+          raise if /\A[a-zA-Z0-9\-\_.]+\z/i !~ url
+        else
+          raise if /\A[a-zA-Z0-9\-\_.]+\z/i !~ file_name
+        end
+        raise if ext_re !~ ext_name
+        raise if ext_re_for_html =~ ext_name
+        cp_path = path.split(/\//)[0..-2].join('/') + '/' + url
+        if File.exist?(cp_path)
+          if file_name =~ /^<img.*/i
+            system("cp #{cp_path} #{dir}/#{url}")
+            %Q|#{tag}#{page.genre.path}#{page.name}.data/#{url}|
+          else
+            system("cp #{cp_path} #{dir}/#{file_name}")
+            %Q|#{tag}#{page.genre.path}#{page.name}.data/#{file_name}|
+          end
+        else
+          raise
+        end
+      rescue
+        link
+      end
+    end
+    content.save
+    # check page title
+    htree = HTree.parse(NKF.nkf('-w', File.read(path)))
+    if htree.title.to_s.size > 0
+      ary = validate_content(htree.title.to_s)
+    else
+      ary = []
+    end
+
+    if !ary.empty? && ary[1].size > 0 && ary[1] != htree.title.to_s
+      # 機種依存文字削除したけど、タイトルある
+      File.open("#{Page::ZIP_FILE_PATH}/#{section_id}/error", 'a') do |f|
+        f.print "ページタイトルが正常に設定できませんでした。ページタイトルの修正が必要です。(<a href=\"#{CMSConfig[:mail_uri]}_admin/show_page_info/#{page.id}\">#{page.name}</a>)"
+        f.print "\n"
+      end
+#      page.title = ary[1]
+    elsif htree.title.to_s.size == 0
+      # タイトルが無い
+      File.open("#{Page::ZIP_FILE_PATH}/#{section_id}/error", 'a') do |f|
+        f.print "ページタイトルが正常に設定できませんでした。ページタイトルの修正が必要です。(<a href=\"#{CMSConfig[:mail_uri]}_admin/show_page_info/#{page.id}\">#{page.name}</a>)"
+        f.print "\n"
+      end
+#      page.title = page.name
+    else
+      page.title = ary[1]
+      if page.save
+      else
+        File.open("#{Page::ZIP_FILE_PATH}/#{section_id}/error", 'a') do |f|
+          f.print "ページタイトルが正常に設定できませんでした。ページタイトルの修正が必要です。(<a href=\"#{CMSConfig[:mail_uri]}_admin/show_page_info/#{page.id}\">#{page.name}</a>)"
+          f.print "\n"
+        end
+      end
+    end
+    unless validate_content_s.empty?
+      File.open("#{Page::ZIP_FILE_PATH}/#{section_id}/error", 'a') do |f|
+        f.print "画像の説明が無い画像があります。(<a href=\"#{CMSConfig[:mail_uri]}_admin/show_page_info/#{page.id}\">#{page.name}</a>)"
+        f.print "\n"
+      end
+    end
+  rescue
+# ERROR
+  end
+end
+
+def import_files(section_id, split_dir, dir, genre_id, genre, dirs, path)
+  dirs.each do |f|
+    dir = f
+    new_name = f.split(/\//).last
+    if File.ftype(f) == "directory"
+      paths = Dir.glob("#{f}/**")
+      if paths.select{|i| i =~ /^.*\.(html|htm)$/i}.empty?
+        File.open("#{Page::ZIP_FILE_PATH}/#{section_id}/error", 'a') do |f|
+          f.print "HTMLファイルが存在しないフォルダのため、フォルダを作成しませんでした。(フォルダ名 : #{new_name})"
+          f.print "\n"
+        end
+        next
+      end
+      begin
+        exist_genre = Genre.find_by_path("#{genre.path}#{new_name}/")
+      rescue
+        File.open("#{Page::ZIP_FILE_PATH}/#{section_id}/error", 'a') do |f|
+          f.print "取り込み先のフォルダが存在しないか、フォルダ名が正しくありません。(フォルダ名 : #{new_name})"
+          f.print "\n"
+        end
+        next
+      end
+
+      unless exist_genre
+        new_genre = Genre.new(:name => new_name,
+                              :title => new_name,
+                              :parent_id => genre.id,
+                              :section_id => section_id,
+                              :path => genre.path + new_name + '/')
+        begin
+          if new_genre.save
+            Job.create(:action => 'create_genre', :arg1 => new_genre.id)
+          else
+            File.open("#{Page::ZIP_FILE_PATH}/#{section_id}/error", 'a') do |f|
+              f.print "フォルダが追加出来ませんでした。(フォルダ名 : #{new_name})"
+              f.print "\n"
+            end
+            next
+          end
+        rescue
+          File.open("#{Page::ZIP_FILE_PATH}/#{section_id}/error", 'a') do |f|
+            f.print "フォルダを取り込めませんでした。(フォルダ名 : #{new_name})"
+            f.print "\n"
+          end
+        end
+        new_dirs = Dir.glob("#{f}/**")
+        new_path = f.split(/\//)
+        new_split_dir = new_path[0..-2]
+        import_files(section_id, new_split_dir, dir, new_genre.id, new_genre, new_dirs, f)
+      end
+    elsif File.ftype(f) == "file"
+      file_name = File.basename(f)
+      ext_name = File.extname(file_name)
+      check_name = file_name.split(/\./).first
+      next unless ext_name =~ /^\.(html|htm)$/i
+      unless check_name =~ /\A[a-z0-9\-\_]*\z/i
+        File.open("#{Page::ZIP_FILE_PATH}/#{section_id}/error", 'a') do |f|
+          f.print "ファイル名が不正なため、取り込めませんでした。(#{file_name})"
+          f.print "\n"
+        end
+        next
+      end
+      filename = file_name.split(/\./)[0]
+      page = Page.find(:first, :conditions => ['name = ? AND genre_id = ?', filename, genre.id])
+      unless page
+        page = Page.new
+        page.attributes = {
+          :genre_id => genre.id,
+          :name => filename
+        }
+        if page.save
+
+        else
+          File.open("#{Page::ZIP_FILE_PATH}/#{section_id}/error", 'a') do |f|
+            f.print "ファイルが取り込めませんでした。(#{file_name})"
+            f.print "\n"
+          end
+        end
+      end
+      import(page, dir, section_id)
+    end
+  end
+end
+
+dirs = Dir.glob("#{Page::ZIP_FILE_PATH}/**/**")
+zips = dirs.select{|line| line =~ /^.*\.zip$/ }
+if zips.empty?
+  exit 0
+end
+
+zips.each do |zip|
+  path = zip.split(/\//)
+  split_dir = path[0..-2]
+  section_id = split_dir.last.to_i
+  dir = split_dir.join('/')
+  if File.exist?("#{dir}/genre_id")
+    genre_id = File.open("#{dir}/genre_id").readline.to_i
+    genre = Genre.find(genre_id)
+    file = open("#{Page::ZIP_FILE_PATH}/#{section_id}/error", 'w')
+    timestamp = Time.now.strftime("%Y-%m-%d %H:%M")
+    file.print "一括ページ取り込み実行結果 : #{timestamp}\n"
+    file.close
+    dirs = Dir.glob("#{dir + '/zips'}/**")
+    import_files(section_id, split_dir, dir, genre_id, genre, dirs, path)
+    begin
+      d = split_dir.join('/')
+      system("rm #{d}/*.zip")
+      system("rm #{d}/genre_id")
+      system("rm #{d}/user_id")
+      system("rm -rf #{d}/zips")
+    rescue
+      file = open("#{Page::ZIP_FILE_PATH}/#{section_id}/error", 'w')
+      file.print "zipファイルが削除出来ませんでした\n"
+      file.close
+    end
+  end
+end

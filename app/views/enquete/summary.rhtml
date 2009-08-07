@@ -1,0 +1,51 @@
+<% @page_title = "アンケート：#{h(@page.title)}" %>
+<div>
+[<%= link_to('一覧に戻る', :action => 'list') %>]
+</div>
+<div id="enquete-answers">
+<p id="total">回答数：<%= @enquete_answers.size %>件</p>
+<p class='table-caption'><%= h(@page.title) %></p>
+  <% @enquete_items.each_with_index do |item, no| -%>
+    <table>
+    <% if item.checkbox_or_radio? %>
+      <tr>
+        <th class="question-no">問<%= (no + 1).to_s %></th>
+        <th class="question"><%= h(item.name) %></th>
+        <th>入力数</th>
+      </tr>
+      <% item.answer_ranking.each_with_index do |rank, i| -%>
+        <tr>
+          <td class="answer-no"><%= (i + 1).to_s %></td>
+          <td class="answer">
+            <%= h(rank.item_value.value) -%>
+            <% if rank.item_value.other && (rank.count > 0)-%>
+              <%= link_to(' [入力内容を見る]', :action => 'other_values', :id => @page, :other_value => rank.item_value ) -%>
+            <% end -%>
+          </td>
+          <td class="answer-count"><%= rank.count %></td>
+        </tr>
+      <% end -%>
+      <% count = unanswered_count(item, @enquete_answers)
+        unless count.zero?  -%>
+        <tr>
+          <td class="answer-no"></td>
+          <td class="answer">未入力</td>
+          <td class="answer-count"><%= count %></td>
+        </tr>
+      <% end -%>
+    <% else -%>
+      <tr>
+      <th class="question-no">問<%= (no + 1).to_s %></th>
+      <th class="question"><%= h(item.name) %></th>
+      <th class="answer-details">
+      <% unless item.enquete_answer_items.all?{|v| v.blank?} -%>
+        <%= link_to('[入力内容を見る]', :action => 'answer_values', :id => @page, :enquete_item => item ) %>
+      <% else -%>
+        回答はありません
+      <% end -%>
+      </th>
+      </tr>
+    <% end -%>
+    </table>
+  <% end -%>
+</div>

@@ -1,0 +1,156 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<meta http-equiv="Content-Script-Type" content="text/javascript" />
+<meta name="description" content="島根県" />
+<meta name="keywords" content="島根県,自治体,行政" />
+<% unless @layout == :top_layout -%>
+<%= stylesheet_link_tag('default', :media => "screen,print,tv") %>
+<% else -%>
+<%= stylesheet_link_tag('top', :media => "screen,print,tv") %>
+<% end -%>
+<%= stylesheet_link_tag('color', :media => "screen,print,tv", :title => "カラー") %>
+<%= stylesheet_link_tag('aural', :media => 'aural', :title => '音声') %>
+<%= stylesheet_link_tag('hc', :rel => 'alternate stylesheet', :media => 'screen,tv', :title => 'ハイコントラスト') %>
+<% if @layout == :top_layout -%>
+<%= javascript_include_tag 'equal_height_box' %>
+<% end -%>
+<%= javascript_include_tag 'rounded_corners_lite.inc.js' %>
+<%= javascript_include_tag 'rounded_corners.conf.js' %>
+<%= javascript_include_tag 'banner' %>
+<%= javascript_include_tag 'common' %>
+<link rel="index" href="sitemap.html" />
+<link rev="made" href="mailto:webmaster&#64;pref.shimane.lg.jp" />
+<% if @page.rss_create? -%>
+<link href="<%= @page.genre.path + @page.basename + ".rdf" %>" rel="alternate" title="RSS" type="application/rss+xml" />
+<% end -%>
+<title>島根県 : <%= @page ? @page.title : '' %></title>
+<% if @preview -%><style type="text/css">.invalid {border: 1px red solid;}</style><% end -%>
+</head>
+
+<!-- ヘッダ -->
+<% if @page.owner_police? -%>
+<body onload="loadCookiePolice();">
+<%= render :partial => '/visitor/header_police' %>
+<% else -%>
+<body onload="loadCookie();">
+<% if @layout == :top_layout -%>
+<%= render :partial => '/visitor/top_header' %>
+<% else -%>
+<%= render :partial => '/visitor/header_normal' %>
+<% end -%>
+<% end -%>
+
+<div><a id="content_top"></a></div>
+<!-- コンテント -->
+<div id="content">
+<% case @layout -%>
+<% when :news_layout -%>
+<%= render(:partial => '/visitor/topic_path') %>
+<!-- begin_content -->
+<%= render :partial => 'top_header' %>
+<!-- end_content -->
+ページ：<%= news_pagination_menu(@news_pages) %>
+<%= render(:partial => '/visitor/topic_path') %>
+
+<% when :normal_layout -%>
+<%= render(:partial => '/visitor/topic_path') %>
+<!-- begin_content -->
+<%= render(:partial => '/visitor/content') %>
+<!-- end_content -->
+<%= render(:partial => '/visitor/topic_path') %>
+
+<% when :section_top_layout -%>
+<%= render(:partial => '/visitor/topic_path') %>
+<%= section_main %>
+<%= section_subject %>
+<%= render(:partial => '/visitor/topic_path') %>
+
+<% when :genre_top_layout -%>
+<% if @genre -%>
+<%= render(:partial => '/visitor/topic_path') %>
+<!-- begin_content -->
+<%= render(:partial => '/visitor/content') %>
+<!-- end_content -->
+<%= render(:partial => '/visitor/topic_path') %>
+
+<% else -%>
+<div id="main" style="width: 100%;">
+<%= render(:partial => '/visitor/topic_path') %>
+<!-- begin_content -->
+<%= render(:partial => '/visitor/content') %>
+<!-- end_content -->
+<%= render(:partial => '/visitor/topic_path') %>
+</div>
+<% end -%>
+
+<% when :top_layout -%>
+<!-- begin_content -->
+<%= render(:partial => '/visitor/content') %>
+<!-- end_content -->
+<% end -%>
+</div>
+
+<% unless @layout == :top_layout -%>
+<!-- フッタ -->
+
+<div id="footer">
+<div id="contact">
+
+<% if @genre.path == '/' && @page.name == 'index' -%>
+<div id="qr_code"><img src="<%= @genre.path %><%= @page.name%>.png" alt="" /></div>
+<% end -%>
+
+<% case @layout -%>
+<% when :top_layout -%>
+<%# do nothing because footer info is in the content %>
+<% when :normal_layout, :section_top_layout -%>
+<% if section = @page.genre.section -%>
+<address>
+<% if section.id == Section::SUPER_SECTION -%>
+島根県庁 〒690-8501 島根県松江市殿町1番地<br />電話：0852-22-5111（代）,
+<a href="http://www.pref.shimane.lg.jp/phone.html">県機関の電話番号案内</a>,
+<a href="http://www.pref.shimane.lg.jp/kochokoho/profile/site.html">島根県の位置</a>
+<% else -%>
+<%= format_address(section.info) %>
+<% end -%>
+</address>
+</div>
+<div id="about">
+<p>
+<a href="/privacy.html">個人情報の取扱い</a> |
+<a href="/cl.html">著作権・リンク等</a> |
+<a href="/ac.html">アクセシビリティ</a>
+</p>
+</div>
+<% end -%>
+
+<% else -%>
+<address>島根県庁 〒690-8501 島根県松江市殿町1番地<br />電話：0852-22-5111（代）,
+<a href="http://www.pref.shimane.lg.jp/phone.html">県機関の電話番号案内</a>,
+<a href="http://www.pref.shimane.lg.jp/kochokoho/profile/site.html">島根県の位置</a>
+<br />
+<a href="mailto:webmaster@pref.shimane.lg.jp">webmaster@pref.shimane.lg.jp</a>
+</address>
+</div>
+<div id="about">
+<p>
+<a href="/privacy.html">個人情報の取扱い</a> |
+<a href="/cl.html">著作権・リンク等</a> |
+<a href="/ac.html">アクセシビリティ</a>
+</p>
+</div>
+<% end -%>
+</div>
+<% end -%>
+<% if @page && @page.path == "/" -%>
+<% unless @preview -%>
+<%= render(:partial => 'footer_banner') %>
+<% end -%>
+<% end -%>
+<div style="clear: both;"></div>
+<%= @page.genre.analytics_code if !@preview && @page && @page.genre && @page.genre.analytics_code %>
+</body>
+</html>

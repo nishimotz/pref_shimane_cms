@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="Shift_JIS"?>
+
+<ea_symbol_table>
+  <W1 orth="Ａ" pron="エー" pos="記号-文字" lex="エー!Ａ" indexForm="エー" indexOrth="Ａ" aType="1"/>
+  <W1 orth="Ｂ" pron="ビー" pos="記号-文字" lex="ビー!Ｂ" indexForm="ビー" indexOrth="Ｂ" aType="1"/>
+  <W1 orth="Ｃ" pron="シー" pos="記号-文字" lex="シー!Ｃ" indexForm="シー" indexOrth="Ｃ" aType="1"/>
+  <W1 orth="Ｄ" pron="ディー" pos="記号-文字" lex="ディー!Ｄ" indexForm="ディー" indexOrth="Ｄ" aType="1"/>
+  <W1 orth="Ｅ" pron="イー" pos="記号-文字" lex="イー!Ｅ" indexForm="イー" indexOrth="Ｅ" aType="1"/>
+  <W1 orth="Ｆ" pron="エフ" pos="記号-文字" lex="エフ!Ｆ" indexForm="エフ" indexOrth="Ｆ" aType="1"/>
+  <W1 orth="Ｇ" pron="ジー" pos="記号-文字" lex="ジー!Ｇ" indexForm="ジー" indexOrth="Ｇ" aType="1"/>
+  <W1 orth="Ｈ" pron="エイチ" pos="記号-文字" lex="エイチ!Ｈ" indexForm="エイチ" indexOrth="Ｈ" aType="1"/>
+  <W1 orth="Ｉ" pron="アイ" pos="記号-文字" lex="アイ!Ｉ" indexForm="アイ" indexOrth="Ｉ" aType="1"/>
+  <W1 orth="Ｊ" pron="ジェー" pos="記号-文字" lex="ジェー!Ｊ" indexForm="ジェー" indexOrth="Ｊ" aType="1"/>
+  <W1 orth="Ｋ" pron="ケー" pos="記号-文字" lex="ケー!Ｋ" indexForm="ケー" indexOrth="Ｋ" aType="1"/>
+  <W1 orth="Ｌ" pron="エル" pos="記号-文字" lex="エル!Ｌ" indexForm="エル" indexOrth="Ｌ" aType="1"/>
+  <W1 orth="Ｍ" pron="エム" pos="記号-文字" lex="エム!Ｍ" indexForm="エム" indexOrth="Ｍ" aType="1"/>
+  <W1 orth="Ｎ" pron="エヌ" pos="記号-文字" lex="エヌ!Ｎ" indexForm="エヌ" indexOrth="Ｎ" aType="1"/>
+  <W1 orth="Ｏ" pron="オー" pos="記号-文字" lex="オー!Ｏ" indexForm="オー" indexOrth="Ｏ" aType="1"/>
+  <W1 orth="Ｐ" pron="ピー" pos="記号-文字" lex="ピー!Ｐ" indexForm="ピー" indexOrth="Ｐ" aType="1"/>
+  <W1 orth="Ｑ" pron="キュー" pos="記号-文字" lex="キュー!Ｑ" indexForm="キュー" indexOrth="Ｑ" aType="1"/>
+  <W1 orth="Ｒ" pron="アール" pos="記号-文字" lex="アール!Ｒ" indexForm="アール" indexOrth="Ｒ" aType="1"/>
+  <W1 orth="Ｓ" pron="エス" pos="記号-文字" lex="エス!Ｓ" indexForm="エス" indexOrth="Ｓ" aType="1"/>
+  <W1 orth="Ｔ" pron="ティー" pos="記号-文字" lex="ティー!Ｔ" indexForm="ティー" indexOrth="Ｔ" aType="1"/>
+  <W1 orth="Ｕ" pron="ユー" pos="記号-文字" lex="ユー!Ｕ" indexForm="ユー" indexOrth="Ｕ" aType="1"/>
+  <W1 orth="Ｖ" pron="ブイ" pos="記号-文字" lex="ブイ!Ｖ" indexForm="ブイ" indexOrth="Ｖ" aType="1"/>
+  <W1 orth="Ｗ" pron="ダブリュー" pos="記号-文字" lex="ダブリュー!Ｗ" indexForm="ダブリュー" indexOrth="Ｗ" aType="1"/>
+  <W1 orth="Ｘ" pron="エックス" pos="記号-文字" lex="エックス!Ｘ" indexForm="エックス" indexOrth="Ｘ" aType="1"/>
+  <W1 orth="Ｙ" pron="ワイ" pos="記号-文字" lex="ワイ!Ｙ" indexForm="ワイ" indexOrth="Ｙ" aType="1"/>
+  <W1 orth="Ｚ" pron="ゼット" pos="記号-文字" lex="ゼット!Ｚ" indexForm="ズィー" indexOrth="Ｚ" aType="1"/>
+  <W1 orth="ａ" pron="エー" pos="記号-文字" lex="エー!Ａ" indexForm="エー" indexOrth="Ａ" aType="1"/>
+  <W1 orth="ｂ" pron="ビー" pos="記号-文字" lex="ビー!Ｂ" indexForm="ビー" indexOrth="Ｂ" aType="1"/>
+  <W1 orth="ｃ" pron="シー" pos="記号-文字" lex="シー!Ｃ" indexForm="シー" indexOrth="Ｃ" aType="1"/>
+  <W1 orth="ｄ" pron="ディー" pos="記号-文字" lex="ディー!Ｄ" indexForm="ディー" indexOrth="Ｄ" aType="1"/>
+  <W1 orth="ｅ" pron="イー" pos="記号-文字" lex="イー!Ｅ" indexForm="イー" indexOrth="Ｅ" aType="1"/>
+  <W1 orth="ｆ" pron="エフ" pos="記号-文字" lex="エフ!Ｆ" indexForm="エフ" indexOrth="Ｆ" aType="1"/>
+  <W1 orth="ｇ" pron="ジー" pos="記号-文字" lex="ジー!Ｇ" indexForm="ジー" indexOrth="Ｇ" aType="1"/>
+  <W1 orth="ｈ" pron="エッチ" pos="記号-文字" lex="エイチ!Ｈ" indexForm="エイチ" indexOrth="Ｈ" aType="1"/>
+  <W1 orth="ｉ" pron="アイ" pos="記号-文字" lex="アイ!Ｉ" indexForm="アイ" indexOrth="Ｉ" aType="1"/>
+  <W1 orth="ｊ" pron="ジェー" pos="記号-文字" lex="ジェー!Ｊ" indexForm="ジェー" indexOrth="Ｊ" aType="1"/>
+  <W1 orth="ｋ" pron="ケー" pos="記号-文字" lex="ケー!Ｋ" indexForm="ケー" indexOrth="Ｋ" aType="1"/>
+  <W1 orth="ｌ" pron="エル" pos="記号-文字" lex="エル!Ｌ" indexForm="エル" indexOrth="Ｌ" aType="1"/>
+  <W1 orth="ｍ" pron="エム" pos="記号-文字" lex="エム!Ｍ" indexForm="エム" indexOrth="Ｍ" aType="1"/>
+  <W1 orth="ｎ" pron="エヌ" pos="記号-文字" lex="エヌ!Ｎ" indexForm="エヌ" indexOrth="Ｎ" aType="1"/>
+  <W1 orth="ｏ" pron="オー" pos="記号-文字" lex="オー!Ｏ" indexForm="オー" indexOrth="Ｏ" aType="1"/>
+  <W1 orth="ｐ" pron="ピー" pos="記号-文字" lex="ピー!Ｐ" indexForm="ピー" indexOrth="Ｐ" aType="1"/>
+  <W1 orth="ｑ" pron="キュー" pos="記号-文字" lex="キュー!Ｑ" indexForm="キュー" indexOrth="Ｑ" aType="1"/>
+  <W1 orth="ｒ" pron="アール" pos="記号-文字" lex="アール!Ｒ" indexForm="アール" indexOrth="Ｒ" aType="1"/>
+  <W1 orth="ｓ" pron="エス" pos="記号-文字" lex="エス!Ｓ" indexForm="エス" indexOrth="Ｓ" aType="1"/>
+  <W1 orth="ｔ" pron="ティー" pos="記号-文字" lex="ティー!Ｔ" indexForm="ティー" indexOrth="Ｔ" aType="1"/>
+  <W1 orth="ｕ" pron="ユー" pos="記号-文字" lex="ユー!Ｕ" indexForm="ユー" indexOrth="Ｕ" aType="1"/>
+  <W1 orth="ｖ" pron="ブイ" pos="記号-文字" lex="ブイ!Ｖ" indexForm="ブイ" indexOrth="Ｖ" aType="1"/>
+  <W1 orth="ｗ" pron="ダブリュ" pos="記号-文字" lex="ダブリュー!Ｗ" indexForm="ダブリュー" indexOrth="Ｗ" aType="1"/>
+  <W1 orth="ｘ" pron="エックス" pos="記号-文字" lex="エックス!Ｘ" indexForm="エックス" indexOrth="Ｘ" aType="1"/>
+  <W1 orth="ｙ" pron="ワイ" pos="記号-文字" lex="ワイ!Ｙ" indexForm="ワイ" indexOrth="Ｙ" aType="1"/>
+  <W1 orth="ｚ" pron="ゼット" pos="記号-文字" lex="ゼット!Ｚ" indexForm="ズィー" indexOrth="Ｚ" aType="1"/>
+</ea_symbol_table>

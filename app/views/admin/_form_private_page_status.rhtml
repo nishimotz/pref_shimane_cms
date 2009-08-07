@@ -1,0 +1,53 @@
+<h2>編集中ページの設定変更</h2>
+<%= start_form_tag(:action => 'update_private_page_status', :id => @private) %>
+<div>
+  <%= submit_tag('    保存    ') %>
+  <%= submit_tag('キャンセル', :name => 'cancel', :onclick => 'return confirm("編集ページの設定変更処理をキャンセルします。よろしいですか？")') %>
+</div>
+<% unless @private.errors.empty? -%>
+<div style="color:red; padding: 10px 10px 0 10px;"><%= @private.errors.full_messages.join('<br />') %></div>
+<% end -%>
+<h3>ページの状態の設定</h3>
+<div>現在の設定：<%= h(@private.status_message) %></div>
+<div>
+<%= collection_radio_button(:private, :admission, @private_status_list, :first, :last) %>
+</div>
+<br />
+  <table>
+    <tr>
+      <th style="border: none;><label for="user_info">担当者</label></th>
+      <td style="border: none;"><%= text_field(:private, :user_name, :size => 30) %><label for="tel">&nbsp;&nbsp;(TEL)</label><%= text_field(:private, :tel, :size => 30) %></td>
+    </tr>
+    <tr>
+      <th style="border: none;"><label for="e-mail">Eメール</label></th>
+      <td style="border: none;"><%= text_field(:private, :email, :size => 30) %>@<%= h(CMSConfig[:mail_domain]) %></td>
+    </tr>
+    <tr>
+      <th style="border: none;"><label for="comment">コメント</label></th>
+      <td style="border: none;"><%= text_field(:private, :comment, :size => 100) %></td>
+    </tr>
+  </table>
+<h3>ページの公開期間</h3>
+<div style="color: red"><%= flash[:public_term_notice] %></div>
+<div>
+&nbsp;&nbsp;<%= radio_button('public_term', 'switch', 'off', :checked=> ('checked' if !@private.begin_date && !@private.end_date), :onclick => "NotSetPublicTerm('gray')") %>公開期間を設定しない<%= radio_button('public_term', 'switch', 'on', :id => 'radio_on', :checked => ('checked' if @private.begin_date || @private.end_date), :id => 'set_public_term', :onclick => "SetPublicTerm('black')") %>公開期間を設定する
+<% disable_begin = @private.begin_date ? false : true -%>
+<% disable_end = @private.end_date ? false : true -%>
+<% color = (@private.begin_date || @private.end_date) ? 'black' : 'gray' -%>
+<div id="public_term_select" style="color: <%= color %>">
+&nbsp;&nbsp;公開開始日 : <%= switch_radio_datetime_select('private', 'begin_date', :use_month_numbers => true, :minute_step => 15, :disabled => disable_begin) %><br />
+&nbsp;&nbsp;公開終了日 : <%= switch_radio_datetime_select('private', 'end_date', :use_month_numbers => true, :minute_step => 15, :disabled => disable_end) %> <%= check_box('public_term', 'end_date_enable', {:checked => ('checked' if @private.begin_date && !@private.end_date), :disabled => disable_begin, :onclick => 'TogglePublicTermEnd();'}, 'off', 'on') %>公開終了日は設定しない
+</div>
+<h3>新着掲載</h3>
+<table>
+  <tr>
+    <td style="border: none;"><%= check_box("private", "section_news", {}, PageContent::NEWS_YES, PageContent::NEWS_NO) %> 所属トップ新着掲載<!-- (現在の設定) : <%= @private.section_news_message %> -->
+    <%= check_box("private", "top_news", {}, PageContent::NEWS_REQUEST, PageContent::NEWS_NO) %> 県トップ新着掲載<!-- (現在の設定) : <%= @private.top_news == PageContent::NEWS_NO ? '依頼しない' : '依頼する' %> --></td>
+  </tr>
+  <tr>
+    <td style="border: none;">&nbsp;&nbsp;&nbsp;&nbsp;<label for="page_content">新着一覧での見出し</label> : <%= text_field('private', 'news_title', :size => 50) %></td>
+  </tr>
+</table>
+<p>※所属トップページの新着情報に掲載したページは、自動的にフォルダの新着情報にも表示されます。</p>
+<p>※県トップページへの新着掲載の承認は、運用管理者（広聴広報課）が行います。</p>
+<%= end_form_tag %>

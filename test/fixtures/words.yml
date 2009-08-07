@@ -1,0 +1,12 @@
+first:
+  id: 1
+  base: 漢字
+  text: カンジ
+  user_id: 1
+  updated_at: 2006-01-05 10:00:00 +09:00
+second:
+  id: 2
+  base: 平仮名
+  text: ヒラガナ
+  user_id: 2
+  updated_at: 2006-01-04 10:00:00 +09:00

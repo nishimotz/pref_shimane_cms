@@ -1,0 +1,61 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  <title>{$lang_enquete_title}</title>
+  <script language="javascript" type="text/javascript" src="../../tiny_mce_popup.js"></script>
+  <script language="javascript" type="text/javascript" src="jscripts/enquete.js"></script>
+  <script language="javascript" type="text/javascript" src="../../utils/mctabs.js"></script>
+  <script language="javascript" type="text/javascript" src="../../utils/form_utils.js"></script>
+  <link href="css/enquete.css" rel="stylesheet" type="text/css" />
+  <base target="_self" />
+</head>
+<body onload="tinyMCEPopup.executeOnLoad('init();');" style="display: none">
+    <form onsubmit="insertEnquete();return false;" action="#">
+    <div class="tabs">
+      <ul>
+        <li id="general_tab" class="current"><span><a href="javascript:mcTabs.displayTab('general_tab','general_panel');" onmousedown="return false;">{$lang_enquete_title}</a></span></li>
+      </ul>
+    </div>
+
+    <div class="panel_wrapper">
+      <div id="general_panel" class="panel current">
+<div><label for="file">{$lang_enquete_list}</label></div>
+<div>
+                    <select id="enquete" name="enquete" onchange="change(this);">
+                      <option value="">↓選んでください</option>
+                      <option value="radio">選択式</option>
+                      <option value="check">選択式（複数選択可）</option>
+                      <option value="text">1行入力欄</option>
+                      <option value="textarea">複数行入力欄</option>
+                      <option value="subscribe_mail">メルマガ登録用</option>
+                      <option value="unsubscribe_mail">メルマガ退会用</option>
+                    </select></div>
+              <p>
+                <div>{$lang_enquete_name}</div>
+<div><input type="text" id="name" name="name" value="" size="30" /><span id="mail_display" style="display: none;">@mm.pref.shimane.jp</span></div>
+<h4 id="hissu_display1" style="display: ;">必須項目の設定方法</h4>
+<div id="hissu_display2" style="display: ;">入力を必須にしたい項目は、項目名の末尾に「*（半角アスタリスク）」をつけてください。</div>
+<br />
+<h4 id="mail_display2" style="display: none;">メールマガジン登録・退会</h4>
+<div id="mail_display3" style="display: none;">メールマガジンの登録、退会の場合は項目名にメールアドレス(*****@mm.pref.shimane.jpの******の部分)を入力してください。</div>
+              </p>
+              <div id="select" style="display: none;">
+                <div>{$lang_enquete_candidates}</div>
+<div><textarea id="candidates" name="candidates" style="width: 100%;" rows="4"></textarea></div>
+<div><input type="checkbox" id="other" name="other" style="border: none;" value="on" />{$lang_enquete_other}</div>
+              </div>
+      </div>
+    </div>
+
+    <div class="mceActionPanel">
+      <div style="float: left">
+        <input type="button" id="insert" name="insert" value="{$lang_insert}" onclick="insertEnquete();" />
+      </div>
+
+      <div style="float: right">
+        <input type="button" id="cancel" name="cancel" value="{$lang_cancel}" onclick="tinyMCEPopup.close();" />
+      </div>
+    </div>
+  </form>
+</body>
+</html>

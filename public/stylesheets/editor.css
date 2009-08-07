@@ -1,0 +1,10 @@
+@import url("default.css");
+@import url("color.css");
+
+body {
+  margin: 10px;
+}
+
+.invalid {
+  border: 1px red solid;
+}

@@ -1,0 +1,66 @@
+<%= render(:partial => 'current_genre') %>
+<br />
+<div><label for="status">現在のフォルダのページ一覧</label></div>
+<div>
+<%= image_tag('page.png', :alt => '', :size => '16x16') %>公開中
+<%= image_tag('page_stop.png', :alt => '', :size => '16x16') %>公開停止・公開期限切れ
+<%= image_tag('page.png', :alt => '', :size => '16x16') %>編集中
+<%= image_tag('page_irai.png', :alt => '', :size => '16x16') %>公開依頼中
+<%= image_tag('page_kyakka.png', :alt => '', :size => '16x16') %>公開依頼却下
+<%= image_tag('page_machi.png', :alt => '', :size => '16x16') %>公開待ち
+</div>
+
+<table>
+  <tr>
+    <th>ページ名</th>
+    <th>公開ページ</th>
+    <th>編集ページ</th>
+  </tr>
+  <% @genre.page_list.each do |page| %>
+    <tr>
+      <td><%= link_to("#{h(page.title)} &lt;#{h(page.name)}.html&gt;", {:action => 'show_page_info', :id => page}) %></td>
+      <!-- public -->
+      <td width="125">
+        <% @public = page.public_page -%>
+        <% unless @public-%>
+          <p>なし</p>
+        <% else -%>
+          <% if page.current -%>
+            <%= image_tag('page.png', :alt => '', :size => '16x16') %>
+            [<%= popup_link_to('公開ページ', {:controller =>'visitor', :action => 'show_revision', :id => @public.id}) %>]
+          <% elsif @public.admission == PageContent::CANCEL -%>
+            <%= image_tag('page_stop.png', :alt => '', :size => '16x16') %>
+            [公開停止]
+          <% else -%>
+            <% if page.waiting_page -%>
+              なし
+            <% else -%>
+              <%= image_tag('page_stop.png', :alt => '', :size => '16x16') %>
+              [公開期限切れ]
+            <% end -%>
+          <% end -%>
+        <% end -%>
+      </td>
+      <!-- private -->
+      <td width="115">
+        <% if page.private && page.private.admission == PageContent::PUBLISH_REQUEST -%>
+          <%= image_tag('page_irai.png', :alt => '', :size => '16x16') %>
+          [<%= popup_link_to('公開依頼中', {:controller =>'visitor', :action => 'show', :id => page}) %>]
+        <% elsif page.private && page.private.admission == PageContent::PUBLISH_REJECT -%>
+          <%= image_tag('page_kyakka.png', :alt => '', :size => '16x16') %>
+          [<%= popup_link_to('却下', {:controller =>'visitor', :action => 'show', :id => page}) %>]
+        <% elsif page.edge_public && page.edge_public.admission == PageContent::PUBLISH && page.edge_public.begin_date && page.edge_public.begin_date >= Time.now -%>
+          <%= image_tag('page_machi.png', :alt => '', :size => '16x16') %>
+          [<%= popup_link_to('公開待ち', {:controller =>'visitor', :action => 'show_revision', :id => page.private_page.id}) %>]
+        <% else -%>
+          <% if page.private_page -%>
+            <%= image_tag('page.png', :alt => '', :size => '16x16') %>
+            [<%= popup_link_to('プレビュー', {:controller =>'visitor', :action => 'show', :id => page}) %>]
+          <% else -%>
+            <p>なし</p>
+          <% end -%>
+        <% end -%>
+      </td>
+    </tr>
+  <% end -%>
+</table>

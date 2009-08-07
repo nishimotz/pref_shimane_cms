@@ -1,0 +1,9 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+theme:
+  id: 1
+  name: 'theme'
+  value: 'test'
+top_photo_link:
+  id: 2
+  name: 'top_photo_link'
+  value: '/top/photo/link.html'

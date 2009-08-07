@@ -1,0 +1,60 @@
+ans1_1:
+  id: 1
+  answer_id: 1
+  enquete_item_id: 1
+  value: value1
+ans1_1_2:
+  id: 2
+  answer_id: 1
+  enquete_item_id: 1
+  value: value1_2
+ans1_1_3:
+  id: 3
+  answer_id: 1
+  enquete_item_id: 1
+  value: value1_3
+  other: other value
+ans1_2:
+  id: 4
+  answer_id: 1
+  enquete_item_id: 2
+  value: value2
+  other: value2 other value
+ans1_3:
+  id: 5
+  answer_id: 1
+  enquete_item_id: 3
+  value: value3
+answered_count1:
+  id: 6
+  answer_id: 3
+  enquete_item_id: 5
+  value: A
+answered_count2:
+  id: 7
+  answer_id: 3
+  enquete_item_id: 5
+  value: B
+answered_other0:
+  id: 8
+  answer_id: 4
+  enquete_item_id: 6
+  value: B
+  other: "other1"
+answered_other1:
+  id: 9
+  answer_id: 4
+  enquete_item_id: 6
+  value: B
+  other: "other2"
+answered_other2:
+  id: 10
+  answer_id: 6
+  enquete_item_id: 6
+  value: B
+  other: "  "
+answered_count4:
+  id: 11
+  answer_id: 5
+  enquete_item_id: 5
+  value: A

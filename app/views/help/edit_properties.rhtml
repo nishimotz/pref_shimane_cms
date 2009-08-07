@@ -1,0 +1,56 @@
+<%= render(:partial => 'menu') %>
+<div class="container">
+[<%= link_to('ヘルプ一覧に戻る', :action => 'admin_index') %>]
+<h2>ヘルプ設定(<%= h(@help.name) %>)</h2>
+
+<% if @mode == :edit -%>
+<h3>見出しの変更</h3><%= link_to('見出しの追加モードに戻る', :action => 'edit_properties', :id => params[:id]) %>
+<% else -%>
+<h3>見出しの追加</h3>
+<% end -%>
+
+<%= start_form_tag(:action => 'update_properties', :id => params[:id]) %>
+<table style="margin-top: 5px;">
+  <tr>
+    <th>項目名</th>
+    <td><%= text_field(:help, :name, :size => 60) %></td>
+  </tr>
+  <tr>
+    <th>カテゴリ</th>
+    <td>
+      大カテゴリ<select name="big_category"><%= options_for_select(@big_categories, @big_category) %></select>
+      中カテゴリ<select name="middle_category"><%= options_for_select(@middle_categories, @middle_category) %></select>
+      小カテゴリ<select name="small_category"><%= options_for_select(@small_categories, @small_category) %></select>
+    </td>
+  </tr>
+</table>
+<%= hidden_field_tag('help_id', params[:help_id]) %>
+<%= submit_tag('追加・変更') %>
+<%= end_form_tag %>
+
+<h3>現在の見出し設定</h3>
+<table style="margin-top: 5px;">
+  <tr>
+    <th>No</th>
+    <th>状態</th>
+    <th>項目名</th>
+    <th>カテゴリ</th>
+    <th>操作</th>
+  </tr>
+  <% @helps.each_with_index do |help, i| -%>
+  <% if help.public && help.public.zero? -%>
+  <tr style="background-color: #CCCCCC;">
+  <% else -%>
+  <tr>
+  <% end -%>
+    <td><%= i + 1 %></td>
+    <td><%= help.publish_title %></td>
+    <td><%= h(help.name) %></td>
+    <td><%= h(help.category.name) rescue '' %></td>
+    <td>
+      [<%= link_to('編集', :action => 'set_properties', :id => params[:id], :help_id => help) %>]|[<%= link_to('削除', {:action => 'destroy_properties', :id => help, :help_id => params[:id]}, :confirm => '本当に削除しますか？') %>]|[<%= link_to('公開・非公開処理', {:action => 'publish', :id => help}, :confirm => '公開・非公開処理を行いますか？') %>]
+    </td>
+  </tr>
+  <% end -%>
+</table>
+</div>

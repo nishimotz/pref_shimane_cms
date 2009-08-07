@@ -1,0 +1,13 @@
+<%= render(:partial => 'menu') %>
+<div class="container">
+<div class="side">
+<div class="dir">
+<%= render(:partial => 'genre_list') %>
+</div>
+</div>
+<div class="main">
+<%= form_tag({:action => 'new_page', :id => params[:id], :page_id => params[:page_id]}) %>
+<%= render(:partial => 'divert_form') %>
+<%= end_form_tag %>
+</div>
+</div>

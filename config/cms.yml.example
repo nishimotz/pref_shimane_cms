@@ -1,0 +1,91 @@
+# for export, mail body
+:base_uri: http://localhost/
+:mail_uri: http://localhost/
+:public_uri: http://localhost:8000/
+:contents_uri: http://localhost:8000/
+
+# for uri conversion
+:local_domains:
+  - localhost
+  - localhost2
+  - localhost3
+
+# for notify mails
+:mail_domain: localhost
+
+:mail_config:
+  :address: localhost
+  :domain: localhost.localdomain
+  :port: "25"
+  :authentication: :plain
+
+:super_user_mail: webmaster@localhost.localdomain
+
+:form_data_transfer:
+  :remote_host: localhost
+  :remote_user: www-data
+  :command: /var/share/cms/tool/transfer_form_data
+  :gpg_homedir: /var/share/www/.gnupg
+  :enquete:
+    :identity: /var/share/www/.ssh/id_rsa_enquete
+    :data_dir: /var/share/cms/form_data/enquete
+:enquete:
+  :post_cgi_uri: https://localhost/cgi-bin-ssl/enquete.cgi
+
+# for test environment
+#:no_password: true
+
+# anti virus
+#:anti_virus:
+#  - "fsav"
+
+# section ids
+:section_ids:
+  :police: 10
+
+:top_genre_id: 1
+
+# relative path for emergency info.
+:emergency_path: "/emergency/"
+
+# main photograph file for top page
+:top_page_image: "photo.jpg"
+
+# news page setting
+:news_pages:
+  bousai_info:
+    "bousai_news.html"
+  life:
+    "life_news.html"
+  environment:
+    "environment_news.html"
+  industry:
+    "industry_news.html"
+  infra:
+    "infra_news.html"
+  admin:
+    "admin_news.html"
+
+:all_news_pages:
+  bousai_info:
+    "all_bousai_news.html"
+  life:
+    "all_life_news.html"
+  environment:
+    "all_environment_news.html"
+  industry:
+    "all_industry_news.html"
+  infra:
+    "all_infra_news.html"
+  admin:
+    "all_admin_news.html"
+
+:top_news_page: "top_news.html"
+:top_all_news_page: "all_top_news.html"
+:other_news_page: "other_news.html"
+:other_all_news_page: "all_other_news.html"
+:bid_info_path: "/bid_info/"
+
+# directory to store passwd file used for digest auth on public server. 
+:public_htpasswd_dir: /var/www/htpasswd
+

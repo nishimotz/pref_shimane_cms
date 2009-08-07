@@ -1,0 +1,57 @@
+<h1 style="text-align: center">島根県ホームページ管理システム（CMS）</h1>
+<%= start_form_tag({:action=> "login"}, :name => 'Login') %>
+<div title="Account login" id="loginform">
+  <% if @flash['notice'] -%>
+    <div id="message" style="color: red;"><%= @flash['notice'] %></div>
+  <% end -%>
+  <br />
+  <% now = Time.now
+     emergency_info = EmergencyInfo.find(:first,
+                                         :conditions => ['display_start_datetime <= ? and display_end_datetime >= ?', now, now],
+                                         :order => 'id desc')
+   %>
+  <% if emergency_info -%>
+    <div style="text-align:center; color:red;"><%= emergency_info.content %></div>
+  <br />
+  <p style="text-align:center;">ユーザID、パスワードを半角英数字で入力してください。</p>
+  <% end -%>
+  <table align="center">
+    <tr>
+      <th style="border: none;"><label for="user_login">ユーザID</label></th>
+      <td style="border: none;"><input type="text" name="user_login" id="user_login" value="" style="width: 10em;" /></td>
+    </tr>
+    <tr>
+      <th style="border: none;"><label for="user_password">パスワード</label></th>
+      <td style="border: none;"><input type="password" name="user_password" id="user_password" style="width: 10em;" /></td>
+    </tr>
+  </table>
+  <%= hidden_field('redirect', 'controller', 'value' => params[:controller_name]) %>
+  <%= hidden_field('redirect', 'action', 'value' => params[:action_name]) %>
+  <%= hidden_field('redirect', 'id', 'value' => params[:id]) %>
+  <p style="text-align:center">
+  <%= submit_tag("ログイン", :name => 'login') %>
+  </p>
+  <p style="text-align: right">[<%= link_to('ヘルプ', {:controller => 'help', :action => 'index'}, :popup => true) %>]</diva>
+</div>
+<%= end_form_tag %>
+<h2 style="text-align: center">運用管理者からのお知らせ</h2>
+<% if @infos.empty? -%>
+お知らせはありません。
+<% else -%>
+<ul>
+<% @infos.each do |info| -%>
+  <li><%= news_strftime(info.last_modified) %>&nbsp;<%= link_to_remote(h(info.title), :update => 'info_content', :url => { :controller => 'admin', :action => 'show_info_content', :id => info}) %></li>
+<% end -%>
+</ul>
+<div style="text-align: center;">
+<%= link_to('前へ', { :page => @info_pages.current.previous }) if @info_pages.current.previous %>
+<%= link_to('次へ', { :page => @info_pages.current.next }) if @info_pages.current.next %>
+</div>
+<% end -%>
+<div id="info_content">
+</div>
+<br />
+<div align="center">
+問い合わせ先<br>
+政策企画局広聴広報課(電話 0852(22)-5771、6501・無線300-2-5771、6501)
+</div>

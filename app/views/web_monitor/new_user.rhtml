@@ -1,0 +1,16 @@
+<%= render(:partial => 'menu') %>
+<div class="container">
+  <% @mode = @web_monitor.new_record? ? '登録' : '編集' -%>
+  <h2>ウェブモニタの<%= @mode %></h2>
+
+  <%= start_form_tag({ :action => 'save_user', :id => @web_monitor}, :class => 'web_monitor_form') %>
+  <%= render :partial => 'form_user' %>
+  <%= end_form_tag %>
+
+  <% if @web_monitor.new_record? -%>
+    <%= start_form_tag({:action => "create_from_csv", :id => @genre}, :multipart => true, :class => 'web_monitor_form') %>
+    <%= render :partial => 'form_csv' %>
+    <%= end_form_tag %>
+  <% end -%>
+  <%= link_to '一覧画面へ戻る', :action => 'index', :id => @genre %>
+</div>

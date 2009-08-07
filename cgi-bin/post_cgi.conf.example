@@ -1,0 +1,7 @@
+:public_uri_base: http://www.pref.shimane.lg.jp
+:enquete_uri_base: http://www.pref.shimane.lg.jp
+:doc_root: /var/www/cms
+:post_dir_base: /var/share/cms/form_data
+:gpg_home: /var/share/www/.gnupg
+:gpg_encrypt_id: www-data@cms.pref.shimane.jp
+:mailmagazine_domain: mm.pref.shimane.jp

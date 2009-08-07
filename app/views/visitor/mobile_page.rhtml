@@ -1,0 +1,31 @@
+<html><head><title>島根県:<%= h(@page.title) %></title></head>
+<body>
+<a href="/">TOP</a>
+<hr>
+<% case @layout -%>
+<% when :normal_layout -%>
+  <%= render(:partial => '/visitor/content') %>
+<% when :section_top_layout -%>
+  <%= render(:partial => '/visitor/content') %>
+<% when :genre_top_layout -%>
+  <%= render(:partial => '/visitor/content') %>
+<% when :top_layout -%>
+  <%= render(:partial => '/visitor/content') %>
+<% end -%>
+<hr>
+<% case @layout -%>
+<% when :normal_layout, :section_top_layout -%>
+<% if section = @page.genre.section -%>
+<div>
+<%= format_address(section.info) %>
+</div>
+<% end -%>
+<% when :genre_top_layout, :top_layout -%>
+<div>島根県<br />
+〒690-8501<br />
+島根県松江市殿町1番地<br />
+電話:0852-22-5111(代)</div>
+<% end -%>
+<%= @page.genre.analytics_code if @page && @page.genre && @page.genre.analytics_code %>
+</body>
+</html>

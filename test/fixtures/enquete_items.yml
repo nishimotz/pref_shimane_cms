@@ -1,0 +1,31 @@
+pitem1:
+  id: 1
+  page_id: 1
+  'no': 1
+  name: item1
+  form_type: checkbox_other
+item2:
+  id: 2
+  page_id: 1
+  'no': 2
+  name: item2
+item3:
+  id: 3
+  page_id: 1
+  'no': 3
+  name: item3
+item4:
+  id: 4
+  page_id: 29
+  'no': 1 
+  name: item4
+answered_count1:
+  id: 5
+  page_id: 32
+  'no': 1 
+  name: 質問1
+answered_count0:
+  id: 6
+  page_id: 32
+  'no': 2 
+  name: 質問2

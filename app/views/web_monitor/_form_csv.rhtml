@@ -1,0 +1,13 @@
+<fieldset>
+<% if flash[:csv_error] -%>
+  <p style="color: red; margin: 5px;"><%= h(flash[:csv_error]) %></p>
+<% end -%>
+<% if @csv_invalid_record -%>
+  <%= fixed_error_messages_for('csv_invalid_record')%>
+<% end -%>
+<legend>CSVからの一括登録</legend>
+    <label for="csv">CSVファイル:</label> 
+    <%= file_field_tag "csv", :size => 50 %>
+    <br />
+    <%= submit_tag "登録する" %>
+</fieldset>

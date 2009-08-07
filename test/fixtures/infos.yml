@@ -1,0 +1,19 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+id1:
+  id: 1
+  title: CMS機能追加のお知らせ1
+  last_modified: 2006-02-15 10:30
+  content: テスト
+id2:
+  id: 2
+  title: CMS機能追加のお知らせ2
+  last_modified: 2006-02-16 10:30
+  content: テスト2
+id3:
+  id: 3
+  title: CMS機能追加のお知らせ3
+  last_modified: 2006-02-16 10:40
+  content: >-
+    テストです。
+    ああああ
+    あああ

@@ -1,0 +1,21 @@
+<%
+# 説明：そのフォルダにあるページの一覧を表示する
+# 引数：最大表示数（無指定時は全て）
+max = @args.first.to_i - 1
+pages = Page.find(:all,
+  :include => [:contents],
+  :conditions => ['genre_id = ? AND name != ?', @genre.id, 'index'],
+  :order => 'page_contents.id desc')
+page_list = pages.select do |page|
+  page.current
+end
+-%>
+<% if @preview || !page_list.empty? -%>
+
+<ul class="page_list">
+<% page_list[0..max].each do |page| -%>
+  <li><%= image_tag('page.png', :alt => '', :size => '16x16') %> <a href="<%= h(page.path) %>"> <%= h(page.news_title) %>（<%= h(news_strftime(page.current.last_modified)) %>）<!-- （<%= h(@genre.section_name_except_admin) %>） --></a></li>
+<% end -%>
+<% if @preview && page_list.empty? %>  <li><%= image_tag('page.png', :alt => '', :size => '16x16') %>  サンプルページ（<%= h(news_strftime(Time.now)) %>）</li><% end %>
+</ul>
+<% end -%>

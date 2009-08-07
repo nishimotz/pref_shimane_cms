@@ -1,0 +1,65 @@
+top: 
+  id: 1
+  page_id: 1
+  top_news: 2
+  last_modified: 2007-02-15 12:40:33
+  end_date: 
+  section_news: 0
+  admission: 3
+  tel:
+  news_title:
+  mobile:
+  content: >-
+    <div id="main">
+    <h2 class="emg">緊急情報</h2>
+    <%%= plugin('emergency') %>
+    <h2 class="news">新着情報</h2>
+    <div class="news"><%%= plugin('news', 10) %></div>
+    <div class="right">[<a href="/news.1.html">履歴一覧</a>]</div>
+    </div>
+  begin_date: 
+  comment:
+  user_name:
+  email:
+template1:
+  id: 2
+  page_id: 2
+  last_modified: 2006-01-19 14:00:00 +09:00
+  content: >-
+    <h2>新着情報</h2>
+    <%%= plugin('page_list') %>
+    <h2>事業内容</h2>
+    <h3>内容1</h3>
+    <h3>内容2</h3>
+    <h3>内容3</h3>
+    <h2>リンク</h2>
+  admission: 0
+  top_news: 0
+  section_news: 0
+template2:
+  id: 3
+  page_id: 3
+  last_modified: 2006-01-19 14:00:00 +09:00
+  content: >-
+    <%%= plugin('page_list') %>
+    <%%= plugin('genre_list') %>
+  admission: 0
+  top_news: 0
+  section_news: 0
+section: 
+  id: 4
+  page_id: 4
+  top_news: 0
+  last_modified: 2007-02-15 12:40:33
+  begin_date: 
+  end_date: 
+  section_news: 0
+  admission: 3
+  tel:
+  news_title:
+  comment:
+  user_name:
+  email:
+  content: >-
+    <%%= plugin('section') %>
+  mobile:

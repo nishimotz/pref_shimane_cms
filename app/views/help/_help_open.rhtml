@@ -1,0 +1,39 @@
+<%
+  style = ''
+  root = @root.dup
+  icon_name = 'folder_open.png'
+  @action_ajax = :right_pain_change_for_help
+  @help_id = @help if @help
+-%>
+
+<% if root.has_children? -%>
+  <%= help_open_category_link(root, params, icon_name, @action_name, @help_id) %>
+  <% unless root.helps.empty? -%>
+    <%= help_list(@mode, root, @help) %>
+  <% end -%>
+
+  <% root.children.each do |@root| -%>
+    <div id="dir-<%= @root.id %>" class="open">
+      <% if @category == @root -%>
+      <%= render(:partial => 'help_open') %>
+      <% elsif @help && @help.category == @root -%>
+      <%= render(:partial => 'help_open') %>
+      <% elsif @help && @help.category.related_category?(@root) -%>
+      <%= render(:partial => 'help_open') %>
+      <% else -%>
+      <%= render(:partial => 'help_close') %>
+      <% end -%>
+      <%#= help_list(@mode, @root, @help) -%>
+    </div>
+  <% end -%>
+
+<% else -%>
+  <% if @mode == :help && !root.helps.empty? -%>
+    <%= help_open_category_link(root, params, icon_name, @action_name, @help_id) %>
+    <%= help_list(@mode, @root, @help) -%>
+  <% else -%>
+    <span id="h<%= root.id %>" style="margin-left : 16px;"><%= image_tag(icon_name, :alt => '', :class => "folder") %>
+    <%= link_to_if(!root.helps.empty?, h(root.name), :action => 'index', :category_id => root) %>
+    </span>
+  <% end -%>
+<% end -%>

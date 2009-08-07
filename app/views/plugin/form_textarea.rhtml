@@ -1,0 +1,5 @@
+<%
+  name, height = @args
+  height = Integer(size.to_s) rescue 6
+-%>
+<%= text_area_tag(h(name), '', :id => nil, :cols => 80, :rows => height, :style => 'width: 80%;') %>

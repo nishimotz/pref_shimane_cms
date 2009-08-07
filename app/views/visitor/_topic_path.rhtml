@@ -1,0 +1,25 @@
+<div class="topic">
+<%
+  section = @page.genre.section_except_admin
+  if section && section.genre && @page.path.index(section.genre.path) != 0
+-%>
+<div class="topic_section">
+<a href="<%= h(section.genre.link_path) %>">【<%= h(section.name) %>】</a>
+</div>
+<% elsif section && !section.link.blank? -%>
+<div class="topic_section">
+<a href="<%= h(section.link) %>">【<%= h(section.name) %>】</a>
+</div>
+<% end -%>
+<% @page.genre.each_genre do |genre| -%>
+  <%break if @page.name == 'index' && genre == @page.genre -%>
+  <a href="<%= genre.link_path %>"><%= h genre.title %></a>&nbsp;&gt;
+<% end -%>
+<% if @page.name == 'index' -%>
+  <%= h(@page.genre.title) %>
+<% else -%>
+  <a href="<%= @page.genre.link_path %>"><%= h(@page.genre.title) %></a>&nbsp;&gt;
+  <%= h(@page.title) -%>
+<% end -%>
+<div style="clear: both;"></div>
+</div>

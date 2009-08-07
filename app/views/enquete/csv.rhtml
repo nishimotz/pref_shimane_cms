@@ -1,0 +1,4 @@
+<%= (@enquete_items.map{|i| i.name} << '投稿日時').map{|i| escape_csv(i)}.join(',') %>
+<% @enquete_answers.each do |answer| -%>
+<%= (@enquete_items.map{|item| answer.item_answers(item)} << public_term_strftime(answer.answered_at)).map{|i| escape_csv(i)}.join(',') %>
+<% end -%>

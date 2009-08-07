@@ -1,0 +1,70 @@
+<% if @public.begin_date && @public.begin_date > Time.now %>
+<h2>公開待ちページの状態の変更</h2>
+<% else -%>
+<h2>公開ページの状態の変更</h2>
+<% end -%>
+<%= start_form_tag(:action => 'update_public_page_status', :id => @public) %>
+<div>
+  <%= submit_tag('    保存    ') %>
+  <%= submit_tag('キャンセル', :name => 'cancel', :onclick => 'return confirm("公開ページの状態の変更処理をキャンセルします。よろしいですか？")') %>
+  &nbsp;&nbsp;  [<%= popup_link_to('このページのプレビュー', {:controller =>'visitor', :action => 'show_revision', :id => @public}) %>]
+</div>
+<div style="color:red;"><%= flash[:notice_update_date] %></div>
+<h3>現在の公開期間</h3>
+<% if @public.begin_date -%>
+  <div>
+  　公開開始日 : <%= public_term_strftime(@public.begin_date) %><br />
+  　公開終了日 : <% if @public.end_date -%><%= public_term_strftime(@public.end_date) %> <% else -%> 設定されていません <% end -%>
+  　<%= link_to('公開期間を解除する', {:action => 'destroy_public_term', :id => @public}) %>
+  </div>
+<% else -%>
+  <div>　設定されていません</div>
+<% end -%>
+<% if @user.authority != User::USER -%>
+  <div>
+  <h3>ページの状態の設定</h3>
+  <label for="status_public">現在のページの状態</label>：
+  <%= @public.status_message %><br />
+  <%= collection_radio_button(:public, :admission, @public_status_list, :first, :last) %>
+  </div>
+<% unless @public.begin_date -%>
+  <h3>ページの更新日時の設定</h3>
+  <div style="color:red;"><%= flash[:notice_last_modified] %></div>
+  <div><%= datetime_select(:public, :last_modified, :use_month_numbers => true) %></div>
+<% end -%>
+  <br />
+  <table>
+    <tr>
+      <th style="border: none;"><label for="user_info">担当者</label></th>
+      <td style="border: none;"><%= text_field(:public, :user_name, :size => 30) %></td>
+      <th style="border: none;"><label for="tel">(TEL)</label></th>
+      <td style="border: none;"><%= text_field(:public, :tel, :size => 30) %></td>
+
+    </tr>
+    <tr>
+      <th style="border: none;"><label for="e-mail">Eメール</label></th>
+      <td style="border: none;"><%= text_field(:public, :email, :size => 30) %>@<%= h(CMSConfig[:mail_domain]) %></td>
+    </tr>
+    <tr>
+      <th style="border: none;"><label for="comment">コメント</label></th>
+      <td colspan="3" style="border: none;"><%= text_field(:public, :comment, :size => 100) %></td>
+    </tr>
+  </table>
+<% else -%>
+  <span>公開審査中です。</span>
+<% end -%>
+<%= end_form_tag %>
+
+<% if @user.authority == User::SUPER_USER -%>
+<hr />
+<h3>県トップ新着掲載の承認</h3>
+<%= start_form_tag(:action => 'admission_top_news', :id => @public) %>
+<div>
+  <label for="comment">コメント</label><%= text_field(:public, :comment, :size => 100) %>
+</div>
+<div>
+  <%= submit_tag('掲載する') %>
+  <%= submit_tag('却下する', :name => 'reject') %>
+  <%= submit_tag('キャンセル', :name => 'cancel', :onclick => 'return confirm("県トップ新着掲載処理をキャンセルします。よろしいですか？")') %>
+<%= end_form_tag %>
+<% end -%>

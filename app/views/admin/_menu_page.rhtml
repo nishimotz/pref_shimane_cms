@@ -1,0 +1,10 @@
+<div class="info">ユーザ : <%= h(@user.name) %>（<%= h(@user.section.name) %>）<p style="text-align: right;"><%= help_link(@action_name) %></p></div>
+<div class="logo">ページ編集&nbsp;<%=h(@page.title) %> &lt;<%= CMSConfig[:public_uri].sub(%r!/*$!, '') %><%= h(@page.path) %>&gt;<br />（フォルダ：<%= render(:partial => 'genre_path') %>）</div>
+<div class="tool">
+<ul>
+<li class="<%= @mode == :info ? 'active' : 'inactive' %>"><%= link_to_if(@action != :edit && @mode != :info, 'ページ情報', :action => 'show_page_info', :id => @page) %></li>
+<li class="<%= @mode == :page ? 'active' : 'inactive' %>"><%= link_to_if(!@action, 'ページ編集', :action => 'edit_page', :id => @page) %></li>
+<li class="<%= @mode == :mobile ? 'active' : 'inactive' %>"><%= link_to_if(!@action, '携帯向けページ編集', :action => 'edit_mobile_page', :id => @page) %></li>
+<li class="inactive"><%= link_to_if(@action != :edit, 'トップへ戻る', :action => 'index') %></li>
+</ul>
+</div>

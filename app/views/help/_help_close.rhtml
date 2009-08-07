@@ -1,0 +1,18 @@
+<%
+  style = ''
+  icon_name = 'folder.png'
+  @help_id = @help.id if @help
+%>
+
+<% if @root.has_children? -%>
+  <%= help_close_category_link(@root, params, icon_name, @action_name, @help_id) %>
+<% else -%>
+  <% if @mode == :help && !@root.helps.empty? -%>
+    <%= help_close_category_link(@root, params, icon_name, @action_name, @help_id) %>
+  <% else -%>
+    <span id="h<%= @root.id %>" style="padding-left : 16px;">
+      <%= image_tag(icon_name, :alt => '', :class => "folder") %>
+      <%= link_to_if(!@root.helps.empty?, h(@root.name), :action => 'index', :category_id => @root) %>
+    </span>
+  <% end -%>
+<% end -%>

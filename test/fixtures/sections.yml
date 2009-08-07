@@ -1,0 +1,32 @@
+admin:
+  id: 234
+  code: 100000
+  name: admin
+  division_id: 1
+  ftp: /contents/admin/
+section1_1:
+  id: 1
+  code: 100
+  name: section1_1
+  division_id: 2
+  top_genre_id: 2
+  ftp: /contents/section1_1/
+section1_2:
+  id: 2
+  code: 200
+  name: section1_2
+  division_id: 2
+  ftp: /contents/section1_2/
+section1_3:
+  id: 3
+  code: 300
+  name: section1_3
+  division_id: 2
+  ftp: /contents/section1_3/
+police:
+  id: 616
+  code: 400000
+  name: police
+  division_id: 13
+  top_genre_id: 71
+  ftp: /contents/police/

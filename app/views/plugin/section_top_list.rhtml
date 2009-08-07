@@ -1,0 +1,28 @@
+<%
+  section_id_list = []
+  section = @genre.section_except_admin
+  if section
+    genres = section.genres.reject{|i|
+      if i.parent
+        section_id_list[i.parent_id] ||= i.parent.section_id
+        section_id_list[i.parent_id] == section.id
+      end
+    }
+  else
+    genres = []
+  end
+-%>
+<% if @preview || !genres.empty? -%>
+<ul class="genre_list">
+<% genres.each do |genre| -%>
+  <% if section.genre != genre -%>
+  <% icon_name = genre.original_id ? 'folder_alias.png' : 'folder.png' -%>
+  <li><%= image_tag(icon_name, :alt => '', :size => '18x18') %>
+     <a href="<%= h(genre.link_path) %>"><%= h(genre.title) %></a>
+<% unless genre.section_name_except_admin.empty? %>（<%= h(genre.section_name_except_admin) %>）<% end %></li>
+<% end %>
+<% end -%>
+<% if @preview && genres.empty? %>  <li><%= image_tag('folder.png', :alt => '', :size => '18x18') %> サンプル課</li><% end %>
+</ul>
+<hr class="sep" />
+<% end %>

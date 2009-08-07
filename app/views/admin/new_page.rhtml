@@ -1,0 +1,26 @@
+<%= render(:partial => 'menu') %>
+<div class="container">
+<h2>新規ページ作成</h2>
+<div class="side">
+<div class="dir">
+<%= render(:partial => 'genre_list') %>
+</div>
+</div>
+<div class="main">
+<div class="show">
+<%= start_form_tag({:action => 'create_page', :id => @genre}, :name => 'TemplateFormNewPage') %>
+テンプレート確認用:
+<select id="page_status" name="template">
+<%= options_for_select(@template_list) %>
+</select>
+<%= hidden_field_tag('genre_id', @genre.id) %>
+<%= hidden_field_tag('page_name', '') %>
+<%= hidden_field_tag('page_title', '') %>
+<input type="button" value="サンプルを表示する" onClick="openWindowforNewPage('<%= url_for(:controller => 'admin', :action => 'show_template', :id => nil) %>')">
+<%= end_form_tag %>
+<p style="color:red">ページにテンプレートを適用する場合は、下の「適用テンプレート」欄で指定してください。</p>
+</div>
+<div id="div-right">
+<%= render(:partial => 'new_page_info') %>
+</div>
+</div>

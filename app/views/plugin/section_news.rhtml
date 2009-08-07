@@ -1,0 +1,21 @@
+<%
+  # whether to show news title automatically.
+  @display_h = PluginHelper.show_section_news_title?(@args)
+  # max number of news items to show.
+  max = PluginHelper.max_count(@args)
+  # all the news page belonging to @genre
+  page_lists = Page.section_news(@genre)
+%>
+<% if @preview || !page_lists.empty? -%>
+  <% if @display_h -%>
+    <h2>新着情報</h2>
+  <% end -%>
+  <ul class="section-news">
+    <% page_lists[0..max].each do |pc| -%>
+      <li> <a href="<%= h(pc.page.path) %>"><%= h(pc.news_title) -%></a>（<%= h(news_strftime(pc.date)) %>）</li>
+    <% end -%>
+    <% if @preview && page_lists.empty? -%>
+    <li> サンプルページ（<%= h(news_strftime(Time.now)) %>）</li>
+  <% end -%>
+  </ul>
+<% end -%>

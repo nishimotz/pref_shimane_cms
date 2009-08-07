@@ -1,0 +1,8 @@
+<h4><%= h(Advertisement::SIDE_TYPE[side_type]) %></h4>
+<% if advertisements.empty? -%>
+<p><%= h(Advertisement::SIDE_TYPE[side_type]) %>は現在ありません</p>
+<% else -%>
+<% advertisements.each do |ad| -%>
+<p><%= check_box('advertisement', ad.id, {:checked => "#{'checked' if ad.published?}"}, Advertisement::PUBLISHED, Advertisement::NOT_PUBLISHED) %>&nbsp;<%= h(ad.name) %></p>
+<% end -%>
+<% end -%>

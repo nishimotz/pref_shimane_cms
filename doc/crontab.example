@@ -1,0 +1,10 @@
+# htmlページの公開サーバへrsyncするスクリプトの実行スケジュール
+*    * * * * if [ -e '/var/share/cms/do_export' ]; then nice /var/share/cms/tool/export; fi
+# 音声ファイルを作成するスクリプトの実行スケジュール
+*    * * * * if [ -e '/var/share/cms/do_export' ]; then nice /var/share/cms/tool/export_mp3; fi
+# アンケートフォームの回答を公開サーバから取得するスクリプトの実行スケジュール
+42   * * * * if [ -e '/var/share/cms/do_export' ]; then /var/share/cms/tool/retrieve_form_data; fi
+# zipファイルの一括取り込みをするスクリプトの実行スケジュール
+11   01 * * * if [ -e '/var/share/cms/do_export' ]; then /var/share/cms/tool/import_all; fi
+# ページ内に設定したリンク（外部サーバ、CMS内ページ）が切れていないかチェックするスクリプトの実行スケジュール
+# 11   02 * * * /var/share/cms/tool/page_link_check.rb

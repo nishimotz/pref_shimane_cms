@@ -1,0 +1,16 @@
+<script type="text/javascript">
+  Position.includeScrollOffsets = true;
+</script>
+<div class="side" style="overflow: auto; height: 100%;">
+<div class="dir">
+<%= render(:partial => 'genre_list') %>
+</div>
+</div>
+<div class="main" style="position: absolute; margin: 0; left: 26%; width:74%; overflow: auto; height: 100%;">
+<%= render(:partial => 'menu') %>
+<h2 style="clear: both; margin-top: 4px;">ページ/フォルダの移動</h2>
+<div id="target">
+<%= render(:partial => 'move') %>
+</div>
+</div>
+</div>

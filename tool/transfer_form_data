@@ -1,0 +1,22 @@
+#!/usr/bin/ruby -Ku
+
+STDOUT.sync = true
+
+if ARGV.length == 0
+  STDERR.puts("transfer_form_data <data dir>")
+  exit 1
+end
+
+data_dir = ARGV[0]
+
+files = Dir.glob("#{data_dir}/*").sort
+for file in files
+  s = File.read(file)
+  puts("DATA #{s.length}")
+  print(s)
+  line = STDIN.gets
+  if !/\AOK/.match(line)
+    break
+  end
+  File.unlink(file)
+end

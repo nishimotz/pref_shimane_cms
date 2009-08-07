@@ -1,0 +1,24 @@
+<p id="indicator" style="display:none; margin-left:16px;"><%= image_tag("indicator.gif", {:class => "indicator"}) %><span class="indicator-font">更新中...</span></p>
+<div>現在のフォルダ : <%= render(:partial => 'genre_path') %></div>
+<div>現在のURL&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: <%= h(@genre.path) %><div>
+<br />
+<% if flash[:page_editing_notice] -%>
+<p style="color: red; border: #c00 2px solid; padding: 0.2em;"><%= flash[:page_editing_notice] %></p>
+<br />
+<% end -%>
+<p>フォルダを移動するには、移動するフォルダのアイコンを、移動先のフォルダにドラッグ・ドロップしてください。</p>
+<p>ページを移動するには、フォルダ名をクリックしてページの一覧を表示し、ページアイコンをドラッグし、</p><p style="color: red;">左のフォルダアイコン(<%= image_tag('folder.png', :alt => '') %>)にドロップしてください。</p>
+<h3>このフォルダ内のページ/フォルダ一覧</h3>
+<ul class="page_list">
+<% @genre.children.each do |genre| -%>
+  <% icon_name = genre.original_id ? 'folder_alias.png' : 'folder.png' -%>
+  <li><span id="<%= genre.id %>."><%= image_tag(icon_name, :id => "#{genre.id}-closed", :alt => '', :class => "products") %><%= h(genre.title) %>&nbsp;&nbsp;&nbsp;</span></li>
+  <%= draggable_element "#{genre.id}.", :revert => true %>
+<% end -%>
+<% @genre.pages.sort_by{|i| i.name}.each do |page| -%>
+  <li><span id="page-<%= page.id %>"><%= image_tag('page.png', :alt => '', :size => '16x16') %> <%= h(page.title) %> (<%= "#{u(page.name)}.html" %>)</span></li>
+  <%= draggable_element("page-#{page.id}", :revert => true) %>
+<% end -%>
+</ul>
+</div>
+</div>

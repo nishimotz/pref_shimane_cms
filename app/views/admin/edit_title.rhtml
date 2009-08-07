@@ -1,0 +1,12 @@
+<%= render(:partial => 'menu_page') %>
+<div class="container">
+<h2>タイトルの変更</h2>
+<%= start_form_tag({:action => 'update_title', :id => @page}, :name => 'EditTitle') %>
+<div style="color: red;"><%= @page.errors.full_messages.join('<br />') %></div>
+<p>タイトル（日本語）<%= text_field('page', 'title', :size => 40) %></p>
+<div>
+<%= submit_tag('   保存   ') %>
+<%= submit_tag('キャンセル', :name => 'cancel', :onclick => 'return confirm("作業内容が破棄されます。よろしいですか？")') %>
+</div>
+<%= end_form_tag %>
+</div>

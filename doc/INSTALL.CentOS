@@ -1,0 +1,568 @@
+=CMSのインストール手順書
+
+#######################
+==動作環境
+#######################
+
+* CentOS 5.2
+
+#######################
+== インストール
+#######################
+
+ 今回はSELinuxとファイアウォールを無効にしています。
+ 使用する場合はそれぞれの設定変更が必要になります。
+
+  * ユーザ作成
+    www-dataユーザを作成します
+        $ sudo /usr/sbin/adduser -d /var/www -s /bin/false  www-data
+
+  * インストール
+    本プログラムの動作に必要な他のプログラムをインストールします。
+    lighttpdパッケージをインストールするため、
+    yum に RPMforge リポジトリを追加する必要があります。
+
+      $ wget http://dag.wieers.com/packages/rpmforge-release/rpmforge-release-0.3.6-1.el5.rf.i386.rpm
+      $ sudo rpm -Uhv rpmforge-release-0.3.6-1.el5.rf.i386.rpm
+
+    通常のyumインストール時にはRPMforgeを使用しないように設定を変更します。
+      $ sudo vi /etc/yum.repos.d/rpmforge.repo
+
+    修正前
+      enabled = 1
+
+    修正後
+      enabled = 0
+
+    RPMforge の GPG キーをインポートします。
+      $ wget http://dag.wieers.com/packages/RPM-GPG-KEY.dag.txt
+      $ sudo rpm --import RPM-GPG-KEY.dag.txt
+
+  * yumパッケージをインストール
+      $ sudo yum install ruby ruby-devel ruby-rdoc ruby-irb install httpd httpd-devel zip libxslt-devel gcc-c++ freetype libpng gd-devel 
+      $ sudo yum install postgresql postgresql-server
+
+    Rubyのsymlinkを作成します。
+      $ sudo ln -s /usr/bin/ruby /usr/bin/ruby1.8
+
+    RPMforgeを使用してlighttpdをインストールします。
+      $ sudo yum --enable=rpmforge install lighttpd lighttpd-fastcgi
+
+    lighttpdのログが出力できるように出力先の所有者をwww-dataに変更します。
+      $ sudo chown -R www-data:www-data /var/log/lighttpd
+
+  * RubyGemsのインストール
+
+     まずhttp://www.rubygems.org/からRubyGemsの最新版をインストールします。
+
+      $ wget http://rubyforge.org/frs/download.php/17190/rubygems-?.?.?.tgz
+      $ tar zxvf rubygems-?.?.?.tgz
+      $ cd rubygems-?.?.?
+      $ sudo ruby setup.rb
+
+     必要なgemパッケージをインストールします。
+
+      $ sudo gem install rake scrapi tidy postgres-pr
+      $ sudo gem install ruby-gd -- --build-flag --with-freetype
+
+  * その他、必要なプログラムのインストール
+
+    FastCGIをダウンロード、インストールします。
+      $ cd ../
+      $ wget http://www.fastcgi.com/dist/fcgi-2.4.0.tar.gz
+      $ tar xzvf fcgi-2.4.0.tar.gz
+      $ cd fcgi-2.4.0
+      $ ./configure
+      $ make
+      $ make install
+
+    ruby-fcgiをインストールします。
+      $ cd ../
+      $ wget http://rubyforge.org/frs/download.php/11368/ruby-fcgi-0.8.7.tar.gz
+      $ tar zxvf ruby-fcgi-0.8.7.tar.gz
+      $ cd ruby-fcgi-0.8.7
+      $ sudo ruby install.rb
+
+    形態素解析システムであるchasenをインストールするため、dartsをダウンロード、インストールします。
+      $ ../
+      $ wget http://chasen.org/~taku/software/darts/src/darts-0.32.tar.gz
+      $ tar zxvf darts-0.32.tar.gz
+      $ cd darts-0.32
+      $ ./configure
+      $ make
+      $ sudo make install
+ 
+    chasenをダウンロード、インストールします。
+      $ cd ../
+      $ wget http://iij.dl.sourceforge.jp/chasen-legacy/32224/chasen-2.4.4.tar.gz
+      $ tar zxvf chasen-2.4.4.tar.gz
+      $ cd chasen-2.4.4
+      $ ./configure --prefix=/usr
+      $ make
+      $ sudo make install
+
+    chasenで使用する辞書、ipadicをダウンロード、インストールします。
+      $ cd ../
+      $ wget http://globalbase.dl.sourceforge.jp/ipadic/24435/ipadic-2.7.0.tar.gz
+      $ tar zxvf ipadic-2.7.0.tar.gz
+      $ cd ipadic-2.7.0
+      $ ./configure --with-dicdir=/usr/share/chasen/dic
+      $ make
+      $ sudo make install
+
+    形態素解析エンジンのkakasiをダウンロード、インストールします。
+      $ cd ../
+      $ wget http://kakasi.namazu.org/stable/kakasi-2.3.4.tar.gz
+      $ tar zxvf kakasi-2.3.4.tar.gz
+      $ cd kakasi-2.3.4
+      $ ./configure --prefix=/usr --datadir=/usr/local/share
+      $ make
+      $ sudo make install
+
+    音声合成やルビ振りのページの作成のために,Rubyからchasenを使用するためのライブラリとkakasiを使用するためのライブラリが必要です。
+    それらのパッケージをダウンロードしてインストールします。
+    chasenの場合、extconf.rbを修正後にインストールを行います。
+
+      $ cd ../
+      $ wget http://raa.ruby-lang.org/cache/ruby-chasen/chasen1.6.tar.gz
+      $ tar zxvf chasen1.6.tar.gz
+      $ cd chasen1.6
+      $ vi extconf.rb
+
+    修正前
+      create_makefile("chasen")
+ 
+    修正後
+      require "mkmf"
+ 
+      if have_library("stdc++") and have_library("chasen")
+        create_makefile("chasen")
+      end
+
+      $ ruby extconf.rb
+      $ make
+      $ sudo make install
+
+    kakasi　のライブラリをインストール。
+      $ cd ../
+      $ wget http://www.notwork.org/~gotoken/ruby/p/kakasi/kakasi-020928.tar.gz
+      $ tar xvzf kakasi-020928.tar.gz
+      $ cd kakasi-020928
+      $ ruby extconf.rb 
+      $ make
+      $ sudo make install
+
+    MP3エンコーダであるlameをダウンロードし、インストールします。
+      $ cd ../
+      $ wget http://downloads.sourceforge.net/lame/lame-3.97.tar.gz
+      $ tar zxvf lame-3.97.tar.gz
+      $ cd lame-3.97
+      $ ./configure
+      $ make
+      $ sudo make install
+
+    アンケートフォームで使用するTMailをダウンロードし、インストールします。
+      $ wget http://i.loveruby.net/archive/tmail/tmail-0.10.8.tar.gz
+      $ tar zxfv tmail-0.10.8.tar.gz
+      $ cd tmail-0.10.8
+      $ ruby setup.rb --help
+      $ ruby setup.rb config
+      $ ruby setup.rb setup
+      $ sudo ruby setup.rb install
+
+
+=== 本プログラムのインストール
+
+  本プログラムは以下ようなディレクトリ配置を想定して作成されています。
+
+    * プログラム本体
+        /var/share/cms/ (所有者www-dataユーザ)
+
+    * 公開ページのdocument root
+       /var/www/cms/  (所有者www-dataユーザ)
+
+  インストールの際は必要に応じてディレクトリを作成し、本プログラムを/var/share/cms/にcopyしてください。
+
+       $ sudo mkdir -p /var/share/cms
+       $ sudo chown -R www-data:www-data /var/share/cms
+       $ tar zxvf pref-shimane-cms.1.0.2.tar.gz
+       $ sudo chown www-data:www-data /var/www
+       $ sudo -u www-data mkdir /var/www/cms
+       $ sudo cp -r pref-shimane-cms.1.0.2/* /var/share/cms/
+       $ sudo chown -R www-data:www-data /var/share/cms
+
+  * chasen辞書の設定
+    島根県CMSでは、ページの読み上げ機能のためにユーザが単語の読みを登録することができます。そのためのDebian用に作成されているMakefileを修正し、辞書の作成　及び　作成した辞書をchasenが利用できるようにします。
+
+  Makefileを修正
+       $ cd /var/share/cms/dict/
+       $ sudo -u www-data vi Makefile 
+
+  修正前
+       /usr/lib/chasen/makeda user $^
+  修正後
+       /usr/libexec/chasen/makeda user $^
+
+  ユーザ辞書を作成します。
+
+       $ sudo -u www-data make
+
+  chasenの辞書が格納されているディレクトリにユーザ辞書へのsymlinkを作成します.
+
+       $ sudo ln -s /var/share/cms/dict/user.* /usr/share/chasen/dic/ipadic/
+
+########################
+==プログラムの設定
+########################
+
+===データベースの設定
+
+(0) データベースユーザの作成
+
+   www-dataという名前でデータベースユーザを作成します。
+
+      $ sudo -u postgres createuser www-data
+     Shall the new user be allowed to create databases? (y/n) y
+
+(0) データベースの作成
+   テスト用、開発用、本番用のデータベースを作成します。
+
+      $ sudo -u www-data createdb -U www-data cms_test -EUNICODE
+      $ sudo -u www-data createdb -U www-data cms_development -EUNICODE
+      $ sudo -u www-data createdb -U www-data cms_production -EUNICODE
+
+=== Webサーバの設定
+
+(0) httpdの設定
+
+httpdは静的ページの公開サーバとして使用します。
+設定ファイルのテンプレートがdoc/httpd.conf.exampleにあるのでそれをコピーします。
+
+      $ sudo cp /var/share/cms/doc/httpd.conf.example /etc/httpd/conf/httpd.conf
+
+  httpdのログを出力できるように/var/log/httpdの所有者をwww-dataに変更します。
+
+      $ sudo chown -R www-data:www-data /var/log/httpd
+
+  ここではポート8000を使用するので（lighttpdとの競合を避けるためです。ご使用の環境に合せて変更してください。）/etc/httpd/conf/httpd.confを以下のように編集します。
+
+      Listen 8000        <== 8000番ポートに変更
+
+  サーバを再起動します。
+ 
+      $ sudo /etc/init.d/lighttpd force-reload
+
+
+(0) lighttpdの設定
+
+lighttpdは島根県CMSのWebサーバとして使用します。テンプレートがdoc/lighttpd.conf.exampleにあるのでそれをコピーします。
+
+      $ sudo cp /var/share/cms/doc/lighttpd.conf.example /etc/lighttpd/lighttpd.conf
+
+本プログラムの設定
+config/cms.yml.exampleをconfig/cms.ymlとてコピーし、 使用環境に合せて設定を変更します。設定ファイル内の項目については以下を参照して適宜設定してください。
+
+      $ cd /var/share/cms
+      $ sudo -u www-data cp config/cms.yml.example config/cms.yml
+      $ sudo -u www-data vi config/cms.yml
+
+  ---------------------------------------------------------
+   # for export, mail body
+     # CMSサーバのURI
+    :base_uri: http://localhost/
+     # mailサーバのURI
+    :mail_uri: http://localhost/
+     # 公開サーバのURI
+    :public_uri: http://localhost:8000/
+     # FTP領域のサーバのURI
+
+    :contents_uri: http://localhost:8000/
+
+     # webサーバのdomain(複数記述可)
+     # CMSでページを作成した際にページにこれらのドメイン配下のページへの
+     # リンクが含まれていると、自動的にリンクが相対パスに書き換えられます。
+    :local_domains:
+      - localhost
+
+     # ユーザが共通で使用するdomian
+    :mail_domain: localhost.localdomain
+
+     # メールサーバの設定
+    :mail_config:
+      :address: localhost
+      :domain: localhost.localdomain
+      :port: "25"
+      :authentication: :plain
+
+     # 管理者のメールアドレス
+    :super_user_mail: webmaster@localhost.localdomain
+  ---------------------------------------------------------
+
+
+
+==== アプリケーションのトップディレクトリにpublic.ディレクトリを作成し、その中にpublicディレクトリのファイルへのリンクを作成します。(public.の中には公開サーバへsyncするためのファイルが置かれます。)
+
+      $ sudo -u www-data mkdir /var/share/cms/public.
+      $ sudo -u www-data ln -s /var/share/cms/public/stylesheets /var/share/cms/public/javascripts /var/share/cms/public/config.html* /var/share/cms/public/images  /var/share/cms/public./
+
+==== データベースへの接続の設定
+
+  config/database.yml.exampleをconfig/database.ymlとしてコピーし、先ほど作成したデータベースのユーザ、www-dataに変更します。
+
+      $ sudo -u www-data cp config/database.yml.example config/database.yml
+      $ sudo -u www-data vi config/database.yml
+
+       username: www-data
+
+  データベースに初期データを投入します。
+      $ cd /var/share/cms
+      $ sudo -u www-data rake migrate
+
+  データベースにsessionテーブルを作成します。
+
+      $ sudo -u www-data rake create_sessions_table
+
+==== 音声合成プログラムの設定
+
+  gtalk, chaoneをコンパイルします。
+
+      $ cd /var/share/cms/tool/gtalk/gtalk
+      $ sudo -u www-data ./configure
+      $ sudo -u www-data make
+      $ cd /var/share/cms/tool/gtalk/morph/chaone-1.2.0
+      $ sudo -u www-data ./configure
+      $ sudo -u www-data make
+
+==== exportの設定
+
+島根県CMSで作成したコンテンツを公開サーバにアップロードするスクリプトの設定およびrsyncの設定を行います。 /var/share/cms/tool/exportの以下の箇所を変更します。(line:57 あたり)
+
+      $ cd /var/share/cms
+      $ sudo -u www-data vi tool/export
+
+      SERVER = ['localhost']       <== 公開サーバのドメイン
+      USER = 'www-data'            <== 公開サーバにrsyncするユーザ
+
+rsyncを実行するユーザのssh鍵を公開サーバの同名のユーザの ~/.ssh/authorized_keysに登録します。ここでは、アプリケーションサーバと公開サーバが同じマシンであるとして、設定方法を説明します。
+
+* rsyncを実行するユーザのSSH鍵を作成します。(ここではwww-dataとします) 鍵を作成するときパスフレーズは空にします。
+
+      $ sudo -u www-data ssh-keygen -t rsa
+
+* rsyncを実行するユーザのSSH鍵を公開サーバのユーザのホームディレクトリの.ssh/authorized_keysに登録します。
+
+      $ sudo -u www-data sh -c 'cat ~www-data/.ssh/id_rsa.pub >> ~www-data/.ssh/authorized_keys'
+
+==== cronの設定
+
+www-dataユーザのcronの設定を行います。 doc/crontab.exampleの内容を確認しcrontabに反映させます。
+
+      $ sudo -u www-data crontab doc/crontab.example
+
+do_exportファイルを作成することによって静的なhtmlファイルが作成されます。
+
+      $ sudo -u www-data touch /var/share/cms/do_export
+
+do_syncファイルを作成することによってファイルが公開サーバのdocument rootにrsyncされます。
+
+      $ sudo -u www-data touch /var/share/cms/do_sync
+
+上記のファイルを削除すると静的ページの作成や、公開サーバへのsyncが行なわれません。
+
+
+==== アンケート機能の設定
+
+島根県CMSではアンケートフォーム付きのページ作成することができます。
+
+アンケート機能を利用するにはアンケートの回答を公開サーバに設置するCGIプログラムの設定と、公開サーバに保存された回答結果をアプリケーションサーバに取り込む設定をする必要があります。
+
+(0) GPG鍵を作成します。アプリケーションサーバで以下のコマンドで鍵を作成します。
+
+     $ sudo -H -u www-data gpg --gen-key
+
+  以下の情報を入力します
+  (メールアドレスドのメイン名は使用環境に合せて変更してください)
+
+  鍵の種類: (1) DSA and Elgamal
+  ELG-E鍵のサイズ: 2048
+  鍵の有効期限: 0(無期限)
+  本名: www-data
+  メールアドレス: www-data@'アプリケーションサーバのドメイン'
+  コメント:
+  パスフレーズ:
+
+      $ sudo mkdir /var/www/.gnupg
+      $ sudo chown www-data:www-data /var/www/.gnupg
+      $ sudo -u www-data chmod go-xwr /var/www/.gnupg
+
+(0) アプリケーションサーバにフォームデータの取得用のSSH鍵を生成します
+
+* アプリケーションサーバで以下のコマンドにより鍵を作成します。
+  (パスフレーズなしでRSAタイプのid_rsa_enqueteという鍵を作成します。)
+
+      $ sudo -H -u www-data ssh-keygen -t rsa -N '' -f ~www-data/.ssh/id_rsa_enquete
+
+(0) GPG鍵とフォームデータ取得用SSH鍵の公開鍵を公開サーバに転送します。
+
+* アプリケーションサーバで以下のコマンドを実行し公開鍵を転送します。(ホスト名は使用環境に合わせて変更してください)
+
+      $ sudo -H -u www-data gpg --export --armor www-data@'アプリケーションサーバのドメイン'
+      $ scp -p /tmp/pgp.pub '公開サーバのホスト名':/tmp/pgp.pub
+      $ cd ~www-data/.ssh/
+      $ scp -p id_rsa_enquete.pub '公開サーバのホスト名':
+
+
+(0) 公開サーバにGPG鍵を置きます
+* 公開サーバで以下のコマンドで鍵を作成します。
+
+      $ sudo -H -u www-data gpg --gen-key
+
+   以下の情報を入力します。
+   鍵の種類: (1) DSA and Elgamal
+   ELG-E鍵のサイズ: 2048
+   鍵の有効期限: 0(無期限)
+   本名: www-data
+   メールアドレス: www-data@'アプリケーションサーバのドメイン名'
+   コメント:
+   パスフレーズ:
+
+(0) 公開サーバでアプリケーションサーバのGPG鍵をインポート/署名します。
+
+* 公開サーバで以下のようにしてインポート/書名します。
+
+      $ sudo -H -u www-data gpg --import /tmp/pgp.pub
+      $ sudo -H -u www-data gpg --sign-key www-data@'アプリケーションサーバのドメイン'
+
+
+(0) 公開サーバでSSHの設定を行います。
+アプリケーションサーバのアンケート結果取得用の公開鍵をauthorized_keysに登録します。
+
+      $ sudo -u www-data sh -c 'cat ~www-data/.ssh/id_rsa_enquete.pub >> ~www-data/.ssh/authorized_keys'
+
+* アンケート結果を取得するための設定を行います。
+
+      $ sudo -u www-data vi ~www-data/.ssh/authorized_keys
+
+以下の内容にします。SSHの公開鍵部分はアプリケーションサーバで作成したものを指定します．
+
+  no-port-forwarding,no-X11-forwarding,no-agent-forwarding,no-pty,command="/var/share/cms/tool/transfer_form_data /var/share/cms/form_data/enquete" ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAIEA16YlFolM5EQygXZ0JTz0R/JlTi6bbWPwR1f7ebclAbPR0w+7pUu5QN3OnsD3fJHXhKxe+7aKhyaJzqvHoPjZd58kMmRkW/gNs6uQojRuSIAJZViiVGrXUDyk8VRf6Ar+KNW273ZPyVzxkDkhX4zQKhAbBfx+bZVZeT2cTVSY3T8= www-data@localhost
+  
+
+(0) 公開サーバでアンケートのフォームデータを保存するディレクトリを作成します。
+
+      $ sudo mkdir -p /var/share/cms/form_data
+      $ cd /var/share/cms/form_data/
+      $ sudo mkdir enquete
+      $ sudo chown -R www-data:www-data .
+
+(0) 公開サーバにアプリケーションサーバの/var/share/tool/transfer_form_dataを転送します。
+
+      $ sudo mkdir -p /var/share/cms/tool
+      $ sudo -u www-data scp -r /var/share/cms/tool/transfer_form_data '公開サーバのホスト名'/var/share/cms/tool/
+
+(0) 公開サーバにアプリケーションサーバの/var/share/cms/cgi-bin/以下のファイルを転送します。
+
+      $ sudo -u www-data scp -r /var/share/cms/cgi-bin/* '公開サーバのホスト名':/var/share/cms/
+
+(0) 公開サーバの/var/share/cms/cgi-bin/post_cgi.conf.exampleをpost_cgi.confとしてコピーし、使用環境に合わせて設定を変更します。
+
+      $ cd /var/share/cms/cgi-bin
+      $ sudo -u www-data cp post_cgi.conf.example post_cgi.conf
+      $ sudo -u www-data vi post_cgi.conf
+
+(0) GPGの動作確認
+
+* 公開サーバで以下のコマンドにより，暗号化したファイルを作成します。
+
+      $ sudo -H -u www-data gpg -q --homedir /var/share/www/.gnupg --encrypt --armor -r www-data@'アプリケーションサーバのドメイン名' < /etc/hosts > /tmp/hosts.gpg
+
+/tmp/hosts.gpgをアプリケーションサーバへ/tmp/hosts.gpgとして転送します。
+
+      $ scp -p /tmp/hosts.gpg 'アプリケーションサーバのホスト名':/tmp/hosts.gpg
+
+* アプリケーションサーバで以下のコマンドにより，暗号化されたファイルが復号出来ることを確認します。
+
+      $ sudo -H -u www-data gpg -q --homedir ~www-data/.gnupg --decrypt < /tmp/hosts.gpg
+
+
+########################
+==プログラムの動作テスト
+########################
+島根県CMSのカレントディレクトリでテストを実行します。
+
+      $ cd /var/share/cms
+      $ sudo -u www-data rake
+
+       =>テストが開始されます。エラーが発生せずにテストが終了したら設定等に問題ありません。
+
+########################
+==プログラムの起動
+########################
+
+lighttpdを起動します。
+
+      $ sudo /etc/init.d/lighttpd stop
+      $ sudo /etc/init.d/lighttpd start
+
+ブラウザで http://localhost/_adminにアクセスしてログイン画面が表示されます。この時点ではログイン出来るユーザとして、運用管理者一人が登録してあります。ID: super_user, Password: super_userでログインすることが出来ます。
+
+########################
+==公開ページの作成
+########################
+
+サーバの初回起動時のみ、以下のコマンドを実行して静的ページを作成します。
+
+      $ sudo -u www-data /var/share/cms/tool/export_all
+
+しばらくすると、cronにより/var/share/cms/public./以下にページが作成され、/var/www/cms/ にページがアップロードされます。作成されたページが,httpdの待機しているURLでアクセスできることを確認してください。
+
+この後は、ページを作成して公開処理を行うと、cronジョブによって自動的にhtmlファイルと音声ファイルがpublic.ディレクトリに作成され、それらのファイルが公開サーバにsyncされます。
+
+########################
+==プロダクション環境への移行
+########################
+
+上記の設定では、島根県CMSはdevelopment環境で動作しています。島根県CMSをproduction環境に移行する場合は以下の手順を行ってください。
+
+* productionデータベースへのデータの移行
+* production環境へのファイルの移行
+* 環境変数の設定
+
+(0) production環境用のデータベースへのデータの移行
+
+以下のようにしてdevelopment環境用のデータベースの内容をproductionへ移行します。
+
+      $ sudo -u www-data sh -c 'pg_dump cms_development | psql cms_production'
+
+(0) production環境へのファイルの移行
+
+以下のディレクトリをproduction環境用のディレクトリにコピーします。
+
+      $ sudo -u www-data cp -r /var/share/cms/files/development /var/share/cms/files/production
+      $ sudo -u www-data cp -r /var/share/cms/files/advertisement/development /var/share/cms/files/advertisement/production
+
+(0) 環境変数の設定
+
+以下のファイルの環境変数RAILS_ENVを設定している箇所を変更します。
+
+      $ sudo -u www-data vi /var/share/cms/config/environment.rb
+
+          ENV['RAILS_ENV'] ||= 'production'   <== コメントを外す
+
+      $ sudo -u www-data /var/share/cms/tool/export
+
+          ENV['RAILS_ENV'] ||= 'production'   <== 'production'に変更
+
+最後にlighttpdをrestartするとproduction環境設定は完了です。
+
+########################
+==注意
+########################
+
+(0) 作成するページには適宜「見出し」を指定してください。特に見出し1、2、3には音声合成にとって意味を持ちます。音声ファイルはそれらの見出し毎に分割されます。見出しの少ないページを作成されますと、音声合成に失敗することがありますのでご注意下さい.なお、音声作成に失敗したページはアプリケーションサーバの /mp3_error_log.html ページで確認することができます。
+
+########################
+==最後に
+########################
+
+このプログラムを利用して独自のCMSを作成してみて下さい!!

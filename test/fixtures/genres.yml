@@ -1,0 +1,132 @@
+top:
+  id: 1
+  parent_id:
+  section_id: 234
+  name: ''
+  title: 'トップ'
+  path: '/'
+genre1:
+  id: 2
+  parent_id: 1
+  section_id: 1
+  name: 'genre1'
+  title: 'ジャンル1'
+  path: '/genre1/'
+  tracking_code: >-
+    <script src="http://www.google-analytics.com/urchin.js" type="text/javascript">
+    </script>
+    <script type="text/javascript">
+      _uacct = "UA-1268011-3";
+       urchinTracker();
+    </script>
+genre1_2:
+  id: 3
+  parent_id: 2
+  section_id: 1
+  name: 'genre2'
+  title: 'ジャンル2'
+  path: '/genre1/genre2/'
+genre1_2_3:
+  id: 4
+  parent_id: 3
+  section_id: 1
+  name: 'genre3'
+  title: 'ジャンル3'
+  path: '/genre1/genre2/genre3/'
+genre2:
+  id: 5
+  parent_id: 1
+  section_id: 1
+  name: 'genre2'
+  title: 'ジャンル2'
+  path: '/genre2/'
+genre2_2:
+  id: 6
+  parent_id: 5
+  section_id: 1
+  name: 'genre2'
+  title: 'ジャンル2'
+  path: '/genre2/genre2/'
+genre3:
+  id: 7
+  parent_id: 1
+  section_id: 1
+  name: 'genre3'
+  title: 'ジャンル3'
+  path: '/genre3/'
+genre3_1:
+  id: 8
+  parent_id: 7
+  section_id: 1
+  name: 'genre1'
+  title: 'ジャンル1'
+  path: '/genre3/genre1/'
+genre4:
+  id: 9
+  parent_id: 1
+  section_id: 2
+  name: 'genre4'
+  title: 'ジャンル4'
+  path: '/genre4/'
+template:
+  id: 63
+  parent_id:
+  section_id: 234
+  name: 'template'
+  title: 'テンプレート'
+  path: '/template/'
+#short_cut:
+#  id: 66
+#  parent_id: 2
+#  section_id: 1
+#  name: ''
+#  title: 'テスト課'
+#  path: ''
+#  original_id: 65
+enquete:
+  id: 67
+  parent_id: 1
+  section_id: 1
+  name: 'enquete'
+  title: 'アンケート'
+  path: '/enquete/'
+with_uri:
+  id: 68
+  parent_id: 1
+  section_id: 1
+  name: 'with_uri'
+  title: 'URI指定フォルダ'
+  path: '/with_uri/'
+  uri: http://example.com/uri/
+police_genre:
+  id: 70
+  parent_id: 1
+  section_id: 616
+  name: 'police_genre'
+  title: '警察用ジャンル'
+  path: '/police_genre/'
+  uri: http://example.com/uri/
+police_top_genre:
+  id: 71
+  parent_id: 1
+  section_id: 616
+  name: 'police_top_genre'
+  title: '警察のトップジャンル'
+  path: '/police/'
+  uri: http://example.com/uri/
+emergency:
+  id: 72
+  parent_id: 1
+  section_id: 1
+  name: 'emergency'
+  title: '緊急情報'
+  path: '/emergency/'
+  uri: http://emergency.net/
+webmonitor:
+  id: 73
+  parent_id: 1
+  section_id: 1
+  name: 'webmonitor'
+  title: 'ウェブモニタ用'
+  path: '/webmonitor/'
+  auth: false

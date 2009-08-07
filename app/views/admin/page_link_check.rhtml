@@ -1,0 +1,69 @@
+<%= render(:partial => 'menu') %>
+<div class="container">
+<h1 style="margin-bottom: 3px">外部サイトリンク切れ一覧</h1>
+<span>ページに設定したリンクにおいて、外部サーバのページへのリンク先ページが無いリンクの一覧が表示されます。</span>
+<% if @outsides.empty? -%>
+<div align="center" style="color:red">リンク切れはありませんでした。</div>
+<% else -%>
+<table>
+  <tr>
+    <th>No.</th>
+    <th>削除</th>
+    <th>ページ名(URL)</th>
+    <th>内容</th>
+  </tr>
+<% count = 1 -%>
+<% @outsides.each do |link| -%>
+  <tr>
+    <td><%= count %></td>
+    <td><%= link_to('削除', :action => 'remove_lost_link', :id => link) %></td>
+    <td>
+      <% if link.page -%>
+        <% url = CMSConfig[:public_uri].chop + link.page.path -%>
+        <%= link.page.title %>(<%= link_to('公開ページ', url, {:popup => true}) %>)
+      <% end -%>
+    </td>
+    <td>
+      <span style="color:red"><%= link.message %></span>
+    </td>
+  </tr>
+  <% count += 1 -%>
+<% end -%>
+</table>
+<% end -%>
+<h1 style="margin-bottom: 3px">内部サイトリンク切れ一覧</h1>
+<p>ページに設定したリンクにおいて、CMSで作成したページへのリンク先が無い、またはリンク先が公開されていないリンクの一覧が表示されます。</s>
+<% if @insides.empty? -%>
+<div align="center" style="color:red">リンク切れはありませんでした。</div>
+<% else -%>
+<table>
+  <tr>
+    <th>No.</th>
+    <th>削除</th>
+    <th>ページ名(URL)</th>
+    <th>リンク先</th>
+    <th>内容</th>
+  </tr>
+<% count = 1 -%>
+<% @insides.each do |link| -%>
+  <tr>
+    <td><%= count %></td>
+    <td><%= link_to('削除', :action => 'remove_lost_link', :id => link) %></td>
+    <td>
+      <% if link.page -%>
+        <% url = CMSConfig[:public_uri].chop + link.page.path -%>
+        <%= link.page.title %>(<%= link_to('公開ページ', url, {:popup => true}) %>)
+      <% end -%>
+    </td>
+    <td>
+      <%= link.target %>
+    </td>
+    <td>
+      <span style="color:red"><%= link.message %></span>
+    </td>
+  </tr>
+  <% count += 1 -%>
+<% end -%>
+</table>
+<% end -%>
+

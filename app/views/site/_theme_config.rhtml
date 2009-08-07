@@ -1,0 +1,18 @@
+<h2>テーマの設定</h2>
+<p style="color: green; padding-bottom: 5px;"><%= flash[:notice_theme] %></p>
+<p>現在のテーマ: <%= h current_theme.description %></p>
+<% unless themes.empty? %>
+  <%= start_form_tag :action => 'change_theme' %>
+  <p>
+  <label for="theme"> テーマの選択</label>
+  <%= select_tag :theme, options_for_select(themes.map {|t| [t.description, t.name]}) %>
+  </p>
+  <p>
+  <label for="theme-update">テーマの変更日時</label>
+  <span id="theme-update"><%= annotated_select_datetime Time.now, :use_month_numbers => true, :minute_step => 15 %></span>
+  </p>
+  <%= submit_tag 'テーマを変更する' %>
+  <%= end_form_tag -%>
+<% else -%>
+  <p>現在テーマは登録されていません</p>
+<% end -%>

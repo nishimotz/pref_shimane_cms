@@ -1,0 +1,32 @@
+super_user:
+  id: 1
+  section_id: 234
+  name: super_user
+  login: super_user
+  password: <%= User.sha1('test') %>
+  authority: 2
+  mail: noreply@<%= CMSConfig[:mail_domain] %>
+section_manager:
+  id: 2
+  section_id: 1
+  name: section_manager
+  login: section_manager
+  password: <%= User.sha1('test') %>
+  authority: 1
+  mail: hogehoge@example.com
+normal_user:
+  id: 3
+  section_id: 1
+  name: normal_user
+  login: normal_user
+  password: <%= User.sha1('test') %>
+  authority: 0
+  mail: noreply@<%= CMSConfig[:mail_domain] %>
+section1_2_user:
+  id: 4
+  section_id: 2
+  name: normal_user
+  login: normal_user
+  password: <%= User.sha1('test') %>
+  authority: 0
+  mail: noreply@<%= CMSConfig[:mail_domain] %>

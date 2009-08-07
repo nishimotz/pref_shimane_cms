@@ -1,0 +1,17 @@
+<% @edit_mode = :info -%>
+<%= render(:partial => 'menu') %>
+<div class="container">
+<br />
+<h2>緊急お知らせ設定</h2>
+<%= start_form_tag(:action => 'update_emergency_info') %>
+<%= submit_tag("設定") %>
+<p><label for="emergency_info_display_start_datetime">表示開始日時</label><br/>
+<%= datetime_select("emergency_info", "display_start_datetime", :use_month_numbers => true) %></p>
+
+<p><label for="emergency_info_display_end_datetime">表示終了日時</label><br/>
+<%= datetime_select("emergency_info", "display_end_datetime", :use_month_numbers => true) %></p>
+
+<p><label for="emergency_info_content">内容</label><br/>
+<%= text_area('emergency_info', 'content', 'id' => "elm1", 'rows' => "25", 'cols' => "10", 'style' => "width: 100%;") %></p>
+<%= end_form_tag %>
+</div>

@@ -1,0 +1,71 @@
+<%= render(:partial => 'menu') -%>
+<div class="container">
+<div class="top_button"><%= link_to('新規ページ作成', {:action => 'new_page'}) %></div>
+  <ul>
+    <li>所属のトップページや個別事業のページを新しく作ります。</li>
+  </ul>
+<div class="top_button"><%= link_to('既存ページ編集・状態変更', {:action => 'page'}) %></div>
+  <ul>
+    <li>既に作成しているページ<% if @user.authority == User::USER -%>(未公開)<% else -%>(公開中・未公開)<% end -%>の編集を行います。</li>
+    <li>所属トップページの新着情報一覧への掲載を行います。</li>
+    <li>公開期間の設定・変更を行います。</li>
+    <li>ページ状態の変更<% if @user.authority == User::USER -%>(編集中・公開依頼)<% else -%> (審査却下・公開中、公開停止)<% end -%>を行います。</li>
+  </ul>
+<div class="top_button"><%= link_to('ページの審査状況', {:action => 'list_page_status'}) %></div>
+  <ul>
+    <li>「公開審査中リスト」、「公開却下リスト」が表示されます。</li>
+  </ul>
+<div class="top_button"><%= link_to('フォルダの追加・変更・削除', {:action => 'genre'}) %></div>
+  <ul>
+    <li>フォルダの中に新しくフォルダを作成したり、変更、削除を行います。</li>
+    <li>フォルダのアクセス制限の設定をします。</li>
+  </ul>
+<% if @user.authority == User::USER -%>
+  <div class="top_button">ページ/フォルダの移動</div>(情報提供責任者のみ可能)
+<% else -%>
+  <div class="top_button"><%= link_to('ページ/フォルダの移動', {:action => 'move'}) %></div>
+<% end -%>
+  <ul>
+    <li>ページやフォルダを別のフォルダの中に移動させます。</li>
+  </ul>
+  <div class="top_button"><%= link_to('リンク切れチェック', {:action => 'page_link_check'}) %></div>
+  <ul>
+    <li>作成したページでリンク切れの一覧を表示します。</li>
+  </ul>
+  <div class="top_button"><%= link_to('一括ページ取り込み', {:action => 'import_all'}) %></div>
+  <ul>
+    <li>パソコン上にあるページをCMSに取り込みます。</li>
+  </ul>
+
+<% if @user.authority == User::USER -%>
+  <div class="top_button">連絡先設定</div>(情報提供責任者のみ可能)
+<% else -%>
+  <div class="top_button"><%= link_to('連絡先設定', {:action => 'edit_section_info'}) %></div>
+<% end -%>
+  <ul>
+    <li>各所属が作った全てのページの一番下に、所属の連絡先が自動的に表示されるように設定します。</li>
+  </ul>
+
+<div class="top_button"><%= link_to('パスワードの変更', {:action => 'edit_passwd'}) %></div>
+<br />
+<div class="top_button"><%= link_to('辞書の編集', {:controller => 'word'}, :popup => true) %></div>
+<ul>
+  <li>閲覧支援機能の「ふりがな」や「音声読み上げ」のための辞書の編集を行います。</li>
+</ul>
+
+<div class="top_button"><%= link_to('アンケートの管理', {:controller => 'enquete', :action => 'list'}) %></div>
+<ul>
+  <li>アンケート結果の表示を行います。</li>
+</ul>
+
+<% if admin? -%>
+  <div class="top_button"><%= link_to('バナー広告の管理', {:controller => 'advertisement', :action => 'list'}) %></div>
+  <ul>
+    <li>バナー広告の管理を行います。</li>
+  </ul>
+  <div class="top_button"><%= link_to('ホームページの設定', {:controller => 'site', :action => 'config'}) %></div>
+  <ul>
+    <li>テーマの設定を行います。</li>
+    <li>トップページのメイン画像のリンクURLの設定を行います。</li>
+  </ul>
+<% end -%>

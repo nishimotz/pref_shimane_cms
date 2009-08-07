@@ -1,0 +1,14 @@
+<%= render(:partial => 'menu_page') %>
+<div class="container">
+<% if user.authority == User::USER && @page.private.admission == PageContent::PUBLISH_REQUEST -%>
+<p style="color: red">公開審査中のため、編集中ページの変更はできません。</p>
+<% else -%>
+<div>
+  [<%= link_to('編集する', :action => 'edit_page', :id => @page) %>]
+  [<%= link_to('プレビュー', {:controller =>'visitor', :action => 'show', :id => @page}, :popup => true) %>]
+</div>
+<% end -%>
+<div class="show">
+<%= render(:inline => @private.content) %>
+<br style="clear: both;" />
+</div>

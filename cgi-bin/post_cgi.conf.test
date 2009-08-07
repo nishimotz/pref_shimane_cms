@@ -1,0 +1,8 @@
+:public_uri_base: http://localhost:3001
+#:enquete_uri_base: http://www.pref.shimane.lg.jp
+:enquete_uri_base: http://localhost:3001
+:doc_root: ../
+:post_dir_base: /var/share/cms/form_data
+:gpg_home: /var/share/www/.gnupg
+:gpg_encrypt_id: www-data@cms.pref.shimane.jp
+:mailmagazine_domain: mm.pref.shimane.jp

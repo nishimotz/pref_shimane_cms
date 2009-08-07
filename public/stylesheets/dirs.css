@@ -1,0 +1,35 @@
+div.dir {
+  margin-left: -16px;
+  font-size: 12px;
+  line-height: 16px;
+}
+div.dir div.closed {
+  margin-left: 16px;
+}
+div.dir div.open {
+  margin-left: 16px;
+}
+div.dir .drop-active {
+  background-color: #faa;
+}
+
+div.items {
+  margin-left: 16px;
+}
+
+.indicator {
+  width: 2em;
+  height: 2em;
+}
+
+.indicator-font {
+  color: red;
+}
+
+div.dir a.selected {
+  background-color: #ccf;
+}
+
+div.dir img.folder {
+  padding-right: 2px;
+}

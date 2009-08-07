@@ -1,0 +1,30 @@
+<% @page_title = "アンケート一覧" %>
+
+<% if @enquetes.empty? -%>
+<p>アンケートはありません</p>
+<% else -%>
+ <p style="color:red">※注意 CSVファイルを見る場合は「開く」ではなく、必ず「保存」を行ってください。</p>
+<table>
+  <tr>
+    <th>ページ名</th>
+    <th>回答数</th>
+    <th>処理</th>
+  </tr>
+
+<% for enquete in @enquetes %>
+  <tr>
+    <td><%= h(enquete.title) %></td>
+    <td style="text-align: right;"><%= enquete.enquete_answers.size %></td>
+    <td>
+      [<%= popup_link_to('公開ページ', {:controller =>'visitor', :action => 'show_revision', :id => enquete.public}) %>]
+      [<%= link_to('回答一覧', :action => 'show', :id => enquete) %>]
+      [<%= link_to('CSV', :action => 'csv', :id => enquete) %>]
+      [<%= link_to('集計結果', :action => 'summary', :id => enquete) %>]
+    </td>
+  </tr>
+<% end %>
+</table>
+
+<%= link_to '前ページ', { :page => @enquete_pages.current.previous } if @enquete_pages.current.previous %>
+<%= link_to '次ページ', { :page => @enquete_pages.current.next } if @enquete_pages.current.next %>
+<% end -%>

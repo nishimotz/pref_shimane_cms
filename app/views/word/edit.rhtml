@@ -1,0 +1,8 @@
+<h3>登録単語の編集</h3>
+
+<%= start_form_tag :action => 'update', :id => @word %>
+  <%= render :partial => 'form' %>
+  <%= submit_tag '更新' %>
+<%= end_form_tag %>
+
+[<%= link_to '一覧に戻る', :action => 'list' %>]

@@ -1,0 +1,46 @@
+<% @edit_mode = :normal -%>
+<%= render(:partial => 'menu') -%>
+<br />
+<br style="clear: both;" />
+
+<div class="container">
+  <h2>CMSヘルプ参照設定</h2>
+  <h3>アクションの追加</h3>
+  <%= start_form_tag(:action => 'create_action') %>
+    名前:<%= text_field(:help_action, :name) %>
+    画面名:<%= select(:help_action, :action_master_id, @masters) %>
+    <%= submit_tag('追加') %>
+  <%= end_form_tag %>
+  <h3>現在の設定</h3>
+  <br />
+  <table>
+    <tr>
+      <th>No.</th>
+      <th>名前</th>
+      <th>画面名</th>
+      <th>現在の設定</th>
+      <th>カテゴリ設定</th>
+      <th>操作</th>
+    </tr>
+    <% @help_actions.each_with_index do |action, i| -%>
+    <%= start_form_tag(:action => 'edit_action_category', :id => action) %>
+    <tr>
+      <td><%= i + 1 %></td>
+      <td><%= h(action.name) %></td>
+      <td><%= h(action.action_master.name) %></td>
+      <td><%= h(action.category_path) rescue "" %></td>
+      <td>
+        大カテゴリ<select name="big_category"><%= options_for_select(@big_categories, @big_category) %></select><br />
+        中カテゴリ<select name="middle_category"><%= options_for_select(@middle_categories, @middle_category) %></select><br />
+        小カテゴリ<select name="small_category"><%= options_for_select(@small_categories, @small_category) %></select>
+        <%= submit_tag('変更') %>
+        <%= end_form_tag %>
+      </td>
+      <td>
+        <%= link_to('確認', {:action => 'index', :category_id => action.help_category_id}, :popup => true) %>
+        <%= link_to('削除', {:action => 'destroy_action', :id => action}, :confirm => '本当に削除しますか？') %>
+      </td>
+    </tr>
+    <% end -%>
+  </table>
+</div>

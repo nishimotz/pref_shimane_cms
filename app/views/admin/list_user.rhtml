@@ -1,0 +1,32 @@
+<%= render(:partial => 'menu') %>
+<div class="container">
+<h2>ユーザ一覧 (<%= h(@section.name) %>)</h2>
+<%= link_to('所属一覧表示に戻る', :action => 'list_section') %>
+<br /><br />
+<div style="color: red;"><%= flash[:user_notice] %></div>
+<div id="section">
+<table>
+  <tr>
+    <th>ユーザ名</th>
+    <th>ログインID</th>
+    <th>権限</th>
+    <th>メールアドレス</th>
+    <th>処理</th>
+  </tr>
+<% @manage_users.each do |user| -%>
+  <tr>
+    <td><%= h(user.name) %></td>
+    <td><%= h(user.login) %></td>
+    <td><%= h(user.authority_str) %></td>
+    <td><%= h(user.mail) %></td>
+    <td>
+      <%= link_to('編集', :action => 'edit_user', :id => user) %>
+      <%= link_to('削除', {:action => 'destroy_user', :id => user}, :confirm => '削除しますか?') %>
+    </td>
+  </tr>
+<% end -%>
+</table>
+</div>
+<br />
+<div>[<%= link_to('ユーザの追加', :action => 'new_user', :id => @section) %>]</div>
+</div>

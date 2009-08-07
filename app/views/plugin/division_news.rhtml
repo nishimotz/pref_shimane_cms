@@ -1,0 +1,28 @@
+<%
+  list = []
+
+  genre_id_list = Section.find(:all,
+                               :include => :genre,
+                               :conditions =>
+                                 ['division_id = ?', @genre.section.division.id]).collect{|section| section.genres}.flatten.collect{|genre| genre.id}
+  Page.find(:all, :include => 'contents',
+            :conditions => ['genre_id in (?) and page_contents.section_news = ?',
+              genre_id_list, PageContent::SECTION_NEWS_YES]).each do |d|
+    pc = d.current
+    if pc && pc.section_news == PageContent::SECTION_NEWS_YES
+      list << pc
+    end
+  end
+  page_lists = list.sort_by{|e| e.last_modified}.reverse
+
+  max = @args.first.to_i - 1
+%>
+
+<% if @preview || !page_lists.empty? -%>
+<ul class="page_list">
+<% page_lists[0..max].each do |pc| -%>
+  <li><%= image_tag('page.png', :alt => '', :size => '16x16') %> <a href="<%= h(pc.page.path) %>"><%= h(news_strftime(pc.date)) %> <%= h(pc.news_title) %><!-- （<%= h(@genre.section_name_except_admin) %>） --></a></li>
+<% end -%>
+<% if @preview && page_lists.empty? %>  <li><%= image_tag('page.png', :alt => '', :size => '16x16') %> <%= h(news_strftime(Time.now)) %> サンプルページ</li><% end %>
+</ul>
+<% end -%>

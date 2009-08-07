@@ -1,0 +1,99 @@
+h1 {
+  margin: 10px 0 25px;
+  padding: 8px 5px 5px 15px;
+  border-style: solid;
+  border-width: 1px 1px 1px 5px;
+  font-size: 1.5em;
+  color: #30306a;
+  border-color: #1c73cf;
+}
+
+.fieldWithErrors {
+  padding: 2px;
+  border-left: 2px solid red;
+  background-color: red;
+  display: table;
+}
+
+#errorExplanation {
+  width: 400px;
+  border: 2px solid red;
+  padding: 7px;
+  padding-bottom: 12px;
+  margin-bottom: 20px;
+  background-color: #f0f0f0;
+}
+
+#errorExplanation h2 {
+  text-align: left;
+  font-weight: bold;
+  padding: 5px 5px 5px 15px;
+  font-size: medium;
+  margin: -7px;
+  background-color: #c00;
+  color: #fff;
+}
+
+#errorExplanation p {
+  color: #333;
+  margin-bottom: 0;
+  padding: 5px;
+}
+#errorExplanation ul li {
+  list-style: square;
+}
+
+form p {
+  margin: 1em;
+}
+
+label {
+  float: left;
+  width: 10em;
+}
+
+table {
+  margin: 5px;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+tr.ad_expired  {
+  color: red;
+  font-weight: bold;
+}
+
+th {
+  text-align: center;
+}
+
+th, td {
+  padding-left: 1em;
+  border: 1px solid #ccc;
+}
+
+table#show_advertisement {
+  margin: 5px;
+  margin-left: 10px;
+  border: 0px;
+  border-top: 1px;
+  text-align: left;
+}
+
+#show_advertisement tr {
+  height: 2em;
+}
+
+#show_advertisement th {
+  padding: 0.5em;
+  width:  9em;
+  border: 0px;
+  text-align: left;
+  font-size: 110%;
+}
+
+#show_advertisement td {
+  padding: 0.5em;
+  border: 0px;
+}
+

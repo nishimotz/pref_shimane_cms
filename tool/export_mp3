@@ -1,0 +1,17 @@
+#!/usr/bin/env ruby
+require 'tmpdir'
+lock_file = File.open(File.join(Dir.tmpdir, 'export_mp3.lock'), 'w')
+unless lock_file.flock(File::LOCK_EX|File::LOCK_NB)
+  exit 1
+end
+
+load "#{File.dirname(__FILE__)}/export"
+
+if __FILE__ == $0
+  configuration = Rails::Initializer.run(:initialize_logger).configuration
+  @exporter = CMSExport.new
+  @exporter.logger = Logger.new(File.join(File.dirname(configuration.log_path), 'export_mp3.log'))
+  while job = Job.next_mp3
+    @exporter.run(job)
+  end
+end

@@ -1,0 +1,24 @@
+<%= render(:partial => 'menu') %>
+<div class="container">
+<h2>所属の並び替え (<%= h(@division) %>)</h2>
+<%= link_to('所属一覧に戻る', :action => 'list_section') %> | 
+<%= link_to('部局の並び変えに戻る', :action => 'sort_division_section') %>
+<br /><br />
+部局名をドラッグ アンド ドロップして順番を変更してください。
+<hr />
+<div>
+<div id="result"></div>
+<ul class="page_list" id="list">
+<% @sections.each do |section| -%>
+  <li class="draggble" id="item_<%= section.id %>">
+    ・<%= h(section.name) %>
+  </li>
+<% end -%>
+</ul>
+<%= sortable_element 'list',
+      :update => 'result',
+      :complete => visual_effect(:highlight, 'list'),
+      :url => { :action => "update_sort_section", :id => params[:id] }
+%>
+</div>
+</div>

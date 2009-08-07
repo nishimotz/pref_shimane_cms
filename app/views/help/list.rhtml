@@ -1,0 +1,15 @@
+<%= render(:partial => 'menu') -%>
+<br style="clear: both;" />
+
+<div>
+  <a href="/_help/">ヘルプ一覧へ戻る</a>
+  <hr />
+  <h2>カテゴリ一覧</h2>
+  <div class="dir">
+    <% @root_help_list.each do |@root| -%>
+      <div id="dir-<%= @root %>" class="closed">
+        <%= render(:partial => 'help_open') %>
+      </div>
+    <% end -%>
+  </div>
+</div>

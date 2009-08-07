@@ -1,0 +1,24 @@
+<% unless @web_monitors.any? -%>
+  <p>現在ウェブモニタは登録されていません。</p>
+<% else -%>
+<table>
+  <tr>
+    <th>モニタ名</th>
+    <th>ログインID</th>
+    <th>処理</th>
+  </tr>
+<% @web_monitors.each do |monitor| -%>
+  <tr>
+    <td><%= h(monitor.name) %></td>
+    <td><%= h(monitor.login) %></td>
+    <td>
+      <%= link_to('編集', :action => 'edit_user', :id => monitor, :genre_id => @genre) %>
+      <%= link_to('削除', {:action => 'destroy_user', :id => monitor, :genre_id => @genre}, :confirm => 'モニタを削除しますか?') %>
+    </td>
+  </tr>
+<% end -%>
+</table>
+<%= h(@web_monitor_pages.current.number) %> / <%= h(@web_monitor_pages.page_count) %> ページ
+<%= link_to('前へ', { :page => @web_monitor_pages.current.previous }) if @web_monitor_pages.current.previous %>
+<%= link_to('次へ', { :page => @web_monitor_pages.current.next }) if @web_monitor_pages.current.next %> 
+<% end -%>

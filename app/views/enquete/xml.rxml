@@ -1,0 +1,29 @@
+xml.instruct!
+xml.Workbook 'xmlns' => 'urn:schemas-microsoft-com:office:spreadsheet',
+  'xmlns:ss' => 'urn:schemas-microsoft-com:office:spreadsheet' do
+  xml.Styles do
+    xml.Style 'ss:ID' => 1 do
+      xml.Font 'ss:Bold' => 1
+    end
+  end
+  xml.Worksheet 'ss:Name' => 'Sheet1' do
+    xml.Table do
+      (@enquete_items.size + 1).times do
+        xml.Column 'ss:Width' => 80
+      end
+      xml.Row 'ss:StyleID' => 1 do
+        for item in (@enquete_items.collect{|i| i.name} + ['投稿日時'])
+          xml.Cell { xml.Data item, 'ss:Type' => 'String' }
+        end
+      end
+      for answer in @enquete_answers
+        xml.Row do
+          for item in (0...@enquete_items.size).collect{|i| answer.items[i].value rescue ''}
+            xml.Cell { xml.Data item, 'ss:Type' => 'String' }
+          end
+          xml.Cell { xml.Data public_term_strftime(answer.answered_at), 'ss:Type' => 'String' }
+        end
+      end
+    end
+  end
+end

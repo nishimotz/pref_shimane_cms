@@ -1,0 +1,11 @@
+<% @view_mode = :mobile -%>
+<div class="container">
+<div class="mobile">
+<%= render(:inline => @private.mobile_content) %>
+</div>
+</div>
+<p style="color: red">
+これはイメージ画面です。メーカ、機種、設定によって画面サイズが異なります。
+</p>
+
+<%= submit_tag('画面を閉じる', :onClick => "window.close();") %>

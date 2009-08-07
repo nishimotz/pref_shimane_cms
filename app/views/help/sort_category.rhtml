@@ -1,0 +1,23 @@
+<%= render(:partial => 'menu') %>
+<div class="container">
+<h2>カテゴリの並び替え<% if @category -%>(<%= h(@category.name) %>)<% end -%></h2>
+<%= link_to('カテゴリ一覧に戻る', :action => 'list_category') %>
+<br /><br />
+アイコンをドラッグ アンド ドロップして順番を変更してください。
+<hr />
+<div>
+<div id="result"></div>
+<ul class="page_list" id="list">
+<% @categories.each do |category| -%>
+  <li class="draggble" id="item_<%= category.id %>">
+    ・<%= link_to_if(!category.children.empty?, h(category.name), :action => 'sort_category', :id => category) %>
+  </li>
+<% end -%>
+</ul>
+<%= sortable_element 'list',
+      :update => 'result',
+      :complete => visual_effect(:highlight, 'list'),
+      :url => { :action => "update_sort_categories", :id => params[:id] }
+%>
+</div>
+</div>

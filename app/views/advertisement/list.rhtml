@@ -1,0 +1,11 @@
+<% @page_title = "バナー広告一覧" %>
+<% unless job_exists? %>
+&nbsp;&nbsp;
+[<%= link_to('公開設定', :action => 'set_state') %>]
+<% end %>
+&nbsp;&nbsp;
+[<%= link_to('新規作成', :action => 'new') %>]
+<div style="color: red;"><%= flash[:advertisement_notice] %></div>
+<div style="color: red;"><%= flash[:expired_advertisement_exist] %></div>
+<%= render(:partial => 'generate_ads_list', :locals =>{:advertisements => @corp_ads, :side_type => Advertisement::OUTSIDE_TYPE}) %>
+<%= render(:partial => 'generate_ads_list', :locals =>{:advertisements => @pref_ads, :side_type => Advertisement::INSIDE_TYPE}) %>

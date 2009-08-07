@@ -1,0 +1,57 @@
+NameVirtualHost *:8000
+
+<VirtualHost *:8000>
+	ServerAdmin root@localhost.localdomain
+	ServerName cms.netlab.jp
+
+	DocumentRoot /var/www/cms
+	<Directory />
+		Options FollowSymLinks
+                AllowOverride AuthConfig
+	</Directory>
+
+        RewriteEngine On
+        RewriteRule (.*)/$ $1/index.html
+
+        BrowserMatch "MSIE" AuthDigestEnableQueryStringHack=O
+
+	# for mobile
+	RewriteCond %{HTTP_USER_AGENT} (DoCoMo|J-PHONE|Vodafone|WILLCOM|MOT\-|UP\.Browser|DDIPOCKET|ASTEL|PDXGW|Palmscape|Xiino|sharp\ pda\ browser|Windows\ CE|L\-mode)
+	RewriteRule (.*\.html)$ $1.i [L]
+
+	# for UD
+	RewriteCond %{HTTP_COOKIE} css=hc
+	RewriteRule ^/stylesheets/color.css /stylesheets/hc.css [L]
+	RewriteCond %{HTTP_COOKIE} css=lc
+	RewriteRule ^/stylesheets/color.css /stylesheets/lc.css [L]
+	RewriteCond %{HTTP_COOKIE} ruby=on
+	RewriteRule (.*\.html)$ $1.r [L]
+	RewriteCond %{HTTP_COOKIE} ruby=off
+	RewriteRule (.*/)index\.html\.r$ $1 [L]
+	RewriteCond %{HTTP_COOKIE} ruby=off
+	RewriteRule (.*\.html)\.r$ $1 [L]
+
+	ErrorLog /var/log/apache2/error.log
+
+	# Possible values include: debug, info, notice, warn, error, crit,
+	# alert, emerg.
+	LogLevel warn
+
+	CustomLog /var/log/apache2/access.log combined
+	ServerSignature On
+
+        # directroy for enquete form cgi
+        ScriptAlias /cgi-bin/   /var/share/cms/cgi-bin/
+        <Directory /var/share/cms/cgi-bin>
+                AllowOverride None
+                Options ExecCGI
+                Order deny,allow
+                deny from all
+                Allow from 127.0.0.1
+                <Files "enquete.cgi">
+                        Order deny,allow
+                        allow from all
+                </Files>
+        </Directory>
+
+</VirtualHost>

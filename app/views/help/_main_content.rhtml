@@ -1,0 +1,22 @@
+  <% if @help -%>
+    <p style="margin-top: -35px;text-align: right;"><%= link_to('印刷', {:action => 'preview', :id => @help}, :popup => true) %></p>
+    <div class="main">
+      <div id="target">
+        <h1><%= @help.name %></h1>
+        <%= @help_content.content rescue nil %>
+      </div>
+      <% if session[:help] && (session[:help].nil? || !session[:help].blank?) -%>
+
+      <% else -%>
+        <%= next_link_navigation(@help) %>
+      <% end -%>
+      <hr />
+      <%= related_helps(@help) %>
+      <%= related_categories(@help) %>
+    </div>
+  <% else -%>
+    <div class="main" style="position: absolute; margin: 0; left: 0%; width:74%; overflow: auto; height: 100%;">
+      <div><strong>左からヘルプを選択してください。</strong></div>
+    </div>
+  <% end -%>
+  <div style="text-align: right;"><a href="#content_top">先頭に戻る</a></div>

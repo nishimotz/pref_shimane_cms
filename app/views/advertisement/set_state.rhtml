@@ -1,0 +1,11 @@
+<h2>公開・非公開の設定</h2>
+<br />
+<%= start_form_tag :action => 'change_state'%>
+公開するページにチェックを付けてください。
+<hr />
+<%= render(:partial => 'select_publish', :locals =>{:advertisements => @corp_ads, :side_type => Advertisement::OUTSIDE_TYPE}) %>
+<br />
+<%= render(:partial => 'select_publish', :locals =>{:advertisements => @pref_ads, :side_type => Advertisement::INSIDE_TYPE}) %>
+  <%= submit_tag "順番設定画面に進む" %>
+  <%= submit_tag('キャンセル', :name => 'cancel') %>
+<%= end_form_tag %>

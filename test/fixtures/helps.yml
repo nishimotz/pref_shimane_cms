@@ -1,0 +1,12 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+# one:
+#   column: value
+#
+# two:
+#   column: value
+1:
+  id: 1
+  name: test1
+  public: 1
+  help_category_id: 1
+  number: 1

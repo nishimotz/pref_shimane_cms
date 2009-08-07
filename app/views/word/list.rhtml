@@ -1,0 +1,51 @@
+<%= start_form_tag({:action => 'list'}, :method => 'get') %>
+<div>
+読みで検索：
+<% WordHelper::QUERY_TEXT_LIST.each do |title, query| -%>
+[<%= link_to(h(title), :action => 'list', :query_text => query) %>]
+<% end -%>
+</div>
+<div>
+単語で検索：
+<%= text_field_tag(:query_base, @query_base) %>
+<%= submit_tag('…で始まる単語', :name => 'prefix_search') %>
+<%= submit_tag('…を含む単語', :name => 'search' ) %>
+</div>
+<%= end_form_tag %>
+<% if @search -%>
+<h3>検索結果</h3>
+<% else -%>
+<h3>登録単語一覧</h3>
+<% end -%>
+<% if @words.empty? -%>
+該当する単語がありません。
+<% else -%>
+<table>
+  <tr>
+    <th>単語</th>
+    <th>読み</th>
+    <th>登録者</th>
+    <th>最終変更日時</th>
+    <th>処理</th>
+  </tr>
+  
+<% for word in @words %>
+  <tr>
+    <td><%= h(word.base) %></td>
+    <td><%= h(Filter.k2h(word.text)) %></td>
+    <td><%= h(word.user.name) %>（<%= h(word.user.section.name) %>）</td>
+    <td><%= h(public_term_strftime(word.updated_at)) %></td>
+    <td><% if word.editable_by?(@user) %>[<%= link_to('編集', :action => 'edit', :id => word) %>] [<%= link_to('削除', { :action => 'destroy', :id => word }, :confirm => "「#{word.base}」を削除しますか？") %>]<% end %></td>
+  </tr>
+<% end %>
+</table>
+<div>※他の所属が登録した単語は、運用管理者以外は編集・削除できません。</div>
+
+<%= pagination_menu(@word_pages, @query) %>
+<% end -%>
+
+<h3>新規単語の追加</h3>
+<%= start_form_tag :action => 'create' %>
+  <%= render :partial => 'form' %>
+  <%= submit_tag "追加" %>
+<%= end_form_tag %>

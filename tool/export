@@ -1,0 +1,1269 @@
+#!/usr/bin/env ruby
+if __FILE__ == $0
+  require 'tmpdir'
+  lock_file = File.open(File.join(Dir.tmpdir, 'export.lock'), 'w')
+  unless lock_file.flock(File::LOCK_EX|File::LOCK_NB)
+    exit 1
+  end
+end
+
+ENV['RAILS_ENV'] ||= 'production'
+ENV['http_proxy'] = ''
+
+require File.dirname(__FILE__) + '/../config/boot'
+require "#{RAILS_ROOT}/config/environment"
+require 'rubi_adder'
+require "#{RAILS_ROOT}/tool/gtalk/voice-synthesis/voice_synthesis"
+require 'open-uri-override'
+require 'fileutils'
+require 'htree'
+require 'rss/1.0'
+require 'scrapi'
+
+############################ For RSS
+class String
+  def scrape(pattern, options = {}, &block)
+    options = {:extract=>options} unless options.is_a?(Hash)
+    options[:parser_options] = {:char_encoding=>'utf8'}.merge(options[:parser_options]||{})
+    extract = options.delete(:extract) || block && :element || :text
+    scraped = Scraper.define do
+      process pattern, "matches[]"=>extract
+      result :matches
+    end.scrape(self, options) || []
+    block ? scraped.map{|i| block.call(i)} : scraped
+  end
+end
+
+def split_description(ary)
+  str = ''
+  ary.each do |a|
+    if a.length <= 200
+      if (str + a).length <= 200
+        str += a
+      else
+        return str
+      end
+    else
+      return a
+    end
+  end
+end
+############################
+
+class CMSExport
+  attr_accessor :logger
+
+  SERVER = ['localhost']
+  USER = 'www-data'
+  SYNC_ENABLE_FILE_PATH = File.expand_path('do_sync', RAILS_ROOT)
+  SYNC_DEST_DIR = '/var/www/cms'
+  MP3_ERROR_LOG_FILE = File.expand_path('public/mp3_error_log.html', RAILS_ROOT)
+  REMOVED_PAGE_LIST_DIR = File.expand_path("removed_page_lists", RAILS_ROOT)
+  REMOVED_PAGE_LIST = File.join(REMOVED_PAGE_LIST_DIR, Time.now.strftime('%Y%m%d'))
+  SYNC_FAILED_PAGE_LIST = File.expand_path("log/sync_failed_pages.txt", RAILS_ROOT)
+  NEWS_COUNT = 9
+  LOCAL_HTPASSWD_DIR = File.expand_path('htpasswd', RAILS_ROOT)
+
+  def initialize
+    @logger = nil
+    initialize_dirs
+  end
+
+  def run(job)
+    action = job.action
+    args = [job.arg1, job.arg2].compact
+    debug_log("start: run => #{[action, args].inspect}")
+    begin
+      send(action, *args)
+      job.destroy
+    rescue StandardError, Timeout::Error => e
+      debug_log("error: class => #{e.class.inspect}, message => #{e.message.inspect}, backtrace => #{e.backtrace.inspect}")
+      case e
+      when ActiveRecord::RecordNotFound, Errno::ENOENT, OpenURI::HTTPError
+        job.destroy
+      else
+        if job.datetime.nil?
+          job.destroy
+        else
+          job.datetime = job.datetime + 10 * 60
+          job.save
+        end
+      end
+    end
+    debug_log("end: run => #{[action, args].inspect}")
+  end
+
+  def move_banner_images(arg = nil)
+    debug_log("start: action => 'move_banner_images'")
+
+    # 画像ファイルをコピー
+    tmp_dir = Advertisement::FILE_PATH
+    dst_dir = Advertisement::PUBLIC_IMAGE_DIR
+    advs = AdvertisementList.published_advertisements
+
+    advs.each do |adv|
+      FileUtils.cp(Dir["#{tmp_dir}/#{adv.advertisement_id}.*"], dst_dir, :preserve => true)
+    end
+    Dir["#{dst_dir}/*"].each do |file|
+      adv_id = file.split(/\//).last.split(/\./).first
+      unless adv_id && advs.detect{|ad| ad.advertisement_id == adv_id.to_i}
+        FileUtils.rm(file, :force => true)
+      end
+    end
+    # public_images sync
+    rsync_to_remote('move_banner_images',
+                    :src_path  => '/images/',
+                    :dest_path => '/images/',
+                    :servers   => SERVER,
+                    :option    => "-aLz --delete --exclude='*.md5' --exclude=.svn")
+    # javascript 書き換え
+    File.open(Advertisement::JAVASCRIPT_FILE, 'w') do |f|
+      advs = AdvertisementList.published_advertisements.select do |ad|
+        ad.advertisement.show_in_header
+      end
+      f.print "BANNERS = [\n"
+      if advs.empty?
+        f.print "{ url: 'http://localhost:8000/seisaku/ad1.html',\n"
+        f.print "  alt: \"\", \n"
+        f.print "  image: '/index.data/banner.jpg'}\n"
+      else
+        banner_count = 0
+        advs.each do |adv|
+          banner_count += 1
+          f.print "{ url: '#{adv.advertisement.url}',\n"
+          f.print "  alt: \"#{adv.advertisement.alt}\", \n"
+          f.print "  image: '/images/advertisement/#{adv.advertisement.image}'}"
+          f.print ",\n" if advs.length != banner_count
+        end
+      end
+      f.print "];\n"
+    end
+    # javascript sync
+    rsync_to_remote('move_banner_images',
+                    :src_path  => '/javascripts/',
+                    :dest_path => '/javascripts/',
+                    :servers   => SERVER,
+                    :option    => "-aLz --delete --exclude='*.md5' --exclude=.svn")
+    advertisements = AdvertisementList.find(:all)
+    Advertisement.transaction do
+      advertisements.each do |ad|
+        Advertisement.update(ad.advertisement_id,
+                             {:state => ad.state,
+                              :pref_ad_number => ad.pref_ad_number,
+                              :corp_ad_number => ad.corp_ad_number})
+      end
+    end
+    AdvertisementList.destroy_all
+
+    # topページを作成してsyscする。
+    page = Page.find_by_path('/index.html')
+    create_page_by_path("p:#{page.id}")
+    begin
+      upload_dir = '/'
+      rsync_to_remote('move_banner_images',
+                      :src_path  => page.path_base + '.*',
+                      :dest_path => upload_dir,
+                      :servers   => SERVER,
+                      :option    => "-aLz --delete --exclude='*.md5' --exclude=.svn")
+    rescue
+      debug_log("rsync-err: action => 'move_banner_images', args => #{path.inspect}")
+    end
+    debug_log("end: action => 'move_banner_images'")
+  end
+
+  def create_page(page_id)
+    page = Page.find(page_id.to_i)
+    path = page.path
+    debug_log("start: action => 'create_page', args => #{path.inspect}")
+    rubi_flag = create_page_by_path("p:#{page_id}")
+    debug_log("end: action => 'create_page', args => #{path.inspect}")
+    if rubi_flag
+      begin
+        upload_dir = page.genre.path
+        rsync_to_remote('create_page',
+                        :public_url => CMSConfig[:public_uri].chop + path,
+                        :src_path  => page.path_base + '.*',
+                        :dest_path => upload_dir,
+                        :servers   => SERVER,
+                        :option    => "-aLz --delete --exclude='*.md5' --exclude=.svn")
+        if page.id == Page.find_by_path('/index.html').id
+          (1..News.page_count).each do |i|
+            create_page_by_path("/news.#{i}.html")
+          end
+          debug_log("NEWS create")
+          rsync_to_remote('create news page',
+                          :src_path  => '/news.*',
+                          :dest_path => '/',
+                          :servers   => SERVER,
+                          :option    => "-aLz --delete --exclude='*.md5' --exclude=.svn")
+        else
+          debug_log("NEWS not create")
+        end
+        create_genre_jobs(page, path)
+      rescue
+        debug_log("rsync-err: action => 'create_page', args => #{path.inspect}")
+      end
+    else
+      disable_remove_attachment(path_data(path))
+      debug_log("rsync: Not Sync Page.")
+    end
+  end
+
+  def create_page_by_path(arg)
+    path = arg_to_path(arg)
+    flag = create_html(path)
+    flag_mobile = create_mobile_html(path) # if flag
+    rubi_flag = create_rubi_html(path, flag)
+    SectionNews.update_section_news(path)
+    if rubi_flag || flag_mobile
+      prepare_mp3(arg)
+      return true
+    else
+      return false
+    end
+  end
+
+  def create_genre(genre_id)
+    genre = Genre.find(genre_id.to_i)
+    path = genre.path
+    debug_log("start: action => 'create_genre', args => #{path.inspect}")
+    rubi_flag = create_page_by_path("g:#{genre_id}")
+    debug_log("end: action => 'create_genre', args => #{path.inspect}")
+    if rubi_flag
+      upload_dir = if genre.has_parent?
+                     genre.parent.path
+                   else
+                     path  # == '/' ie. top genre
+                   end
+      begin
+        rsync_to_remote('create_genre',
+                        :src_path  => upload_dir,
+                        :dest_path => upload_dir,
+                        :servers   => SERVER,
+                        :option    => "-aLz --delete --exclude='*.md5' --exclude=.svn")
+      rescue
+        debug_log("rsync-error: action => 'cancel_page', args => #{page_id}")
+      end
+    end
+  end
+
+  def create_html(path)
+    ruby_create_flag = false
+    debug_log("start: action => 'create_html', args => #{path.inspect}")
+    html_path = "#{DOCROOT}#{path_html(path)}"   
+    FileUtils.mkdir_p(File.dirname(html_path))
+    # new page to be exported.
+    html = open(BASE_URI + path) { |f| f.read }
+    raise if html.blank?
+    # page created at previouse export.
+    old_html = File.read(html_path) rescue nil
+    if html == old_html
+      debug_log("create: No need to create page.  #{html_path}")
+    else
+      debug_log("create: #{html_path}")
+      File.open(html_path, 'w') do |f|
+        f.print html
+      end
+
+      page = Page.find_by_path(path)
+      if page
+        if page.current && PageContent::RSS_REGEXP =~ page.current.content
+          # Create news page and RSS file.
+          debug_log("Create RSS file......")
+          begin
+            news_pages = create_news_pages(page)
+            create_rdf(page, path, news_pages)
+          rescue
+            debug_log("Fail create RSS File. #{$!}")
+          end
+        end
+        # Copy file to public. directory.
+        copy_page_files(page, path)
+      end
+      # Create QR code.
+      if path_base(path) == '/index' # top page only
+        create_qr(path)
+      end
+      ruby_create_flag = true
+    end
+    debug_log("end: action => 'create_html', args => #{path.inspect}")
+    return ruby_create_flag
+  end
+
+
+  def create_mobile_html(path, force = true)
+    debug_log("start: action => 'create_mobile_html', args => #{path.inspect}")
+    mobile_path = path_mobile(path)
+    old_html = File.read("#{DOCROOT}#{mobile_path}") rescue nil
+    html = open(BASE_URI + mobile_path) { |f| f.read }
+    raise if html.blank?
+
+    if html == old_html
+      debug_log("create: Not Create Mobile Page")
+      debug_log("create: #{DOCROOT}#{mobile_path}")
+      ret = false
+    else
+      debug_log("create: Mobile #{DOCROOT}#{mobile_path}")
+      File.open("#{DOCROOT}#{mobile_path}", 'w') do |f|
+        f.print html
+      end
+      ret = true
+      debug_log("end: action => 'create_mobile_html', args => #{path.inspect}")
+    end
+    return ret
+  end
+
+  def create_rubi_html(path, force = false)
+    debug_log("start: action => 'create_rubi_html', args => #{path.inspect}")
+    rubi_path = "#{DOCROOT}#{path_rubi(path)}"
+    if !force && File.exist?(rubi_path) && File.mtime(rubi_path) > Word.last_modified
+      debug_log("skip: #{rubi_path}")
+      return false
+    end
+    old_rubi_html = File.read(rubi_path) rescue ''
+    html = File.read("#{DOCROOT}#{path_html(path)}")
+    new_rubi_html = RubiAdder.add(html).sub(/\.html\.r"><img alt="ふりがなをつける/, '.html"><img alt="ふりがなをけす').sub(%r!/images/ruby_off.png!, '/images/ruby_on.png')
+    modified = (old_rubi_html != new_rubi_html)
+    if modified
+      debug_log("create: #{rubi_path}")
+      File.open(rubi_path, 'w') do |f|
+        f.print new_rubi_html
+      end
+      FileUtils.rm_f(Dir.glob("#{DOCROOT}#{path_base(path)}.*.md5"))
+    else
+      debug_log("touch: #{rubi_path}")
+      FileUtils.touch(rubi_path)
+    end
+    debug_log("end: action => 'create_rubi_html', args => #{path.inspect}")
+    return modified
+  end
+
+  def prepare_mp3(arg)
+    path = arg_to_path(arg)
+    m3u_path = "#{DOCROOT}#{path_m3u(path)}"
+    rubi_path = "#{DOCROOT}#{path_rubi(path)}"
+    if (File.mtime(m3u_path) > File.mtime(rubi_path) rescue nil)
+      debug_log("skip: action => 'prepare_mp3', args => #{path.inspect}")
+      return
+    end
+    File.open(m3u_path, 'w') do |f|
+      f.puts "#{CMSConfig[:public_uri]}not_found.mp3"
+    end
+    tmp_id = Time.now.to_f
+    tmp_dir = File.expand_path("#{RAILS_ROOT}/tmp/#{tmp_id}/")
+    FileUtils.rm_rf(tmp_dir)
+    FileUtils.mkdir_p(tmp_dir)
+    FileUtils.cp(Dir["#{DOCROOT}#{path_base(path)}.{html.r,m3u,*.mp3,*.md5}"],
+                 tmp_dir, :preserve => true)
+    Job.create(:action => 'create_mp3',
+               :arg1 => arg,
+               :arg2 => tmp_id,
+               :datetime => Time.now)
+  end
+
+  def create_mp3(arg, tmp_id)
+    path = arg_to_path(arg)
+    basename = File.basename(path_base(path))
+    debug_log("start: action => 'create_mp3', args => #{path.inspect}")
+    tmp_dir = File.expand_path("#{RAILS_ROOT}/tmp/#{tmp_id}")
+    vs = VoiceSynthesis.new
+    vs.logger = self.logger
+    vs.gtalk_path = File.expand_path("#{RAILS_ROOT}/tool/gtalk/gtalk/gtalk")
+    vs.html2m3u("#{tmp_dir}/#{basename}.html", "#{CMSConfig[:public_uri].sub(%r!/+\z!, '')}#{path}")
+    debug_log("end: action => 'create_mp3', args => #{path.inspect}")
+    delete_from_mp3_error_log(path)
+    Job.create(:action => 'move_mp3',
+               :arg1 => arg,
+               :arg2 => tmp_id,
+               :datetime => Time.now)
+  rescue => e
+    debug_log("#{e.inspect}: action => 'create_mp3', page => #{path}")
+    add_to_mp3_error_log(path)
+    Job.destroy_all(["action = ? AND arg1 = ? AND arg2 = ?", 
+                        'create_mp3', arg, tmp_id])
+  end
+
+  def move_mp3(arg, tmp_id)
+    path = arg_to_path(arg)
+    basename = File.basename(path_base(path))
+    tmp_dir = File.expand_path("#{RAILS_ROOT}/tmp/#{tmp_id}")
+    dst_dir = "#{DOCROOT}#{path.sub(%r!/[^/]*\z!, '/')}"
+    FileUtils.cp(Dir["#{tmp_dir}/#{basename}.{m3u,*.mp3,*.md5}"], dst_dir, :preserve => true)
+    Dir["#{dst_dir}/#{basename}}.*.{mp3,md5}"].each do |file|
+      FileUtils.rm(file, :force => true) unless File.exist?("#{tmp_dir}/#{File.basename(file)}")
+    end
+    FileUtils.rm_rf(tmp_dir) 
+    if arg =~ /\Ap:(\d+)\z/
+      page = Page.find($1.to_i)
+      if page.name == 'index'
+        upload_dir = page.path
+      else
+        upload_dir = page.path.split(/\//)[0..-2].join('/')
+        if upload_dir != ""
+          upload_dir += '/'
+        else
+          upload_dir = '/'
+        end
+      end
+      begin
+        rsync_to_remote('move_mp3',
+                        :src_path  => page.path_base + '.*',
+                        :dest_path => upload_dir,
+                        :servers   => SERVER,
+                        :option    => "-aLz --delete --exclude='*.md5' --exclude=.svn")
+      rescue
+        debug_log("rsync-error: action => 'move mp3_page', args => #{page_id}")
+      end
+    elsif arg =~ /\Ag:(\d+)\z/
+      path = Genre.find($1.to_i).path
+      begin
+        rsync_to_remote('move_mp3',
+                        :src_path  => path + 'index.*',
+                        :dest_path => path,
+                        :servers   => SERVER,
+                        :option    => "-aLz --delete --exclude='*.md5' --exclude=.svn")
+      rescue
+        debug_log("rsync-error: action => 'move mp3_page', args => #{page_id}")
+      end
+    else
+      debug_log("move_mp3-error: action => 'move_mp3', args => #{arg}")
+    end
+  end
+
+  def cancel_page(page_id)
+    if Page.exists?(page_id)
+      page = Page.find(page_id.to_i)
+      path = page.path
+      SectionNews.update_section_news(path)
+      debug_log("start: action => 'cancel_page', args => #{path.inspect}")
+      base = path_base(path)
+      debug_log("cancel: #{DOCROOT}#{base}.*")
+      FileUtils.rm_rf(Dir["#{DOCROOT}#{base}.*"])
+      add_to_rm_file_ls(path)
+      destroy_remove_attachment(path_data(path))
+
+      upload_dir = page.genre.path
+      begin
+        rsync_to_remote('cancel_page',
+                        :public_url => CMSConfig[:public_uri].chop + path,
+                        :src_path  => upload_dir,
+                        :dest_path => upload_dir,
+                        :servers   => SERVER,
+                        :option    => "-aLz --delete --exclude='*.md5' --exclude=.svn")
+        if page.public_page.top_news == 1
+          (1..News.page_count).each do |i|
+            create_page_by_path("/news.#{i}.html")
+          end
+          rsync_to_remote('cancel_page_news',
+                          :src_path  => '/news.*',
+                          :dest_path => '/',
+                          :servers   => SERVER,
+                          :option    => "-aLz --delete --exclude='*.md5' --exclude=.svn")
+        end
+      rescue
+        debug_log("rsync-error: action => 'cancel_page', args => #{page_id}")
+      end
+      create_genre_jobs(page, path)
+      debug_log("end: action => 'cancel_page', args => #{path.inspect}")
+    end
+  end
+
+  def delete_page(path)
+    debug_log("start: action => 'delete_page', args => #{path.inspect}")
+    base = path_base(path)
+    SectionNews.update_section_news(path)
+    debug_log("delete: #{DOCROOT}#{base}.*")
+    FileUtils.rm_rf(Dir["#{DOCROOT}#{base}.*"])
+    destroy_remove_attachment(path_data(path))
+    debug_log("end: action => 'delete_page', args => #{path.inspect}")
+  end
+
+  def create_all_page
+    debug_log("start: action => 'create_all_page'")
+    do_each_page('create_page')
+    do_each_genre('create_genre')
+    debug_log("end: action => 'create_all_page'")
+  end
+
+  def create_all_rubi_html
+    debug_log("start: action => 'create_all_rubi_html'")
+    do_each_page('create_rubi_html')
+    do_each_genre('create_rubi_html')
+    debug_log("end: action => 'create_all_rubi_html'")
+  end
+
+  def create_all_mp3
+    debug_log("start: action => 'create_all_mp3'")
+    do_each_page('create_mp3')
+    do_each_genre('create_mp3')
+    debug_log("end: action => 'create_all_mp3'")
+  end
+
+  def create_all_plugin_page
+    debug_log("start: action => 'create_all_plugin_page'")
+    do_each_page('create_page') {|page|
+      /<%=/ =~ page.public.content
+    }
+    do_each_genre('create_genre')
+    debug_log("end: action => 'create_all_plugin_page'")
+  end
+
+  def create_all_section_page(section_id)
+    debug_log("start: action => 'create_all_section_page', args => #{section_id.inspect}")
+    section = Section.find(section_id.to_i)
+    section.genres.each do |genre|
+      genre.pages.each do |page|
+        if page.current
+          do_page_job(page, 'create_page')
+        end
+      end
+      do_genre_job(genre, 'create_genre')
+    end
+    debug_log("end: action => 'create_all_section_page', args => #{section_id.inspect}")
+  end
+
+  def create_top_children_genres_page
+    debug_log("start: action => 'create_top_children_genres_page'")
+    root = Genre.find(CMSConfig[:top_genre_id].to_i)
+    root.children.each do |genre|
+      do_genre_job(genre, 'create_genre')
+    end
+    debug_log("end: action => 'create_top_children_genres_page'")
+  end
+
+  def create_all_genre_page(genre_id)
+    debug_log("start: action => 'create_all_genre_page', args => #{genre_id.inspect}")
+    genre = Genre.find(genre_id.to_i)
+    genre.all_pages.each do |page|
+      if page.current
+        do_page_job(page, 'create_page')
+      end
+    end
+    do_genre_job(genre, 'create_genre')
+    debug_log("end: action => 'create_all_genre_page', args => #{genre_id.inspect}")
+  end
+
+  def do_each_page(action, &block)
+    Page.find_all_current.each do |page|
+      do_page_job(page, action, &block)
+    end
+  end
+
+  def do_page_job(page, action)
+    case action
+    when 'create_page'
+      arg1 = page.id
+    when 'create_mp3'
+      arg1 = "p:#{page.id}"
+    else
+      arg1 = page.path
+    end
+    tmp_job = Job.find(:first,
+                       :conditions => ['action = ? and arg1 = ?',
+                         action, arg1])
+    return if tmp_job && (tmp_job.datetime.nil? || (tmp_job.datetime && tmp_job.datetime <= Time.now))
+    if block_given?
+      return unless yield(page)
+    end
+    current = page.current
+    Job.create(:action => action, :arg1 => arg1,
+               :datetime => current.begin_date)
+    if current.end_date
+      tmp_job = Job.find(:first,
+                         :conditions => ['action = ? and arg1 = ? and datetime = ?',
+                                         'cancel_page', page.id, current.end_date])
+      Job.create(:action => 'cancel_page', :arg1 => page.id,
+                 :datetime => current.end_date) unless tmp_job
+    end
+  end
+
+  def do_each_genre(action)
+    Genre.find(:first, :conditions => ['path = ?', '/']).all_genres.each do |genre|
+      do_genre_job(genre, action)
+    end
+  end
+
+  def do_genre_job(genre, action)
+    case action
+    when 'create_genre'
+      arg1 = genre.id
+    when 'create_mp3'
+      arg1 = "g:#{genre.id}"
+    else
+      arg1 = genre.path
+    end
+    tmp_job = Job.find(:first,
+                       :conditions => ['action = ? and arg1 = ?',
+                         action, arg1])
+    return if tmp_job
+    tmp_page = Page.find_by_path(genre.path)
+    return if tmp_page && tmp_page.public
+    Job.create(:action => action, :arg1 => arg1)
+  end
+
+  def move_page(folder_path, old_path)
+    debug_log("start: action => 'move_page', args => #{[folder_path, old_path].inspect}")
+    base = path_base(old_path)
+    debug_log("move: #{DOCROOT}#{base}.* -> #{DOCROOT}#{folder_path}")
+    system("rsync -au #{DOCROOT}#{base}.* #{DOCROOT}#{folder_path} >& /dev/null")
+    upload_dir = File.dirname(old_path)
+    upload_dir << '/' unless upload_dir.slice(-1) == ?/ 
+    FileUtils.rm_rf(Dir["#{DOCROOT}#{base}.*"])
+    add_to_rm_file_ls(old_path)
+    ## remove old page
+    begin
+      rsync_to_remote('move_page_new',
+                      :src_path  => folder_path,
+                      :dest_path => folder_path,
+                      :servers   => SERVER,
+                      :option    => "-aLz --delete --exclude='*.md5' --exclude=.svn")
+    rescue
+      debug_log("rsync-error: action => 'move_page_new', args => #{folder_path} : #
+    path}")
+    end
+    ## remove old page
+    begin
+      rsync_to_remote('move_page_remove',
+                      :src_path  => upload_dir,
+                      :dest_path => upload_dir,
+                      :servers   => SERVER,
+                      :option    => "-aLz --delete --exclude='*.md5' --exclude=.svn")
+    rescue
+      debug_log("rsync-error: action => 'move_page_remove', args => #{folder_path} : #{old_path}")
+    end
+    # create genre jobs for genre to which the moved page belonged.
+    genre = Genre.find_by_path(upload_dir)
+    genre.add_genre_jobs if genre
+    debug_log("end: action => 'move_page', args => #{[folder_path, old_path].inspect}")
+  end
+
+  def delete_folder(folder_path)
+    debug_log("start: action => 'delete_folder', args => #{folder_path.inspect}")
+    debug_log("delete: #{DOCROOT}#{folder_path}")
+    SectionNews.destroy_all_by_genre_remove(folder_path)
+    FileUtils.rm_rf("#{DOCROOT}#{folder_path}")
+    add_to_rm_file_ls(folder_path)
+    destroy_remove_attachment(folder_path)
+    # sync
+    upload_dir = File.dirname(folder_path)
+    upload_dir << '/' unless upload_dir.slice(-1) == ?/ 
+    begin
+      rsync_to_remote('delete_folder',
+                      :src_path  => upload_dir,
+                      :dest_path => upload_dir,
+                      :servers   => SERVER,
+                      :option    => "-aLz --delete --exclude='*.md5' --exclude=.svn")
+    rescue
+      debug_log("rsync-error: action => 'delete_folder', args => #{folder_path}")
+    end
+    debug_log("end: action => 'delete_folder', args => #{folder_path.inspect}")
+  end
+
+  def move_folder(folder_path, old_path)
+    debug_log("start: action => 'move_folder', args => #{[folder_path, old_path].inspect}")
+    FileUtils.mkdir_p("#{DOCROOT}#{folder_path}")
+    debug_log("move: #{DOCROOT}#{old_path} -> #{DOCROOT}#{folder_path}")
+    system("rsync -au #{DOCROOT}#{old_path} #{DOCROOT}#{folder_path} >& /dev/null")
+    FileUtils.rm_rf("#{DOCROOT}#{old_path}")
+    add_to_rm_file_ls(old_path)
+    # new sync
+    upload_dir = File.dirname(folder_path)
+    upload_dir << '/' unless upload_dir.slice(-1) == ?/  # for rsync
+    begin
+      rsync_to_remote('move_folder',
+                      :src_path  => upload_dir,
+                      :dest_path => upload_dir,
+                      :servers   => SERVER,
+                      :option    => "-aLz --delete --exclude='*.md5' --exclude=.svn")
+    rescue
+      debug_log("rsync-error: action => 'move_folder_new', args => #{folder_path} : #{old_path}")
+    end
+    # remove sync
+    upload_dir = File.dirname(old_path)
+    upload_dir << '/' unless upload_dir.slice(-1) == ?/  # for rsync
+    begin
+      rsync_to_remote('move_folder_remove',
+                      :src_path  => upload_dir,
+                      :dest_path => upload_dir,
+                      :servers   => SERVER,
+                      :option    => "-aLz --delete --exclude='*.md5' --exclude=.svn")
+    rescue
+      debug_log("rsync-error: action => 'move_folder_remove', args => #{folder_path} : #{old_path}")
+    end
+    # add genre jobs
+    genre = Genre.find_by_path(upload_dir)
+    genre.add_genre_jobs if genre
+    debug_log("end: action => 'move_folder', args => #{[folder_path, old_path].inspect}")
+  end
+
+  # change_theme:
+  #   * update current theme.
+  #   * move images from theme/'name'/iamges to public/images.
+  #   * move color stylesheet from theme/'name'/stylesheet
+  #     to public/stylesheet.
+  #   * rsync public/images and public/stylesheet to public server.
+  def change_theme(name)
+    debug_log("start: action => 'change_theme', args => #{name}")
+    SiteComponents[:theme] = name
+    theme_dir = File.join(Theme.themes_root, name)
+    Dir.glob("#{theme_dir}/{images,stylesheets}/**/*.{jpg,gif,png,css}").reject{|f| f =~ /\a\.+\z/}.each do |f|
+      FileUtils.cp(f, "#{RAILS_ROOT}/public/#{f.sub(/\A#{theme_dir}\//, '')}" )
+    end
+    ['/images/', '/stylesheets/'].each do |dir|
+      begin
+        rsync_to_remote('change_theme',
+                        :src_path  => dir,
+                        :dest_path => dir,
+                        :servers   => SERVER,
+                        :option    => "-aLz --delete --exclude='*.md5' --exclude=.svn")
+      rescue
+        debug_log("rsync-error: action => 'change_theme', args => #{name} ")
+      end
+    end
+    debug_log("end: action => 'change_theme', args => #{name}")
+  end
+
+  private
+
+  def initialize_dirs
+    FileUtils.mkdir_p(LOCAL_HTPASSWD_DIR) unless File.exist?(LOCAL_HTPASSWD_DIR)
+    FileUtils.mkdir_p(REMOVED_PAGE_LIST_DIR) unless File.exist?(REMOVED_PAGE_LIST_DIR)
+  end
+
+  def add_news_page_jobs(obj, date)
+    flag = false
+    CMSConfig[:news_pages].each do |key, value|
+      # genre page
+      if %r|^/#{key}/| =~ obj.path
+        page = Page.find_by_path("/#{CMSConfig[:news_pages][key]}")
+        Job.create(:action => 'create_page', :arg1 => page.id, :datetime => date) if page
+        page = Page.find_by_path("/all_#{CMSConfig[:news_pages][key]}")
+        Job.create(:action => 'create_page', :arg1 => page.id, :datetime => date) if page
+        page = Page.find_by_path("/#{CMSConfig[:top_news_page]}")
+        Job.create(:action => 'create_page', :arg1 => page.id, :datetime => date) if page
+        page = Page.find_by_path("/#{CMSConfig[:top_all_news_page]}")
+        Job.create(:action => 'create_page', :arg1 => page.id, :datetime => date) if page
+        flag = true
+      end
+    end
+    # other & top page
+    unless flag
+      page = Page.find_by_path("/#{CMSConfig[:top_news_page]}")
+      Job.create(:action => 'create_page', :arg1 => page.id, :datetime => date) if page
+      page = Page.find_by_path("/#{CMSConfig[:top_all_news_page]}")
+      Job.create(:action => 'create_page', :arg1 => page.id, :datetime => date) if page
+      page = Page.find_by_path("/#{CMSConfig[:other_news_page]}")
+      Job.create(:action => 'create_page', :arg1 => page.id, :datetime => date) if page
+      page = Page.find_by_path("/#{CMSConfig[:all_other_news_page]}")
+      Job.create(:action => 'create_page', :arg1 => page.id, :datetime => date) if page
+    end
+  end
+
+  def open(dst, &block)
+    Kernel.open(dst, {:read_timeout => 300}, &block)
+  end
+
+  def path_base(path)
+    if /(.+)\.html\z/ =~ path
+      return $1
+    else
+      "#{path}index"
+    end
+  end
+
+  def path_html(path)
+    "#{path_base(path)}.html"
+  end
+
+  def path_rubi(path)
+    "#{path_base(path)}.html.r"
+  end
+
+  def path_mobile(path)
+    "#{path_base(path)}.html.i"
+  end
+
+  def path_m3u(path)
+    "#{path_base(path)}.m3u"
+  end
+
+  def path_qr(path)
+    "#{path_base(path)}.png"
+  end
+
+  def path_data(path)
+    "#{path_base(path)}.data"
+  end
+
+  def path_rss(path)
+    "#{DOCROOT}" + path_base(path) + ".rdf"
+  end
+
+  def arg_to_path(arg)
+    case arg
+    when /\Ap:(\d+)\z/
+      path = Page.find($1.to_i).path
+    when /\Ag:(\d+)\z/
+      path = Genre.find($1.to_i).path
+    else
+      path = arg
+    end
+    return path
+  end
+
+  def debug_log(msg)
+    if @logger
+      # add datetime since Rails changes the default logger format :(
+      @logger.debug(Time.now.strftime('%b %d %H:%M:%S ') + msg)
+    end
+  end
+
+  def delete_from_mp3_error_log(path)
+    mp3_error_log(path) do |page_list, page|
+      if item = page_list.get_elements("li[@id='p_#{page.id}']").first
+        page_list.delete_element(item)
+        debug_log("delete_from_mp3_error_log: delete entry from #{MP3_ERROR_LOG_FILE}: #{path}")
+      end
+    end
+  end
+
+  def add_to_mp3_error_log(path)
+    mp3_error_log(path) do |page_list, page|
+      unless  page_list.get_elements("li[@id='p_#{page.id}']").first
+        li = REXML::Element.new('li')
+        li.add_attribute('id', "p_#{page.id}")
+        li.add_text("#{page.title}")
+        a = REXML::Element.new('a')
+        a.add_attribute('href',"#{CMSConfig[:mail_uri]}_admin/show_page_info/#{page.id}")
+        a.add_attribute('target','_blank')
+        a.add_text("\(#{CMSConfig[:mail_uri]}_admin/show_page_info/#{page.id}\)")
+        li.add_element(a)
+        page_list.add_element(li)
+        debug_log("add_to_mp3_error_log: log writtene to #{MP3_ERROR_LOG_FILE}")
+      else
+        debug_log("add_to_mp3_error_log: already in the error list. skiped")
+      end
+    end
+  end
+
+  def mp3_error_log(path)
+    # add or delete s page which corresond to the given path to the 
+    # error log file.
+    unless File.exists?(MP3_ERROR_LOG_FILE) && get_error_list(MP3_ERROR_LOG_FILE)
+      File.open(MP3_ERROR_LOG_FILE, "w") do |file|
+        file.puts mp3_error_log_template
+      end
+    end
+
+    if page = Page.find_by_path(path)
+      error_list = get_error_list(MP3_ERROR_LOG_FILE)
+      yield(error_list, page)
+      File.open(MP3_ERROR_LOG_FILE,"w+") do |file|
+        html = error_list.document
+        html.write(file)
+      end
+    end
+  end
+
+  def get_error_list(error_file)
+    file = File.read(error_file)
+    unless file.empty? || !REXML::Document.new(file).root
+      REXML::XPath.match(REXML::Document.new(file), "//ul[@id='error_page_list']").first
+    end
+  end
+
+  def mp3_error_log_template
+    <<HTML
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ja" xml:lang="ja">
+<head>
+<title>Title</title>
+</head>
+<body>
+<h2>音声合成作成に失敗したページの一覧</h2>
+<p>以下のページの音声合成中にエラーが発生しました.</p>
+<p>ページ内容の確認をお願いします。</p>
+<ul id="error_page_list">
+</ul>
+</body>
+</html>
+HTML
+  end
+
+  def add_genre_index_jobs(page, root, path, date)
+    genres = page.genres
+    genres.each do |genre|
+      debug_log("start: action => 'create_genre_jobs', args => #{path.inspect}")
+      if genre.id == root.id
+        if page.public_page.top_news == 1
+          root_page = Page.find_by_path("/index.html")
+          Job.create(:action => 'create_page', :arg1 => root_page.id,
+                     :datetime => date)
+        end
+      else
+        job_page = Page.find_by_path("#{genre.path}index.html")
+        if job_page
+          job_exist = Job.find(:first,
+                               :conditions => ['action = ? and arg1 = ?',
+                                               'create_page', job_page.id])
+          unless job_exist
+            Job.create(:action => 'create_page', :arg1 => job_page.id,
+                       :datetime => date)
+          end
+        else
+          Job.create(:action => 'create_genre', :arg1 => genre.id,
+                     :arg2 => nil, :datetime => date)
+        end
+      end
+      debug_log("end: action => 'create_genre_jobs', args => #{path.inspect}")
+    end
+    section = page.genre.section
+    if section && Genre.exists?(section.top_genre_id)
+      section_genre = Genre.find(section.top_genre_id)
+      if section_genre
+        debug_log("start: action => 'create_genre_jobs', args => #{path.inspect}")
+        job_page = Page.find_by_path("#{section_genre.path}index.html")
+        if job_page
+          job_exist = Job.find(:first,
+                               :conditions => ['action = ? and arg1 = ?',
+                                               'create_page', job_page.id])
+          unless job_exist
+            Job.create(:action => 'create_page', :arg1 => job_page.id,
+                       :datetime => date)
+          end
+        else
+          Job.create(:action => 'create_genre',
+                     :arg1 => section_genre.id,
+                     :arg2 => nil,
+                     :datetime => date)
+        end
+        debug_log("end: action => 'create_genre_jobs', args => #{path.inspect}")
+      end
+    end
+    if page && page.public_page && page.path =~ /^\/emergency\/.*$/
+      Job.create(:action => 'create_genre', :arg1 => root.id,
+                 :arg2 => nil, :datetime => date)
+      debug_log("---emergency---- #{page.path}")
+    end
+  end
+
+  def create_genre_jobs(page, path)
+    root = Genre.find_by_path('/')
+    if page && page.public_page && page.public_page.section_news == 1
+      date = page.public_page.begin_date rescue Time.now
+      add_genre_index_jobs(page, root, path, date)
+      str = CMSConfig[:news_pages].values + CMSConfig[:all_news_pages].values
+      str << CMSConfig[:top_news_page]
+      str << CMSConfig[:top_all_news_page]
+      str << CMSConfig[:other_news_page]
+      str << CMSConfig[:other_all_news_page]
+      if str.select{|i| "/#{i}" == page.path }.empty?
+        add_news_page_jobs(page, date)
+      end
+    else
+      if page && page.public_page && page.public_page.section_news != 1
+        query = 'page_id = ? AND admission = ?'
+        contents = PageContent.find(:all,
+                                    :conditions => [query, page.id,
+                                                    PageContent::PUBLISH],
+                                    :order => 'id desc')
+        if contents && contents.size > 1
+          if contents[1].section_news == 1
+            add_genre_index_jobs(page, root, path, date)
+          end
+        end
+      end
+      if page && page.public_page && page.public_page.top_news == 1
+        Job.create(:action => 'create_genre', :arg1 => root.id,
+                   :arg2 => nil, :datetime => date)
+      end
+    end
+  end
+
+  def change_remove_attachment(path)
+    Job.find(:all, :conditions => ['action = ? and arg1 like ?',
+                                   'remove_attachment',
+                                   "#{path}%" ]).each do |job|
+      yield(job)
+                                   end
+  end
+
+  def enable_remove_attachment(path)
+    change_remove_attachment(path) do |job|
+      job.update_attribute(:datetime, nil)
+    end
+    debug_log("enable_remove_attachment: #{path}")
+  end
+
+  def disable_remove_attachment(path)
+    Job.destroy_all(['action = ? and arg1 like ?',
+                     'enable_remove_attachment', "#{path}%" ])
+    debug_log("disable_remove_attachment: #{path}")
+  end
+
+  def destroy_remove_attachment(path)
+    change_remove_attachment(path) do |job|
+      job.destroy
+    end
+    disable_remove_attachment(path)
+    debug_log("destroy_remove_attachment: #{path}")
+  end
+
+  def remove_attachment(path)
+    add_to_rm_file_ls(path)
+  end
+
+  def add_to_rm_file_ls(path)
+    add_to_file(path, REMOVED_PAGE_LIST)  # html
+    if File.extname(path) == '.html'
+      data_path = path_data(path) + '/'
+      add_to_file(data_path, REMOVED_PAGE_LIST)      # attachement
+    end
+    debug_log("add_to_rm_file_ls: added.  page_url => #{path}")
+  end
+
+  def add_to_sync_failed_page_ls(path)
+    add_to_file(path, SYNC_FAILED_PAGE_LIST)
+    debug_log("add_to_sync_failed_page_ls: added.  page_url => #{path}")
+  end
+
+  def add_to_file(path, file_name)
+    File.open(file_name, "a+") do |file|
+      file.flock(File::LOCK_EX)
+      file.puts(path)
+    end
+  end
+
+  def rsync_to_remote(method_name, params={})
+    if File.exist?(SYNC_ENABLE_FILE_PATH)
+      src = (params[:src_dir] || DOCROOT) +
+        (params[:src_path] || '')
+      dest = (params[:dest_dir] || SYNC_DEST_DIR ) +
+        (params[:dest_path] || '')
+      if params[:servers]
+        params[:servers].each do |server|
+          if system("rsync #{params[:option]} #{src} #{USER}@#{server}:#{dest}")
+            debug_log("#{method_name} ----- #{src} ----- #{dest}")
+          else
+            debug_log("SYNC FAILED!! #{params[:src_path]}")
+            url = params[:public_url]
+            add_to_sync_failed_page_ls("#{Time.now.strftime('%FT%T')} #{method_name} #{url ? "URL: "+url : "path: "+params[:src_path]}")
+          end
+        end
+      end
+    end
+  end
+
+  def create_rdf(page, path, news_pages)
+    rss_path = path_rss(path)
+    File.open(rss_path, 'w') do |f|
+      f.print create_rss(page, news_pages)
+    end
+    debug_log("Created RSS file #{rss_path}")
+  end
+
+  def copy_page_files(page, path)
+    data_path_from = "#{RAILS_ROOT}/files/#{ENV['RAILS_ENV']}/#{page.id}/"
+    if File.directory?(data_path_from)
+      data_path_to = "#{DOCROOT}#{path_data(path)}"
+      debug_log("copy: #{data_path_from} -> #{data_path_to}")
+      FileUtils.mkdir_p("#{File.dirname(data_path_to)}")
+      system('rsync', '-a', '--delete', data_path_from, data_path_to)
+    end
+  end
+
+  def create_news_pages(page)
+    if page.path == "/"
+      Page.top_news([])
+    elsif page.path == page.section_top_genre_path
+      page_lists = Page.section_news(page.genre)
+      page_lists.map{ |p| p.page }
+      ### genre news page RSS
+    elsif !CMSConfig[:news_pages].values.select{|i| "/#{i}" == page.path }.empty?
+      genre_name = CMSConfig[:news_pages].select{|key, value| "/#{value}" == page.path}[0].first
+      sn = SectionNews.genre_news("/#{genre_name}/", 10, 0)
+      sn.map{ |news| news.page }
+    elsif !CMSConfig[:all_news_pages].values.select{|i| "/#{i}" == page.path }.empty?
+      genre_name = CMSConfig[:all_news_pages].select{|key, value| "/#{value}" == page.path}[0].first
+      sn = SectionNews.genre_news("/#{genre_name}/", 10, 0)
+      sn.map{ |news| news.page }
+    elsif "/#{CMSConfig[:top_news_page]}" == page.path || "/#{CMSConfig[:top_all_news_page]}" == page.path
+      sn = SectionNews.genre_news('all', 10, 0)
+      sn.map{ |news| news.page }
+    elsif "/#{CMSConfig[:other_news_page]}" == page.path || "/#{CMSConfig[:other_all_news_page]}" == page.path
+      sn = SectionNews.genre_news('other', 10, 0)
+      sn.map{ |news| news.page }
+    else
+      page_content_list = Page.genre_news([], page.genre)
+      page_content_list.map{ |pc| pc.page }
+    end
+  end
+
+  def create_qr(path)
+    qr_path = path_qr(path)
+    qr_file_path = "#{DOCROOT}#{qr_path}"
+    unless File.exist?(qr_file_path)
+      qr = open(BASE_URI + qr_path) { |f| f.read }
+      debug_log("create: #{qr_file_path}")
+      FileUtils.mkdir_p("#{File.dirname(qr_file_path)}")
+      File.open(qr_file_path, 'w') do |f|
+        f.print qr
+      end
+    end
+  end
+
+  def create_rss(page, new_pages)
+    rss = RSS::RDF.new
+    path = CMSConfig[:public_uri].chop + page.path
+    rss.channel = RSS::RDF::Channel.new(path)
+    channel = rss.channel
+    channel.title = "島根県 RSS (#{page.title})"
+    channel.description = "島根県"
+    channel.link = CMSConfig[:public_uri]
+    channel.items = RSS::RDF::Channel::Items.new
+    new_pages[0..NEWS_COUNT].each do |obj|
+      link = CMSConfig[:public_uri].chop + obj.path
+      channel.items.Seq.li = RSS::RDF::Li.new(link)
+      item = RSS::RDF::Item.new(link)
+      if obj.current && !obj.current.news_title.blank?
+        item.title = obj.news_title
+      else
+        item.title = obj.title
+      end
+      item.link = link
+      description = obj.current.content.scrape("p")
+      item.description = split_description(description)
+      item.description += "..." if description.length > 200
+      rss.item = item
+    end
+    return rss.to_s
+  end
+
+  # A job that create apache2 compatible .htaccess file for the given genre.
+  def create_htaccess(genre_id)
+    genre = Genre.find(genre_id)
+    change_auth(genre, true)
+    if genre.web_monitors.any?
+      create_htpasswd(genre_id)
+    end
+  end
+
+  # A job that remove .htaccess and htpasswd file from public server 
+  # directory corresponding to the given genre.
+  def destroy_htaccess(genre_id)
+    genre = Genre.find(genre_id)
+    change_auth(genre, false)
+    destroy_htpasswd(genre_id)
+  end
+
+  # Create and sync to or remove htaccess from the public server 
+  # according +mode+ arg. mode == true means 'create', while false means 'remove'.
+  def change_auth(genre, mode)
+    upload_dir = genre.path
+    case mode
+    when true
+      File.open("#{DOCROOT}#{upload_dir}.htaccess", 'w') do |file|
+        file.puts(NKF.nkf('-w -mo', <<EOF))
+AuthType Digest
+AuthName "#{genre.name}"
+AuthDigestDomain #{genre.path}
+AuthUserFile #{CMSConfig[:public_htpasswd_dir]}/#{genre.id}
+Require valid-user
+EOF
+      end
+    when false
+      f_name = "#{DOCROOT}#{upload_dir}.htaccess"
+      FileUtils.rm(f_name) if File.exist?(f_name)
+    else
+      raise(ArgumentError, "Invalid :mode arg passed to #{change_auth}")
+    end
+
+    rsync_to_remote('create_genre',
+                    :src_path  => upload_dir,
+                    :dest_path => upload_dir,
+                    :servers   => SERVER,
+                    :option    => "-aLz --delete --exclude='*.md5' --exclude=.svn")
+  end
+
+  def remove_from_htpasswd(genre_id, login)
+    debug_log("start: action => 'create_htpasswd', args => #{genre_id}")
+    begin
+      htpasswd = File.join(LOCAL_HTPASSWD_DIR, genre_id.to_s)
+      genre = Genre.find(genre_id)
+      File.open(htpasswd, 'r+') do |file|
+        new_content = file.reject{|line| line =~ /^#{login}:/}
+        file.rewind
+        file.truncate(0)
+        file.puts new_content
+      end
+
+      sync_htpasswd_dir('delete_from_htpasswd')
+
+    rescue => e
+      debug_log("rsync-err: action => 'delete_from_htpasswd', args => #{genre_id}\n#{e.message}#{e.backtrace}")
+    ensure
+      debug_log("end: action => 'delete_from_htpasswd', args => #{genre_id}")
+    end
+  end
+
+  def create_htpasswd(genre_id)
+    debug_log("start: action => 'create_htpasswd', args => #{genre_id}")
+    begin
+      htpasswd = File.join(LOCAL_HTPASSWD_DIR, genre_id.to_s)
+      genre = Genre.find(genre_id)
+      File.open(htpasswd, 'w') do |file|
+        genre.web_monitors.select {|m|
+          m.state == WebMonitor::REGISTERED
+        }.each do |monitor|
+          file.puts([ monitor.login, genre.name, monitor.password ].join(':'))
+        end
+      end
+
+      sync_htpasswd_dir('create_htpasswd')
+
+    rescue => e
+      File.unlink(htpasswd) if htpasswd && File.exist?(htpasswd)
+      debug_log("rsync-err: action => 'create_htpasswd', args => #{genre_id}\n#{e.message}#{e.backtrace}")
+    ensure
+      debug_log("end: action => 'create_htpasswd', args => #{genre_id}")
+    end
+  end
+
+  def destroy_htpasswd(genre_id)
+    debug_log("start: action => 'destroy_htpasswd', args => #{genre_id}")
+    htpasswd = File.join(LOCAL_HTPASSWD_DIR, genre_id.to_s)
+    File.unlink(htpasswd) if File.exist?(htpasswd)
+    begin
+      sync_htpasswd_dir('destroy_htpasswd')
+    rescue => e
+      debug_log("destroy_htpasswd failed!! Failed to remove #{htpasswd}." )
+    ensure
+      debug_log("end: action => 'destroy_htpasswd', args => #{genre_id}")
+    end
+  end
+
+  def sync_htpasswd_dir(method)
+    rsync_to_remote(method,
+                    :src_dir  => LOCAL_HTPASSWD_DIR + '/',
+                    :dest_dir => CMSConfig[:public_htpasswd_dir],
+                    :servers   => SERVER,
+                    :option    => "-aLz --delete --exclude='*.md5' --exclude=.svn")
+  end
+end
+
+require 'pp'
+if __FILE__ == $0
+  configuration = Rails::Initializer.run(:initialize_logger).configuration
+  @exporter = CMSExport.new
+  @exporter.logger = Logger.new(File.join(File.dirname(configuration.log_path), 'export.log'))
+  if ARGV == ['-i']
+    require 'irb'
+    ARGV.clear
+    IRB.start
+  else
+    while job = Job.next
+      @exporter.run(job)
+    end
+  end
+end

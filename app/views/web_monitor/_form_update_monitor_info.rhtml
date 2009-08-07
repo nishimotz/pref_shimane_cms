@@ -1,0 +1,10 @@
+<%= start_form_tag({ :action => 'update_monitor_info', :id => @genre}, :class => 'web_monitor_form') %>
+<fieldset>
+<% if flash[:update_user_info_error] -%>
+  <p style="color: red; margin: 5px;"><%= h(flash[:update_user_info_error]) %></p>
+<% end -%>
+<legend>モニタの編集情報の反映</legend>
+<p>モニタの状態が変更されています。モニタの状態をアクセス制限に反映させる場合は「設定を反映させる」ボタンを押してください。</p>
+<%= submit_tag "設定を反映させる" %>
+</fieldset>
+<%= end_form_tag %>

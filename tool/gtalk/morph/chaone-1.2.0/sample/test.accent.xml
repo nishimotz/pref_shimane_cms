@@ -1,0 +1,32 @@
+<S>
+  <AP orth="これは" pron="コレワ" aType="0" silence="NON">
+    <W2 orth="これ" pron="コレ" pos="代名詞" aType="0" aConType="">
+      <W1 orth="これ" pron="コレ" pos="代名詞" lex="コレ!此れ" indexForm="コレ" indexOrth="此れ" aType="0"/>
+    </W2>
+    <W2 orth="は" pron="ワ" pos="助詞-係助詞" aType="0" aConType="動詞%F5,名詞%F1,形容詞%F2@-1">
+      <W1 orth="は" pron="ワ" pos="助詞-係助詞" lex="ハ!は" indexForm="ハ" indexOrth="は" aConType="動詞%F5,名詞%F1,形容詞%F2@-1"/>
+    </W2>
+  </AP>
+  <AP orth="、" pron="、" aType="0" silence="PAU">
+    <W2 orth="、" pron="、" pos="その他-読点" aType="0" aConType="">
+      <W1 orth="、" pron="、" pos="その他-読点" lex="!、" indexForm="" indexOrth="、"/>
+    </W2>
+  </AP>
+  <AP orth="何本ですか" pron="ナンボンデスカ" aType="1" silence="NON" interrogative="YES">
+    <W2 orth="何本" pos="名詞-普通名詞-副詞可能" pron="ナンボン" aType="1" aConType="">
+      <W1 orth="何" pron="ナン" pos="名詞-数詞-一般" lex="ナン!何" indexForm="ナン" indexOrth="何" ipaConType="Nn" aType="1"/>
+      <W1 orth="本" pron="ボン" pos="接尾辞-名詞的-助数詞" lex="ホン!本" indexForm="ホン" indexOrth="本" ipaType="ホ混合" fpaConType="B1S6SjShS,B1S8SjShS" aConType="C3" ipaForm="濁音形"/>
+    </W2>
+    <W2 orth="です" pron="デス" pos="助動詞" aType="0" aConType="形容詞%F2@-1,動詞%F2@1,名詞%F2@1">
+      <W1 orth="です" pron="デス" pos="助動詞" cType="助動詞-デス" cForm="基本形-一般" lex="デス!です" indexForm="デス" indexOrth="です" aConType="形容詞%F2@-1,動詞%F2@1,名詞%F2@1"/>
+    </W2>
+    <W2 orth="か" pron="カ" pos="助詞-終助詞" aType="0" aConType="動詞%F2@0,形容詞%F2@-1,名詞%F1">
+      <W1 orth="か" pron="カ" pos="助詞-終助詞" lex="カ!か" indexForm="カ" indexOrth="か" aConType="動詞%F2@0,形容詞%F2@-1,名詞%F1"/>
+    </W2>
+  </AP>
+  <AP orth="？" pron="？" aType="0" silence="SILE">
+    <W2 orth="？" pron="？" pos="その他-句点" aType="0" aConType="">
+      <W1 orth="？" pron="？" pos="その他-句点" lex="!？" indexForm="" indexOrth="？"/>
+    </W2>
+  </AP>
+</S>

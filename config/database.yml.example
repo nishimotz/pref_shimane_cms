@@ -1,0 +1,20 @@
+development:
+  adapter: postgresql
+  database: cms_development
+  username: postgres
+  encoding: utf8
+  min_messages: ERROR
+
+test:
+  adapter: postgresql
+  database: cms_test
+  username: postgres
+  encoding: utf8
+  min_messages: ERROR
+
+production:
+  adapter: postgresql
+  database: cms_production
+  username: postgres
+  encoding: utf8
+  min_messages: ERROR

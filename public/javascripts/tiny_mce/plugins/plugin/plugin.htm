@@ -1,0 +1,63 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  <title>{$lang_plugin_title}</title>
+  <script language="javascript" type="text/javascript" src="../../tiny_mce_popup.js"></script>
+  <script language="javascript" type="text/javascript" src="jscripts/plugin.js"></script>
+  <script language="javascript" type="text/javascript" src="../../utils/mctabs.js"></script>
+  <script language="javascript" type="text/javascript" src="../../utils/form_utils.js"></script>
+  <link href="css/plugin.css" rel="stylesheet" type="text/css" />
+  <base target="_self" />
+</head>
+<body onload="tinyMCEPopup.executeOnLoad('init();');" style="display: none">
+    <form onsubmit="insertPlugin();return false;" action="#">
+    <div class="tabs">
+      <ul>
+        <li id="general_tab" class="current"><span><a href="javascript:mcTabs.displayTab('general_tab','general_panel');" onmousedown="return false;">{$lang_plugin_title}</a></span></li>
+      </ul>
+    </div>
+
+    <div class="panel_wrapper">
+      <div id="general_panel" class="panel current">
+          <table border="0" cellpadding="4" cellspacing="0">
+              <tr>
+                <td nowrap="nowrap"><label for="file">{$lang_plugin_list}</label></td>
+                <td nowrap="nowrap">
+                  <table border="0" cellspacing="0" cellpadding="0">
+                    <tr>
+                    <td><select id="plugin" name="plugin" onchange="change(this);">
+                      <option value="">↓選んでください</option>
+                      <option value="section_top_list">分野別情報一覧</option>
+                      <option value="section_news">所属の新着情報</option>
+                      <option value="genre_news_list">ジャンルの新着情報</option>
+                      <option value="genre_list">ジャンル一覧</option>
+                      <option value="page_list">ページ一覧</option>
+                      </select></td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+              <tr>
+                <td>{$lang_plugin_info}</td>
+                <td width="80%"><p id="plugin_info" style="border: #777 solid 1px;"><br /></p></td>
+              </tr>
+              <tr>
+                <td valign="top"><label>{$lang_plugin_format}</label></td>
+                <td nowrap="nowrap"><input type="text" id="plugin_format" name="plugin_format" size="35" /></td>
+              </tr>
+          </table>
+      </div>
+    </div>
+
+    <div class="mceActionPanel">
+      <div style="float: left">
+        <input type="button" id="insert" name="insert" value="{$lang_insert}" onclick="insertPlugin();" />
+      </div>
+
+      <div style="float: right">
+        <input type="button" id="cancel" name="cancel" value="{$lang_cancel}" onclick="tinyMCEPopup.close();" />
+      </div>
+    </div>
+  </form>
+</body>
+</html>

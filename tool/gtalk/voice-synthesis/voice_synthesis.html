@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>音声合成テスト</title>
+    <script type="text/javascript">
+function $(id) {
+  return document.getElementById(id);
+}
+
+function clearSourceText() {
+  $('source-text').value = '';
+}
+
+String.prototype.stripTags = function() {
+  return this.replace(/<\/?[^>]+>/gi, '');
+}
+
+function extractText() {
+    $('text').value = $('source-text').value.stripTags();
+}
+    </script>
+  </head>
+  <body>
+    <h1>音声合成テスト</h1>
+    <textarea id="source-text" rows="10" cols="80"></textarea>
+    <br />
+    <input type="button" value="テキスト抽出" 
+           onclick="javascript: extractText();">
+    <input type="button" value="クリア" 
+           onclick="javascript: clearSourceText();">
+    <br />
+    <form action="voice_synthesis.cgi" method="post">
+      <textarea name="text" id="text" rows="10" cols="80">音声合成のテストです。</textarea>
+      <br />
+      <input type="submit" value="合成" />
+    </form>
+  </body>
+</html>

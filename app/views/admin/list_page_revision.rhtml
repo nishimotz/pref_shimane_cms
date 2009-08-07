@@ -1,0 +1,35 @@
+<%= render(:partial => 'menu_page') %>
+<div class="container">
+<% if @page_contents.empty? -%>
+<p>公開ページはありません。</p>
+<% else -%>
+<h2>公開ページ履歴一覧</h2>
+<table>
+  <tr>
+    <th>公開日</th>
+    <th>担当者</th>
+    <th>TEL</th>
+    <th>e-mail</th>
+    <th>コメント</th>
+    <th>プレビュー</th>
+<% unless @admitting || @waiting -%>
+    <th>処理</th>
+<% end -%>
+  </tr>
+<% @page_contents.each do |content| -%>
+  <tr>
+<!--    <td><%= h(public_term_strftime(content.date)) %></td> -->
+    <td><%= h(public_term_strftime(content.last_modified)) %></td>
+    <td><%= h(content.user_name) %></td>
+    <td><%= h(content.tel) %></td>
+    <td><%= h(content.email) %></td>
+    <td><%= h(content.comment) %></td>
+    <td><%= popup_link_to('プレビュー', {:controller =>'visitor', :action => 'show_revision', :id => content}) %></td>
+<% unless @admitting || @waiting -%>
+    <td><%= link_to('この公開ページを編集ページに反映させる', {:action => 'reflect_revision', :id => content}, :confirm => '現在の編集ページを破棄して、この公開ページに置き換えますか？') %></td>
+<% end -%>
+  </tr>
+<% end -%>
+</table>
+<% end -%>
+</div>

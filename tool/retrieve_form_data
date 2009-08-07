@@ -1,0 +1,7 @@
+#!/usr/bin/env ruby
+
+require File.expand_path("../config/environment", File.dirname(__FILE__))
+
+EnqueteAnswer.retrieve_form_data.each_value do |page|
+  page.send_enquete_update_mail
+end

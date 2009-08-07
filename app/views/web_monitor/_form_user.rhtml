@@ -1,0 +1,21 @@
+<fieldset>
+<% if flash[:monitor_error] -%>
+  <p style="color: red; margin: 5px;"><%= h(flash[:monitor_error]) %></p>
+<% end -%>
+<% if flash[:edit_notice] -%>
+  <p style="color: green; margin: 10px;"><%= h(flash[:edit_notice]) %></p>
+<% end -%>
+<%= fixed_error_messages_for 'web_monitor' %>
+<legend>モニタの<%= @mode %></legend>
+<p><label for="web_monitor_name">モニタ名:</label>
+<%= text_field 'web_monitor', 'name' %></p>
+<p><label for="web_monitor_login">ユーザID（3〜20字）:</label> <%= text_field 'web_monitor', 'login' %></p> 
+<p><label for="web_monitor_password">パスワード（8〜12字）:</label>
+<%= password_field 'web_monitor', 'password'  %></p>
+
+<p><label for="web_monitor_password_confirmation">パスワード確認用（8〜12字）:</label>
+<%= password_field 'web_monitor', 'password_confirmation'  %></p>
+<%= hidden_field 'web_monitor', 'genre_id' %>
+
+<%= submit_tag "登録する" %>
+</fieldset>

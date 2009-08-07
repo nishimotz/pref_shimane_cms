@@ -1,0 +1,129 @@
+<%= render(:partial => 'menu') -%>
+<br />
+<br style="clear: both;" />
+
+<div class="container">
+[<%= link_to('大カテゴリの並び替え', :action => 'sort_category') %>]|[<%= link_to('ヘルプ一覧に戻る', :action => 'admin_index') %>]|
+<% if params[:id] -%>
+[<%= link_to_if(!@category.children.empty?, "「#{@category.name}以下のカテゴリの順番を変更する」", :action => 'sort_category', :id => params[:id]) %>]
+<% end -%>
+
+  <div style="background-color: #CCCCCC; border: solid 1px;">
+    <% if @mode == :edit -%>
+      <p>カテゴリの変更</p>
+      <div style="margin-left: 20px;">
+        <%= start_form_tag(:action => 'update_category', :id => params[:id]) %>
+        カテゴリ名:<%= text_field(:category, :name, :size => '60') %>
+        <%= submit_tag('   変更   ') %>
+        <%= end_form_tag %>
+      </div>
+    <% else -%>
+      <p>大カテゴリの追加</p>
+      <div style="margin-left: 20px;">
+        <%= start_form_tag({:action => 'new_category'}, :name=> 'EditPage') %>
+        大カテゴリ:<%= text_field(:category, :name, :size => '60') %>
+        <%= submit_tag('   追加   ') %>
+        <%= end_form_tag %>
+      </div>
+    <% end -%>
+  </div>
+  <div style="margin-top: 10px;background-color: #CCCCCC; border: solid 1px;">
+    <% unless @mode == 'edit' -%>
+      <p>中カテゴリ以下の追加(<%= link_to('中カテゴリを追加する', :action => 'list_category') %>)</p>
+      <div style="margin-left: 20px;">
+        <%= start_form_tag({:action => 'new_category'}, :name=> 'EditPage') %>
+        <%= select(:category, :id, @select_categories) %>以下に
+        カテゴリ<%= text_field(:category, :name, :size => '60') %>を追加
+        <%= submit_tag('   追加   ') %>
+        <%= end_form_tag %>
+    <% else -%>
+      <p>中カテゴリ以下の追加(<%= link_to('中カテゴリを追加する', :action => 'list_category') %>)</p>
+      <div style="margin-left: 20px;">
+        <%= start_form_tag({:action => 'update_category'}, :name=> 'EditPage') %>
+        カテゴリ<%= text_field(:category, :name, :size => '60') %>を修正
+        <%= hidden_field(:category, :id) %>
+        <%= submit_tag('   修正   ') %>
+        <%= end_form_tag %>
+    <% end -%>
+    </div>
+  </div>
+
+  <hr />
+  <p>中カテゴリを追加する場合は大カテゴリ名をクリックしてください。</p>
+  <p>小カテゴリを追加する場合は中カテゴリ名をクリックしてください。</p>
+  <table>
+    <tr>
+      <th>No</th>
+      <th colspan="2">大カテゴリ(操作)</th>
+      <th colspan="2">中カテゴリ(操作)</th>
+      <th colspan="2">小カテゴリ(操作)</th>
+    </tr>
+    <% @categories.each_with_index do |category, i| -%>
+    <% count = get_category_rowspan_count(category) -%>
+    <% max_count = category.get_category_tree_max_count -%>
+    <% column_color = get_table_column_color(i) -%>
+    <tr style="background-color: <%= column_color %>">
+      <td rowspan="<%= max_count %>"><%= i + 1 %></td>
+      <td rowspan="<%= max_count %>"><%= link_to(category.name, :action => 'select_category', :id => category) %>(<%= category.helps.size %>)<%= enable_navigation?(category) %></td>
+      <td rowspan="<%= max_count %>">[<%= link_to('編集', :action => 'select_category', :id => category, :update => 'update') %>]|[<%= link_to('削除', {:action => 'destroy_category', :id => category}, :confirm => '本当に削除しますか？') %>]<br />[<%= link_to('ナビゲーションの設定', {:action => 'set_navigation', :id => category}, :confirm => "初心者向けナビゲーションの設定をこのカテゴリに適用しますか？(現在の設定 : #{category.enable_navigation})") %>]<br />[<%= link_to_if(!category.helps.empty?, 'ヘルプ並び替え', :action => 'sort_helps', :id => category) %>]</td>
+
+      <!-- middle -->
+      <% unless category.children.empty? -%>
+        <% category.children.each_with_index do |middle_category, j| -%>
+          <% middle_count = get_category_rowspan_count(middle_category) -%>
+          <% if j.zero? -%>
+            <td rowspan="<%= middle_count %>">
+              <%= link_to(h(middle_category.name), :action => 'select_category', :id => middle_category) %>(<%= middle_category.helps.size %>)
+              <%= enable_navigation?(middle_category) %>
+            </td>
+            <td rowspan="<%= middle_count %>">
+              [<%= link_to('編集', :action => 'select_category', :id => middle_category) %>]|[<%= link_to('削除', {:action => 'destroy_category', :id => middle_category}, :confirm => '本当に削除しますか？') %>]<br />[<%= link_to('ナビゲーションの設定', {:action => 'set_navigation', :id => middle_category}, :confirm => "初心者向けナビゲーションの設定をこのカテゴリに適用しますか？(現在の設定 : #{middle_category.enable_navigation})") %>]<br />[<%= link_to_if(!middle_category.helps.empty?, 'ヘルプ並び替え', :action => 'sort_helps', :id => middle_category) %>]
+            </td>
+          <% else -%>
+            <% unless count == 1 -%><tr style="background-color: <%= column_color %>"><% end -%>
+            <td rowspan="<%= middle_count %>">
+              <%= link_to(h(middle_category.name), :action => 'select_category', :id => middle_category) %>(<%= middle_category.helps.size %>)
+              <%= enable_navigation?(middle_category) %>
+            </td>
+            <td rowspan="<%= middle_count %>">
+              [<%= link_to('編集', :action => 'select_category', :id => middle_category) %>]|[<%= link_to('削除', {:action => 'destroy_category', :id => middle_category}, :confirm => '本当に削除しますか？') %>]<br />[<%= link_to('ナビゲーションの設定', {:action => 'set_navigation', :id => middle_category}, :confirm => "初心者向けナビゲーションの設定をこのカテゴリに適用しますか？(現在の設定 : #{middle_category.enable_navigation})") %>]<br />[<%= link_to_if(!middle_category.helps.empty?, 'ヘルプ並び替え', :action => 'sort_helps', :id => middle_category) %>]
+            </td>
+          <% end -%>
+          <!-- small -->
+          <% unless middle_category.children.empty? -%>
+            <% middle_category.children.each_with_index do |small_category, k| -%>
+              <% if k.zero? -%>
+                <td>
+                  <%= h(small_category.name) %>(<%= small_category.helps.size %>)
+                  <%= enable_navigation?(small_category) %>
+                </td>
+                <td>
+                  [<%= link_to('編集', :action => 'select_category', :id => small_category) %>]|[<%= link_to('削除', {:action => 'destroy_category', :id => small_category}, :confirm => '本当に削除しますか？') %>]<br />[<%= link_to('ナビゲーションの設定', {:action => 'set_navigation', :id => small_category}, :confirm => "初心者向けナビゲーションの設定をこのカテゴリに適用しますか？(現在の設定 : #{small_category.enable_navigation})") %>]<br />[<%= link_to_if(!small_category.helps.empty?, 'ヘルプ並び替え', :action => 'sort_helps', :id => small_category) %>]
+                </td>
+              <% else -%>
+                <% unless middle_count == 1 -%><tr style="background-color: <%= column_color %>"><% end -%>
+                <% small_count = get_category_rowspan_count(small_category) -%>
+                <td rowspan="<%= small_count %>">
+                  <%= h(small_category.name) %>(<%= small_category.helps.size %>)
+                  <%= enable_navigation?(small_category) %>
+                </td>
+                <td rowspan="<%= small_count %>">
+                  [<%= link_to('編集', :action => 'select_category', :id => small_category) %>]|[<%= link_to('削除', {:action => 'destroy_category', :id => small_category}, :confirm => '本当に削除しますか？') %>]<br />[<%= link_to('ナビゲーションの設定', {:action => 'set_navigation', :id => small_category}, :confirm => "初心者向けナビゲーションの設定をこのカテゴリに適用しますか？(現在の設定 : #{small_category.enable_navigation})") %>]<br />[<%= link_to_if(!small_category.helps.empty?, 'ヘルプ並び替え', :action => 'sort_helps', :id => small_category) %>]
+                </td>
+              <% end -%>
+            <% end -%>
+            </td>
+            <% unless count == 1 -%></tr><% end -%>
+          <% else -%>
+            <td></td><td></td>
+          <% end -%>
+        <% end -%>
+        </td>
+        <% unless count == 1 -%></tr><% end -%>
+      <% else -%>
+        <td></td><td></td><td></td><td></td>
+      <% end -%>
+    </tr>
+    <% end -%>
+  </table>
+</div>

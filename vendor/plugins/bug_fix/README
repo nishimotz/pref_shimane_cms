@@ -1,0 +1,7 @@
+BugFix
+======
+
+* ActionView::Helpers::ScriptaculousHelper#drop_receiving_element
+
+:confirm が options_for_javascript に渡されて、クオートされずに HTML 出
+力されてしまう問題の対処。

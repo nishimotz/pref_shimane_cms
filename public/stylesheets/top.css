@@ -1,0 +1,595 @@
+/* import ud_menu style */
+@import url("ud.css");
+/* import footer banner advertisement style */
+@import url("banner.css");
+
+html,body{
+  height: 100%;
+}
+body {
+  margin: 15px;
+  padding: 0;
+}
+
+a:link {
+  color: #0000aa;
+}
+a:visited {
+  color: #700080;
+}
+a:hover {
+  color: #000099;
+  background-color: #f0f0f0;
+  text-decoration: underline;
+}
+a:active {
+  color: #0000aa;
+  background-color: #f0f0f0;
+}
+p {
+  margin: 0;
+}
+img {
+  border-width: 0;
+}
+
+/* flame */
+.round_corner {
+  margin: 8px auto;
+  width: 99%;
+  padding: 0;
+  text-align: left;
+  border-width: 2px;
+}
+
+#navi {
+  float: left;
+  min-height: 3.2em;
+  padding-left: 130px;
+  color: #000;
+  font: 1em "MS UI Gothic",Osaka;
+}
+
+#navi_contents {
+  position: relative;
+}
+
+#mail {
+  float: left;
+  width: 11em;
+  padding-top: 4px;
+}
+
+#mail p {
+  margin: 1px 0 0;
+  line-height: 1.3em;
+  text-align: center;
+  background: #0000d1 url("/images/misc/gradation_s.gif") repeat-x left top;
+}
+
+#mail_to_admin,
+#sitemap {
+  color: #fff;
+  text-decoration: none;
+}
+
+#mail_to_admin:hover,
+#sitemap:hover {
+  text-decoration: underline;
+}
+
+#search {
+  float: left;
+  padding-left: 3px;
+}
+
+#search * {
+  line-height: 1.3em;
+}
+
+#search ul,
+#search form {
+  padding: 0;
+  margin: 0 1px;
+}
+
+#search_form form {
+  display: inline;
+}
+
+#banner {
+  float: right;
+  width: 210px;
+  margin: 0;
+  padding: 0;
+  text-align: right;
+  background-color: transparent;
+}
+
+/* mail */
+#search ul {
+  margin: 0 0 0 5px;
+  padding: 0;
+}
+#search li {
+  margin: 0;
+  padding: 0;
+  display: inline;
+}
+
+/* link style */
+a.gradation {
+  text-decoration: none;
+}
+
+a.gradation:link {
+  color: #fff;
+  background: #0000d1 url("/images/misc/gradation_s.gif") repeat-x left top;
+}
+a.gradation:visited {
+  color: #ffd;
+  background: #0000d1 url("/images/misc/gradation_s.gif") repeat-x left top;
+}
+a.gradation:hover {
+  color: #ffd;
+  text-decoration: underline;
+}
+a.gradation:active {
+  color: #ffe;
+  background: #0000d1 url("/images/misc/gradation_s.gif") repeat-x left top;
+}
+
+/* form */
+#search #keyword {
+  margin: 0;
+  width: 7.5em;
+  font-size: 1em;
+  color: #003;
+}
+#search #submit {
+  margin: 0;
+  width: 7em;
+  font-size: 0.9em;
+  padding: 1px 0 0;
+}
+
+/* end of header */
+/* The top half of the top page */
+div#main {
+  position: relative;
+  top: 3px;
+  left: 0;
+  margin: 0 auto;
+  margin-right: -2px;
+  padding: 0;
+  color: #000000;
+  text-align: left;
+  height: 316px;
+}
+
+/* 
+ * The style for emergency section that replaces
+ * photo when emergency info exsist 
+ */
+#emergency-container {
+  float: left;
+  width: 100%;
+  margin-right: -348px;
+}
+
+div#top-emergency {
+  top: 8px;
+  left: 0;
+  margin: 0 356px 0 0;
+}
+
+#emergency {
+  height: 294px;
+  padding: 10px 20px;
+}
+
+div.overflow {
+  height: 284px;
+  overflow: auto;
+}
+
+.emergency-header {
+  border-bottom: solid 2px red;
+  margin: 10px;
+}
+
+.emergency-header div.header-title h2,
+.emergency-header div.header-note {
+  float: left;
+  color: red;
+}
+
+.emergency-header div.header-title h2 {
+  font-size: 1.5em;
+  border: none;
+}
+
+.emergency-header div.header-note p {
+  margin: 8px 0 0 20px;
+}
+
+/* 
+ * The style for main photo on the left top.
+ */
+div#photo {
+  position: relative;
+  top: 0;
+  left: 0;
+  height: 310px;
+  margin: 0 358px 0 0;
+  padding: 0;
+  color: #000000;
+  background: transparent url("/index.data/photo.jpg") no-repeat left top;
+}
+
+a#photo_end {
+  display: block;
+  position: relative;
+  top: 0;
+  left: 0;
+  margin: 0;
+  padding: 0;
+  color: #000000;
+  text-decoration: none;
+  background: transparent url("/index.data/photo_end.png") no-repeat right top;
+  height: 310px;
+}
+
+/* 
+ * The style for the 3x3 panel that contains
+ * links to each section of the site.
+ */
+div#panel {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 0;
+  padding: 0;
+  width: 347px;
+}
+
+#panel ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+#panel li {
+  float: left;
+  width: 114px;
+  height: 104px;
+  margin: 0;
+  padding: 0;
+}
+
+#panel img {
+  margin: 0 0 0 1px;
+  padding: 0;
+  vertical-align: bottom;
+}
+
+/* 
+ * The style for the bottom half of the top page
+ */
+div#menu {
+  position: relative;
+  width: 100%;
+  top: 3px;
+  left: 0;
+  margin: 0 auto;
+  padding: 0;
+  text-align: left;
+}
+
+div#access {
+  float: right;
+  margin: 0;
+  padding: 0;
+  width: 341px;
+  color: #000;
+}
+
+#column_container {
+  float: left;
+  width: 100%;
+  margin-right: -350px;
+}
+
+#column {
+  margin-right: 350px;
+}
+
+/* profile, topics */
+#profile,
+#topics {
+  float: left;
+  margin: 0;
+  padding-top: 1px;
+  width: 48.5%;
+}
+
+#topics {
+  padding-left: 2%;
+}
+
+/* access */
+#list {
+  position: relative;
+  top: 0;
+  right: 0;
+  margin: 8px 0 16px 0;
+  padding: 0; 
+  width: 100%;
+}
+#list_left {
+  margin: 0 0 8px 0;
+  padding: 8px 5px 0px 8px;
+  width: 160px;
+}
+#list_right {
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin: 8px 0 8px 172px;
+  padding: 0;
+  width: 167px;
+}
+
+/* column list */
+.round_corner h2 {
+  margin: 0 0.6em;
+  border-bottom: solid 2px #0049a0;
+  font-size: 1.4em;
+  color: #2a2a88;
+  background-color: transparent;
+  padding: 0 2px 2px 5px;
+  text-align: center;
+}
+#topics h2 {
+  letter-spacing: 3px;
+}
+#column ul {
+  margin: 0.6em 0 0;
+  padding: 0 0.5em 0 1.2em;
+  list-style: none;
+}
+#column li {
+  margin: 0;
+  padding: 0.4em 0 0;
+}
+/* access list */
+#list ul {
+  margin: 0;
+  padding: 0 0 0 23px;
+}
+#list li {
+  margin: 0;
+  list-style-image: url("/images/misc/bullet.gif");
+  padding: 0 0 0.5em 5px;
+}
+#list p {
+  margin: 2px 0 0;
+  padding: 0;
+  line-height: 1em;
+  font: 0.9em "MS UI Gothic",Osaka;
+}
+
+/* footer */
+div#footer {
+  position: relative;
+  top: 5px;
+  left: 0;
+  margin: 0 auto;
+  padding: 0;
+  color: #000;
+/*  background: #fff; */
+  text-align: left;
+  min-height: 4em;
+  z-index: 1;
+}
+div#contact {
+  position: relative;
+  top: 0;
+  left: 0;
+  margin: 0 350px 0 80px;
+  padding: 0;
+  min-height: 4em;
+}
+div#about {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 0;
+  padding: 0 0 0;
+  width: 345px;
+}
+#about p {
+  margin-top: 0.5em;
+  font-size: 0.9em;
+}
+#qr {
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin: 0;
+  padding: 0;
+  width: 75px;
+}
+#footer,
+#contact {
+    height: 4em;
+}
+
+/* address */
+address {
+  margin: 5px 0 3px;
+  padding: 0;
+  font: normal 0.9em "MS UI Gothic",Osaka;
+  text-align: left;
+}
+#contact p  {
+  font: 0.9em "MS UI Gothic",Osaka;
+}
+#privacy {
+  margin: 5px 0 0;
+  font: 0.9em "MS UI Gothic",Osaka;
+}
+/* count */
+#count {
+  margin: 7px 0 0 1.5%;
+  font: 0.9em "MS UI Gothic",Osaka;
+  text-align: left;
+  margin: 1.0em 0 0;
+  text-align: right;
+}
+
+/* pref photo */
+h1 {
+  position: absolute;
+  top: 5px;
+  left: 4px;
+  margin: 0;
+  padding: 0;
+  width: 134px;
+  height: 134px;
+  color: #000;
+  background-color: transparent;
+  z-index: 3;
+}
+
+h1 img.sub_symbol {
+  margin: 14px 12px;
+}
+/* gallery */
+div#gallery {
+  clear: both;
+  position: relative;
+  top: 3px;
+  left: 0;
+  margin: 0 auto;
+  padding: 0;
+  color: #000;
+  text-align: left;
+  min-height: 3em;
+  z-index: 3;
+}
+
+div#gallery div {
+  margin: 0;
+  padding: 0;
+  width: 24.6%;
+}
+
+div#iwami {
+  position: relative;
+  top: 0;
+  left: 50%;
+}
+div#photo_gallery {
+  position: absolute;
+  top: 0;
+  left: 0;
+
+}
+div#library {
+  position: absolute;
+  top: 0;
+  left: 25%;
+}
+div#nature {
+  position: absolute;
+  top: 0;
+  left: 75%;
+}
+#gallery {
+  height: 3em;
+}
+
+/* link color */
+#rireki a {
+  margin: 0 1em 0 2em;
+  padding: 3px 6px 1px;
+  text-decoration: none;
+  display: block;
+}
+#gallery a {
+  padding: 0.9em 1em 0.6em;
+  text-decoration: none;
+  display: block;
+  font-weight: bold;
+  text-align: center;
+  color: #fff;
+}
+#iwami a {
+  padding: 0.3em 1em 0.1em;
+}
+#gallery a:link {
+  background: url("/images/misc/gradation_l.gif") repeat-x left top;
+}
+#gallery a:visited {
+  background: url("/images/misc/gradation_l.gif") repeat-x left top;
+}
+#gallery a:hover {
+  background: url("/images/misc/gradation_l.gif") repeat-x left top;
+  text-decoration: underline;
+}
+#gallery a:active {
+  background: url("/images/misc/gradation_l.gif") repeat-x left top;
+}
+
+/* ad pr */
+div#ad{
+  margin: 28px 1.5% 0;
+  z-index: 3;
+}
+div#pr {
+  margin: 23px 1.5% 0;
+  padding: 0 0 25px;
+}
+h3 {
+  margin: 0.1em 1em 0;
+  font-size: 1em;
+  color: #225;
+/*  background-color: #fff; */
+}
+p.note {
+  position: relative;
+  top: -1em;
+  margin: 0 2em 0;
+  font-size: 0.9em;
+  text-align: right;
+}
+p.image {
+  position: relative;
+  top: -0.7em;
+  margin: 0 3px 0;
+  font-size: 1em;
+  text-align: center;
+}
+
+p.font-small {
+  font: normal 0.9em "MS UI Gothic",Osaka;
+}
+
+/* skip anchor */
+
+p.anchor_link {
+  width: 0;
+  height: 0;
+  overflow: hidden;
+  position: absolute;
+}
+
+p.skip_anchor {
+  width: 0;
+  height: 0;
+  overflow: hidden;
+  position: absolute;
+}
+
+/* end of skip anchor */

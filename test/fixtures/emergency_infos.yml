@@ -1,0 +1,6 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+first:
+  id: 1
+  display_start_datetime: 2006-04-24T09:00:00
+  display_end_datetime: 2006-04-24T10:00:00
+  content: hello

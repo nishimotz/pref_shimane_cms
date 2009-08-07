@@ -1,0 +1,33 @@
+<div>
+<%= image_tag('page.png', :alt => '', :size => '16x16') %> <%= h(@page.title) %> <%= h(@page.name) %>.html（<%= h(PageContent::STATUS[@page.private.admission]) %>）[<%= link_to('確認', :action => 'show_page', :id => @page) %>]<% if @page.public %>[<a href="<%= h @page.path %>">公開ページ</a>]<% end %>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[<%= link_to('ページ一覧に戻る', {:action => 'divert_page', :id => @genre}) %>]
+</div>
+<br />
+<div>このページを流用して編集</div>
+<div class="show">
+<div style="color: red">
+  <%= flash[:page_notice] %><br />
+  <%= flash[:title_notice] %>
+</div>
+<table>
+  <tr style="border: none;">
+    <td style="border: none;">
+      <label for="name">ページ名（英数字）</label>
+    </td>
+    <td style="border: none;">
+      <%= text_field('page', 'name', :size => '40', :onFocus => "ime_disabled(this);") %>.html
+    </td>
+  </tr>
+  <tr style="border: none;">
+    <td style="border: none;">
+      <label for="title">タイトル（日本語）</label>
+    </td>
+    <td style="border: none;">
+      <%= text_field('content', 'title', :size => '40') %>
+    </td>
+  </tr>
+</table>
+<input type="hidden" name="copy_page" value="divert">
+<input type="hidden" name="status" value='new'>
+<%= submit_tag('作成') %></div>
+</div>

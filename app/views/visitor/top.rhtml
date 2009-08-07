@@ -1,0 +1,145 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<meta http-equiv="Content-Script-Type" content="text/javascript" />
+<meta name="description" content="島根県" />
+<meta name="keywords" content="島根県,自治体,行政" />
+<%= stylesheet_link_tag('default', :media => "screen,print,tv", :title => "デフォルト") %>
+<%= stylesheet_link_tag('aural', :media => 'aural', :title => '音声') %>
+<%= stylesheet_link_tag('hc', :rel => 'alternate stylesheet', :media => 'screen,tv', :title => 'ハイコントラスト') %>
+<link rel="alternate" type="application/rss+xml" title="RSS news" href="/rss/news.rdf" />
+<link rel="index" href="sitemap.html" />
+<link rev="made" href="mailto:webmaster&#64;pref.shimane.lg.jp" />
+<title>島根県 : <%= @page ? @page.title : '' %></title>
+<%= javascript_include_tag('common') %>
+</head>
+
+<body onload="loadCookie();">
+  <!-- ヘッダ -->
+  <div id="header">
+    <div class="logo"><%= image_tag('shimane.png', :alt => '島根県', :size => '300x70') %></div>
+    <div class="ud_menu">
+      <a href="/index.mp3"><%= image_tag('speak.png', :alt => 'よみあげ', :size => '55x66') %></a>
+      <span id="ruby_off"><a href="#" onclick="changeRuby();"><%= image_tag('ruby_off.png', :alt => 'おおきく', :size => '55x66') %></a></span><span id="ruby_on" class="on"><a href="#" onclick="changeRuby();"><%= image_tag('ruby_on.png', :alt => 'ちいさく', :size => '55x66') %></a></span>
+      <span id="large_off"><a href="#" onclick="changeTextSize();"><%= image_tag('large_off.png', :alt => 'おおきく', :size => '55x66') %></a></span><span id="large_on" class="on"><a href="#" onclick="changeTextSize();"><%= image_tag('large_on.png', :alt => 'ちいさく', :size => '55x66') %></a></span>
+      <a href="#" onclick="changeColor();"><%= image_tag('color_on.png', :alt => 'いろをかえる', :size => '55x66') %></a>
+    </div>
+  </div>
+
+  <!-- ツール -->
+  <div id="tool">
+    <input type="text" tabindex="1" id="text" accesskey="K" name="qt" size="30" value="" maxlength="1991" /> 
+    <input type="submit" tabindex="2" accesskey="D" value="検索" class="submit" />
+    <a href="m/">[検索のヒント]</a>
+  </div>
+
+  <!-- コンテント -->
+  <div id="content">
+<div id="main">
+
+<h2 class="emg">緊急情報</h2>
+<%= plugin('emergency') %>
+<h2>新着情報</h2>
+<%= plugin('news') %>
+<p id="update">[<a href="rireki.html">更新履歴</a>]</p>
+<h2>目的別情報</h2>
+
+<h3><a href="./life/" accesskey="1">くらし</a></h3>
+<h3><a href="section/culture.html" accesskey="2">教育・文化</a></h3>
+<h3><a href="section/industry.html" accesskey="3">産業・雇用</a></h3>
+<h3><a href="section/infra.html" accesskey="4">社会基盤</a></h3>
+<h3><a href="section/admin.html" accesskey="5">行政・施策</a></h3>
+
+<h2>しまねのPR</h2>
+<ul id="pr">
+  <li><a href="http://www.kankou.pref.shimane.jp/">観光情報</a></li>
+  <li><a href="http://www.chusankan.jp/Brand/">特産品情報</a>（<a href="http://www.shimane-bussan.or.jp/">島根の物産</a>）</li>
+  <li><a href="profile/">プロフィール</a></li>
+  <li><em><a href="section/takesima/top.html">竹島</a></em></li>
+  <li><a href="http://movie.pref.shimane.jp/">映像ライブラリー</a></li>
+  <li><a href="http://www.v-museum.pref.shimane.jp/">バーチャルミュージアム</a></li>
+  <li><a href="http://nexthdmuseum.pref.shimane.jp/shimane_2.htm">文化財データベース</a></li>
+  <li><a href="http://www2.pref.shimane.jp/teiju/inaka/inakatop.html">田舎ツーリズム</a></li>
+</ul>
+</div>
+
+
+<div id="subject">
+
+<h2><a href="http://www3.pref.shimane.jp/info/" accesskey="M">総合窓口</a></h2>
+
+<h2><a href="http://www3.pref.shimane.jp/roadi/">冬期道路情報</a></h2>
+
+<h2><a href="http://www2.pref.shimane.jp/seisaku/shucho/">島根の主張</a></h2>
+<h2><a href="./section.html" accesskey="1">組織別情報</a></h2>
+<h2>トピックス</h2>
+<ul>
+  <li><a href="section/gappei/">合併市町村の住所</a></li>
+</ul>
+
+<h2><a href="section/hisyo/governor/">ようこそ知事室へ</a></h2>
+<ul>
+  <li><a href="http://www2.pref.shimane.jp/kouhou/kaiken/">記者会見</a></li>
+  <li><a href="http://www2.pref.shimane.jp/kouhou/teian/">県民の声（知事への提案）</a></li>
+</ul>
+
+<h2>案内</h2>    
+<ul>
+  <li><a href="http://www2.pref.shimane.jp/kouhou/iken/">パブリックコメント</a></li>
+  <li><a href="new/index.html">入札・契約情報</a></li>
+  <li><a href="section/denshi_kencyo.html">電子申請・手続検索</a></li>
+  <li><a href="http://www2.pref.shimane.jp/kouhou/">広聴・広報</a></li>
+</ul>
+
+
+<h2>県政情報</h2>    
+<ul>
+  <li><a href="section/soumuka/reiki/">県条例</a></li>
+  <li><a href="section/soumuka/kenpo/">県報</a></li>
+  <li><a href="http://www.toukeika.pref.shimane.jp/">統計情報</a></li>
+  <li><a href="section/kento/5p.html">県立図書館蔵書検索</a></li>
+</ul>
+
+<h2>県政重点施策情報</h2>
+<ul>
+  <li><a href="http://www2.pref.shimane.jp/sangyo/">産業振興</a></li>
+  <li><a href="section/shoushi/">少子化対策</a></li>
+  <li><a href="http://www2.pref.shimane.jp/brand/">しまねブランド</a></li>
+</ul>
+
+<h2>報道発表資料</h2>
+<h2>行事予定</h2>
+<h2>Web県民だより</h2>
+<h2>情報ナビ</h2>
+<h2>メールマガジン</h2>
+<h2><a href="http://www5.pref.shimane.jp/">島根県議会</a></h2>
+<h2><a href="http://www2.pref.shimane.jp/police/">島根県警察本部</a></h2>
+
+<h2><a href="link/index.html">リンク集</a></h2>
+
+</div>
+</div>
+
+<p id="footer"><a href="/sitemap.html">サイトマップ</a>｜<a href="/privacy.html">個人情報の取扱い</a>｜<a href="/cl.html">著作権・リンク等</a></p>
+
+<div id="note">
+
+<ul>
+  <li>掲載内容に関するお問い合わせは、各ページに記載の連絡先までお願いします。</li>
+  <li>県政に関するご意見・ご提言は、「<a href="http://www2.pref.shimane.jp/kouhou/teian/">県民の声（知事への提案 ）</a>」をご利用ください。</li>
+  <li>ホームページづくりに関するご意見やお問い合わせは、 <a href="mailto:webmaster&#64;pref.shimane.lg.jp">webmaster&#64;pref.shimane.lg.jp</a> までお願いします。</li>
+</ul>
+
+<address>島根県庁 〒690-8501 島根県松江市殿町1番地<br />電話：0852-22-5111（代）,
+  <a href="/section/kanzai/phone/">県機関の電話番号案内</a>,
+  <a href="/profile/kisojoho/basho.html">島根県の位置</a>,
+  <a href="/map/kencho_annai.html">県庁案内</a></address>
+
+</div>
+
+</body>
+</html>

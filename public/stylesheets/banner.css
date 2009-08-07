@@ -1,0 +1,70 @@
+#footer_banner {
+  position: relative;
+  margin: 0 0 50px;
+  padding-top: 20px;
+  text-align: left;
+}
+
+#footer_banner div.round_corner {
+/*
+  margin-bottom: 24px;
+*/
+/* ‚±‚±‚©‚ç’Ç‰Á */
+	margin: 5px auto;
+	text-align: center;
+/* ‚±‚±‚Ü‚Å’Ç‰Á */
+}
+
+#footer_banner h3 {
+  border: none;
+/* ‚±‚±‚©‚ç’Ç‰Á */
+	  text-align: left;
+/* ‚±‚±‚Ü‚Å’Ç‰Á */
+}
+
+#footer_banner p.about_banner {
+  position: absolute;
+  top: 5px;
+  right: 8px;
+  padding-right: 2em;
+  font-size: 0.9em;
+}
+
+#footer_banner ul {
+  padding: 0;
+/*
+  margin: 10px 0;
+*/
+  list-style: none;
+  text-align: center;
+/* ‚±‚±‚©‚ç’Ç‰Á */
+	width: 732px;
+	margin: 10px auto;
+/* ‚±‚±‚Ü‚Å’Ç‰Á */
+}
+
+#footer_banner li {
+/*
+  display: inline;
+*/
+/* ‚±‚±‚©‚ç’Ç‰Á */
+	float: left;
+/* ‚±‚±‚Ü‚Å’Ç‰Á */
+  width: 234px;
+  margin: 0px;
+  padding-right: 10px;
+}
+
+/* ‚±‚±‚©‚ç’Ç‰Á */
+#footer_banner li p {
+	text-align: left;
+}
+.footer_line {
+	clear: both;
+	height: 6px;
+        visibility: hidden;
+}
+/* ‚±‚±‚Ü‚Å’Ç‰Á */
+
+
+

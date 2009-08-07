@@ -1,0 +1,9 @@
+<% if @genres.empty? -%>
+<p>見つかりませんでした。</p>
+<% else -%>
+<ul>
+<% for genre in @genres -%>
+<li><%= link_to(h("#{genre.path} (#{genre.name})"), {:action => 'genre', :id => genre}) %></li>
+<% end -%>
+</ul>
+<% end -%>

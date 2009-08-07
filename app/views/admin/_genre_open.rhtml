@@ -1,0 +1,86 @@
+<%
+#  style = (@root == @genre) ? 'selected' : ''
+  style = ''
+  root = @root.dup
+  icon_name = root.original_id ? 'folder_alias.png' : 'folder_open.png'
+  case @action
+  when :page
+    @action_ajax = :right_pain_change_for_page
+  when :genre
+    @action_ajax = :right_pain_change_for_genre
+  when :sort_genre
+    @action_ajax = :right_pain_change_for_sort_genre
+  when :new_page
+    @action_ajax = :right_pain_change_for_new_page
+  when :import_all
+    @action_ajax = :right_pain_change_for_import_all
+  end
+-%>
+<% if root.has_children? -%>
+  <%= link_to_remote(image_tag('open.png', :border => 0, :alt=>'-'), :url => {:action => 'genre_close', :id => root, :genre => @genre, :move => @move, :action_name => @action}, :update => "dir-#{root.id}") %><span id="<%=root.id%>"><%= image_tag(icon_name, :alt => '', :class => "folder") %>
+  <% if @move -%>
+    <% if root.original_id -%>
+      <%= link_to_remote(h(root.title), {:url => {:action => 'move_partial', :id => root.original_id}, :update => 'target'}, :class => style, :title => root.section.name) %>
+    <% else -%>
+      <%= link_to_remote(h(root.title), {:url => {:action => 'move_partial', :id => root}, :update => 'target'}, :class => style, :title => root.section.name) %>
+    <% end -%>
+  <% else -%>
+    <% if root.original_id -%>
+      <%= link_to_remote(h(root.title), {:url => {:action => @action_ajax, :id => root}, :update => 'div-right'}, :class => style, :title => root.section.name) %>
+    <% else -%>
+      <%= link_to_remote(h(root.title), {:url => {:action => @action_ajax, :id => root}, :update => 'div-right'}, :class => style, :title => root.section.name) %>
+    <% end -%>
+  <% end -%>
+  <% if root.original_id -%>
+    (<%= Genre.find(root.original_id).pages.size %>)
+  <% else -%>
+    (<%= root.pages.size %>)
+  <% end -%>
+  <% if !root.parent_id.nil? && root.parent_id != 1 && @user.authority == User::SUPER_USER %>
+    [<%= root.section.name %>]
+  <% end -%>
+  </span>
+  <% root.children.each do |@root| -%>
+  <div id="dir-<%= @root.id %>" class="open">
+    <%= render(:partial => 'genre_close') %>
+  </div>
+  <% end -%>
+<% else -%>
+  <span id="<%=root.id%>" style="margin-left : 16px;"><%= image_tag(icon_name, :alt => '', :class => "folder") %>
+  <% if @move -%>
+    <% if root.original_id -%>
+      <%= link_to_remote(h(root.title), {:url => {:action => 'move_partial', :id => root.original_id}, :update => 'target'}, :title => root.section.name) %>
+    <% else -%>
+      <%= link_to_remote(h(root.title), {:url => {:action => 'move_partial', :id => root}, :update => 'target'}, :title => root.section.name) %>
+    <% end -%>
+  <% else -%>
+    <% if root.original_id -%>
+      <%= link_to_remote(h(root.title), {:url => {:action => @action_ajax, :id => root}, :update => 'div-right'}, :class => style, :title => root.section.name) %>
+    <% else -%>
+      <%= link_to_remote(h(root.title), {:url => {:action => @action_ajax, :id => root}, :update => 'div-right'}, :class => style, :title => root.section.name) %>
+    <% end -%>
+  <% end -%>
+  <% if root.original_id -%>
+    (<%= Genre.find(root.original_id).pages.size %>)
+  <% else -%>
+    (<%= root.pages.size %>)
+  <% end -%>
+  <% if !root.parent_id.nil? && root.parent_id != 1 && @user.authority == User::SUPER_USER %>
+    [<%= root.section.name %>]
+  <% end -%>
+  </span>
+<% end -%>
+<% if @move -%>
+  <% if admin? || root.parent && root.parent.section_id == @user.section_id -%>
+    <%= draggable_element root.id, :revert => true %>
+  <% end -%>
+  <% unless root.path == '/template/' -%>
+    <%= drop_receiving_element(root.id,
+	:confirm => "'フォルダ「#{root.title}」に移動します。よろしいですか？'",
+	:url => {:action => "move_update", :recv => root},
+	:hoverclass => "drop-active",
+	:loading => "Element.show('indicator')",
+      :complete => "location.href=location.href")
+    %>
+  <% end -%>
+<% end -%>

@@ -1,0 +1,23 @@
+        <% if help_of_category -%>
+          <li class="category_list"><%= help_of_category.name %></li>
+          <% helps = help_of_category.helps -%>
+        <% else -%>
+          <% helps = @helps -%>
+        <% end -%>
+
+        <% unless helps.empty? -%><li class="category_list"><ul class="help_list"><% end -%>
+
+        <% helps.each do |help| -%>
+          <% if @help.id == help.id -%>
+            <li class="help_list" style="background-color: pink;">
+          <% else -%>
+            <li class="help_list">
+          <% end -%>
+          <% if session[:help] -%>
+            <%= link_to(help.name, :action => 'search', :id => help, :keywoed => session[:help]) %>
+          <% else -%>
+            <%= link_to(help.name, :action => 'index', :id => help, :category_id => params[:category_id]) %>
+          <% end -%>
+          </li>
+        <% end -%>
+        <% unless helps.empty? -%></ul></li><% end -%>

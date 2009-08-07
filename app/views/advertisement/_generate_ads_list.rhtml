@@ -1,0 +1,41 @@
+<h3><%= h(Advertisement::SIDE_TYPE[side_type]) %>一覧</h3>
+<br />
+<% if advertisements.empty? -%>
+<br />
+<p>&nbsp;&nbsp;<%= h(Advertisement::SIDE_TYPE[side_type]) %>は現在ありません</p>
+<% else -%>
+<table>
+  <tr>
+    <th>広告名</th>
+    <th>広告主</th>
+    <th>表示期間</th>
+    <th>状態</th>
+    <th>処理</th>
+  </tr>
+<% advertisements.each do |ad| -%>
+<% if ad.expired? && ad.published?%>
+  <tr class="ad_expired">
+<% else %>
+  <tr>
+<% end %>
+    <td><%= h(ad.name) %></td>
+    <td><%= h(ad.advertiser) %></td>
+    <td><%= news_strftime(ad.begin_date) + "〜" + news_strftime(ad.end_date)%></td>
+    <% unless job_exists? %>
+    <td><%= h(ad.state_to_s) %></td>
+    <% else %>
+    <td>公開処理中</td>
+    <% end %>
+    <td>
+      <%= link_to('詳細表示', :action => 'show', :id => ad.id) %>
+      <% unless job_exists? %>
+      <% unless ad.published? %>
+      <%= link_to('編集', :action => 'edit', :id => ad.id) %>
+      <%= link_to('削除', { :action => 'delete', :id => ad.id }, :confirm => '削除しますか?') %>
+      <% end %>
+      <% end %>
+    </td>
+  </tr>
+<% end -%>
+</table>
+<% end -%>

@@ -1,0 +1,12 @@
+<%= render(:partial => 'menu') %>
+<div class="container">
+<h1>部局編集</h1>
+<%= start_form_tag :action => 'update_division', :id => @division %>
+  <%= render :partial => 'form_division' %>
+  <br />
+  <p><label for="division_enable">組織別情報に表示する</label>:<%= check_box('division', 'enable', {:checked => ('checked' if @division.enable)}, 'on', 'off') %></p>
+  <br />
+  <%= submit_tag '編集' %>&nbsp;&nbsp;<%= link_to '戻る', :action => 'list_division' %>
+<%= end_form_tag %>
+</div>
+<br />

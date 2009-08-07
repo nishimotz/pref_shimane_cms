@@ -1,0 +1,380 @@
+@charset            "Shift_JIS";
+
+/* 島根県ホームデフォルトスタイルシート */
+body {
+  margin: 0;
+  padding: 0;
+  color: #000000;
+  background-color: #ffffff;  
+}
+a:link {
+  color: #0000ee;
+  background-color: transparent;
+}
+a:visited {
+  color: #660088;
+  background-color: transparent;
+}
+a:hover,
+a:active {
+  color: #a00000;
+  background-color: #f0f0f6;
+}
+img {
+  border-width: 0;
+}
+h1 {
+  margin: 1px 5px 0;
+  padding: 0;
+  color: #000000;
+  background: #ffffff;
+}
+h2,
+h3 {
+  font-size: 1em;
+}
+h2 a:link,
+h3 a:link {
+  color:#000088;
+  background-color: transparent;
+}
+h2 a:visited,
+h3 a:visited {
+  color:#430066;
+  background-color: transparent;
+}
+h2 a:active,
+h3 a:active {
+  color:#dd3300;
+  background-color: transparent;
+}
+h2 a:hover,
+h3 a:active {
+  color: #dd0000;
+  background-color: transparent;
+}
+p {
+  margin: 2px 15px 0px 56px;
+  padding: 0px;
+  color:#30104f;
+  background-color: transparent;
+}
+/* header,footer-menu */
+#header {
+  clear: both;
+  margin: 1px 5px 0;
+  padding: 2px 0 0;
+  color: #ffffff;
+  background-color: #3f3f60;
+}
+#navi {
+  float: left;
+  margin: 1px 3px 0 10px;
+  color: #ddefee;
+  background-color: #3f3f60;
+}
+#en {
+  text-align: right;
+  margin: 1px 15px 0 3px;
+  color: #ddf3ee;
+  background-color: #3f3f60;
+}
+#header a:link,
+#footer a:link {
+  color: #ffffff;
+  background-color: #3f3f60;
+  font-weight: bold;
+}
+#header a:visited,
+#footer a:visited {
+  color: #ffffe6;
+  background-color: #3f3f60;
+  font-weight: bold;
+}
+#header a:active,
+#header a:hover,
+#footer a:active,
+#footer a:hover {
+  color:#ffffff;
+  background-color: #1a1abb;
+  font-weight: bold;
+}
+#footer {
+  margin: 10px 5px 0; 
+  padding:2px 20px 0;
+  color: #ddefee;
+  background-color: #3f3f60;
+}
+/* メイン */
+#main {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  color:#000000;
+  background-color: #ffffff;
+}
+#menu {
+  float: left;
+  margin: 0;
+  padding: 0;
+  width: 74%;
+  color:#000000;
+  background-color: #ffffff;
+}
+#menu h2 {
+  color: #000043;
+  background-color: #ececf3;
+  margin: 10px 10px 5px 28px;
+  padding: 4px 0 1px 7px;
+  border-style: solid;
+  border-width: 1px 1px 1px 3px;
+  border-color: #7070b0;
+}
+#menu h2.emg {
+  color: #990000;
+  background-color: #faeaf0;
+  border-color: #990000;
+}
+h3 {
+  margin: 10px 10px 0 28px;
+  padding: 0 0 0 28px;
+  background: #ffffff url("../img/icon.jpg") no-repeat left top; 
+}
+p#update {
+  margin: 3px 15px 0 0;
+  color:#30104f;
+  background-color: #ffffff;
+  text-align: right;
+}
+#menu ul {
+  list-style: none;
+}
+ul#pr {
+  margin: 7px 0 0;
+  padding-left: 28px;                                     
+}
+#pr li {
+  margin: 5px 0;
+  padding: 0 0 0 1em;
+  color: #000000;
+  background: transparent url("../img/ads.jpg") no-repeat left top; 
+  line-height: 1.1em;
+  display: block;
+  float: left;
+  width: 13em;
+}
+ul#news {
+  margin: 15px;
+  padding: 0 10px 3px 30px;
+  list-style: none;
+}
+#news li {
+  margin: 0.5em 0 0 5em;
+  padding: 0;
+  display: block;
+  border-left: none;
+  background: none;
+  text-indent: -4.8em; 
+  line-height: 1.1em;
+}
+ul#publicity {
+  margin: 6px 0px 0px;
+  padding-left: 28px;                                     
+}
+#publicity li {
+  margin: 0;
+  padding: 0 8px 0 8px;
+  border-left: solid 3px #7373dd; 
+  background: none;
+  text-indent: 0;
+  display: inline;
+}
+li em {
+  font-style: normal;
+  font-weight: bold;
+  letter-spacing: 0.1em;
+}
+/* 情報検索 */
+form#seek {
+  margin: 0 10px 0 10px;
+  padding: 0;
+}
+#seek h2 {
+  color:#000033;
+  background-color: #ffffff;
+  margin: 0 0 0 18px;
+  padding: 0 0 0 8px;
+  border-style: solid;
+  border-width: 0 0 0 3px;
+  border-color: #8888e0;
+  display: inline;
+}
+#seek p {
+  margin: 0 2px 0 1px;
+  display: inline;
+}
+#text {
+  color: #000000;
+  background-color: #f3f2ff;
+  margin: 0 10px 0 10px;
+}
+/* 報道発表資料検索 */
+form#public {
+  margin: 6px 10px 0 10px;
+  padding: 0;
+}
+#public h2 {
+  color:#000033;
+  background-color: #ffffff;
+  margin: 0 0 0 18px;
+  padding: 0 0 0 8px;
+  border-style: solid;
+  border-width: 0 0 0 3px;
+  border-color: #8888e0;
+  display: inline;
+}
+#public p {
+  margin: 0 2px 0 1px;
+  display: inline;
+}
+#houdou {
+  color: #000000;
+  background-color: #f3f2ff;
+  margin: 0 10px 0 10px;
+}
+/* 注目情報 */
+#subject {
+  float: left;
+  margin: 0 0 0 1%;
+  padding: 0;
+  width: 22%;
+  color: #000000;
+  background-color: #f7f7fa;
+  border-style: solid;
+  border-width: 1px 0 0;
+  border-color: #7070a0;
+}
+#subject h2 {
+  color:#00003a;
+  background-color: #ececf3;
+  border-style: solid;
+  border-width: 0 1px 1px;
+  border-color: #7070a0;
+  padding: 6px 3px 5px 13px;
+  margin: 0;
+}  
+#subject ul {
+  margin: 0;
+  padding: 3px 0 10px 5px;
+  list-style-type: none;
+  border-style: solid;
+  border-width: 0 1px 1px;
+  border-color: #7070a0;
+}
+#subject li {
+  margin: 5px 0 0 12px;
+  text-indent: 0;
+}
+#subject a:hover,
+#subject a:active {
+  color: #a00000;
+  background-color: #ececf3;
+}
+hr {
+  clear: both;
+  height:0;
+  visibility: hidden;
+  page-break-before: avoid;  
+  page-break-after: avoid;    
+}
+/* 緊急情報 */
+div h2#emg a:link {
+  color: #800000;
+  background-color: #faeaf0;
+}
+div h2#emg a:visited
+ {
+  color: #700000;
+  background-color: #faeaf0;
+}
+div h2#emg a:hover,
+div h2#emg a:active {
+  color: #660000;
+  background-color: #f9d3d3;
+}
+#emglist {
+  color: #000000;
+}
+#emglist a:link {
+  color: #800000;
+}
+#emglist a:visited
+ {
+  color: #700000;
+}
+#emglist a:hover {
+  color: #660000;
+}
+#emglist a:active {
+  color: #a00000;
+}
+/* footer */
+#note {
+  margin: 0px; 
+  color: #000000;
+  background-color: #ffffff;
+}
+ul {
+  margin: 10px 0 0;
+  padding: 0;                                     
+}
+li {
+  margin: 3px 7px 0 50px;
+  padding: 0;
+  text-indent: 0;
+}
+
+address {
+  margin: 10px 5px 0 26px;
+  padding: 0 5px 2px; 
+  font-style: normal;
+  line-height: 1.3em;
+}
+#count {
+  margin: 4px 7px 0 30px;
+  padding-bottom: 31px;
+}
+#w3c {
+  float: right;
+  margin: 0 8px 0;
+}
+/* メンテナンス */
+h2#maintenance {
+  color:#000000;
+  background-color: transparent;
+  margin: 0 0 10px 28px;
+  padding: 0 0 0 8px;
+  border-style: solid;
+  border-width: 0 0 0 3px;
+  border-color: #8888e0;
+  display: block;
+}
+p#maintenance {
+  color:#330055;
+  background-color: transparent;
+  margin: 0 0 10px 28px;
+  padding: 2px 0 0 8px;
+  border-left: solid 3px #8888e0;
+}
+div.ud_menu {
+  text-align: right;
+  float: right;
+	margin: 4px 4px 0 0;
+}
+div.ud_menu img {
+  border: none;
+}
+
+span.on {
+	display: none;
+}

@@ -1,0 +1,6 @@
+<%
+  name, *list = @args
+-%>
+<% list.each_with_index do |i, index| -%>
+<%= radio_button_tag(h(name), h(i), index == 0, :id => nil) %> <%= h(i) %><% if index != list.size - 1 %><br /><% end %>
+<% end -%>

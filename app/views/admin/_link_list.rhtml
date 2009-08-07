@@ -1,0 +1,5 @@
+var <%= @name %> = new Array(
+<%= @links.collect {|link| 
+"['#{escape_javascript(link[0])}', '#{escape_javascript(link[1])}']"
+}.join(', ') %>
+);

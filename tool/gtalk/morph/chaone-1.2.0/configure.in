@@ -1,0 +1,179 @@
+AC_INIT(chaone,1.2)
+
+# Checks for programs.
+AC_PROG_CC
+
+if test x$GCC = xyes; then
+   CFLAGS="-Wall"
+fi
+
+
+# Checks for libraries.
+
+AC_ARG_WITH(xml,
+	[  --with-xml=DIR         libxml2 prefix path DIR [[/usr]]],
+	[with_xml_include=$with_xml/include;
+	with_xml_lib=$with_xml/lib],
+	[with_xml_include=/usr/include;
+	with_xml_lib=/usr/lib])	
+
+AC_ARG_WITH(xml_include,
+	[  --with-xml-include=DIR libxml2 header files path DIR [[/usr/include]]])
+AC_MSG_CHECKING(for libxml2 headers)
+if test x$with_xml_include = x; then
+	dirs="/usr/local/include /usr/include" 
+	for i in $dirs ; do
+	    if test -d $i/libxml2; then
+	       AC_MSG_RESULT($i)
+	       CFLAGS="$CFLAGS -I$i/libxml2"
+	       break
+	    fi      
+	done
+	AC_MSG_RESULT(no)
+	AC_MSG_ERROR(Fatal error! $with_xml_include/libxml2 not found)
+	exit 1
+else
+	if test -d $with_xml_include/libxml2; then
+		AC_MSG_RESULT($with_xml_include/libxml2)
+		CFLAGS="$CFLAGS -I$with_xml_include/libxml2"
+	else
+		AC_MSG_RESULT(no)
+		AC_MSG_ERROR(Fatal error! $with_xml_include/libxml2 not found)
+		exit 1
+	fi
+fi	
+
+
+AC_ARG_WITH(xml_lib,
+	[  --with-xml-lib=DIR     libxml2 libraries path DIR [[/usr/lib]]])
+AC_MSG_CHECKING(for libxml2 libraries)
+if test x$with_xml_lib = x; then
+	dirs="/usr/local/lib /usr/lib" 
+	for i in $dirs ; do
+	    if test -r $i/libxml2.a -o -r $i/libxml2.so; then
+	       AC_MSG_RESULT($i)
+	       LIBS="$LIBS -L$i -lxml2"
+	       break
+	    fi
+	done
+	AC_MSG_RESULT(no)
+	AC_MSG_ERROR(Fatal error! $with_xml_lib/libxml2.{a|so} not found)
+	exit 1
+else
+	if test -r $with_xml_lib/libxml2.a -o -r $with_xml_lib/libxml2.so; then
+		AC_MSG_RESULT($with_xml_lib)
+		LIBS="$LIBS -L$with_xml_lib -lxml2"
+	else
+		AC_MSG_RESULT(no)
+		AC_MSG_ERROR(Fatal error! $with_xml_lib/libxml2.{a|so} not found)
+		exit 1
+	fi
+fi
+
+AC_ARG_WITH( xslt,
+	[  --with-xslt=DIR        libxslt prefix path DIR [/usr]],
+	[with_xslt_include=$with_xslt/include;
+	with_xslt_lib=$with_xslt/lib],
+	[with_xslt_include=/usr/include;
+	with_xslt_lib=/usr/lib])
+
+AC_ARG_WITH( xslt_include,
+	[  --with-xslt-include    libxslt header files path DIR [[/usr/include]]])
+AC_MSG_CHECKING(for libxslt headers)
+if test x$with_xslt_include = x; then
+	dirs="/usr/local/include /usr/include" 
+	for i in $dirs ; do
+	    if test -d $i/libxslt; then
+	       AC_MSG_RESULT($i/libxslt)
+	       CFLAGS="$CFLAGS -I$i"
+	       break
+	    fi      
+	done
+	AC_MSG_RESULT(no)
+	AC_MSG_ERROR(Fatal error! $with_xslt_include/libxslt not found)
+	exit 1		
+else
+	if test -d $with_xslt_include/libxslt; then
+		AC_MSG_RESULT($with_xslt_include)
+		CFLAGS="$CFLAGS -I$with_xslt_include"
+	else
+		AC_MSG_RESULT(no)
+		AC_MSG_ERROR(Fatal error! $with_xslt_include/libxslt not found)
+		exit 1
+	fi
+fi
+
+AC_ARG_WITH(xslt_lib,
+	[  --with-xslt-lib=DIR    libxslt libraries path in DIR [[/usr/lib]]])
+AC_MSG_CHECKING(for libxslt libraries)
+if test x$with_xslt_lib = x; then
+	dirs="/usr/local/lib /usr/lib" 
+	for i in $dirs ; do
+	    if test -r $i/libxslt.a -o -r $i/libxslt.so; then
+		AC_MSG_RESULT($i)
+	       	LIBS="$LIBS -L$i -lxslt -lexslt"
+		break
+	    fi
+	done
+	AC_MSG_RESULT(no)
+	AC_MSG_ERROR(Fatal error! $with_xslt_lib/libxslt.{a|so} not found)
+	exit 1
+else
+	if test -r $with_xslt_lib/libxslt.a -o -r $with_xslt_lib/libxslt.so; then
+		AC_MSG_RESULT($with_xslt_lib)
+		LIBS="$LIBS -L$with_xslt_lib -lxslt -lexslt"
+	else
+		AC_MSG_RESULT(no)
+		AC_MSG_ERROR(Fatal error! $with_xslt_lib/libxslt.{a|so} not found)
+		exit 1
+	fi
+fi
+
+
+# Checks for kanjicode
+AC_ARG_WITH(kanjicode,
+	[  --with-kanjicode[=CODE]  kanji code (EUC-JP|ISO-2022-JP|Shift_JIS|UTF-8) [[EUC-JP]]])
+if test x$with_kanjicode != x; then
+	AC_MSG_CHECKING(kanjicode option)
+
+	case "$with_kanjicode" in
+		EUC-JP)
+			KANJICODE="EUC-JP"
+			;;
+		ISO-2022-JP)
+			KANJICODE="ISO-2022-JP"
+			;;
+		Shift_JIS)
+			KANJICODE="Shift_JIS"
+			;;
+		UTF-8)
+			KANJICODE="UTF-8"
+			;;
+		*)
+			AC_MSG_ERROR(Fatal error!  KANJICODE must be EUC-JP|ISO-2022-JP|Shift_JIS|UTF-8)
+			exit 1
+			;;
+	esac
+	AC_SUBST(KANJICODE)
+	AC_MSG_RESULT($with_kanjicode)
+else
+	KANJICODE="EUC-JP"
+	AC_SUBST(KANJICODE)
+fi		
+
+AC_ARG_WITH(xslfile-dir,
+	[  --with-xslfile-dir[=DIR] stylesheet path [[current dir]]])
+if test x$with_xslfile_dir != x; then
+	AC_MSG_CHECKING(xslfile option)
+	AC_MSG_RESULT($with_xslfile_dir)
+	XSLFILE_DIR=$with_xslfile_dir
+	AC_SUBST(XSLFILE_DIR)
+
+else
+	XSLFILE_DIR=`pwd`
+	AC_MSG_RESULT($XSLFILE_DIR)
+	AC_SUBST(XSLFILE_DIR)
+fi
+
+# Checks for library functions.
+AC_OUTPUT(Makefile)

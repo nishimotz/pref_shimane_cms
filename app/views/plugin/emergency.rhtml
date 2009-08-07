@@ -1,0 +1,22 @@
+<%
+  # 説明：トップページの緊急情報を表示する
+  # 引数：最大表示数（無指定時は全て）
+  max = @args[0].to_i - 1
+  genre = Genre.find_by_path(CMSConfig[:emergency_path])
+  page_content_list = genre.news_page_contents
+  if @args[1] && !@args[1].to_i.zero?
+    max_date = @args[1].to_i * 60 * 60 * 24
+    page_content_list.reject! do |e|
+      (Time.now - e.date) > max_date
+    end
+  end
+  -%>
+<% if page_content_list && !page_content_list.empty? -%>
+<ul id="emglist">
+<% page_content_list[0..max].each do |content| -%>
+<li><a href="<%= h(content.page.path) %>"><%= h(content.news_title) %></a>（<%= h(news_strftime(content.date)) %>）</li>
+<% end -%>
+</ul>
+<% else -%>
+<p>現在、緊急情報はありません。</p>
+<% end -%>

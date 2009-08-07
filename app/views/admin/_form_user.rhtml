@@ -1,0 +1,22 @@
+<%= error_messages_for 'manage_user' %>
+<!--[form:user]-->
+<p><label for="user_code">ユーザ名</label><br/>
+&nbsp;&nbsp;<%= text_field 'manage_user', 'name' %></p>
+
+<p><label for="user_name">ユーザID(3〜20字)</label><br/>
+&nbsp;&nbsp;<%= text_field 'manage_user', 'login' %></p>
+
+<p><label for="user_short_name">パスワード(8〜12字)</label><br/>
+&nbsp;&nbsp;<%= password_field 'manage_user', 'password'  %></p>
+
+<p><label for="user_division_code">パスワード確認用(8〜12字)</label><br/>
+&nbsp;&nbsp;<%= password_field 'manage_user', 'password_confirmation'  %></p>
+<% unless @manage_user.authority == User::SUPER_USER -%>
+<p><label for="user_place_code">権限</label><br/>
+&nbsp;&nbsp;<%= collection_radio_button(:manage_user, :authority, @authority_list, :first, :last) %></p>
+<% end -%>
+
+<p><label for="user_info">メールアドレス</label><br/>
+&nbsp;&nbsp;<%= text_field 'manage_user', 'mail' %></p>
+<!--[eoform:user]-->
+

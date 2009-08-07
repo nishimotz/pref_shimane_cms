@@ -1,0 +1,39 @@
+<%= error_messages_for 'section' %>
+<!--[form:section]-->
+<p><label for="section_code">所属コード:</label><br />
+&nbsp;&nbsp;<%= text_field 'section', 'code'  %></p>
+<br />
+<p><label for="section_name">組織正式名称:</label><br />
+&nbsp;&nbsp;<%= text_field 'section', 'name'  %></p>
+<br />
+<p><label for="section_division_id">部:</label>
+<select name="section[division_id]">
+<%= options_for_select(@divisions, @selected_division) %>
+</select>
+</p>
+<br />
+<p>所属トップフォルダ:</p>
+<ul>
+<% if @action != :edit_section -%>
+<li>
+<p><label for="section_genre_id">所属のトップフォルダを作成する(フォルダ名(半角英数字)):</label><br/>
+&nbsp;&nbsp;<%= text_field 'genre', 'name'  %></p>
+</li>
+<% end -%>
+<li>
+<p><label for="section_genre_id">既存のフォルダを所属トップフォルダとして割り当てる(URL):</label><br/>
+  &nbsp;&nbsp;
+<select name="genre[id]">
+<%= options_for_select(@genres, @selected_genre) %>
+</select>
+</p>
+</li>
+</ul>
+<br />
+<p><label for="section_link">組織別情報で外部サイトへリンクするURL:</label><br />
+&nbsp;&nbsp;<%= text_field 'section', 'link', :size => '60'  %></p>
+<br />
+<p><label for="section_ftp">FTP領域フォルダ名:</label><br />
+&nbsp;&nbsp;<%= text_field 'section', 'ftp', :size => '60'  %><br />
+&nbsp;&nbsp;(例: 「/contents/kochokoho/」)</p>
+<!--[eoform:section]-->

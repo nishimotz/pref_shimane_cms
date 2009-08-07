@@ -1,0 +1,30 @@
+<%= render(:partial => 'menu') %>
+<div class="container">
+<br />
+<h2>お知らせ管理</h2>
+<table>
+  <tr>
+    <th>タイトル</th>
+    <th>更新日</th>
+    <th>処理</th>
+  </tr>
+<% for info in @infos %>
+  <tr>
+    <td><%= h(info.title) %></td>
+    <td><%= news_strftime(info.last_modified) %></td>
+    <td>
+      <%= link_to('詳細表示', :action => 'show_info', :id => info) %>
+      <%= link_to('編集', :action => 'edit_info', :id => info) %>
+      <%= link_to('削除', { :action => 'destroy_info', :id => info }, :confirm => '削除しますか?') %>
+    </td>
+  </tr>
+<% end %>
+</table>
+
+<%= link_to('前へ', { :page => @info_pages.current.previous }) if @info_pages.current.previous %>
+<%= link_to('次へ', { :page => @info_pages.current.next }) if @info_pages.current.next %>
+
+<br />
+
+<%= link_to('新規作成', :action => 'new_info') %>
+</div>

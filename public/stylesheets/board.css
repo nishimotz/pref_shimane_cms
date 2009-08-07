@@ -1,0 +1,110 @@
+h1 {
+  margin: 10px 0 25px;
+  padding: 8px 5px 5px 15px;
+  border-style: solid;
+  border-width: 1px 1px 1px 5px;
+  font-size: 1.5em;
+  color: #30306a;
+  border-color: #1c73cf;
+}
+
+.fieldWithErrors {
+  padding: 2px;
+  border-left: 2px solid red;
+  background-color: red;
+  display: table;
+}
+
+#errorExplanation {
+  width: 400px;
+  border: 2px solid red;
+  padding: 7px;
+  padding-bottom: 12px;
+  margin-bottom: 20px;
+  background-color: #f0f0f0;
+}
+
+#errorExplanation h2 {
+  text-align: left;
+  font-weight: bold;
+  padding: 5px 5px 5px 15px;
+  font-size: medium;
+  margin: -7px;
+  background-color: #c00;
+  color: #fff;
+}
+
+#errorExplanation p {
+  color: #333;
+  margin-bottom: 0;
+  padding: 5px;
+}
+
+#errorExplanation ul li {
+  list-style: square;
+}
+
+div.uploadStatus {
+  margin: 5px;
+}
+
+div.progressBar {
+  margin: 5px;
+}
+
+div.progressBar div.border {
+  background-color: #fff;
+  border: 1px solid grey;
+  width: 100%;
+}
+
+div.progressBar div.background {
+  background-color: #333;
+  height: 18px;
+  width: 0%;
+}
+
+table {
+    border-collapse: collapse;
+}
+
+th {
+    text-align: left;
+}
+th, td {
+    border: 1px solid #ccc;
+    padding: 0.2em;
+}
+
+img {
+    border: 0px;
+}
+
+dl.queue {
+    margin: 1em;
+}
+dl.queue dd {
+    border-style: solid;
+    border-width: 1px;
+    margin-left: 2em;
+    margin-bottom: 1.5em;
+    border-color: #ccf;
+    background-color: #eef;
+}
+dl.queue pre {
+    margin: 0px;
+    padding: 0.5em;
+}
+p.queue {
+    margin: 1em;
+    background-image: url(../images/comment_add.png);
+    background-repeat: no-repeat;
+    padding-left: 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid;
+    border-color: #ccf;
+}
+span.board_date {
+    font-size: small;
+    color: #444;
+}

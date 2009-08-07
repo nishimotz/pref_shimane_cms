@@ -1,0 +1,42 @@
+<div style="clear: both;"></div>
+<br />
+<% unless @corp_ads.empty? && @pref_ads.empty? -%>
+<div id="footer_banner">
+<% unless @corp_ads.empty? -%>
+<div class="round_corner">
+  <h3 style="font-weight: bold">企業広告</h3>
+  <p class="about_banner"><a href="/seisaku/ad1.html" target="_blank">広告掲載について</a></p>
+<ul>
+  <% @corp_ads.each do |ad| -%>
+    <li><%= link_to(image_tag("#{image_src(ad.image)}", :alt => ad.alt, :size => "234x60"), ad.url, :popup => true) %></li>
+  <% end -%>
+</ul>
+
+<div style="clear: both;">&nbsp;</div>
+
+</div>
+<% end -%><%# end of pref banner %>
+
+<hr class="footer_line" />
+
+<% unless @pref_ads.empty? %>
+<div class="round_corner">
+<h3 style="font-weight: bold">県施策PR</h3>
+<p class="about_banner"><a href="/seisaku/ad2.html" target="_blank">県施策PRについて</a></p>
+<ul>
+  <% @pref_ads.each do |ad| %>
+    <li>
+    <%= link_to(image_tag("#{image_src(ad.image)}", :alt => h(ad.alt), :size => "234x60"), h(ad.url), :popup => true) %><p><%= link_to(h(ad.description), h(ad.description_link), :popup => true) if ad.description -%></p></li>
+  <% end %>
+</ul>
+
+<div style="clear: both;">&nbsp;</div>
+
+</div>
+
+<hr class="footer_line" />
+
+<% end %><%# end of pref banner %>
+
+</div>
+<% end %><%# end of footer banner %>

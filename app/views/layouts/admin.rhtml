@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<title>CMS : <%= h controller.action_name %></title>
+  <%= stylesheet_link_tag 'admin' %>
+<% if @view_mode == :mobile -%>
+  <%= stylesheet_link_tag 'mobile' %>
+<% else -%>
+  <%= stylesheet_link_tag 'default' %>
+  <%= stylesheet_link_tag 'color' %>
+  <%= stylesheet_link_tag 'dirs' %>
+<% end -%>
+  <%= javascript_include_tag "prototype" %>
+  <%= javascript_include_tag "dragdrop" %>
+  <%= javascript_include_tag "controls" %>
+  <%= javascript_include_tag "effects" %>
+  <%= javascript_include_tag "admin" %>
+<% if @edit_mode -%>
+  <%= javascript_include_tag("tiny_mce/tiny_mce.js") %>
+  <script language="javascript" type="text/javascript">
+	tinyMCE.init({
+//		debug : true,
+		mode : "textareas",
+		theme : "advanced",
+		language : "ja",
+		plugins : "table,searchreplace,contextmenu,uploadfile,plugin,paste,enquete,dict",
+<% case @edit_mode -%>
+<% when :mobile -%>
+		valid_elements : "+a[accesskey|name|href],-strong/b,-em/i,-strike,-u,+p[align],-ol,-ul,-li,br[clear],-sub,-sup,-blockquote,-div[align],-pre,-h1[align],-h2[align],-h3[align],-h4[align],-h5[align],-h6[align],hr[align],-span[class]",
+		theme_advanced_buttons1 : "formatselect,separator,undo,redo,separator,replace,separator,removeformat,code,cleanup,separator,bold,italic,strikethrough,separator,bullist,numlist,separator,outdent,indent,separator,link,unlink,plugin,enquete,separator,hr",
+		theme_advanced_buttons2 : "",
+		theme_advanced_buttons3 : "",
+<% when :info -%>
+		valid_elements : "+a[accesskey|name|href],-strong/b,-em/i,-strike,-u,+p[align],-ol,-ul,-li,br[clear],-sub,-sup,-blockquote,-div[align],-pre,-h1[align],-h2[align],-h3[align],-h4[align],-h5[align],-h6[align],hr[align]",
+		theme_advanced_buttons1 : "formatselect,separator,undo,redo,separator,replace,separator,removeformat,code,cleanup,separator,bold,italic,strikethrough,separator,bullist,numlist,separator,outdent,indent,separator,link,unlink,separator,hr",
+		theme_advanced_buttons2 : "",
+		theme_advanced_buttons3 : "",
+<% else -%>
+		valid_elements : "+a[id|style|rel|rev|charset|hreflang|lang|tabindex|accesskey|type|name|href|title|class|style],-strong/b[class|style],-em/i[class|style],-strike[class|style],-u[class|style],+p[style|class|align],-ol[class|style],-ul[class|style],-li[class|style],br,img[id|lang|longdesc|style|class|src|border=0|alt|title|hspace|vspace|width|height|align|usemap],-sub[style|class],-sup[style|class],-blockquote[style],-table[cellspacing|cellpadding|width|class|align|summary|style|id|lang],-tr[id|lang|class|rowspan|align|valign|style],-td[id|lang|class|colspan|rowspan|width|height|align|valign|style|scope],-th[id|lang|class|colspan|rowspan|width|height|align|valign|style|scope],caption[id|lang|class|style],-div[id|class|align|style],-span[style|class|align],-pre[class|align|style],address[class|align|style],-h1[style|class|align],-h2[style|class|align],-h3[style|class|align],-h4[style|class|align],-h5[style|class|align],-h6[style|class|align],hr[class|style],area[accesskey|alt|class|coords|href|id|lang|nohref|shape|style|tabindex|title|target],map[class|lang|name|style|title]",
+		theme_advanced_buttons1 : "formatselect,styleselect,justifyleft,justifycenter,justifyright,separator,undo,redo,separator,replace,separator,removeformat,code,cleanup,separator,bold,italic,strikethrough,sub,sup,separator,bullist,numlist,custombullet,separator,outdent,indent,separator,link,unlink,uploadfile,image,plugin,enquete,separator,hr,charmap,dict",
+		theme_advanced_buttons2 : "tablecontrols",
+		theme_advanced_buttons3 : "",
+<% end -%>
+		theme_advanced_toolbar_location : "top",
+		theme_advanced_toolbar_align : "left",
+		theme_advanced_statusbar_location : "none",
+		theme_advanced_path : false,
+		theme_advanced_blockformats : "p,h1,h2,h3,h4,h5,h6",
+		document_base_url : "<%= @page.path rescue '/' %>",
+		relative_urls : false,
+<% if @edit_mode == :mobile -%>
+		content_css : "/stylesheets/mobile.css",
+<% elsif @page && @page.path == '/' -%>
+                content_css : "/stylesheets/editor_top.css",
+<% else -%>
+		content_css : "/stylesheets/editor.css",
+                theme_advanced_styles : "緑=green; ピンク=pink; 黄= cccc66; 紫=cc00cc; グラデーション青=news; グラデーション赤=emg; グラデーション黄=subject; グラデーション紫=pr; ちぐさねず=light-gray; うらはやなぎ=light-green; かちかえし=dark-green; もえぎいろ=fresh-green; 濃青=dark-blue; 枠なし=plain", 
+<% end -%>
+		external_link_list_url : "<%= url_for(:controller => 'admin', :action => 'genre_page_list') %>",
+		external_file_list_url : "<%= url_for(:controller => 'admin', :action => 'file_list', :id => @page) %>",
+		external_image_list_url : "<%= url_for(:controller => 'admin', :action => 'image_list', :id => @page) %>",
+		paste_auto_cleanup_on_paste : true,
+		paste_strip_class_attributes : "mso",
+		accessibility_warnings : false,
+		button_tile_map : true
+	});
+  </script>
+<% end %>
+</head>
+<body<%= @move ? ' style="overflow: hidden; margin: 0;"' : '' %> >
+<% if flash[:notice] -%>
+<p style="color: green"><%= flash[:notice] %></p>
+<% end -%>
+<%= @content_for_layout %>
+
+</body>
+</html>

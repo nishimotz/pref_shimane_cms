@@ -1,0 +1,67 @@
+= NEWS
+== Version 1.1.0
+=== Changes since the 1.0.2 release
+
+以前のバージョン1.0.2から以下の機能が追加・変更されました。
+
+  * リンク挿入ダイアログ画面の幅の変更
+  * 公開ページデザインの変更
+  * 見出しスタイル変更能機
+  * バナー広告管理・公開機能
+  * Webモニター機能(アンケート集計機能他)
+  * テーマ変更機能
+  * トップページ写真のリンク設定機能
+  * アンケート確認画面機能
+  * 緊急情報公開時のトップページ差し替え機能
+  * オンラインヘルプ機能
+  * 一括登録機能
+  * リンク切れチェック機能
+
+(0)1.0.2からの移行の場合は、まずはmigrateファイルが追加されたので、以下のコマンドを実行します。
+    $ sudo -u www-data rake migrate
+
+(0)Webモニター機能を使用するためには、以下の手順が必要となります。
+
+coanfig/cms.yml.exampleに追加された以下の内容を、config/cms.ymlに反映させます。
+
+  * public_htpasswd_dir: /var/www/htpasswd
+
+これはWebモニター機能で使用するパスワードファイルの置き場所です。
+
+config/apache2.conf.exampleの内容が以下のように変更・追加されたので、apacheの設定ファイルに反映させます。
+
+   <Directory />
+   ..
+   - AllowOverride None
+   + AllowOverride AuthConfig
+   </Directory>
+   ..
+   + BrowserMatch "MSIE" AuthDigestEnableQueryStringHack=O
+
+Webモニター機能では、Digest認証を使用するので、apacheのauth_digestモジュールを有効にします。
+    $ sudo a2enmod auth_digest
+
+(0)cronの設定例ファイルであるcrondoc/crontab.exampleは以下の内容が追加されました。
+
+  *  一括登録機能を行うスクリプトの実行スケジュール
+  *  リンク切れチェックを行うスクリプトの実行スケジュール
+
+なお、「リンク切れチェックを行うスクリプトの実行スケジュール」はコメントアウトしていますので、
+実際に動作させる必要がある場合はコメントアウトを外してからcrontabへ反映させて下さい。
+
+また、オンラインヘルプシステムのデフォルトのデータは別途用意しております。
+こちらのインポート方法については、インストールドキュメントに記載しておりますのでそちらを参照してください。
+
+== Version 1.0.2
+=== Changes since the 1.0.1 release
+
+doc/INSTALLの間違いを変更しました。
+
+== Version 1.0.1
+=== Changes since the 1.0.0 release
+
+メニュー画面等不具合を修正しました。
+
+== Version 1.0.1
+
+  Initial Release!

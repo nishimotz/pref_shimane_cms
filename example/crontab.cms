@@ -1,0 +1,6 @@
+*    * * * * if [ -e '/var/share/cms/do_export' ]; then nice /var/share/cms/tool/export; fi
+*/15 * * * * if [ -e '/var/share/cms/do_export' ]; then nice /var/share/cms/tool/export_plugin; fi
+15   1 * * * if [ -e '/var/share/cms/do_export' ]; then nice /var/share/cms/tool/export_all; fi
+*    * * * * if [ -e '/var/share/cms/do_export' ]; then /var/share/cms/tool/sync_to_www sync1.lock 'www-update@61.213.252.149'; fi
+*    * * * * if [ -e '/var/share/cms/do_export' ]; then /var/share/cms/tool/sync_to_www sync2.lock 'www-update@61.213.252.148'; fi
+42   * * * * if [ -e '/var/share/cms/do_export' ]; then /var/share/cms/tool/retrieve_form_data; fi

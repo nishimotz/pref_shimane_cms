@@ -1,0 +1,15 @@
+<%
+# 説明：所属トップページの分野別情報を表示する
+# 引数：なし
+  genres = @page.genre.section.genres
+-%>
+<% if @preview || !genres.empty? -%>
+<h2>分野別情報</h2>
+<ul class="genre_list">
+<% genres.each do |genre| -%>
+  <li><%= image_tag('folder.png', :alt => '', :size => '18x18') %> <a href="<%= h(genre.path) %>"><%= h(genre.title) %></a></li>
+<% end %>
+<% if @preview && genres.empty? %>  <li><%= image_tag('folder.png', :alt => '', :size => '18x18') %> サンプルフォルダ</li><% end %>
+</ul>
+<hr class="sep" />
+<% end %>

@@ -1,0 +1,19 @@
+<div>現在のフォルダ : <%= render(:partial => 'genre_path') %></div>
+<div>現在のURL&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: <%= h(@genre.path) %><div>
+<p>左のフォルダリストをクリックすると、その下のフォルダを並び替えることができます。</p>
+<p>フォルダを並べかえるには、下のフォルダのアイコンをドラッグ・ドロップで操作して順序を入れ換えてください。</p>
+<h3>このフォルダ内のフォルダ一覧</h3>
+<ul class="page_list" id="list">
+<% @genre.children.each do |genre| -%>
+  <li class="draggble" id="item_<%= genre.id %>">
+    <%= image_tag('folder.png', :alt => '', :class => "products") %><%= h(genre.title) %>(<%= genre.id %>)
+  </li>
+<% end -%>
+</ul>
+<div id="result"></div>
+<%= sortable_element 'list',
+      :update => 'result',
+      :complete => visual_effect(:highlight, 'list'),
+      :url => { :action => "update_sort_genre", :id => @genre }
+%>
+</div>

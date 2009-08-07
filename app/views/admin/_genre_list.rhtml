@@ -1,0 +1,6 @@
+<% @move = @params[:action] == 'move' -%>
+<% @root_dir_list.each do |@root| -%>
+<div id="dir-<%= @root.id %>" class="closed">
+<%= render(:partial => 'genre_open') %>
+</div>
+<% end -%>

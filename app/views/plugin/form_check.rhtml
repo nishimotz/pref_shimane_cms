@@ -1,0 +1,6 @@
+<%
+  name, *list = @args
+-%>
+<% list.each_with_index do |i,index| -%>
+<%= check_box_tag(h(name), h(i), false, :id => nil) %> <%= h(i) %><% if index != list.size - 1 %><br /><% end %>
+<% end -%>

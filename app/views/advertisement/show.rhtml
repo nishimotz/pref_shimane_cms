@@ -1,0 +1,62 @@
+<h2>広告の詳細</h2>
+<table id="show_advertisement">
+<tr>
+<th>状態</th>
+<% unless job_exists? %>
+<td><%= @advertisement.state_to_s -%></td>
+<% else %>
+<td>公開処理中</td>
+<% end %>
+</tr>
+<tr>
+<th>種別</th>
+<td><%= @advertisement.side_type_to_s -%></td>
+</tr>
+<tr>
+<th>広告名</th>
+<td><%= @advertisement.name -%></td>
+</tr>
+<tr>
+<th>広告主</th>
+<td><%= @advertisement.advertiser -%></td>
+</tr>
+<tr>
+<th>公開開始日</th>
+<td><%= public_term_strftime(@advertisement.begin_date) -%></td>
+</tr>
+<tr>
+<th>公開終了日</th>
+<td><%= public_term_strftime(@advertisement.end_date) -%></td>
+</tr>
+<tr>
+<th>広告の説明</th>
+<td><%= @advertisement.description -%></td>
+</tr>
+<tr>
+<th>説明のlink URL</th>
+<td><%= @advertisement.description_link -%></td>
+</tr>
+<tr>
+<th>画像</th>
+<td> <%= image_tag("/advertisement.data/#{@advertisement.image}", :alt => @advertisement.alt) -%></td>
+</tr>
+<tr>
+<th>画像の説明</th>
+<td><%= @advertisement.alt -%></td>
+</tr>
+<tr>
+<th>画像のlink URL</th>
+<td><%= @advertisement.url -%></td>
+</tr>
+<tr>
+<th>ヘッダ広告に表示</th>
+<td><%= @advertisement.show_in_header_to_s -%></td>
+</tr>
+</table>
+<br />
+&nbsp;&nbsp;<%= link_to '戻る', :action => 'list' %>
+<% unless job_exists? %>
+<% unless @advertisement.published? %>
+&nbsp;&nbsp;<%= link_to '編集', {:action => 'edit', :id => @advertisement} %>
+<% end %>
+<% end %>

@@ -1,0 +1,23 @@
+<%= render(:partial => 'menu') %>
+<div class="container">
+<h2>ヘルプの並び替え (<%= h(@category.name) %>)</h2>
+<%= link_to('一覧に戻る', :action => 'list_category') %> | 
+<br /><br />
+ヘルプの項目名をドラッグ アンド ドロップして順番を変更してください。
+<hr />
+<div>
+<div id="result"></div>
+<ul class="page_list" id="list">
+<% @helps.each do |help| -%>
+  <li class="draggble" id="item_<%= help.id %>">
+    ・<%= h(help.name) %>
+  </li>
+<% end -%>
+</ul>
+<%= sortable_element 'list',
+      :update => 'result',
+      :complete => visual_effect(:highlight, 'list'),
+      :url => { :action => "update_sort_helps", :id => params[:id] }
+%>
+</div>
+</div>

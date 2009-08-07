@@ -1,0 +1,57 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+pref1:
+  id: 1
+  name: "pref1"
+  advertiser: "pref1"
+  image: "1.png"
+  alt: "pref1"
+  url: "http://localhost:3000/"
+  begin_date: 2006-01-19 14:00:00 +09:00
+  end_date: 2020-02-19 15:00:00 +09:00
+  side_type: 1
+  show_in_header: true
+  corp_ad_number:
+  pref_ad_number: 1
+  state: 1
+corp1:
+  id: 2
+  name: "outside1"
+  advertiser: "outside1"
+  image: "2.png"
+  alt: "outside1"
+  url: "http://www.google.com"
+  begin_date: 2006-01-19 14:00:00 +09:00
+  end_date: 2020-02-19 15:00:00 +09:00
+  side_type: 2
+  show_in_header: true
+  corp_ad_number: 1
+  pref_ad_number:
+  state: 2
+pref2:
+  id: 3
+  name: "pref2"
+  advertiser: "pref2"
+  image: "3.png"
+  alt: "pref2"
+  url: "http://localhost:3000/"
+  begin_date: 2006-01-19 14:00:00 +09:00
+  end_date: 2020-02-19 15:00:00 +09:00
+  side_type: 1
+  show_in_header: true
+  corp_ad_number:
+  pref_ad_number: 2
+  state: 2
+corp2:
+  id: 4
+  name: "corp2"
+  advertiser: "corp2"
+  image: "4.png"
+  alt: "corp2"
+  url: "http://localhost:3000/"
+  begin_date: 2006-01-19 14:00:00 +09:00
+  end_date: 2020-02-19 15:00:00 +09:00
+  side_type: 2
+  show_in_header: true
+  corp_ad_number: 2
+  pref_ad_number:
+  state: 2

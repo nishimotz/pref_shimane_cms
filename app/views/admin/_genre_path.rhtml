@@ -1,0 +1,10 @@
+<% action = (@mode == :genre) ? 'genre' : 'page' -%>
+<% @genre.each_genre do |genre| -%>
+<%= link_to_if(genre.editable?(@user), h(genre.title), :action => action, :id => genre) %>&nbsp;&gt;
+<% end -%>
+<% if !@page || @page.name == 'index' -%>
+<%= link_to(h(@genre.title), :action => action, :id => @genre) %>
+<% else -%>
+<%= link_to(h(@genre.title), :action => action, :id => @genre) %>&nbsp;&gt;
+<%= h(@page.title) %>
+<% end -%>

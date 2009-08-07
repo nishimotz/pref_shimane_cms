@@ -1,0 +1,10 @@
+<h2>トップページ写真のリンク設定</h2>
+<p style="color: green; padding-bottom: 5px;"><%= flash[:notice_top_photo_link] %></p>
+<p>現在のリンク: <%= link_to photo_link, photo_link, :popup => true %></p>
+<%= start_form_tag :action => 'change_top_photo_link' %>
+<p>
+<label for="theme">リンク先URL:</label>
+<%= text_field_tag :top_photo_link, nil, :size => 60 %>
+</p>
+<%= submit_tag 'リンクを変更する' %>
+<%= end_form_tag -%>

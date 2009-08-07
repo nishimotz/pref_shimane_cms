@@ -1,0 +1,75 @@
+genre1_index:
+  id: 1
+  genre_id: 2
+  name: index
+  title: ジャンル1_index1
+genre1_2_page1:
+  id: 2
+  genre_id: 3
+  name: page1
+  title: ジャンル2_page1
+genre1_2_page2:
+  id: 3
+  genre_id: 3
+  name: page2
+  title: ジャンル2_page1
+genre1_2_3_page1:
+  id: 4
+  genre_id: 4
+  name: page1
+  title: ジャンル3_page1
+plugin_page2:
+  id: 5
+  genre_id: 5
+  name: index
+  title: くらし
+template1:
+  id: 14
+  genre_id: 63
+  name: template1
+  title: テンプレート1
+template2:
+  id: 15
+  genre_id: 63
+  name: template2
+  title: テンプレート2
+page_public_enable_test_true:
+  id: 29
+  genre_id: 1
+  name: enable
+  title: 公開期限OK
+page_public_enable_test_false:
+  id: 30
+  genre_id: 1
+  name: not_enable
+  title: 公開期限NG
+link_test_page:
+  id: 31
+  genre_id: 8
+  name: link_test
+  title: リンクテスト
+enquete_test_page:
+  id: 32
+  genre_id: 67
+  name: enquete_test
+  title: アンケートテスト
+enquete_test_page2:
+  id: 33
+  genre_id: 67
+  name: enquete_test2
+  title: アンケートテスト2
+police_test:
+  id: 34
+  genre_id: 70
+  name: police_test
+  title: 警察用ページのテスト
+top_page:
+  id: 35
+  genre_id: 1
+  name: index
+  title: トップページ
+news_title:
+  id: 36
+  genre_id: 1
+  name: news_title
+  title: 新着見出しのテストページ

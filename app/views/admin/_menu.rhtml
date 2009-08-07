@@ -1,0 +1,8 @@
+<div class="info">
+ユーザ : <%= h(@user.name) %>（<%= h(@user.section.name) %>）<br />
+<% if params[:action] != 'index' -%>[<%= link_to('トップへ戻る', :action => 'index') %>]<% end -%><% if @user.authority == User::SUPER_USER -%>[<%= link_to('各種設定', :action => 'config') %>]<% end -%>[<%= link_to('ログアウト', :action => 'logout') %>]<%= help_link(@action_name, @controller_name) %>
+</div>
+<div class="logo">島根県ホームページ管理システム（CMS）</div>
+<div class="tool">
+&nbsp;
+</div>

@@ -1,0 +1,13 @@
+<%= render(:partial => 'menu') %>
+<div class="container">
+<br />
+<h2>お知らせ詳細</h2>
+タイトル : <%= h(@info.title) %><br />
+更新日   : <%= public_term_strftime(@info.last_modified) %><br />
+内容     :
+<div class="show">
+ <%= render(:inline => @info.content) %>
+</div>
+<%= link_to('編集', :action => 'edit_info', :id => @info) %> |
+<%= link_to('お知らせ一覧に戻る', :action => 'list_info') %>
+</div>

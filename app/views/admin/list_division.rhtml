@@ -1,0 +1,27 @@
+<%= render(:partial => 'menu') %>
+<div class="container">
+<h2>部局一覧</h2>
+[<%= link_to('全所属一覧表示に戻る', :action => 'list_section') %>]|[<%= link_to('部署の並び変え', :action => 'sort_division_section', :id => @division_code) %>]|[<%= link_to('部局新規作成', :action => 'new_division') %>]
+<br />
+<br />
+<div style="color: red;"><%= flash[:section_notice] %></div>
+<div id="section">
+<table border="1" id="section" >
+  <tr>
+    <th>部名</th>
+    <th>組織別情報に表示する</th>
+    <th>処理</th>
+  </tr>
+  <% @divisions.each do |division| -%>
+    <tr>
+      <td><%= h(division.name) %></td>
+      <td><% if division.enable -%>する<% else -%>しない<% end -%></td>
+      <td>
+        <%= link_to('編集', :action => 'edit_division', :id => division) %>
+        <%= link_to('削除', { :action => 'destroy_division', :id => division }, :confirm => '削除しますか?') %>
+      </td>  
+    </tr>
+  <% end -%>
+</table>
+</div>
+</div>

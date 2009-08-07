@@ -1,0 +1,10 @@
+#!/usr/bin/env ruby
+
+require File.dirname(__FILE__) + '/../config/boot'
+require "#{RAILS_ROOT}/config/environment"
+
+PageLock.find(:all).each do |page_lock|
+  if page_lock.time + Page::LOCK_TIME < Time.now
+    page_lock.destroy
+  end
+end

@@ -1,0 +1,26 @@
+@charset              "Shift_JIS";
+
+/* 音声ブラウザ用スタイルシート */
+
+h1                   {
+                      pitch: low;
+                      richness: 90
+                     }
+
+h2                   {
+                      pitch: low;
+                      richness: 80
+                     }
+h3                   {
+                      pitch: low;
+                      richness: 70
+                     }
+em                   {
+                      stress: 80
+                     }
+p#banner span        {
+                      pause : 60% 90%
+                     }
+address              {
+                      speak-numeral: digits
+                     }
