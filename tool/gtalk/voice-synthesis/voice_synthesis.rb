@@ -80,9 +80,10 @@ class VoiceSynthesis
     @gtalk_path =
       File.expand_path('../gtalk/gtalk', File.dirname(__FILE__))
     @gtalk_options = ['-C', 'ssm.conf', '2>', '/dev/null']
-    @lame_path = '/usr/local/bin/lame'
+    @lame_path = `which lame`.chomp # '/usr/local/bin/lame'
     @lame_options =
-      ['-r', '-s', '16', '-m', 'm', '-x', '-S', '-b', '32', '--cbr',
+      ['-r', '-s', '16', '-m', 'm', # '-x', 
+       '-S', '-b', '32', '--cbr',
        '--scale', '1.5', '-', '-', '2>', '/dev/null']
     @max_part_length = 1000
     @logger = nil

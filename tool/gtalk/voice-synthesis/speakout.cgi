@@ -4,7 +4,7 @@ require 'cgi'
 
 text = 'こんにちは、赤ちゃん。'
 
-Dir.chdir('/home/kouji/work/pref-shimane-cms/gtalk/gtalk') do
+Dir.chdir(File.join(File.dirname(__FILE__), "../gtalk")) do
   ENV['LANG'] = 'ja_JP.EUC-JP'
   IO.popen("./gtalk -C ssm.conf > /var/tmp/log", "w") do |f|
     f.puts("set Text = #{text}")
