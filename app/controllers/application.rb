@@ -41,7 +41,7 @@ class ApplicationController < ActionController::Base
   end
 
   def rubi_filter
-    return if @headers['Content-Type'] || !@cookies['ruby'] || @cookies['ruby'].first != 'on'
+    return if @headers['Content-Type'] || !@cookies['ruby'] || @cookies['ruby'] != 'on'
     @response.body = RubiAdder.add(@response.body)
   end
 

@@ -13,7 +13,7 @@ if File.directory?("#{RAILS_ROOT}/vendor/rails")
   require "#{RAILS_ROOT}/vendor/rails/railties/lib/initializer"
 else
   require 'rubygems'
-  require_gem 'rails', '= 1.0'
+  gem 'rails', '= 1.2.6'
   require 'initializer'
 end
 
